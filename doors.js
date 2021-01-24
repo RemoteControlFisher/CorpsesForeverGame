@@ -1,4 +1,4 @@
-class corpses
+class doors
 {
 	constructor(game, x, y)
 	{
