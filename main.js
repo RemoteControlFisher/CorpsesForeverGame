@@ -5,6 +5,7 @@ var ASSET_MANAGER = new AssetManager();
 ASSET_MANAGER.queueDownload("./sprites/duck.png")
 ASSET_MANAGER.queueDownload("./sprites/blade_1_3.png")
 ASSET_MANAGER.queueDownload("./sprites/spike_strip.png")
+ASSET_MANAGER.queueDownload("./sprites/wolfsheet1.png")
 
 ASSET_MANAGER.downloadAll(function () {
 	var canvas = document.getElementById('gameWorld');
@@ -14,6 +15,8 @@ ASSET_MANAGER.downloadAll(function () {
 
 	gameEngine.addEntity(new duck(gameEngine, "stand", 280, 280))
 	gameEngine.addEntity(new traps(gameEngine, 80, 80))
+	gameEngine.addEntity(new Chompers(gameEngine, 400, 400))
+
 
 	gameEngine.start();
 });

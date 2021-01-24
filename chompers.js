@@ -3,7 +3,62 @@ class Chompers
 	constructor(game, x, y)
 	{
 		Object.assign(this, {game, x, y});
-		this.spritesheet = ASSET_MANAGER.getAsset(/*place spritesheet here*/);
+		this.spritesheet = ASSET_MANAGER.getAsset("./sprites/wolfsheet1.png");
+		
+		this.animators = []; //[state][facing]
+	
+		this.animators["stand"] = []
+		this.animators["walk"] = []
+		this.animators["run"] = []
+
+		this.animators["stand"]["r"] =
+		  new animator(this.spritesheet, // Spritesheet
+			8, //X
+			14, //Y
+			16, //Width
+			25, //Height
+			1, //Frames
+			0.12, //Time
+			16, //Padding
+			false, //reverse
+			true, // looping,
+			null) //No idle animation because I am looping.
+		//Facing isn't implemented yet.
+		this.animators["stand"]["l"] =
+		  new animator(this.spritesheet, // Spritesheet
+			167, //X
+			129, //Y
+			16, //Width
+			25, //Height
+			1, //Frames
+			0.12, //Time
+			16, //Padding
+			false, //reverse
+			true, // looping,
+			null) //No idle animation because I am looping.
+		//Facing isn't implemented yet.
+		this.animators["walk"]["r"] = new animator(this.spritesheet, // Spritesheet
+		  41, //X
+		  14, //Y
+		  16, //Width
+		  25, //Height
+		  5, //Frames
+		  0.12, //Time
+		  16, //Padding
+		  false, //reverse
+		  true, // looping,
+		  null) //No idle animation because I am looping.
+		this.animators["walk"]["l"] = new animator(this.spritesheet, // Spritesheet
+		  320, //X
+		  320, //Y
+		  64, //Width
+		  32, //Height
+		  5, //Frames
+		  0.12, //Time
+		  0, //Padding
+		  true, //reverse
+		  true, // looping,
+		  null) //No idle animation because I am looping.
 	};
 
 	update()
@@ -13,6 +68,6 @@ class Chompers
 
 	draw(ctx)
 	{
-		
+		this.animators["walk"]["l"].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1)
 	};
 };

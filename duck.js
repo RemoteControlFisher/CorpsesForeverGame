@@ -59,7 +59,7 @@ class duck {
       true, // looping,
       null) //No idle animation because I am looping.
     this.animators["walk"]["l"] = new animator(this.spritesheet, // Spritesheet
-      7, //X
+      6, //X
       129, //Y
       16, //Width
       25, //Height
@@ -103,7 +103,7 @@ class duck {
       true, // looping,
       null) //No idle animation because I am looping.
     this.animators["run"]["l"] = new animator(this.spritesheet, // Spritesheet
-      7, //X
+      6, //X
       129, //Y
       16, //Width
       25, //Height
