@@ -13,10 +13,10 @@ class Chompers
 
 		this.animators["stand"]["r"] =
 		  new animator(this.spritesheet, // Spritesheet
-			8, //X
-			14, //Y
-			16, //Width
-			25, //Height
+			320, //X
+			1, //Y
+			64, //Width
+			32, //Height
 			1, //Frames
 			0.12, //Time
 			16, //Padding
@@ -38,13 +38,13 @@ class Chompers
 			null) //No idle animation because I am looping.
 		//Facing isn't implemented yet.
 		this.animators["walk"]["r"] = new animator(this.spritesheet, // Spritesheet
-		  41, //X
-		  14, //Y
-		  16, //Width
-		  25, //Height
+		  320, //X
+		  128, //Y
+		  64, //Width
+		  32, //Height
 		  5, //Frames
 		  0.12, //Time
-		  16, //Padding
+		  0, //Padding
 		  false, //reverse
 		  true, // looping,
 		  null) //No idle animation because I am looping.
@@ -68,6 +68,8 @@ class Chompers
 
 	draw(ctx)
 	{
+		this.animators["stand"]["r"].drawFrame(this.game.clockTick, ctx, this.x+90, this.y, 1)
 		this.animators["walk"]["l"].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1)
+		this.animators["walk"]["r"].drawFrame(this.game.clockTick, ctx, this.x+180, this.y, 1)
 	};
 };
