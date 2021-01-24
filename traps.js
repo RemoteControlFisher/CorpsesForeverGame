@@ -20,7 +20,7 @@ class traps
 		  null) 
 	};
 
-	update()g
+	update()
 	{
 
 	};
