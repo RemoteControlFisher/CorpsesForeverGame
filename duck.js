@@ -138,13 +138,15 @@ class duck {
 
   update() {
     let tick = this.game.clockTick;
-    //Currently using the mario walk for the day 1 walk prototype.
+    //These constants I did copy just so I remembered the basic constants I should use here. The rest I typed out manually with some vague inspirations being pulled
+    //From the lecture examples.
     const MIN_WALK = 120.453125;
     const MAX_WALK = 293.75;
     const MAX_RUN = 550.75;
     const ACC_WALK = 153.59375;
     const ACC_RUN = 750.390625;
-    //Typing out basic walk physics based on the mariott example now.
+
+    //Typing out basic walk physics.
     if (this.game.left && !this.game.right) {
       if (this.velocity > -MIN_WALK)
         this.velocity = -MIN_WALK;
@@ -189,7 +191,7 @@ class duck {
       this.state = "stand"
     } else {
       this.state = "walk"
-      if (this.game.sprint)
+      if (this.velocity < -MAX_WALK || this.velocity > MAX_WALK)
         this.state = "run"
       if (this.velocity > 0.1)
         this.facing = "r"
