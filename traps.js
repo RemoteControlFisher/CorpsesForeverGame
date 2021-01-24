@@ -13,7 +13,7 @@ class traps
 		  64, //Width
 		  72, //Height
 		  3, //Frames
-		  0.12, //Time
+		  0.13, //Time
 		  3, //Padding
 		  false, //reverse
 		  true, // looping,
@@ -27,6 +27,6 @@ class traps
 
 	draw(ctx)
 	{
-		this.animators["saw"].drawFrame(this.game.clockTick, ctx, this.x, this.y, 2)
+		this.animators["saw"].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1)
 	};
 };
