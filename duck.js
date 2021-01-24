@@ -7,12 +7,13 @@ class duck {
     this.facing = 'r' // l for left, r for right.
     this.state = state // stand, jump, walk, squat, slide are considered valid options.
     this.armstate = 'down' // matchbody, hold
+    this.game.duck = this
 
     this.velocity = 0;
 
 
     this.animators = []; //[state][facing]
-    this.armAnimators = []; //[state][facing] Does not render when standing unless we are holding something.
+    this.armAnimators = []; //[state][facing][hold] Does not render when standing unless we are holding something.
 
     this.animators["stand"] = []
     this.animators["walk"] = []
