@@ -36,7 +36,7 @@ class duck {
     //Facing isn't implemented yet.
     this.animators["stand"]["l"] =
       new animator(this.spritesheet, // Spritesheet
-        166, //X
+        167, //X
         129, //Y
         16, //Width
         25, //Height
