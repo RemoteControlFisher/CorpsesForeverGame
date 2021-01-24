@@ -6,16 +6,47 @@ class duck {
     this.spritesheet = ASSET_MANAGER.getAsset("./sprites/duck.png")
     this.facing = 'r' // l for left, r for right.
     this.state = state // stand, jump, walk, squat, slide are considered valid options.
-    this.armstate = 'down' // down, hold
+    this.armstate = 'down' // matchbody, hold
 
     this.velocity = 0;
 
 
-    this.animators = []; //[facing][state]
-    this.armAnimators = []; //[facing][state][armstate]
+    this.animators = []; //[state][facing]
+    this.armAnimators = []; //[state][facing] Does not render when standing unless we are holding something.
 
-    //Currently doesn't follow the conventions for the animator, as facing isn't implemented yet.
-    this.animators["walk"] = new animator(this.spritesheet, // Spritesheet
+    this.animators["stand"] = []
+    this.animators["walk"] = []
+    this.animators["run"] = []
+    this.armAnimators["walk"] = []
+    this.armAnimators["run"] = []
+
+    this.animators["stand"]["r"] =
+      new animator(this.spritesheet, // Spritesheet
+        8, //X
+        14, //Y
+        16, //Width
+        25, //Height
+        1, //Frames
+        0.12, //Time
+        16, //Padding
+        false, //reverse
+        true, // looping,
+        null) //No idle animation because I am looping.
+    //Facing isn't implemented yet.
+    this.animators["stand"]["l"] =
+      new animator(this.spritesheet, // Spritesheet
+        166, //X
+        129, //Y
+        16, //Width
+        25, //Height
+        1, //Frames
+        0.12, //Time
+        16, //Padding
+        false, //reverse
+        true, // looping,
+        null) //No idle animation because I am looping.
+    //Facing isn't implemented yet.
+    this.animators["walk"]["r"] = new animator(this.spritesheet, // Spritesheet
       41, //X
       14, //Y
       16, //Width
@@ -26,7 +57,18 @@ class duck {
       false, //reverse
       true, // looping,
       null) //No idle animation because I am looping.
-    this.armAnimators["walk"] = new animator(this.spritesheet,
+    this.animators["walk"]["l"] = new animator(this.spritesheet, // Spritesheet
+      7, //X
+      129, //Y
+      16, //Width
+      25, //Height
+      5, //Frames
+      0.12, //Time
+      16, //Padding
+      true, //reverse
+      true, // looping,
+      null) //No idle animation because I am looping.
+    this.armAnimators["walk"]["r"] = new animator(this.spritesheet,
       2,
       519,
       12,
@@ -37,16 +79,70 @@ class duck {
       false,
       true,
       null)
-
+    this.armAnimators["walk"]["l"] = new animator(this.spritesheet,
+      2,
+      479,
+      12,
+      16,
+      6,
+      0.10,
+      4,
+      true,
+      true,
+      null)
+    this.animators["run"]["r"] = new animator(this.spritesheet, // Spritesheet
+      41, //X
+      14, //Y
+      16, //Width
+      25, //Height
+      5, //Frames
+      0.08, //Time
+      16, //Padding
+      false, //reverse
+      true, // looping,
+      null) //No idle animation because I am looping.
+    this.animators["run"]["l"] = new animator(this.spritesheet, // Spritesheet
+      7, //X
+      129, //Y
+      16, //Width
+      25, //Height
+      5, //Frames
+      0.08, //Time
+      16, //Padding
+      true, //reverse
+      true, // looping,
+      null) //No idle animation because I am looping.
+    this.armAnimators["run"]["r"] = new animator(this.spritesheet,
+      2,
+      519,
+      12,
+      16,
+      6,
+      0.05,
+      4,
+      false,
+      true,
+      null)
+    this.armAnimators["run"]["l"] = new animator(this.spritesheet,
+      2,
+      479,
+      12,
+      16,
+      6,
+      0.05,
+      4,
+      true,
+      true,
+      null)
   }
 
   update() {
     let tick = this.game.clockTick;
     //Currently using the mario walk for the day 1 walk prototype.
-    const MIN_WALK = 4.453125;
+    const MIN_WALK = 120.453125;
     const MAX_WALK = 293.75;
     const MAX_RUN = 550.75;
-    const ACC_WALK = 333.59375;
+    const ACC_WALK = 153.59375;
     const ACC_RUN = 750.390625;
     //Typing out basic walk physics based on the mariott example now.
     if (this.game.left && !this.game.right) {
@@ -86,15 +182,29 @@ class duck {
       }
     }
 
-    this.x += this.velocity * tick 
+    this.x += this.velocity * tick
+
+    //Select our state.
+    if (this.velocity == 0) {
+      this.state = "stand"
+    } else {
+      this.state = "walk"
+      if (this.game.sprint)
+        this.state = "run"
+      if (this.velocity > 0.1)
+        this.facing = "r"
+      if (this.velocity < -0.1)
+        this.facing = "l"
+    }
 
   }
 
   draw(ctx) {
-    this.animators["walk"].drawFrame(this.game.clockTick, ctx, this.x, this.y, 2)
-    this.armAnimators["walk"].drawFrame(this.game.clockTick, ctx, this.x - 1, this.y + 16, 2)
 
-
+    this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y, 2)
+    if (this.state != "stand" && this.armstate != "hold")
+      if (this.armstate != "hold")
+        this.armAnimators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y + 16, 2)
 
   }
 }

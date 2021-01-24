@@ -10,6 +10,6 @@ ASSET_MANAGER.downloadAll(function () {
 
 	gameEngine.init(ctx);
 
-	gameEngine.addEntity(new duck(gameEngine, "walk", 280, 280))
+	gameEngine.addEntity(new duck(gameEngine, "stand", 280, 280))
 	gameEngine.start();
 });
