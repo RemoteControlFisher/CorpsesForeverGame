@@ -1,15 +1,26 @@
+//The consts are defined outside the duck for the sake of managing them.
+//This will get refactor once params is up.
+const MIN_WALK = 120.453125;
+const MAX_WALK = 293.75;
+const MAX_RUN = 550.75;
+const ACC_WALK = 153.59375;
+const ACC_RUN = 750.390625;
+const SLIDE_DECEL = 450;
+
 class duck {
+
   constructor(game, state, x, y) {
     this.game = game
     this.x = x
     this.y = y
     this.spritesheet = ASSET_MANAGER.getAsset("./sprites/duck.png")
     this.facing = 'r' // l for left, r for right.
-    this.state = state // stand, jump, walk, squat, slide are considered valid options.
+    this.state = state // stand, jump, walk, squat, slide, hover, freefall are considered valid options.
     this.armstate = 'down' // matchbody, hold
     this.game.duck = this
 
-    this.velocity = 0;
+    this.velocityX = 0;
+    this.velocityY = 0;
 
 
     this.animators = []; //[state][facing]
@@ -18,6 +29,7 @@ class duck {
     this.animators["stand"] = []
     this.animators["walk"] = []
     this.animators["run"] = []
+    this.animators["slide"] = []
     this.armAnimators["walk"] = []
     this.armAnimators["run"] = []
 
@@ -135,77 +147,179 @@ class duck {
       true,
       true,
       null)
+    this.animators["slide"]["r"] = new animator(this.spritesheet,
+      5,
+      79,
+      22,//Width
+      24,//Height
+      1,
+      0.10,
+      4,
+      false,
+      true,
+      null)
+    this.animators["slide"]["l"] = new animator(this.spritesheet,
+      164,
+      79,
+      22,//Width
+      24,//Height
+      1,
+      0.10,
+      4,
+      false,
+      true,
+      null)
   }
 
   update() {
     let tick = this.game.clockTick;
     //These constants I did copy just so I remembered the basic constants I should use here. The rest I typed out manually with some vague inspirations being pulled
     //From the lecture examples.
-    const MIN_WALK = 120.453125;
-    const MAX_WALK = 293.75;
-    const MAX_RUN = 550.75;
-    const ACC_WALK = 153.59375;
-    const ACC_RUN = 750.390625;
+
+    //Each state group method manages the controls and physics that are strictly unique to that
+    //set of states.
+
+    //Walking acceleration and no friction in this state group.
+    if (this.state == "stand" || this.state == "walk" || this.state == "run")
+      this.walkingLogic(tick);
+
+    //If above walk_max, slow down slightly but don't slow down
+    //all the way to walk_max, after 0.0834 seconds have elapsed jump.
+    //If the jump key is held for the full jumpsquat, jump high, if the jump key is released, 
+    //jump low.
+    if (this.state == "squat")
+      this.jumpSquatLogic(tick);
+
+    //Cannot try to jump.
+    if (this.state == "jump" || this.state == "hover" || this.state == "freefall")
+      this.airLogic(tick);
+
+    //Slow down gradually until walk max is reached.
+    //Do a fast startup short jump in this state rather then squatting.
+    if (this.state == "slide")
+      this.slideLogic(tick);
+
+    //Fall at a slower rate
+    //Jump away from the nearest wall upwards if jump is pressed.
+    //If the player tries to away from the wall, jump away from the 
+    //wall with a downwards speed boost.
+    if (this.state == "wallcling")
+      this.wallLogic(tick);
+
+    this.x += this.velocityX * tick
+    this.y += this.velocityY * tick
+
+    //Bounding box logic.
+    this.updateBB()
+  }
+
+  updateBB() {
+
+  }
+
+  airLogic(tick) {
+
+  }
+
+  jumpSquatLogic(tick) {
+
+  }
+
+  slideLogic(tick) {
+    //console.log(this.velocityX)
+    //Check if we should leave the slide state.
+    if (!this.game.down) {
+      if (Math.abs(this.velocityX) > MAX_RUN){
+        this.velocityX = Math.sign(this.velocityX) * MAX_RUN
+      }
+      //If the player no longer wants to slide, and they are slow enough to run, they can stop sliding.
+      this.state = "run"
+      //If we are sliding really slowly.
+      if (Math.abs(this.velocityX) < MAX_WALK)
+        this.state = "walk"
+    }
+    else {
+      //Apply this friction so long as we aren't traveling too slowly, to prevent cases where the player character gets stuck sliding under an obstacle.
+      if (Math.abs(this.velocityX) > MAX_WALK * 0.25){
+        //Friction is opposite to the direction of movement.
+        this.velocityX -= SLIDE_DECEL * Math.sign(this.velocityX) * tick
+      } 
+    }
+
+    console.log(this.velocityX)
+
+  }
+
+  airLogic(tick) {
+
+  }
+
+  walkingLogic(tick) {
 
     //Typing out basic walk physics.
     if (this.game.left && !this.game.right) {
-      if (this.velocity > -MIN_WALK)
-        this.velocity = -MIN_WALK;
+      if (this.velocityX > -MIN_WALK)
+        this.velocityX = -MIN_WALK;
       if (this.game.sprint) {
-        this.velocity -= ACC_RUN * tick
+        this.velocityX -= ACC_RUN * tick
       } else {
-        this.velocity -= ACC_WALK * tick
+        this.velocityX -= ACC_WALK * tick
       }
     } else
       if (this.game.right && !this.game.left) {
-        if (this.velocity < MIN_WALK)
-          this.velocity = +MIN_WALK;
+        if (this.velocityX < MIN_WALK)
+          this.velocityX = +MIN_WALK;
         if (this.game.sprint) {
-          this.velocity += ACC_RUN * tick
+          this.velocityX += ACC_RUN * tick
         } else {
-          this.velocity += ACC_WALK * tick
+          this.velocityX += ACC_WALK * tick
         }
       } else {
         //No slide for now.
-        this.velocity = 0
+        this.velocityX = 0
       }
 
     //Sped capping.
-    if (this.game.right && this.velocity > MAX_RUN) {
-      this.velocity = MAX_RUN;
-      if (!this.game.sprint && this.velocity > MAX_WALK) {
-        this.velocity = MAX_WALK;
+    if (this.game.right && this.velocityX > MAX_RUN) {
+      this.velocityX = MAX_RUN;
+      if (!this.game.sprint && this.velocityX > MAX_WALK) {
+        this.velocityX = MAX_WALK;
       }
     }
 
-    if (this.game.left && this.velocity < -MAX_RUN) {
-      this.velocity = -MAX_RUN;
-      if (!this.game.sprint && this.velocity < -MAX_WALK) {
-        this.velocity = -MAX_WALK;
+    if (this.game.left && this.velocityX < -MAX_RUN) {
+      this.velocityX = -MAX_RUN;
+      if (!this.game.sprint && this.velocityX < -MAX_WALK) {
+        this.velocityX = -MAX_WALK;
       }
     }
 
-    this.x += this.velocity * tick
 
     //Select our state.
-    if (this.velocity == 0) {
+    if (this.velocityX == 0) {
       this.state = "stand"
     } else {
       this.state = "walk"
-      if (this.velocity < -MAX_WALK || this.velocity > MAX_WALK)
+      if (this.velocityX < -MAX_WALK || this.velocityX > MAX_WALK)
         this.state = "run"
-      if (this.velocity > 0.1)
+      if (this.velocityX > 0.1)
         this.facing = "r"
-      if (this.velocity < -0.1)
+      if (this.velocityX < -0.1)
         this.facing = "l"
+      if (this.game.down){
+        this.state = "slide"
+        //Sliding gives a small instant speed boost, this includes some instant movement to keep the center of mass of the duck in line with its original center of mass.
+        //This is proportional to how quickly a slide decelerates for now.
+        this.velocityX += SLIDE_DECEL * Math.sign(this.velocityX)
+        this.x -= 3 //The slide sprite is six pixels wider then the main sprite, to keep its center consistent, we need to move left 3 pixels.
+      }
     }
-
   }
 
   draw(ctx) {
 
     this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y, 2)
-    if (this.state != "stand" && this.armstate != "hold")
+    if (this.state != "stand" && this.state != "slide" && this.armstate != "hold")
       if (this.armstate != "hold")
         this.armAnimators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y + 16, 2)
 

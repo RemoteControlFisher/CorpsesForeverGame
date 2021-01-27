@@ -4,9 +4,9 @@ var ASSET_MANAGER = new AssetManager();
 
 ASSET_MANAGER.queueDownload("./sprites/duck.png")
 ASSET_MANAGER.queueDownload("./sprites/blade_1_3.png")
-ASSET_MANAGER.queueDownload("./sprites/blade_2_fix.png")
+//ASSET_MANAGER.queueDownload("./sprites/blade_2_fix.png")
 ASSET_MANAGER.queueDownload("./sprites/spike_strip.png")
-ASSET_MANAGER.queueDownload("./sprites/slimesprite/Slime_Walk.png")
+//ASSET_MANAGER.queueDownload("./sprites/slimesprite/Slime_Walk.png")
 ASSET_MANAGER.queueDownload("./sprites/wolfsheet1.png")
 ASSET_MANAGER.queueDownload("./sprites/floorsandwalls.png")
 
