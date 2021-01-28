@@ -17,9 +17,13 @@ ASSET_MANAGER.downloadAll(function () {
 	var canvas = document.getElementById('gameWorld');
 	var ctx = canvas.getContext('2d');
 
+	PARAMS.BLOCKWIDTH = PARAMS.BITWIDTH * PARAMS.SCALE;
+	PARAMS.CANVAS_WIDTH = canvas.width;
+
 	gameEngine.init(ctx);
 
-	gameEngine.addEntity(new duck(gameEngine, "stand", 280, 280))
+	new scenemanager(gameEngine);
+	//gameEngine.addEntity(new duck(gameEngine, "stand", 280, 280))
 	gameEngine.addEntity(new Hoppers(gameEngine, 400, 600))
 	gameEngine.addEntity(new traps(gameEngine, 80, 80))
 	gameEngine.addEntity(new Chompers(gameEngine, 400, 500))

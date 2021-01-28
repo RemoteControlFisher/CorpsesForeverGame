@@ -5,28 +5,38 @@ class scenemanager {
         this.x = 0;
         this.score = 0 //not yet implemented
 
-        this.duck = new duck(this.game, "stand", 280, 280);
+        this.duck = new duck(this.game, "stand", 2.5 * PARAMS.BLOCKWIDTH, 0 * PARAMS.BLOCKWIDTH);
 
-        this.loadTutorial();
+        this.loadlevel(tutorialLevel, 2.5 * PARAMS.BLOCKWIDTH, 0 * PARAMS.BLOCKWIDTH);
     };
 
-    clearEntities() {
-
-    };
-
-    loadTutorial() {
+    loadlevel(tutorialLevel, x, y) {
         this.game.entities = [];
         this.x = 0;
 
-        
-        this.game.addEntity(duck);
-    }
+        for (var i = 0; i < tutorialLevel.length; i++){
+
+        }
+
+        this.duck.x = x + 100;
+        this.duck.y = y + 300;
+        this.game.addEntity(this.duck);
+    };
+
+    update() {
+        PARAMS.DEBUG = document.getElementById("debug").checked;
+
+        let midpoint = PARAMS.CANVAS_WIDTH/2 - PARAMS.BLOCKWIDTH / 2;
+
+        if (this.x < this.duck.x - midpoint) this.x = this.duck.x - midpoint;
+
+        if (this.duck.dead && this.duck.y > PARAMS.BLOCKWIDTH * 16) {
+            this.duck.dead = false;
+            this.loadlevel(tutorialLevel, 2.5 * PARAMS.BLOCKWIDTH, 0 * PARAMS.BLOCKWIDTH);
+        };
+    };
 
     draw(ctx) {
 
-    }
-
-    update() {
-        
-    }
-}
+    };
+};

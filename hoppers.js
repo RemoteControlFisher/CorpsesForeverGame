@@ -13,7 +13,7 @@ class Hoppers
 		this.animators["attack"] = []
 		this.animators["hurt"] = []
 
-		this.animators["walk"]["r"] = 
+		this.animators["walk"]["r"] =
 		   new animator (this.spritesheet, //Spritesheet
 			5,      //X
 			6,      //Y

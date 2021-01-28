@@ -315,11 +315,13 @@ class duck {
   }
 
   draw(ctx) {
-
+     
+    //this.animators["stand"]["r"].drawFrame(this.game.clockTick,ctx,this.x - this.game.camera.x, this.y, PARAMS.SCALE);
+    
     this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y, 2)
-    if (this.state != "stand" && this.state != "slide" && this.armstate != "hold")
+   if (this.state != "stand" && this.state != "slide" && this.armstate != "hold")
       if (this.armstate != "hold")
-        this.armAnimators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y + 16, 2)
+       this.armAnimators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y + 16, 2)
 
   }
 }
