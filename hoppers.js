@@ -5,6 +5,7 @@ class Hoppers
 		Object.assign(this, {game, x, y});
 		this.spritesheet = ASSET_MANAGER.getAsset("./sprites/slimesprite/Slime_Walk.png");
 		this.spritesheetOuch = ASSET_MANAGER.getAsset("./sprites/slimesprite/Slime_Hurt.png");
+		this.spritesheetOm = ASSET_MANAGER.getAsset("./sprites/slimesprite/Slime_Attack.png");
 
 		this.animators = []; //[state] [facing]
 
@@ -14,29 +15,42 @@ class Hoppers
 
 		this.animators["walk"]["r"] = 
 		   new animator (this.spritesheet, //Spritesheet
-			5,
-			6,
-			21,
-			25,
-			9,
-			0.1,
-			11,
-			false,
-			true,
-			null)
+			5,      //X
+			6,      //Y
+			21,     //Width
+			25,     //Height
+			9,      //Frame
+			0.1,    //Times
+			11,     //Padding
+			false,  //Reverse
+			true,   //Looping
+			null)   //Idle Animation
 
 		this.animators["hurt"]["r"] =
 			new animator(this.spritesheetOuch, //Spritesheet
-			0,
-			7,
-			10,
-			10,
-			3,
-			0.5,
-			3,
-			false,
-			true,
-			null)
+			0,     //X
+			7,     //Y
+			22,    //Width
+			25,    //Height
+			3,     //Frame
+			0.1,   //Times
+			12,     //Padding
+			false, //Reverse
+			true,  //Looping
+			null)  //Idle Animation
+
+		this.animators["attack"]["r"] =
+			new animator(this.spritesheetOm, //Spritesheet
+			0,     //X
+			2,     //Y
+			27,    //Width
+			40,    //Height
+			7,     //Frame
+			0.1,   //Times
+			6,     //Padding
+			false, //Reverse
+			true,  //Looping
+			null)  //Idle Animation
 
 	};
 
@@ -48,6 +62,7 @@ class Hoppers
 	draw(ctx)
 	{
 		this.animators["walk"]["r"].drawFrame(this.game.clockTick, ctx, this.x + 200, this.y, 3);
-		//this.animators["hurt"]["r"].drawFrame(this.game.clockTick, ctx, this.x, this.y, 3);
+		this.animators["hurt"]["r"].drawFrame(this.game.clockTick, ctx, this.x + 120, this.y, 3);
+		this.animators["attack"]["r"].drawFrame(this.game.clockTick, ctx, this.x + 280, this.y , 3);
 	};
 };
