@@ -41,6 +41,7 @@ class floorsandwalls {
 				null)
 		this.platform = true;
 		this.wall = true;
+		this.cieling = true;
 	};
 
 	update() {
