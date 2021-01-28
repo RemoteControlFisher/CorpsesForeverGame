@@ -22,6 +22,10 @@ class duck {
     this.velocityX = 0;
     this.velocityY = 0;
 
+    //Bounding boxes.
+    //Call it twice to initialize the old bounding box.
+    this.setBoundingBoxes(2)
+    this.setBoundingBoxes(2)
 
     this.animators = []; //[state][facing]
     this.armAnimators = []; //[state][facing][hold] Does not render when standing unless we are holding something.
@@ -212,9 +216,16 @@ class duck {
     //Bounding box logic.
     this.updateBB()
   }
+  
+  setBoundingBoxes(scale){
+    this.oldBB = this.BB;
+    this.BB = new boundingBox(this.x, this.y, 16*scale, 25*scale);
+    this.oldcBB = this.cBB;
+    this.cBB = new boundingBox(this.x-3*scale, this.y+11*scale, 22*scale, 14*scale);
+  }
 
   updateBB() {
-
+    this.setBoundingBoxes(2)
   }
 
   airLogic(tick) {
@@ -309,19 +320,23 @@ class duck {
         //Sliding gives a small instant speed boost, this includes some instant movement to keep the center of mass of the duck in line with its original center of mass.
         //This is proportional to how quickly a slide decelerates for now.
         this.velocityX += SLIDE_DECEL * Math.sign(this.velocityX)
-        this.x -= 3 //The slide sprite is six pixels wider then the main sprite, to keep its center consistent, we need to move left 3 pixels.
       }
     }
   }
 
   draw(ctx) {
-     
+
     //this.animators["stand"]["r"].drawFrame(this.game.clockTick,ctx,this.x - this.game.camera.x, this.y, PARAMS.SCALE);
-    
+
     this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y, 2)
    if (this.state != "stand" && this.state != "slide" && this.armstate != "hold")
       if (this.armstate != "hold")
        this.armAnimators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y + 16, 2)
+
+    ctx.strokeStyle = 'Red';
+    ctx.strokeRect(this.BB.x, this.BB.y, this.BB.width, this.BB.height);
+    ctx.strokeStyle = 'Blue';
+    ctx.strokeRect(this.cBB.x, this.cBB.y, this.cBB.width, this.cBB.height);
 
   }
 }
