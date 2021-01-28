@@ -246,8 +246,6 @@ class duck {
       } 
     }
 
-    console.log(this.velocityX)
-
   }
 
   airLogic(tick) {

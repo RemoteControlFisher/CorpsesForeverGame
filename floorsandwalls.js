@@ -39,7 +39,8 @@ class floorsandwalls {
 				false,
 				true,
 				null)
-
+		this.platform = true;
+		this.wall = true;
 	};
 
 	update() {
