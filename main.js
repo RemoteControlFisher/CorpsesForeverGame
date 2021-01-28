@@ -22,5 +22,6 @@ ASSET_MANAGER.downloadAll(function () {
 	gameEngine.addEntity(new traps(gameEngine, 80, 80))
 	gameEngine.addEntity(new Chompers(gameEngine, 400, 500))
 	gameEngine.addEntity(new floorsandwalls(gameEngine, 300, 200))
+	gameEngine.addEntity(new doors(gameEngine, 500, 500))
 	gameEngine.start();
 });

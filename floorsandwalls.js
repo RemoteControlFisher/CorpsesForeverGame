@@ -16,26 +16,26 @@ class floorsandwalls {
 				null)
 		this.walls = [];
 		this.walls["left"] =
-			new animator(this.spritesheet,
-				16,
-				32,
-				16,
-				16,
-				1,
-				0.12,
-				12,
-				false,
-				true,
+			new animator(this.spritesheet, //Spritesheet
+				16, //X
+				32, //Y
+				16, //Width
+				16, //Height
+				1, //Frames
+				0.12, //Time
+				12, //Padding
+				false, //Reverse
+				true, //Looping
 				null)
 		this.walls["right"] =
 			new animator(this.spritesheet,
-				80,
-				32,
-				16,
-				16,
-				1,
-				0.12,
-				12,
+				80, //X
+				32, //Y
+				16, //Width
+				16, //Height
+				1, //Frames
+				0.12, //Time
+				12, //Pading
 				false,
 				true,
 				null)
@@ -48,10 +48,9 @@ class floorsandwalls {
 
 	};
 
-	draw(ctx)
-	{
-		this.floor.drawFrame(this.game.clockTick, ctx, this.x+90, this.y, 1)
+	draw(ctx) {
+		this.floor.drawFrame(this.game.clockTick, ctx, this.x + 90, this.y, 1)
 		this.walls["left"].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1)
-		this.walls["right"].drawFrame(this.game.clockTick, ctx, this.x+180, this.y, 1)
+		this.walls["right"].drawFrame(this.game.clockTick, ctx, this.x + 180, this.y, 1)
 	};
 };
