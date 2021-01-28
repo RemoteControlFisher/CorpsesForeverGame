@@ -11,6 +11,7 @@ ASSET_MANAGER.queueDownload("./sprites/slimesprite/Slime_Hurt.png")
 ASSET_MANAGER.queueDownload("./sprites/slimesprite/Slime_Attack.png")
 ASSET_MANAGER.queueDownload("./sprites/wolfsheet1.png")
 ASSET_MANAGER.queueDownload("./sprites/floorsandwalls.png")
+ASSET_MANAGER.queueDownload("./sprites/Button.png")
 
 
 ASSET_MANAGER.downloadAll(function () {
@@ -34,5 +35,6 @@ ASSET_MANAGER.downloadAll(function () {
 	gameEngine.addEntity(new doors(gameEngine, 450, 450))
 	gameEngine.addEntity(new corpses(gameEngine, 600, 440, "duck"))
 	gameEngine.addEntity(new boxes(gameEngine, 500, 450))
+	gameEngine.addEntity(new buttons(gameEngine, 100, 450))
 	gameEngine.start();
 });
