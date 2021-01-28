@@ -20,6 +20,7 @@ ASSET_MANAGER.downloadAll(function () {
 
 	PARAMS.BLOCKWIDTH = PARAMS.BITWIDTH * PARAMS.SCALE;
 	PARAMS.CANVAS_WIDTH = canvas.width;
+	PARAMS.CANVAS_HEIGHT = canvas.height;
 
 	gameEngine.init(ctx);
 
