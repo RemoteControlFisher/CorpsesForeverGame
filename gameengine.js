@@ -53,6 +53,7 @@ class GameEngine {
                     break;
                 case "ArrowUp":
                 case "KeyW":
+                case "Space":
                     that.up = true;
                     break;
                 case "ArrowDown":
@@ -60,7 +61,11 @@ class GameEngine {
                     that.down = true;
                     break;
                 case "KeyJ":
+                case "ShiftLeft":
                     that.sprint = true;
+                    break;
+                default:
+                    console.log(e.code)
                     break;
             }
         }, false);
@@ -77,6 +82,7 @@ class GameEngine {
                     break;
                 case "ArrowUp":
                 case "KeyW":
+                case "Space":
                     that.up = false;
                     break;
                 case "ArrowDown":
@@ -84,6 +90,7 @@ class GameEngine {
                     that.down = false;
                     break;
                 case "KeyJ":
+                case "ShiftLeft":
                     that.sprint = false;
                     break;
             }

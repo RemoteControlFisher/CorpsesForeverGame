@@ -386,7 +386,7 @@ class duck {
   jumpSquatLogic(tick) {
     this.squatTime += tick
     console.log(this.squatTime)
-    if (this.squatTime > 0.083) {
+    if (this.squatTime > 0.08) {
       if (this.game.up) this.velocityY = -625
       else this.velocityY = -500
       this.state = "jump"
