@@ -6,6 +6,7 @@ const MAX_RUN = 550.75;
 const ACC_WALK = 153.59375;
 const ACC_RUN = 750.390625;
 const SLIDE_DECEL = 450;
+const GRAVITY = 1800;
 
 class duck {
 
@@ -24,8 +25,8 @@ class duck {
 
     //Bounding boxes.
     //Call it twice to initialize the old bounding box.
-    this.setBoundingBoxes(2)
-    this.setBoundingBoxes(2)
+    this.updateBB(2)
+    this.updateBB(2)
 
     this.animators = []; //[state][facing]
     this.armAnimators = []; //[state][facing][hold] Does not render when standing unless we are holding something.
@@ -180,6 +181,7 @@ class duck {
     //These constants I did copy just so I remembered the basic constants I should use here. The rest I typed out manually with some vague inspirations being pulled
     //From the lecture examples.
 
+    this.velocityY += GRAVITY * tick
     //Each state group method manages the controls and physics that are strictly unique to that
     //set of states.
 
@@ -214,18 +216,67 @@ class duck {
     this.y += this.velocityY * tick
 
     //Bounding box logic.
-    this.updateBB()
-  }
-  
-  setBoundingBoxes(scale){
-    this.oldBB = this.BB;
-    this.BB = new boundingBox(this.x, this.y, 16*scale, 25*scale);
-    this.oldcBB = this.cBB;
-    this.cBB = new boundingBox(this.x-3*scale, this.y+11*scale, 22*scale, 14*scale);
+    this.collide()
   }
 
-  updateBB() {
-    this.setBoundingBoxes(2)
+  updateBB(scale) {
+    this.oldBB = this.BB;
+    this.BB = new boundingBox(this.x, this.y, 16 * scale, 25 * scale);
+    this.oldcBB = this.cBB;
+    this.cBB = new boundingBox(this.x - 3 * scale, this.y + 11 * scale, 22 * scale, 14 * scale);
+  }
+
+  collide() {
+    this.updateBB(2)
+
+    const that = this
+    this.game.entities.forEach(function (entity) {
+      if (that.state != "slide") {
+        if (entity.BB && that.BB.isCollide(entity.BB)) {
+          //If we are landing on something, stop.
+          if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
+            that.velocityY = 0
+            that.y = entity.BB.top - 50
+            that.updateBB(2)
+          } else
+            if (entity.cieling && that.oldBB.top >= entity.BB.bottom) {
+              that.velocityY = 0
+              that.y = entity.BB.bottom
+              that.updateBB(2)
+            } else
+              if (entity.wall && that.velocityX > 0 && that.BB.right > entity.BB.left) {
+                that.velocityX = 0
+                that.x = entity.BB.left - 32
+                that.updateBB(2)
+              } else
+                if (entity.wall && that.velocityX < 0 && that.BB.left < entity.BB.right) {
+                  that.velocityX = 0
+                  that.x = entity.BB.right
+                  that.updateBB(2)
+                }
+        }
+      } else //Sliding uses a different hitbox.
+      if (entity.BB && that.cBB.isCollide(entity.BB)) {
+        if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
+          that.velocityY = 0
+          that.y = entity.BB.top - 50
+          that.updateBB(2)
+        }
+        else
+          if (entity.wall && that.velocityX > 0 && that.cBB.right > entity.BB.left) {
+            that.velocityX = 0
+            that.x = entity.BB.left - 44
+            that.updateBB(2)
+          } else
+            if (entity.wall && that.velocityX < 0 && that.cBB.left < entity.BB.right) {
+              that.velocityX = 0
+              that.x = entity.BB.right +7
+              that.updateBB(2)
+            }
+      }
+    })
+
+
   }
 
   airLogic(tick) {
@@ -240,7 +291,7 @@ class duck {
     //console.log(this.velocityX)
     //Check if we should leave the slide state.
     if (!this.game.down) {
-      if (Math.abs(this.velocityX) > MAX_RUN){
+      if (Math.abs(this.velocityX) > MAX_RUN) {
         this.velocityX = Math.sign(this.velocityX) * MAX_RUN
       }
       //If the player no longer wants to slide, and they are slow enough to run, they can stop sliding.
@@ -251,10 +302,10 @@ class duck {
     }
     else {
       //Apply this friction so long as we aren't traveling too slowly, to prevent cases where the player character gets stuck sliding under an obstacle.
-      if (Math.abs(this.velocityX) > MAX_WALK * 0.25){
+      if (Math.abs(this.velocityX) > MAX_WALK * 0.25) {
         //Friction is opposite to the direction of movement.
         this.velocityX -= SLIDE_DECEL * Math.sign(this.velocityX) * tick
-      } 
+      }
     }
 
   }
@@ -315,7 +366,7 @@ class duck {
         this.facing = "r"
       if (this.velocityX < -0.1)
         this.facing = "l"
-      if (this.game.down){
+      if (this.game.down) {
         this.state = "slide"
         //Sliding gives a small instant speed boost, this includes some instant movement to keep the center of mass of the duck in line with its original center of mass.
         //This is proportional to how quickly a slide decelerates for now.
@@ -325,13 +376,14 @@ class duck {
   }
 
   draw(ctx) {
-
+    let offset = 0
+    if (this.state == "slide") offset = 7
     //this.animators["stand"]["r"].drawFrame(this.game.clockTick,ctx,this.x - this.game.camera.x, this.y, PARAMS.SCALE);
 
-    this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y, 2)
-   if (this.state != "stand" && this.state != "slide" && this.armstate != "hold")
+    this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - offset, this.y, 2)
+    if (this.state != "stand" && this.state != "slide" && this.armstate != "hold")
       if (this.armstate != "hold")
-       this.armAnimators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y + 16, 2)
+        this.armAnimators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y + 16, 2)
 
     ctx.strokeStyle = 'Red';
     ctx.strokeRect(this.BB.x, this.BB.y, this.BB.width, this.BB.height);
