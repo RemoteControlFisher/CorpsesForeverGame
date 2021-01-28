@@ -1,8 +1,9 @@
 class floorsandwalls {
-	constructor(game, x, y) {
-		Object.assign(this, { game, x, y });
+	constructor(game, x, y, type) {
+		Object.assign(this, { game, x, y , type});
 		this.spritesheet = ASSET_MANAGER.getAsset("./sprites/floorsandwalls.png");
-		this.floor =
+		this.animations = []
+		this.animations["floor"] =
 			new animator(this.spritesheet, // Spritesheet
 				48, //X
 				0, //Y
@@ -14,8 +15,7 @@ class floorsandwalls {
 				false, //reverse
 				true, // looping,
 				null)
-		this.walls = [];
-		this.walls["left"] =
+		this.animations["wleft"] =
 			new animator(this.spritesheet, //Spritesheet
 				16, //X
 				32, //Y
@@ -27,7 +27,7 @@ class floorsandwalls {
 				false, //Reverse
 				true, //Looping
 				null)
-		this.walls["right"] =
+		this.animations["wright"] =
 			new animator(this.spritesheet,
 				80, //X
 				32, //Y
@@ -42,6 +42,7 @@ class floorsandwalls {
 		this.platform = true;
 		this.wall = true;
 		this.cieling = true;
+		this.BB = new boundingBox (x, y, 32, 32)
 	};
 
 	update() {
@@ -49,8 +50,8 @@ class floorsandwalls {
 	};
 
 	draw(ctx) {
-		this.floor.drawFrame(this.game.clockTick, ctx, this.x + 90, this.y, 1)
-		this.walls["left"].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1)
-		this.walls["right"].drawFrame(this.game.clockTick, ctx, this.x + 180, this.y, 1)
+		this.animations[this.type].drawFrame(this.game.clockTick, ctx, this.x, this.y, 2)
+		ctx.strokeStyle = 'Red';
+		ctx.strokeRect(this.BB.x, this.BB.y, this.BB.width, this.BB.height);
 	};
 };
