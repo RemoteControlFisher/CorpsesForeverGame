@@ -25,6 +25,6 @@ class boxes
 
 	draw(ctx)
 	{
-		this.mimic.drawFrame(this.game.clockTick, ctx, this.x + 90, this.y, 1)
+		this.mimic.drawFrame(this.game.clockTick, ctx, this.x + 90, this.y, 2)
 	};
 };

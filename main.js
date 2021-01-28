@@ -33,7 +33,7 @@ ASSET_MANAGER.downloadAll(function () {
 	}
 	gameEngine.addEntity(new floorsandwalls(gameEngine, 220, 368, "floor"))
 	gameEngine.addEntity(new doors(gameEngine, 450, 450))
-	gameEngine.addEntity(new corpses(gameEngine, 600, 440, "duck"))
+	gameEngine.addEntity(new corpses(gameEngine, 640, 440, "duck"))
 	gameEngine.addEntity(new boxes(gameEngine, 500, 450))
 	gameEngine.addEntity(new buttons(gameEngine, 100, 450))
 	gameEngine.start();

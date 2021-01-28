@@ -49,7 +49,7 @@ class corpses {
 	};
 
 	draw(ctx) {
-		this.animations["duck"].drawFrame(this.game.clockTick, ctx, this.x + 200, this.y, 3);
-		this.animations["chomper"].drawFrame(this.game.clockTick, ctx, this.x, this.y, 2);
+		this.animations["duck"].drawFrame(this.game.clockTick, ctx, this.x + 200, this.y, 2);
+		this.animations["chomper"].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1);
 	};
 };
