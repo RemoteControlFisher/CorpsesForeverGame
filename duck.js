@@ -35,8 +35,12 @@ class duck {
     this.animators["walk"] = []
     this.animators["run"] = []
     this.animators["slide"] = []
+    this.animators["squat"] = []
+    this.animators["jump"] = []
     this.armAnimators["walk"] = []
     this.armAnimators["run"] = []
+    this.armAnimators["squat"] = []
+    this.armAnimators["jump"] = []
 
     this.animators["stand"]["r"] =
       new animator(this.spritesheet, // Spritesheet
@@ -174,6 +178,100 @@ class duck {
       false,
       true,
       null)
+    this.animators["squat"]["r"] =
+      new animator(this.spritesheet, // Spritesheet
+        8, //X
+        14, //Y
+        16, //Width
+        25, //Height
+        1, //Frames
+        0.12, //Time
+        16, //Padding
+        false, //reverse
+        true, // looping,
+        null) //No idle animation because I am looping.
+    //Facing isn't implemented yet.
+    this.animators["squat"]["l"] =
+      new animator(this.spritesheet, // Spritesheet
+        167, //X
+        129, //Y
+        16, //Width
+        25, //Height
+        1, //Frames
+        0.12, //Time
+        16, //Padding
+        false, //reverse
+        true, // looping,
+        null) //No idle animation because I am looping.
+    this.animators["jump"]["r"] =
+      new animator(this.spritesheet, // Spritesheet
+        8, //X
+        14, //Y
+        16, //Width
+        25, //Height
+        1, //Frames
+        0.12, //Time
+        16, //Padding
+        false, //reverse
+        true, // looping,
+        null) //No idle animation because I am looping.
+    //Facing isn't implemented yet.
+    this.animators["jump"]["l"] =
+      new animator(this.spritesheet, // Spritesheet
+        167, //X
+        129, //Y
+        16, //Width
+        25, //Height
+        1, //Frames
+        0.12, //Time
+        16, //Padding
+        false, //reverse
+        true, // looping,
+        null) //No idle animation because I am looping.
+    this.armAnimators["squat"]["r"] = new animator(this.spritesheet,
+      2,
+      519,
+      12,
+      16,
+      6,
+      0.10,
+      4,
+      false,
+      true,
+      null)
+    this.armAnimators["squat"]["l"] = new animator(this.spritesheet,
+      2,
+      479,
+      12,
+      16,
+      6,
+      0.10,
+      4,
+      true,
+      true,
+      null)
+    this.armAnimators["jump"]["r"] = new animator(this.spritesheet,
+      2,
+      519,
+      12,
+      16,
+      6,
+      0.10,
+      4,
+      false,
+      true,
+      null)
+    this.armAnimators["jump"]["l"] = new animator(this.spritesheet,
+      2,
+      479,
+      12,
+      16,
+      6,
+      0.10,
+      4,
+      true,
+      true,
+      null)
   }
 
   update() {
@@ -237,6 +335,8 @@ class duck {
           if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
             that.velocityY = 0
             that.y = entity.BB.top - 50
+            if (that.state == "jump" || that.state == "hover" || that.state == "freefall" || that.state == "wallcling")
+              that.state = "stand"
             that.updateBB(2)
           } else
             if (entity.cieling && that.oldBB.top >= entity.BB.bottom) {
@@ -256,24 +356,24 @@ class duck {
                 }
         }
       } else //Sliding uses a different hitbox.
-      if (entity.BB && that.cBB.isCollide(entity.BB)) {
-        if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
-          that.velocityY = 0
-          that.y = entity.BB.top - 50
-          that.updateBB(2)
-        }
-        else
-          if (entity.wall && that.velocityX > 0 && that.cBB.right > entity.BB.left) {
-            that.velocityX = 0
-            that.x = entity.BB.left - 44
+        if (entity.BB && that.cBB.isCollide(entity.BB)) {
+          if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
+            that.velocityY = 0
+            that.y = entity.BB.top - 50
             that.updateBB(2)
-          } else
-            if (entity.wall && that.velocityX < 0 && that.cBB.left < entity.BB.right) {
+          }
+          else
+            if (entity.wall && that.velocityX > 0 && that.cBB.right > entity.BB.left) {
               that.velocityX = 0
-              that.x = entity.BB.right +7
+              that.x = entity.BB.left - 44
               that.updateBB(2)
-            }
-      }
+            } else
+              if (entity.wall && that.velocityX < 0 && that.cBB.left < entity.BB.right) {
+                that.velocityX = 0
+                that.x = entity.BB.right + 7
+                that.updateBB(2)
+              }
+        }
     })
 
 
@@ -284,7 +384,13 @@ class duck {
   }
 
   jumpSquatLogic(tick) {
-
+    this.squatTime += tick
+    console.log(this.squatTime)
+    if (this.squatTime > 0.083) {
+      if (this.game.up) this.velocityY = -625
+      else this.velocityY = -500
+      this.state = "jump"
+    }
   }
 
   slideLogic(tick) {
@@ -310,9 +416,6 @@ class duck {
 
   }
 
-  airLogic(tick) {
-
-  }
 
   walkingLogic(tick) {
 
@@ -356,21 +459,26 @@ class duck {
 
 
     //Select our state.
-    if (this.velocityX == 0) {
-      this.state = "stand"
+    if (this.game.up) {
+      this.state = "squat"
+      this.squatTime = 0
     } else {
-      this.state = "walk"
-      if (this.velocityX < -MAX_WALK || this.velocityX > MAX_WALK)
-        this.state = "run"
-      if (this.velocityX > 0.1)
-        this.facing = "r"
-      if (this.velocityX < -0.1)
-        this.facing = "l"
-      if (this.game.down) {
-        this.state = "slide"
-        //Sliding gives a small instant speed boost, this includes some instant movement to keep the center of mass of the duck in line with its original center of mass.
-        //This is proportional to how quickly a slide decelerates for now.
-        this.velocityX += SLIDE_DECEL * Math.sign(this.velocityX)
+      if (this.velocityX == 0) {
+        this.state = "stand"
+      } else {
+        this.state = "walk"
+        if (this.velocityX < -MAX_WALK || this.velocityX > MAX_WALK)
+          this.state = "run"
+        if (this.velocityX > 0.1)
+          this.facing = "r"
+        if (this.velocityX < -0.1)
+          this.facing = "l"
+        if (this.game.down) {
+          this.state = "slide"
+          //Sliding gives a small instant speed boost, this includes some instant movement to keep the center of mass of the duck in line with its original center of mass.
+          //This is proportional to how quickly a slide decelerates for now.
+          this.velocityX += SLIDE_DECEL * Math.sign(this.velocityX)
+        }
       }
     }
   }
