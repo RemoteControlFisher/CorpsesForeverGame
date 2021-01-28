@@ -35,6 +35,7 @@ class duck {
     this.animators["walk"] = []
     this.animators["run"] = []
     this.animators["slide"] = []
+    this.animators["squat"] = []
     this.animators["jump"] = []
     this.armAnimators["walk"] = []
     this.armAnimators["run"] = []
@@ -177,26 +178,95 @@ class duck {
       false,
       true,
       null)
+    this.animators["squat"]["r"] =
+      new animator(this.spritesheet, // Spritesheet
+        8, //X
+        14, //Y
+        16, //Width
+        25, //Height
+        1, //Frames
+        0.12, //Time
+        16, //Padding
+        false, //reverse
+        true, // looping,
+        null) //No idle animation because I am looping.
+    //Facing isn't implemented yet.
+    this.animators["squat"]["l"] =
+      new animator(this.spritesheet, // Spritesheet
+        167, //X
+        129, //Y
+        16, //Width
+        25, //Height
+        1, //Frames
+        0.12, //Time
+        16, //Padding
+        false, //reverse
+        true, // looping,
+        null) //No idle animation because I am looping.
     this.animators["jump"]["r"] = new animator(this.spritesheet,
-      9,
-      46,
-      22,//Width
-      26,//Height
+          9,
+          46,
+          22,//Width
+          26,//Height
+          6,
+          0.10,
+          10,
+          false,
+          true,
+          null)
+    this.animators["jump"]["l"] = new animator(this.spritesheet,
+          9,
+          159,
+          22,//Width
+          26,//Height
+          6,
+          0.10,
+          10,
+          false,
+          true,
+          null)
+    this.armAnimators["squat"]["r"] = new animator(this.spritesheet,
+      2,
+      519,
+      12,
+      16,
       6,
       0.10,
-      10,
+      4,
       false,
       true,
       null)
-    this.animators["jump"]["l"] = new animator(this.spritesheet,
-      9,
-      159,
-      22,//Width
-      26,//Height
+    this.armAnimators["squat"]["l"] = new animator(this.spritesheet,
+      2,
+      479,
+      12,
+      16,
       6,
       0.10,
-      10,
+      4,
+      true,
+      true,
+      null)
+    this.armAnimators["jump"]["r"] = new animator(this.spritesheet,
+      2,
+      519,
+      12,
+      16,
+      6,
+      0.10,
+      4,
       false,
+      true,
+      null)
+    this.armAnimators["jump"]["l"] = new animator(this.spritesheet,
+      2,
+      479,
+      12,
+      16,
+      6,
+      0.10,
+      4,
+      true,
       true,
       null)
   }
@@ -413,17 +483,17 @@ class duck {
   draw(ctx) {
     let offset = 0
     if (this.state == "slide") offset = 7
-    //this.animators["jump"]["l"].drawFrame(this.game.clockTick,ctx,this.x, this.y, 2);
+    //this.animators["stand"]["r"].drawFrame(this.game.clockTick,ctx,this.x - this.game.camera.x, this.y, PARAMS.SCALE);
 
-    this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - offset, this.y, 2)
+    this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - offset - this.game.camera.x, this.y  - this.game.camera.y, 2)
     if (this.state != "stand" && this.state != "slide" && this.armstate != "hold")
       if (this.armstate != "hold")
-        this.armAnimators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y + 16, 2)
+        this.armAnimators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y + 16 - this.game.camera.y, 2)
 
     ctx.strokeStyle = 'Red';
-    ctx.strokeRect(this.BB.x, this.BB.y, this.BB.width, this.BB.height);
+    ctx.strokeRect(this.BB.x  - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
     ctx.strokeStyle = 'Blue';
-    ctx.strokeRect(this.cBB.x, this.cBB.y, this.cBB.width, this.cBB.height);
+    ctx.strokeRect(this.cBB.x  - this.game.camera.x, this.cBB.y - this.game.camera.y, this.cBB.width, this.cBB.height);
 
   }
 }

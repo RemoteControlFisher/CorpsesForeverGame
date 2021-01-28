@@ -68,8 +68,8 @@ class Chompers
 
 	draw(ctx)
 	{
-		this.animators["stand"]["r"].drawFrame(this.game.clockTick, ctx, this.x+90, this.y, 1)
-		this.animators["walk"]["l"].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1)
-		this.animators["walk"]["r"].drawFrame(this.game.clockTick, ctx, this.x+180, this.y, 1)
+		this.animators["stand"]["r"].drawFrame(this.game.clockTick, ctx, this.x+90  - this.game.camera.x, this.y - this.game.camera.y, 1)
+		this.animators["walk"]["l"].drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y - this.game.camera.y, 1)
+		this.animators["walk"]["r"].drawFrame(this.game.clockTick, ctx, this.x+180  - this.game.camera.x, this.y - this.game.camera.y, 1)
 	};
 };

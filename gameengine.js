@@ -120,6 +120,8 @@ class GameEngine {
             }
         }
 
+        this.camera.update();
+
         for (var i = this.entities.length - 1; i >= 0; --i) {
             if (this.entities[i].removeFromWorld) {
                 this.entities.splice(i, 1);
