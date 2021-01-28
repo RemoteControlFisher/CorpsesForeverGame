@@ -49,8 +49,8 @@ class traps {
 	};
 
 	draw(ctx) {
-		this.animators["saw"].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1)
-		this.animators["bigSaw"].drawFrame(this.game.clockTick, ctx, 500, this.y, 1)
-		this.animators["spike"].drawFrame(this.game.clockTick, ctx, this.x, this.y+240, 2)
+		this.animators["saw"].drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y, 1)
+		this.animators["bigSaw"].drawFrame(this.game.clockTick, ctx, 500  - this.game.camera.x, this.y, 1)
+		this.animators["spike"].drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y+240, 2)
 	};
 };

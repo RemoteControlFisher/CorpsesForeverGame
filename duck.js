@@ -488,15 +488,15 @@ class duck {
     if (this.state == "slide") offset = 7
     //this.animators["stand"]["r"].drawFrame(this.game.clockTick,ctx,this.x - this.game.camera.x, this.y, PARAMS.SCALE);
 
-    this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - offset, this.y, 2)
+    this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - offset - this.game.camera.x, this.y, 2)
     if (this.state != "stand" && this.state != "slide" && this.armstate != "hold")
       if (this.armstate != "hold")
-        this.armAnimators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y + 16, 2)
+        this.armAnimators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y + 16, 2)
 
     ctx.strokeStyle = 'Red';
-    ctx.strokeRect(this.BB.x, this.BB.y, this.BB.width, this.BB.height);
+    ctx.strokeRect(this.BB.x  - this.game.camera.x, this.BB.y, this.BB.width, this.BB.height);
     ctx.strokeStyle = 'Blue';
-    ctx.strokeRect(this.cBB.x, this.cBB.y, this.cBB.width, this.cBB.height);
+    ctx.strokeRect(this.cBB.x  - this.game.camera.x, this.cBB.y, this.cBB.width, this.cBB.height);
 
   }
 }

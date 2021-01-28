@@ -3,6 +3,7 @@ class scenemanager {
         this.game = game;
         this.game.camera = this;
         this.x = 0;
+        this.y = 0;
         this.score = 0 //not yet implemented
 
         this.duck = new duck(this.game, "stand", 2.5 * PARAMS.BLOCKWIDTH, 0 * PARAMS.BLOCKWIDTH);
@@ -24,11 +25,11 @@ class scenemanager {
     };
 
     update() {
-        PARAMS.DEBUG = document.getElementById("debug").checked;
+        //PARAMS.DEBUG = document.getElementById("debug").checked;
 
         let midpoint = PARAMS.CANVAS_WIDTH/2 - PARAMS.BLOCKWIDTH / 2;
 
-        if (this.x < this.duck.x - midpoint) this.x = this.duck.x - midpoint;
+        this.x = this.duck.x - midpoint;
 
         if (this.duck.dead && this.duck.y > PARAMS.BLOCKWIDTH * 16) {
             this.duck.dead = false;

@@ -25,6 +25,6 @@ class doors
 
 	draw(ctx)
 	{
-		this.door.drawFrame(this.game.clockTick, ctx, this.x, this.y, 2)
+		this.door.drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y, 2)
 	};
 };

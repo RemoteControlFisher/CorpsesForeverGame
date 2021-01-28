@@ -39,7 +39,7 @@ class buttons
 
 	draw(ctx)
 	{
-        this.button[0].drawFrame(this.game.clockTick, ctx, this.x, this.y, 0.5)
-        this.button[1].drawFrame(this.game.clockTick, ctx, this.x, this.y + 50, 0.5)
+        this.button[0].drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y, 0.5)
+        this.button[1].drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y + 50, 0.5)
 	};
 };
