@@ -30,8 +30,8 @@ class scenemanager {
         let midpoint = PARAMS.CANVAS_WIDTH/2 - PARAMS.BLOCKWIDTH / 2;
         let midheight = PARAMS.CANVAS_HEIGHT/2  - PARAMS.BLOCKWIDTH / 2;
 
-        if (this.x < this.duck.x - midpoint) this.x = this.duck.x - midpoint;
-        //this.x = this.duck.x - midpoint;
+        this.x = this.duck.x - midpoint;
+        this.y = this.duck.y - midheight;
 
     };
 
