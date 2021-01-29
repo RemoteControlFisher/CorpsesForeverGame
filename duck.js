@@ -208,21 +208,21 @@ class duck {
           46,
           22,//Width
           26,//Height
-          6,
-          0.10,
+          3,
+          0.2,
           10,
           false,
           true,
           null)
     this.animators["jump"]["l"] = new animator(this.spritesheet,
-          9,
+          105,
           159,
           22,//Width
           26,//Height
-          6,
-          0.10,
+          3,
+          0.2,
           10,
-          false,
+          true,
           true,
           null)
     this.armAnimators["squat"]["r"] = new animator(this.spritesheet,
@@ -482,8 +482,8 @@ class duck {
 
   draw(ctx) {
     let offset = 0
-    if (this.state == "slide") offset = 7
-    //this.animators["stand"]["r"].drawFrame(this.game.clockTick,ctx,this.x - this.game.camera.x, this.y, PARAMS.SCALE);
+    //if (this.state == "slide") offset = 7
+    //this.animators["jump"]["l"].drawFrame(this.game.clockTick,ctx,this.x - this.game.camera.x, this.y, 2);
 
     this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - offset - this.game.camera.x, this.y  - this.game.camera.y, 2)
     if (this.state != "stand" && this.state != "slide" && this.armstate != "hold")
