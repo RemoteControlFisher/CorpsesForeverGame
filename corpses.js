@@ -42,6 +42,7 @@ class corpses {
 				true, // looping,
 				null)
 				*/
+		this.platform = true;
 	};
 
 	update() {
