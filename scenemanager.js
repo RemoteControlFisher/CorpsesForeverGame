@@ -15,25 +15,29 @@ class scenemanager {
         this.game.entities = [];
         this.x = 0;
 
-        if (level.backs)
-            for (let i = 0; i < level.backs.lenght; i++) {
-                let x = level.backs[i].x
-                let y = level.backs[i].y
+        if (level.backs) {
+            console.log(level.backs)
+            for (let i = 0; i < level.backs.length; i++) {
                 let type = level.backs[i].type
-                this.game.addEntity(new background(this.game, x, y, type))
+                for (let j = level.backs[i].startX; j < level.backs[i].lengthX + level.backs[i].startX; j++){
+                    for (let k = level.backs[i].startY; k < level.backs[i].lengthY + level.backs[i].startY; k++){
+                        this.game.addEntity(new background(this.game, startx + j * PARAMS.BLOCKWIDTH, starty - k * PARAMS.BLOCKWIDTH, type))
+                    }
+                }
             }
+        }
         if (level.walls)
             for (let i = 0; i < level.walls.length; i++) {
-                let x = level.walls[i].x
-                let y = level.walls[i].y
                 let type = level.walls[i].type
-                this.game.addEntity(new floorsandwalls(this.game,startx + x * PARAMS.BLOCKWIDTH, startx + y * PARAMS.BLOCKWIDTH, type))
+                for (let j = level.walls[i].startX; j < level.walls[i].lengthX + level.walls[i].startX; j++)
+                    for (let k = level.walls[i].startY; k < level.walls[i].lengthY + level.walls[i].startY; k++)
+                        this.game.addEntity(new floorsandwalls(this.game, startx + j * PARAMS.BLOCKWIDTH, starty - k * PARAMS.BLOCKWIDTH, type))
             }
         if (level.boxes)
             for (let i = 0; i < level.boxes.length; i++) {
-                let x = level.walls[i].x
-                let y = level.walls[i].y
-                this.game.addEntity(new boxes(this.game, x, y))
+                let x = level.boxes[i].x
+                let y = level.boxes[i].y
+                this.game.addEntity(new boxes(this.game,startx + x*PARAMS.BLOCKWIDTH, starty - y*PARAMS.BLOCKWIDTH))
             }
         if (level.corpses)
             for (let i = 0; i < level.corpses.length; i++) {
@@ -76,8 +80,8 @@ class scenemanager {
 
 
 
-        this.duck.x = startx ;
-        this.duck.y = starty - 10*PARAMS.BLOCKWIDTH;
+        this.duck.x = startx;
+        this.duck.y = starty - 10 * PARAMS.BLOCKWIDTH;
         this.game.addEntity(this.duck);
     };
 

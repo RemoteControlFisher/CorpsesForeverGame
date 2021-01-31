@@ -301,7 +301,6 @@ class duck {
   }
 
   update() {
-    console.log(this.state)
     let tick = this.game.clockTick;
     //These constants I did copy just so I remembered the basic constants I should use here. The rest I typed out manually with some vague inspirations being pulled
     //From the lecture examples.
