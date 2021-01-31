@@ -50,8 +50,8 @@ ASSET_MANAGER.downloadAll(function () {
 	gameEngine.addEntity(new boxes(gameEngine, 500, 400 - 32))
 	gameEngine.addEntity(new buttons(gameEngine, 100, 450))
 
-	gameEngine.addEntity(new duck(gameEngine, "stand", 280, 280)) 
+	gameEngine.addEntity(new duck(gameEngine, "stand", 280, 280)) */
 
 	gameEngine.start();
-	/** */
+	
 });
