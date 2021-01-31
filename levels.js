@@ -1,3 +1,7 @@
 var tutorialLevel = {
-      //add entity loop here
+      walls: [{
+            x: 100,
+            y: 200,
+            type: "floor"
+      }]
 };

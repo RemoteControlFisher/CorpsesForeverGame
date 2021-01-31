@@ -15,57 +15,65 @@ class scenemanager {
         this.game.entities = [];
         this.x = 0;
 
-        if (level.backs) {
+        if (level.backs)
             for (let i = 0; i < level.backs.lenght; i++) {
                 let x = level.backs[i].x
                 let y = level.backs[i].y
                 let type = level.backs[i].type
-                this.game.add(new background(this.game, x, y, type))
+                this.game.addEntity(new background(this.game, x, y, type))
             }
+        if (level.walls)
             for (let i = 0; i < level.walls.length; i++) {
                 let x = level.walls[i].x
                 let y = level.walls[i].y
                 let type = level.walls[i].type
-                this.game.add(new floorsandwalls(this.game, x, y, type))
+                this.game.addEntity(new floorsandwalls(this.game, x, y, type))
             }
+        if (level.boxes)
             for (let i = 0; i < level.boxes.length; i++) {
                 let x = level.walls[i].x
                 let y = level.walls[i].y
-                this.game.add(new boxes(this.game, x, y))
+                this.game.addEntity(new boxes(this.game, x, y))
             }
+        if (level.corpses)
             for (let i = 0; i < level.corpses.length; i++) {
                 let x = level.corpses[i].x
                 let y = level.corpses[i].y
                 let type = level.corpses[i].type
-                this.game.add(new corpses(this.game, x, y, type))
+                this.game.addEntity(new corpses(this.game, x, y, type))
             }
+        if (level.traps)
             for (let i = 0; i < level.traps.length; i++) {
                 let x = level.traps[i].x
                 let y = level.traps[i].y
                 let type = level.traps[i].type
-                this.game.add(new traps(this.game, x, y, type))
+                this.game.addEntity(new traps(this.game, x, y, type))
             }
+        if (level.buttons)
             for (let i = 0; i < level.buttons.length; i++) {
                 let x = level.buttons[i].x
                 let y = level.buttons[i].y
-                this.game.add(new buttons(this.game, x, y))
+                this.game.addEntity(new buttons(this.game, x, y))
             }
+        if (level.doors)
             for (let i = 0; i < level.doors.length; i++) {
                 let x = level.doors[i].x
                 let y = level.doors[i].y
-                this.game.add(new doors(this.game, x, y))
+                this.game.addEntity(new doors(this.game, x, y))
             }
+        if (level.chompers)
             for (let i = 0; i < level.chompers.length; i++) {
                 let x = level.chompers[i].x
                 let y = level.chompers[i].y
-                this.game.add(new chompers(this.game, x, y))
+                this.game.addEntity(new chompers(this.game, x, y))
             }
+        if (level.hoppers)
             for (let i = 0; i < level.hoppers.length; i++) {
                 let x = level.hoppers[i].x
                 let y = level.hoppers[i].y
-                this.game.add(new hoppers(this.game, x, y))
+                this.game.addEntity(new hoppers(this.game, x, y))
             }
-        }
+
 
 
         this.duck.x = x + 100;
