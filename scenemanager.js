@@ -44,14 +44,14 @@ class scenemanager {
                 let x = level.corpses[i].x
                 let y = level.corpses[i].y
                 let type = level.corpses[i].type
-                this.game.addEntity(new corpses(this.game, x, y, type))
+                this.game.addEntity(new corpses(this.game, startx + x*PARAMS.BLOCKWIDTH, starty - y*PARAMS.BLOCKWIDTHy, type))
             }
         if (level.traps)
             for (let i = 0; i < level.traps.length; i++) {
                 let x = level.traps[i].x
                 let y = level.traps[i].y
                 let type = level.traps[i].type
-                this.game.addEntity(new traps(this.game, x, y, type))
+                this.game.addEntity(new traps(this.game, startx + x*PARAMS.BLOCKWIDTH, starty - y*PARAMS.BLOCKWIDTHy, type))
             }
         if (level.buttons)
             for (let i = 0; i < level.buttons.length; i++) {
@@ -76,6 +76,13 @@ class scenemanager {
                 let x = level.hoppers[i].x
                 let y = level.hoppers[i].y
                 this.game.addEntity(new hoppers(this.game, x, y))
+            }
+        if (level.textboxes)
+            for (let i = 0; i < level.textboxes.length; i++){
+                let x = level.textboxes[i].x
+                let y = level.textboxes[i].y
+                let text = level.textboxes[i].text
+                this.game.addEntity(new textboxes(this.game,startx + x*PARAMS.BLOCKWIDTH, starty - y*PARAMS.BLOCKWIDTH, text))
             }
 
 
