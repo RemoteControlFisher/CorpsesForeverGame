@@ -43,14 +43,54 @@ class corpses {
 				null)
 				*/
 		this.platform = true;
+		this.droppable = true;
+		this.scale = 2
+		if (this.type == "chomper") this.scale = 1
+		this.BB = new boundingBox(this.x, this.y, this.animations[this.type].width * this.scale, this.animations[this.type].height * this.scale)
+		this.updateBB()
+		this.velocityY = 0
 	};
 
 	update() {
+		let tick = this.game.clockTick;
+		//These constants I did copy just so I remembered the basic constants I should use here. The rest I typed out manually with some vague inspirations being pulled
+		//From the lecture examples.
+
+		this.velocityY += GRAVITY * tick
+		this.y += this.velocityY * tick
+		this.updateBB()
+
+		this.collide()
 
 	};
 
+	updateBB() {
+		this.oldBB = this.BB;
+		this.BB = new boundingBox(this.x, this.y, this.animations[this.type].width * this.scale, this.animations[this.type].height * this.scale)
+	}
+
+
+	collide() {
+		const that = this
+		this.game.entities.forEach(function (entity) {
+
+			if (entity.BB && that.BB.isCollide(entity.BB)) {
+
+				if (entity.platform && that.oldBB.bottom <= entity.BB.top && that.velocityY > 0) {
+					that.velocityY = 0
+					that.y = entity.BB.top - that.animations[that.type].height * that.scale
+					that.updateBB()
+				}
+			}
+
+		}
+		)
+
+	}
+
 	draw(ctx) {
-		this.animations["duck"].drawFrame(this.game.clockTick, ctx, this.x + 200  - this.game.camera.x, this.y - this.game.camera.y, 2);
-		this.animations["chomper"].drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y - this.game.camera.y, 1);
+		this.animations[this.type].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, this.scale);
+		ctx.strokeStyle = 'Red';
+		ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
 	};
 };

@@ -360,11 +360,14 @@ class duck {
         if (entity.BB && that.BB.isCollide(entity.BB)) {
           //If we are landing on something, stop.
           if (entity.platform && that.oldBB.bottom <= entity.BB.top && that.velocityY > 0) {
-            that.velocityY = 0
-            that.y = entity.BB.top - 50
-            if (that.state == "jump" || that.state == "hover" || that.state == "freefall" || that.state == "wallcling")
-              that.state = "stand"
-            that.updateBB(2)
+            //If the entity is droppable and down, let the player fall through it.
+            if (!entity.droppable || !that.game.down || that.state.slide) {
+              that.velocityY = 0
+              that.y = entity.BB.top - 50
+              if (that.state == "jump" || that.state == "hover" || that.state == "freefall" || that.state == "wallcling")
+                that.state = "stand"
+              that.updateBB(2)
+            }
           } else
             if (entity.cieling && that.oldBB.top >= entity.BB.bottom) {
               that.velocityY = 0
@@ -372,7 +375,7 @@ class duck {
               that.updateBB(2)
             } else
               if (entity.wall && that.velocityX > 0 && that.BB.right > entity.BB.left) {
-                if ((that.state == "jump" || that.state == "hover" || that.state == "freefall" || that.state == "wallcling") && !entity.platform && that.game.right){
+                if ((that.state == "jump" || that.state == "hover" || that.state == "freefall" || that.state == "wallcling") && !entity.platform && that.game.right) {
                   that.state = "wallcling"
                   that.facing = "r"
                   that.velocityY *= 0.6
@@ -423,7 +426,7 @@ class duck {
         this.velocityX -= ACC_AIR * tick
       } else
         if (this.game.right && !this.game.left) {
-          this.velocityX -= ACC_AIR * tick
+          this.velocityX += ACC_AIR * tick
         }
     }
     //Falling physics
@@ -553,14 +556,14 @@ class duck {
 
   wallLogic(tick) {
     //Negate part of gravity.
-    if (this.game.left && this.facing == "l" || this.game.right && this.facing == "r"){
-      this.velocityY -= 0.7*GRAVITY * tick 
-      if (this.game.up){
+    if (this.game.left && this.facing == "l" || this.game.right && this.facing == "r") {
+      this.velocityY -= 0.7 * GRAVITY * tick
+      if (this.game.up) {
         //This is where the wall jump would happen.
-        if(this.facing == "l"){
-          
+        if (this.facing == "l") {
+
         }
-        if(this.facing == "r"){
+        if (this.facing == "r") {
 
         }
       }
@@ -568,7 +571,7 @@ class duck {
       //Placeholder.
       this.state = "jump"
     }
-    
+
   }
 
   draw(ctx) {
