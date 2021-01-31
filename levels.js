@@ -3,7 +3,7 @@ var tutorialLevel = {
             startX: -5,
             startY: 1,
             lengthX: 20,
-            lengthY: 30,
+            lengthY: 40,
             type: "bwall"
       },
       {
@@ -54,6 +54,27 @@ var tutorialLevel = {
             lengthX: 1,
             lengthY: 10,
             type: "wleft"
+      },
+      {
+            startX: 33,
+            startY: 12,
+            lengthX: 1,
+            lengthY: 20,
+            type: "wleft"
+      },
+      {
+            startX: 29,
+            startY: 14,
+            lengthX: 1,
+            lengthY: 6,
+            type: "wright"
+      },
+      {
+            startX: 20,
+            startY: 20,
+            lengthX: 10,
+            lengthY: 1,
+            type: "floor"
       }],
       boxes: [{
             x: 1,
