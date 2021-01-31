@@ -25,23 +25,31 @@ ASSET_MANAGER.downloadAll(function () {
 	gameEngine.init(ctx);
 
 	new scenemanager(gameEngine);
+
 	//gameEngine.addEntity(new duck(gameEngine, "stand", 280, 280))
+	for (i = 0; i < 16; i++) {
+		for (j = 0; j < 16; j++) {
+			gameEngine.addEntity(new background(gameEngine, 188 + 32 * i - 32, 400 -32*j, "bwall"))
+		}
+	}
+
 	gameEngine.addEntity(new Hoppers(gameEngine, 400, 600))
-	gameEngine.addEntity(new traps(gameEngine, 80, 80))
+	gameEngine.addEntity(new traps(gameEngine, 80, 80, "saw"))
 	gameEngine.addEntity(new Chompers(gameEngine, 400, 500))
 	for (i = 0; i < 16; i++) {
-		gameEngine.addEntity(new floorsandwalls(gameEngine, 188 + 32 * i -32, 400, "floor"))
+		gameEngine.addEntity(new floorsandwalls(gameEngine, 188 + 32 * i - 32, 400, "floor"))
 	}
 
 	for (i = 0; i < 16; i++) {
-		gameEngine.addEntity(new floorsandwalls(gameEngine, 188 - 32 * 2, 400 - 32* i , "wright"))
+		gameEngine.addEntity(new floorsandwalls(gameEngine, 188 - 32 * 2, 400 - 32 * i, "wright"))
 	}
 	gameEngine.addEntity(new floorsandwalls(gameEngine, 220, 368, "floor"))
 	gameEngine.addEntity(new doors(gameEngine, 450, 450))
 	gameEngine.addEntity(new corpses(gameEngine, 640, -1000, "duck"))
 	gameEngine.addEntity(new corpses(gameEngine, 540, 0, "chomper"))
 
-	gameEngine.addEntity(new boxes(gameEngine, 500, 400-32))
+	gameEngine.addEntity(new boxes(gameEngine, 500, 400 - 32))
 	gameEngine.addEntity(new buttons(gameEngine, 100, 450))
+
 	gameEngine.start();
 });
