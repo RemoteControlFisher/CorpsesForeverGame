@@ -455,6 +455,7 @@ class duck {
       if (this.game.up) this.velocityY = -625
       else this.velocityY = -500
       this.state = "jump"
+      this.game.jumpDisconnect = true
     }
   }
 
@@ -477,7 +478,8 @@ class duck {
         //Friction is opposite to the direction of movement.
         this.velocityX -= SLIDE_DECEL * Math.sign(this.velocityX) * tick
       }
-      if (this.game.up) {
+      if (this.game.up && !this.game.jumpDisconnect) {
+        this.game.jumpDisconnect = true
         this.state = "jump"
         this.velocityY = -375
         this.velocityX += Math.sign(this.velocityX) * 250
@@ -529,7 +531,7 @@ class duck {
 
 
     //Select our state.
-    if (this.game.up) {
+    if (this.game.up && !this.game.jumpDisconnect) {
       this.state = "squat"
       this.squatTime = 0
     } else {
@@ -557,19 +559,21 @@ class duck {
     //Negate part of gravity.
     if (this.game.left && this.facing == "l" || this.game.right && this.facing == "r") {
       this.velocityY -= 0.7 * GRAVITY * tick
-      if (this.game.up) {
+      if (this.game.up && !this.game.jumpDisconnect) {
         //This is where the wall jump would happen.
         if (this.facing == "l") {
-          this.velocityY = -500
-          this.velocityX = 200
+          this.velocityY = -550
+          this.velocityX = 300
         }
         if (this.facing == "r") {
           
-          this.velocityY = -500
-          this.velocityX = -200
+          this.velocityY = -550
+          this.velocityX = -300
           
         }
         this.state = "jump"
+        this.game.jumpDisconnect = true
+
       }
     } else {
       //If we aren't pressing into the wall, and trying to kick away from the wall, shoot off to the side.
