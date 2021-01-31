@@ -77,11 +77,6 @@ var tutorialLevel = {
             type: "floor"
       }],
       boxes: [{
-<<<<<<< HEAD
-            x:1,
-            y:1
-      }]
-=======
             x: 1,
             y: 1
       }],
@@ -202,6 +197,5 @@ var tutorialLevel = {
       }
 ]
 
->>>>>>> e0b986a2e96a0487ae7f3ff95ea19ecab5128a63
 
 };
