@@ -561,11 +561,16 @@ class duck {
       if (this.game.up) {
         //This is where the wall jump would happen.
         if (this.facing == "l") {
-
+          this.velocityY = -500
+          this.velocityX = 200
         }
         if (this.facing == "r") {
-
+          
+          this.velocityY = -500
+          this.velocityX = -200
+          
         }
+        this.state = "jump"
       }
     } else {
       //If we aren't pressing into the wall, and trying to kick away from the wall, shoot off to the side.
