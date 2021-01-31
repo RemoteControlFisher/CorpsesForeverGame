@@ -14,7 +14,7 @@ class scenemanager {
     loadlevel(level, x, y) {
         this.game.entities = [];
         this.x = 0;
-        
+
         if (level.backs) {
             for (let i = 0; i < level.backs.lenght; i++) {
                 let x = level.backs[i].x
@@ -54,6 +54,16 @@ class scenemanager {
                 let x = level.doors[i].x
                 let y = level.doors[i].y
                 this.game.add(new doors(this.game, x, y))
+            }
+            for (let i = 0; i < level.chompers.length; i++) {
+                let x = level.chompers[i].x
+                let y = level.chompers[i].y
+                this.game.add(new chompers(this.game, x, y))
+            }
+            for (let i = 0; i < level.hoppers.length; i++) {
+                let x = level.hoppers[i].x
+                let y = level.hoppers[i].y
+                this.game.add(new hoppers(this.game, x, y))
             }
         }
 
