@@ -573,8 +573,18 @@ class duck {
         this.state = "jump"
       }
     } else {
-      //Placeholder.
+      //If we aren't pressing into the wall, and trying to kick away from the wall, shoot off to the side.
       this.state = "jump"
+      if (this.facing == "l" && this.game.right){
+        this.facing = "r"
+        this.velocityX +=350
+        this.velocityY +=125
+      } 
+      if (this.facing == "r" && this.game.left){
+        this.facing = "l"
+        this.velocityX -=350
+        this.velocityY +=125
+      }
     }
 
   }
