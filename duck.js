@@ -478,6 +478,7 @@ class duck {
       if (this.game.up) {
         this.state = "jump"
         this.velocityY = -375
+        this.velocityX += Math.sign(this.velocityX) * 250
       }
     }
 
