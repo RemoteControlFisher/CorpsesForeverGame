@@ -61,25 +61,25 @@ class scenemanager {
             for (let i = 0; i < level.buttons.length; i++) {
                 let x = level.buttons[i].x
                 let y = level.buttons[i].y
-                this.game.addEntity(new buttons(this.game, x, y))
+                this.game.addEntity(new buttons(this.game, startx + x*PARAMS.BLOCKWIDTH, starty - y*PARAMS.BLOCKWIDTHy))
             }
         if (level.doors)
             for (let i = 0; i < level.doors.length; i++) {
                 let x = level.doors[i].x
                 let y = level.doors[i].y
-                this.game.addEntity(new doors(this.game, x, y))
+                this.game.addEntity(new doors(this.game, startx + x*PARAMS.BLOCKWIDTH, starty - y*PARAMS.BLOCKWIDTHy))
             }
         if (level.chompers)
             for (let i = 0; i < level.chompers.length; i++) {
                 let x = level.chompers[i].x
                 let y = level.chompers[i].y
-                this.game.addEntity(new chompers(this.game, x, y))
+                this.game.addEntity(new chompers(this.game, startx + x*PARAMS.BLOCKWIDTH, starty - y*PARAMS.BLOCKWIDTHy))
             }
         if (level.hoppers)
             for (let i = 0; i < level.hoppers.length; i++) {
                 let x = level.hoppers[i].x
                 let y = level.hoppers[i].y
-                this.game.addEntity(new hoppers(this.game, x, y))
+                this.game.addEntity(new hoppers(this.game, startx + x*PARAMS.BLOCKWIDTH, starty - y*PARAMS.BLOCKWIDTHy))
             }
         if (level.textboxes)
             for (let i = 0; i < level.textboxes.length; i++){
