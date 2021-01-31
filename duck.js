@@ -4,6 +4,7 @@ const MIN_WALK = 120.453125;
 const MAX_WALK = 293.75;
 const MAX_RUN = 550.75;
 const ACC_WALK = 153.59375;
+const ACC_AIR = 280;
 const ACC_RUN = 750.390625;
 const SLIDE_DECEL = 450;
 const GRAVITY = 1800;
@@ -35,6 +36,7 @@ class duck {
     this.animators["walk"] = []
     this.animators["run"] = []
     this.animators["slide"] = []
+    this.animators["wallcling"] = []
     this.animators["squat"] = []
     this.animators["jump"] = []
     this.armAnimators["walk"] = []
@@ -204,27 +206,27 @@ class duck {
         true, // looping,
         null) //No idle animation because I am looping.
     this.animators["jump"]["r"] = new animator(this.spritesheet,
-          9,
-          46,
-          22,//Width
-          26,//Height
-          3,
-          0.2,
-          10,
-          false,
-          true,
-          null)
+      9,
+      46,
+      22,//Width
+      26,//Height
+      3,
+      0.2,
+      10,
+      false,
+      true,
+      null)
     this.animators["jump"]["l"] = new animator(this.spritesheet,
-          105,
-          159,
-          22,//Width
-          26,//Height
-          3,
-          0.2,
-          10,
-          true,
-          true,
-          null)
+      105,
+      159,
+      22,//Width
+      26,//Height
+      3,
+      0.2,
+      10,
+      true,
+      true,
+      null)
     this.armAnimators["squat"]["r"] = new animator(this.spritesheet,
       2,
       519,
@@ -269,9 +271,37 @@ class duck {
       true,
       true,
       null)
+
+    this.animators["wallcling"]["r"] =
+      new animator(this.spritesheet, // Spritesheet
+        8, //X
+        14, //Y
+        16, //Width
+        25, //Height
+        1, //Frames
+        0.12, //Time
+        16, //Padding
+        false, //reverse
+        true, // looping,
+        null) //No idle animation because I am looping.
+    //Facing isn't implemented yet.
+    this.animators["wallcling"]["l"] =
+      new animator(this.spritesheet, // Spritesheet
+        167, //X
+        129, //Y
+        16, //Width
+        25, //Height
+        1, //Frames
+        0.12, //Time
+        16, //Padding
+        false, //reverse
+        true, // looping,
+        null) //No idle animation because I am looping.
+    //Facing isn't implemented yet.
   }
 
   update() {
+    console.log(this.state)
     let tick = this.game.clockTick;
     //These constants I did copy just so I remembered the basic constants I should use here. The rest I typed out manually with some vague inspirations being pulled
     //From the lecture examples.
@@ -329,7 +359,7 @@ class duck {
       if (that.state != "slide") {
         if (entity.BB && that.BB.isCollide(entity.BB)) {
           //If we are landing on something, stop.
-          if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
+          if (entity.platform && that.oldBB.bottom <= entity.BB.top && that.velocityY > 0) {
             that.velocityY = 0
             that.y = entity.BB.top - 50
             if (that.state == "jump" || that.state == "hover" || that.state == "freefall" || that.state == "wallcling")
@@ -337,16 +367,26 @@ class duck {
             that.updateBB(2)
           } else
             if (entity.cieling && that.oldBB.top >= entity.BB.bottom) {
+
+
               that.velocityY = 0
               that.y = entity.BB.bottom
               that.updateBB(2)
             } else
               if (entity.wall && that.velocityX > 0 && that.BB.right > entity.BB.left) {
+                if ((that.state == "jump" || that.state == "hover" || that.state == "freefall" || that.state == "wallcling") && !entity.platform && that.game.right){
+                  that.state = "wallcling"
+                  that.velocityY *= 0.6
+                }
                 that.velocityX = 0
                 that.x = entity.BB.left - 32
                 that.updateBB(2)
               } else
                 if (entity.wall && that.velocityX < 0 && that.BB.left < entity.BB.right) {
+                  if ((that.state == "jump" || that.state == "hover" || that.state == "freefall" || that.state == "wallcling") && !entity.platform && that.game.left) {
+                    that.velocityY *= 0.6
+                    that.state = "wallcling"
+                  }
                   that.velocityX = 0
                   that.x = entity.BB.right
                   that.updateBB(2)
@@ -377,7 +417,33 @@ class duck {
   }
 
   airLogic(tick) {
-
+    //Rising physics.
+    if (this.velocityY < 0) {
+      if (this.game.left && !this.game.right) {
+        this.velocityX -= ACC_AIR * tick
+      } else
+        if (this.game.right && !this.game.left) {
+          this.velocityX -= ACC_AIR * tick
+        }
+    }
+    //Falling physics
+    //Horizontal walking movement.
+    else {
+      if (this.game.left && !this.game.right) {
+        if (this.velocityX > -MIN_WALK)
+          this.velocityX = -MIN_WALK;
+        else {
+          this.velocityX -= ACC_WALK * tick
+        }
+      } else
+        if (this.game.right && !this.game.left) {
+          if (this.velocityX < MIN_WALK)
+            this.velocityX = +MIN_WALK;
+          else {
+            this.velocityX += ACC_WALK * tick
+          }
+        }
+    }
   }
 
   jumpSquatLogic(tick) {
@@ -408,6 +474,10 @@ class duck {
       if (Math.abs(this.velocityX) > MAX_WALK * 0.25) {
         //Friction is opposite to the direction of movement.
         this.velocityX -= SLIDE_DECEL * Math.sign(this.velocityX) * tick
+      }
+      if (this.game.up) {
+        this.state = "jump"
+        this.velocityY = -375
       }
     }
 
@@ -480,20 +550,39 @@ class duck {
     }
   }
 
+  wallLogic(tick) {
+    //Negate part of gravity.
+    if (this.game.left && this.facing == "l" || this.game.right && this.facing == "r"){
+      this.velocityY -= 0.7*GRAVITY * tick 
+      if (this.game.up){
+        //This is where the wall jump would happen.
+        if(this.facing == "l"){
+          
+        }
+        if(this.facing == "r"){
+
+        }
+      }
+    } else {
+      //Placeholder.
+      this.state = "jump"
+    }
+    
+  }
+
   draw(ctx) {
     let offset = 0
-    //if (this.state == "slide") offset = 7
-    //this.animators["jump"]["l"].drawFrame(this.game.clockTick,ctx,this.x - this.game.camera.x, this.y, 2);
+    if (this.state == "slide") offset = 7
 
-    this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - offset - this.game.camera.x, this.y  - this.game.camera.y, 2)
-    if (this.state != "stand" && this.state != "slide" && this.armstate != "hold")
+    this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - offset - this.game.camera.x, this.y - this.game.camera.y, 2)
+    if (this.armAnimators[this.state] && this.armAnimators[this.state][this.facing] && this.state != "stand" && this.state != "slide" && this.armstate != "hold")
       if (this.armstate != "hold")
-        this.armAnimators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y + 16 - this.game.camera.y, 2)
+        this.armAnimators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y + 16 - this.game.camera.y, 2)
 
     ctx.strokeStyle = 'Red';
-    ctx.strokeRect(this.BB.x  - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
+    ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
     ctx.strokeStyle = 'Blue';
-    ctx.strokeRect(this.cBB.x  - this.game.camera.x, this.cBB.y - this.game.camera.y, this.cBB.width, this.cBB.height);
+    ctx.strokeRect(this.cBB.x - this.game.camera.x, this.cBB.y - this.game.camera.y, this.cBB.width, this.cBB.height);
 
   }
 }

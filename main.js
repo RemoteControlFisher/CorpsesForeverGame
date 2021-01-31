@@ -30,7 +30,11 @@ ASSET_MANAGER.downloadAll(function () {
 	gameEngine.addEntity(new traps(gameEngine, 80, 80))
 	gameEngine.addEntity(new Chompers(gameEngine, 400, 500))
 	for (i = 0; i < 16; i++) {
-		gameEngine.addEntity(new floorsandwalls(gameEngine, 188 + 32 * i, 400, "floor"))
+		gameEngine.addEntity(new floorsandwalls(gameEngine, 188 + 32 * i -32, 400, "floor"))
+	}
+
+	for (i = 0; i < 16; i++) {
+		gameEngine.addEntity(new floorsandwalls(gameEngine, 188 - 32 * 2, 400 - 32* i , "wright"))
 	}
 	gameEngine.addEntity(new floorsandwalls(gameEngine, 220, 368, "floor"))
 	gameEngine.addEntity(new doors(gameEngine, 450, 450))

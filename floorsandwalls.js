@@ -39,6 +39,7 @@ class floorsandwalls {
 				false,
 				true,
 				null)
+		if(this.type != "wleft" && this.type != "wright")
 		this.platform = true;
 		this.wall = true;
 		this.cieling = true;
