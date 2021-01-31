@@ -46,7 +46,7 @@ class corpses {
 		this.droppable = true;
 		this.scale = 2
 		if (this.type == "chomper") this.scale = 1
-		this.BB = new boundingBox(this.x, this.y, this.animations[this.type].width * this.scale, this.animations[this.type].height * this.scale)
+		this.BB = new boundingBox(this.x, this.y, this.animations[this.type].width * this.scale, (this.animations[this.type].height) * this.scale)
 		this.updateBB()
 		this.velocityY = 0
 	};
@@ -66,7 +66,7 @@ class corpses {
 
 	updateBB() {
 		this.oldBB = this.BB;
-		this.BB = new boundingBox(this.x, this.y, this.animations[this.type].width * this.scale, this.animations[this.type].height * this.scale)
+		this.BB = new boundingBox(this.x, this.y, this.animations[this.type].width * this.scale, (this.animations[this.type].height) * this.scale)
 	}
 
 
@@ -90,7 +90,7 @@ class corpses {
 
 	draw(ctx) {
 		this.animations[this.type].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, this.scale);
-		ctx.strokeStyle = 'Red';
-		ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
+		/*ctx.strokeStyle = 'Red';
+		ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);*/
 	};
 };

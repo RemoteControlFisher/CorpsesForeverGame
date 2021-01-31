@@ -39,13 +39,17 @@ class scenemanager {
                 let y = level.boxes[i].y
                 this.game.addEntity(new boxes(this.game,startx + x*PARAMS.BLOCKWIDTH, starty - y*PARAMS.BLOCKWIDTH))
             }
-        if (level.corpses)
+        if (level.corpses){
+            console.log("Hi.")
             for (let i = 0; i < level.corpses.length; i++) {
                 let x = level.corpses[i].x
                 let y = level.corpses[i].y
                 let type = level.corpses[i].type
-                this.game.addEntity(new corpses(this.game, startx + x*PARAMS.BLOCKWIDTH, starty - y*PARAMS.BLOCKWIDTHy, type))
+                let myCorpse = new corpses(this.game, startx + x*PARAMS.BLOCKWIDTH, starty - y*PARAMS.BLOCKWIDTH, type)
+                this.game.addEntity(myCorpse)
+                console.log(myCorpse)
             }
+        }
         if (level.traps)
             for (let i = 0; i < level.traps.length; i++) {
                 let x = level.traps[i].x
@@ -88,7 +92,7 @@ class scenemanager {
 
 
         this.duck.x = startx;
-        this.duck.y = starty - 10 * PARAMS.BLOCKWIDTH;
+        this.duck.y = starty - 3 * PARAMS.BLOCKWIDTH;
         this.game.addEntity(this.duck);
     };
 
