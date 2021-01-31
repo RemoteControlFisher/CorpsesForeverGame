@@ -367,8 +367,6 @@ class duck {
             that.updateBB(2)
           } else
             if (entity.cieling && that.oldBB.top >= entity.BB.bottom) {
-
-
               that.velocityY = 0
               that.y = entity.BB.bottom
               that.updateBB(2)
@@ -376,6 +374,7 @@ class duck {
               if (entity.wall && that.velocityX > 0 && that.BB.right > entity.BB.left) {
                 if ((that.state == "jump" || that.state == "hover" || that.state == "freefall" || that.state == "wallcling") && !entity.platform && that.game.right){
                   that.state = "wallcling"
+                  that.facing = "r"
                   that.velocityY *= 0.6
                 }
                 that.velocityX = 0
@@ -386,6 +385,7 @@ class duck {
                   if ((that.state == "jump" || that.state == "hover" || that.state == "freefall" || that.state == "wallcling") && !entity.platform && that.game.left) {
                     that.velocityY *= 0.6
                     that.state = "wallcling"
+                    that.facing = "l"
                   }
                   that.velocityX = 0
                   that.x = entity.BB.right
