@@ -1,7 +1,7 @@
 var tutorialLevel = {
       walls: [{
-            x: 100,
-            y: 200,
+            x: 0,
+            y: 0,
             type: "floor"
       }]
 };

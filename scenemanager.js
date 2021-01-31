@@ -6,12 +6,12 @@ class scenemanager {
         this.y = 0;
         this.score = 0 //not yet implemented
 
-        this.duck = new duck(this.game, "stand", 2.5 * PARAMS.BLOCKWIDTH, 0 * PARAMS.BLOCKWIDTH);
+        this.duck = new duck(this.game, "stand", 0, 0);
 
-        this.loadlevel(tutorialLevel, 2.5 * PARAMS.BLOCKWIDTH, 0 * PARAMS.BLOCKWIDTH);
+        this.loadlevel(tutorialLevel, 100, 300);
     };
 
-    loadlevel(level, x, y) {
+    loadlevel(level, startx, starty) {
         this.game.entities = [];
         this.x = 0;
 
@@ -27,7 +27,7 @@ class scenemanager {
                 let x = level.walls[i].x
                 let y = level.walls[i].y
                 let type = level.walls[i].type
-                this.game.addEntity(new floorsandwalls(this.game, x, y, type))
+                this.game.addEntity(new floorsandwalls(this.game,startx + x * PARAMS.BLOCKWIDTH, startx + y * PARAMS.BLOCKWIDTH, type))
             }
         if (level.boxes)
             for (let i = 0; i < level.boxes.length; i++) {
@@ -76,8 +76,8 @@ class scenemanager {
 
 
 
-        this.duck.x = x + 100;
-        this.duck.y = y + 300;
+        this.duck.x = startx ;
+        this.duck.y = starty - 10*PARAMS.BLOCKWIDTH;
         this.game.addEntity(this.duck);
     };
 
