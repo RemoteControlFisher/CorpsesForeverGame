@@ -511,6 +511,7 @@ this.animators["jumprising"]["r"] =
       if (this.game.up) this.velocityY = -625
       else this.velocityY = -500
       this.state = "jump"
+      this.game.jumpDisconnect = true
     }
   }
 
@@ -533,7 +534,8 @@ this.animators["jumprising"]["r"] =
         //Friction is opposite to the direction of movement.
         this.velocityX -= SLIDE_DECEL * Math.sign(this.velocityX) * tick
       }
-      if (this.game.up) {
+      if (this.game.up && !this.game.jumpDisconnect) {
+        this.game.jumpDisconnect = true
         this.state = "jump"
         this.velocityY = -375
         this.velocityX += Math.sign(this.velocityX) * 250
@@ -585,7 +587,7 @@ this.animators["jumprising"]["r"] =
 
 
     //Select our state.
-    if (this.game.up) {
+    if (this.game.up && !this.game.jumpDisconnect) {
       this.state = "squat"
       this.squatTime = 0
     } else {
@@ -613,19 +615,21 @@ this.animators["jumprising"]["r"] =
     //Negate part of gravity.
     if (this.game.left && this.facing == "l" || this.game.right && this.facing == "r") {
       this.velocityY -= 0.7 * GRAVITY * tick
-      if (this.game.up) {
+      if (this.game.up && !this.game.jumpDisconnect) {
         //This is where the wall jump would happen.
         if (this.facing == "l") {
-          this.velocityY = -500
-          this.velocityX = 200
+          this.velocityY = -550
+          this.velocityX = 300
         }
         if (this.facing == "r") {
           
-          this.velocityY = -500
-          this.velocityX = -200
+          this.velocityY = -550
+          this.velocityX = -300
           
         }
         this.state = "jump"
+        this.game.jumpDisconnect = true
+
       }
     } else {
       //If we aren't pressing into the wall, and trying to kick away from the wall, shoot off to the side.
@@ -653,10 +657,12 @@ this.animators["jumprising"]["r"] =
       if (this.armstate != "hold")
         this.armAnimators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y + 16 - this.game.camera.y, 2)
 
+    /*
     ctx.strokeStyle = 'Red';
     ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
     ctx.strokeStyle = 'Blue';
     ctx.strokeRect(this.cBB.x - this.game.camera.x, this.cBB.y - this.game.camera.y, this.cBB.width, this.cBB.height);
+    */
 
   }
 }

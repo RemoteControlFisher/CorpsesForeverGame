@@ -40,13 +40,17 @@ class scenemanager {
                 let y = level.boxes[i].y
                 this.game.addEntity(new boxes(this.game,startx + x*PARAMS.BLOCKWIDTH, starty - y*PARAMS.BLOCKWIDTH))
             }
-        if (level.corpses)
+        if (level.corpses){
+            console.log("Hi.")
             for (let i = 0; i < level.corpses.length; i++) {
                 let x = level.corpses[i].x
                 let y = level.corpses[i].y
                 let type = level.corpses[i].type
-                this.game.addEntity(new corpses(this.game, startx + x*PARAMS.BLOCKWIDTH, starty - y*PARAMS.BLOCKWIDTHy, type))
+                let myCorpse = new corpses(this.game, startx + x*PARAMS.BLOCKWIDTH, starty - y*PARAMS.BLOCKWIDTH, type)
+                this.game.addEntity(myCorpse)
+                console.log(myCorpse)
             }
+        }
         if (level.traps)
             for (let i = 0; i < level.traps.length; i++) {
                 let x = level.traps[i].x
@@ -58,25 +62,25 @@ class scenemanager {
             for (let i = 0; i < level.buttons.length; i++) {
                 let x = level.buttons[i].x
                 let y = level.buttons[i].y
-                this.game.addEntity(new buttons(this.game, x, y))
+                this.game.addEntity(new buttons(this.game, startx + x*PARAMS.BLOCKWIDTH, starty - y*PARAMS.BLOCKWIDTHy))
             }
         if (level.doors)
             for (let i = 0; i < level.doors.length; i++) {
                 let x = level.doors[i].x
                 let y = level.doors[i].y
-                this.game.addEntity(new doors(this.game, x, y))
+                this.game.addEntity(new doors(this.game, startx + x*PARAMS.BLOCKWIDTH, starty - y*PARAMS.BLOCKWIDTHy))
             }
         if (level.chompers)
             for (let i = 0; i < level.chompers.length; i++) {
                 let x = level.chompers[i].x
                 let y = level.chompers[i].y
-                this.game.addEntity(new chompers(this.game, x, y))
+                this.game.addEntity(new chompers(this.game, startx + x*PARAMS.BLOCKWIDTH, starty - y*PARAMS.BLOCKWIDTHy))
             }
         if (level.hoppers)
             for (let i = 0; i < level.hoppers.length; i++) {
                 let x = level.hoppers[i].x
                 let y = level.hoppers[i].y
-                this.game.addEntity(new hoppers(this.game, x, y))
+                this.game.addEntity(new hoppers(this.game, startx + x*PARAMS.BLOCKWIDTH, starty - y*PARAMS.BLOCKWIDTHy))
             }
         if (level.textboxes)
             for (let i = 0; i < level.textboxes.length; i++){
@@ -89,7 +93,7 @@ class scenemanager {
 
 
         this.duck.x = startx;
-        this.duck.y = starty - 10 * PARAMS.BLOCKWIDTH;
+        this.duck.y = starty - 3 * PARAMS.BLOCKWIDTH;
         this.game.addEntity(this.duck);
     };
 
