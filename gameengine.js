@@ -17,6 +17,7 @@ class GameEngine {
         this.down = false;
         this.sprint = false;
         this.act = false;
+        this.jumpDisconnect = false;
 
     };
 
@@ -84,6 +85,7 @@ class GameEngine {
                 case "KeyW":
                 case "Space":
                     that.up = false;
+                    that.jumpDisconnect = false;
                     break;
                 case "ArrowDown":
                 case "KeyS":
