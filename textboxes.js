@@ -25,6 +25,6 @@ class textboxes
 
 	draw(ctx)
 	{
-		this.textbox.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1)
+		this.textbox.drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y  - this.game.camera.y, 1)
 	};
 };
