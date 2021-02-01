@@ -39,8 +39,7 @@ class duck {
     this.animators["wallcling"] = []
     this.animators["squat"] = []
     this.animators["jump"] = []
-    this.animators["falling"] =[]
-    this.animators["jumprising"] = []
+    this.animators["freefall"] =[]
     this.armAnimators["walk"] = []
     this.armAnimators["run"] = []
     this.armAnimators["squat"] = []
@@ -207,28 +206,6 @@ class duck {
         false, //reverse
         true, // looping,
         null) //No idle animation because I am looping.
-    this.animators["jump"]["r"] = new animator(this.spritesheet,
-      9,
-      46,
-      22,//Width
-      26,//Height
-      3,
-      0.2,
-      10,
-      false,
-      true,
-      null)
-    this.animators["jump"]["l"] = new animator(this.spritesheet,
-      105,
-      159,
-      22,//Width
-      26,//Height
-      3,
-      0.2,
-      10,
-      true,
-      true,
-      null)
     this.armAnimators["squat"]["r"] = new animator(this.spritesheet,
       2,
       519,
@@ -251,29 +228,6 @@ class duck {
       true,
       true,
       null)
-    this.armAnimators["jump"]["r"] = new animator(this.spritesheet,
-      2,
-      519,
-      12,
-      16,
-      6,
-      0.10,
-      4,
-      false,
-      true,
-      null)
-    this.armAnimators["jump"]["l"] = new animator(this.spritesheet,
-      2,
-      479,
-      12,
-      16,
-      6,
-      0.10,
-      4,
-      true,
-      true,
-      null)
-
     this.animators["wallcling"]["r"] =
       new animator(this.spritesheet, // Spritesheet
         8, //X
@@ -301,7 +255,7 @@ class duck {
         null) //No idle animation because I am looping.
     //Facing isn't implemented yet.
 
-    this.animators["falling"]["l"] =
+    this.animators["freefall"]["l"] =
     new animator(this.spritesheet, // Spritesheet
       106, //X
       160, //Y
@@ -314,7 +268,7 @@ class duck {
       true, // looping,
       null) //No idle animation because I am looping.
   //Facing isn't implemented yet.
-  this.animators["falling"]["r"] =
+  this.animators["freefall"]["r"] =
     new animator(this.spritesheet, // Spritesheet
       71, //X
       47, //Y
@@ -328,7 +282,7 @@ class duck {
       null) //No idle animation because I am looping.
   //Facing isn't implemented yet.
 
-  this.animators["jumprising"]["l"] =
+  this.animators["jump"]["l"] =
   new animator(this.spritesheet, // Spritesheet
     138, //X
     158, //Y
@@ -341,7 +295,7 @@ class duck {
     true, // looping,
     null) //No idle animation because I am looping.
 //Facing isn't implemented yet.
-this.animators["jumprising"]["r"] =
+this.animators["jump"]["r"] =
   new animator(this.spritesheet, // Spritesheet
     39, //X
     45, //Y
@@ -477,6 +431,7 @@ this.animators["jumprising"]["r"] =
   airLogic(tick) {
     //Rising physics.
     if (this.velocityY < 0) {
+      this.state ="jump"
       if (this.game.left && !this.game.right) {
         this.velocityX -= ACC_AIR * tick
       } else
@@ -487,6 +442,7 @@ this.animators["jumprising"]["r"] =
     //Falling physics
     //Horizontal walking movement.
     else {
+      this.state = "freefall"
       if (this.game.left && !this.game.right) {
         if (this.velocityX > -MIN_WALK)
           this.velocityX = -MIN_WALK;
