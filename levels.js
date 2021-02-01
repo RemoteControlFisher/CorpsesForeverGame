@@ -207,16 +207,16 @@ var tutorialLevel = {
                   y: 8,
                   type: "saw"
             },
-            //{
-            //      x: -10,
-            ////      y: 13,
-            //      type: "bigSaw"
-            //},
             {
                   x: -10,
-                  y: 7,
-                  type: "spike"
-            }
+                  y: 13,
+                 type: "bigSaw"
+            }//,
+            //{
+            //      x: -10,
+            //      y: 7,
+            //      type: "spike"
+            //}
       ],
       chompers:[
             {x: -15, y: 5}
