@@ -207,11 +207,11 @@ var tutorialLevel = {
                   y: 8,
                   type: "saw"
             },
-            {
-                  x: -10,
-                  y: 13,
-                  type: "bigSaw"
-            },
+            //{
+            //      x: -10,
+            ////      y: 13,
+            //      type: "bigSaw"
+            //},
             {
                   x: -10,
                   y: 7,
