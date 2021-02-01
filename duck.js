@@ -39,6 +39,8 @@ class duck {
     this.animators["wallcling"] = []
     this.animators["squat"] = []
     this.animators["jump"] = []
+    this.animators["falling"] =[]
+    this.animators["jumprising"] = []
     this.armAnimators["walk"] = []
     this.armAnimators["run"] = []
     this.armAnimators["squat"] = []
@@ -298,6 +300,60 @@ class duck {
         true, // looping,
         null) //No idle animation because I am looping.
     //Facing isn't implemented yet.
+
+    this.animators["falling"]["l"] =
+    new animator(this.spritesheet, // Spritesheet
+      106, //X
+      160, //Y
+      22, //Width
+      26, //Height
+      1, //Frames
+      0.12, //Time
+      0, //Padding
+      true, //reverse
+      true, // looping,
+      null) //No idle animation because I am looping.
+  //Facing isn't implemented yet.
+  this.animators["falling"]["r"] =
+    new animator(this.spritesheet, // Spritesheet
+      71, //X
+      47, //Y
+      22, //Width
+      25, //Height
+      1, //Frames
+      0.12, //Time
+      0, //Padding
+      false, //reverse
+      true, // looping,
+      null) //No idle animation because I am looping.
+  //Facing isn't implemented yet.
+
+  this.animators["jumprising"]["l"] =
+  new animator(this.spritesheet, // Spritesheet
+    138, //X
+    158, //Y
+    16, //Width
+    25, //Height
+    1, //Frames
+    0.12, //Time
+    0, //Padding
+    false, //reverse
+    true, // looping,
+    null) //No idle animation because I am looping.
+//Facing isn't implemented yet.
+this.animators["jumprising"]["r"] =
+  new animator(this.spritesheet, // Spritesheet
+    39, //X
+    45, //Y
+    16, //Width
+    27, //Height
+    1, //Frames
+    0.12, //Time
+    16, //Padding
+    false, //reverse
+    true, // looping,
+    null) //No idle animation because I am looping.
+//Facing isn't implemented yet.
   }
 
   update() {
@@ -598,7 +654,7 @@ class duck {
   draw(ctx) {
     let offset = 0
     if (this.state == "slide") offset = 7
-
+      //this.animators["jumprising"]["l"].drawFrame(this.game.clockTick, ctx, this.x, this.y, 2)
     this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - offset - this.game.camera.x, this.y - this.game.camera.y, 2)
     if (this.armAnimators[this.state] && this.armAnimators[this.state][this.facing] && this.state != "stand" && this.state != "slide" && this.armstate != "hold")
       if (this.armstate != "hold")

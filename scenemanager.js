@@ -7,8 +7,9 @@ class scenemanager {
         this.score = 0 //not yet implemented
 
         this.duck = new duck(this.game, "stand", 0, 0);
-
+        console.log(duck)
         this.loadlevel(tutorialLevel, 100, 300);
+        console.log(this.loadlevel)
     };
 
     loadlevel(level, startx, starty) {
