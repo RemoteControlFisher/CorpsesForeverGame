@@ -404,12 +404,12 @@ class duck {
           else
             if (entity.wall && that.velocityX > 0 && that.cBB.right > entity.BB.left) {
               that.velocityX = 0
-              that.x = entity.BB.left - 44
+              that.x = entity.BB.left - 38
               that.updateBB(2)
             } else
               if (entity.wall && that.velocityX < 0 && that.cBB.left < entity.BB.right) {
                 that.velocityX = 0
-                that.x = entity.BB.right + 7
+                that.x = entity.BB.right +7
                 that.updateBB(2)
               }
         }
@@ -466,6 +466,7 @@ class duck {
       if (Math.abs(this.velocityX) > MAX_RUN) {
         this.velocityX = Math.sign(this.velocityX) * MAX_RUN
       }
+      this.x -= Math.sign(this.velocityX) * 7
       //If the player no longer wants to slide, and they are slow enough to run, they can stop sliding.
       this.state = "run"
       //If we are sliding really slowly.
@@ -549,7 +550,9 @@ class duck {
           this.state = "slide"
           //Sliding gives a small instant speed boost, this includes some instant movement to keep the center of mass of the duck in line with its original center of mass.
           //This is proportional to how quickly a slide decelerates for now.
+          this.x += Math.sign(this.velocityX) * 7
           this.velocityX += SLIDE_DECEL * Math.sign(this.velocityX)
+
         }
       }
     }
@@ -601,12 +604,12 @@ class duck {
       if (this.armstate != "hold")
         this.armAnimators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y + 16 - this.game.camera.y, 2)
 
-    /*
+    
     ctx.strokeStyle = 'Red';
     ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
     ctx.strokeStyle = 'Blue';
     ctx.strokeRect(this.cBB.x - this.game.camera.x, this.cBB.y - this.game.camera.y, this.cBB.width, this.cBB.height);
-    */
+    
 
   }
 }
