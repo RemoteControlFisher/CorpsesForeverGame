@@ -206,28 +206,6 @@ class duck {
         false, //reverse
         true, // looping,
         null) //No idle animation because I am looping.
-    this.armAnimators["squat"]["r"] = new animator(this.spritesheet,
-      2,
-      519,
-      12,
-      16,
-      6,
-      0.10,
-      4,
-      false,
-      true,
-      null)
-    this.armAnimators["squat"]["l"] = new animator(this.spritesheet,
-      2,
-      479,
-      12,
-      16,
-      6,
-      0.10,
-      4,
-      true,
-      true,
-      null)
     this.animators["wallcling"]["r"] =
       new animator(this.spritesheet, // Spritesheet
         8, //X
@@ -376,6 +354,8 @@ this.animators["jump"]["r"] =
               if (that.state == "jump" || that.state == "hover" || that.state == "freefall" || that.state == "wallcling")
                 that.state = "stand"
               that.updateBB(2)
+            } else {
+              that.state = "freefall"
             }
           } else
             if (entity.cieling && that.oldBB.top >= entity.BB.bottom) {
