@@ -88,7 +88,9 @@ class scenemanager {
             for (let i = 0; i < level.hoppers.length; i++) {
                 let x = level.hoppers[i].x
                 let y = level.hoppers[i].y
-                this.game.addEntity(new Hoppers(this.game, startx + x*PARAMS.BLOCKWIDTH, starty - y*PARAMS.BLOCKWIDTH))
+                let myHopper = new Hoppers(this.game, startx + x*PARAMS.BLOCKWIDTH, starty - y*PARAMS.BLOCKWIDTH)
+                console.log(myHopper)
+                this.game.addEntity(myHopper)
             }
 
 
