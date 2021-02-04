@@ -227,6 +227,9 @@ var tutorialLevel = {
       buttons:[{x: -10, y:1}],
       textboxes:[{
             x:0, y:16
+      },
+      {
+            x:16, y:16
       }
       ]
 

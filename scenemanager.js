@@ -38,7 +38,7 @@ class scenemanager {
                 let x = level.textboxes[i].x
                 let y = level.textboxes[i].y
                 //let text = level.textboxes[i].text
-                this.game.addEntity(new textboxes(this.game,startx + x*PARAMS.BLOCKWIDTH, starty - y*PARAMS.BLOCKWIDTH))
+                this.game.addEntity(new textboxes(this.game,startx + x*PARAMS.BLOCKWIDTH, starty - y*PARAMS.BLOCKWIDTH, i))
             }
         if (level.boxes)
             for (let i = 0; i < level.boxes.length; i++) {
