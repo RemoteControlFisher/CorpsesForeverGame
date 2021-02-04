@@ -6,13 +6,13 @@ class textboxes
 		this.spritesheet = ASSET_MANAGER.getAsset("./sprites/TempTextbox.png");
 		this.textbox =
 		new animator(this.spritesheet, // Spritesheet
-			275, //X
-			76, //Y
+			0, //X
+			0, //Y
 			337, //Width
 			114, //Height
-			1, //Frames
+			26, //Frames
 			0.12, //Time
-			3, //Padding
+			1, //Padding
 			false, //reverse
 			true, // looping,
 			null)
