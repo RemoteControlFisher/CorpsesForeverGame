@@ -84,7 +84,7 @@ var tutorialLevel = {
             x: 6,
             y: 1,
             type: "duck"
-      }, 
+      },
       {
             x: 3.25,
             y: 5,
@@ -195,7 +195,42 @@ var tutorialLevel = {
             y: 55,
             type: "duck"
       }
-]
-
+      ],
+      traps: [
+            {
+                  x: -4,
+                  y: 7,
+                  type: "saw"
+            },
+            {
+                  x: 12,
+                  y: 8,
+                  type: "saw"
+            },
+            {
+                  x: -10,
+                  y: 13,
+                 type: "bigSaw"
+            }//,
+            //{
+            //      x: -10,
+            //      y: 7,
+            //      type: "spike"
+            //}
+      ],
+      chompers:[
+            {x: -15, y: 5}
+      ],
+      hoppers:[
+            {x: -15, y: 3}
+      ],
+      buttons:[{x: -10, y:1}],
+      textboxes:[{
+            x:0, y:16
+      },
+      {
+            x:16, y:16
+      }
+      ]
 
 };

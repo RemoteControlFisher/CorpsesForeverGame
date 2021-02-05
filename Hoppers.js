@@ -47,7 +47,7 @@ class Hoppers
 
 	draw(ctx)
 	{
-		this.animators["walk"]["r"].drawFrame(this.game.clockTick, ctx, this.x + 200, this.y, 3);
+		this.animators["walk"]["r"].drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y  - this.game.camera.y, 3);
 		//this.animators["hurt"]["r"].drawFrame(this.game.clockTick, ctx, this.x, this.y, 3);
 	};
 };
