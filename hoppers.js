@@ -4,8 +4,12 @@ class Hoppers
 	{
 		Object.assign(this, {game, x, y});
 		this.spritesheet = ASSET_MANAGER.getAsset("./sprites/slimesprite/Slime_Walk.png");
+		this.spritesheetR = ASSET_MANAGER.getAsset("./sprites/slimesprite/Slime_Walk (Reverse).png");
 		this.spritesheetOuch = ASSET_MANAGER.getAsset("./sprites/slimesprite/Slime_Hurt.png");
-
+		this.spritesheetOuchR = ASSET_MANAGER.getAsset("./sprites/slimesprite/Slime_Hurt (Reverse).png");
+		this.spritesheetAttk = ASSET_MANAGER.getAsset("./sprites/slimesprite/Slime_Attack.png");
+		this.spritesheetAttkR = ASSET_MANAGER.getAsset("./sprites/slimesprite/Slime_Attack (Reverse).png");
+		
 		this.animators = []; //[state] [facing]
 
 		this.animators["walk"] = []
@@ -25,6 +29,19 @@ class Hoppers
 			true,
 			null)
 
+		this.animators["walk"]["l"] = 
+			new animator (this.spritesheetR, //Spritesheet
+			 3,
+			 5,
+			 21,
+			 25,
+			 9,
+			 0.1,
+			 11,
+			 true,
+			 true,
+			 null)
+			
 		this.animators["hurt"]["r"] =
 			new animator(this.spritesheetOuch, //Spritesheet
 			0,
@@ -32,13 +49,51 @@ class Hoppers
 			10,
 			10,
 			3,
-			0.5,
+			0.1,
 			3,
 			false,
 			true,
 			null)
+		
+		this.animators["hurt"]["l"] =
+			new animator(this.spritesheetOuchR, //Spritesheet
+		    5,
+			7,
+			30,
+			30,
+			3,
+			0.1,
+			3,
+			true,
+			true,
+			null)
 
-	};
+	    this.animators["attack"]["r"] =
+	       new animator(this.spritesheetAttk, //Spritesheet
+	       0,
+	       3,
+	       27,
+	       30,
+	       7,
+	       0.1,
+	       6,
+	       false,
+	       true,
+		   null)
+		   
+		this.animators["attack"]["l"] =
+	       new animator(this.spritesheetAttkR, //Spritesheet
+	       0,
+	       2,
+	       26,
+	       30,
+	       7,
+	       0.1,
+	       6,
+	       true,
+	       true,
+	       null)
+};
 
 	update()
 	{
@@ -47,7 +102,8 @@ class Hoppers
 
 	draw(ctx)
 	{
-		this.animators["walk"]["r"].drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y  - this.game.camera.y, 3);
-		//this.animators["hurt"]["r"].drawFrame(this.game.clockTick, ctx, this.x, this.y, 3);
+		//this.animators["walk"]["l"].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 3);
+		//this.animators["hurt"]["l"].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 3);
+		this.animators["attack"]["l"].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 3);
 	};
 };
