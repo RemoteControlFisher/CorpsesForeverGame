@@ -3,7 +3,7 @@ class corpses {
 		Object.assign(this, { game, x, y, type });
 		this.duck = ASSET_MANAGER.getAsset("./sprites/duck.png")
 		this.chomp = ASSET_MANAGER.getAsset("./sprites/wolfsheet1.png");
-		this.hop = ASSET_MANAGER.getAsset(/*place spritesheet here*/);
+		this.hop = ASSET_MANAGER.getAsset("./sprites/slimesprite/Slime_Walk.png");
 		this.animations = []
 		this.animations["duck"] =
 			new animator(this.duck, // Spritesheet
@@ -21,6 +21,18 @@ class corpses {
 			new animator(this.chomp, // Spritesheet
 				514, //X
 				11, //Y
+				60, //Width
+				21, //Height
+				1, //Frames
+				0.12, //Time
+				3, //Padding
+				false, //reverse
+				true, // looping,
+				null)
+		this.animations["hopper"] =
+			new animator(this.hop, // Spritesheet
+				265, //X
+				28, //Y
 				60, //Width
 				21, //Height
 				1, //Frames

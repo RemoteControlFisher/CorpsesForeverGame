@@ -3,6 +3,13 @@ class Hoppers
 	constructor(game, x, y)
 	{
 		Object.assign(this, {game, x, y});
+
+		this.velocity = {x: PARAMS.BITWIDTH++, y: 0};  //Pixel Per Sec
+		this.facing = 'r'  //r for right & l for left
+		//this.state = state   //Available state [walk], [attack], [hurt]
+		this.dead = false
+		this.updateBB();
+
 		this.spritesheet = ASSET_MANAGER.getAsset("./sprites/slimesprite/Slime_Walk.png");
 		this.spritesheetR = ASSET_MANAGER.getAsset("./sprites/slimesprite/Slime_Walk (Reverse).png");
 		this.spritesheetOuch = ASSET_MANAGER.getAsset("./sprites/slimesprite/Slime_Hurt.png");
@@ -80,7 +87,7 @@ class Hoppers
 	       false,
 	       true,
 		   null)
-		   
+
 		this.animators["attack"]["l"] =
 	       new animator(this.spritesheetAttkR, //Spritesheet
 	       0,
@@ -94,16 +101,26 @@ class Hoppers
 	       true,
 	       null)
 };
+	
+    //dead(){   Not yet implemented (please leave alone for now)
+    //
+	//}
 
 	update()
 	{
-
+	  let tick = this.game.tick;
+	  
 	};
+	
+    updateBB(scale){
+	this.oldBB = this.BB;
+	this.BB = new boundingBox(this.x, this.y, 16 * scale, 25 * scale);
+	}
 
 	draw(ctx)
 	{
-		//this.animators["walk"]["l"].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 3);
+		this.animators["walk"]["l"].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 3);
 		//this.animators["hurt"]["l"].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 3);
-		this.animators["attack"]["l"].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 3);
+		//this.animators["attack"]["l"].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 3);
 	};
 };
