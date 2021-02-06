@@ -8,6 +8,7 @@ const ACC_AIR = 280;
 const ACC_RUN = 750.390625;
 const SLIDE_DECEL = 450;
 const GRAVITY = 1800;
+const TERMINAL_VELOCITY = 1600;
 
 class duck {
 
