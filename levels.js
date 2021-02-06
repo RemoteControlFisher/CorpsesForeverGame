@@ -82,6 +82,13 @@ var tutorialLevel = {
             lengthX: 5,
             lengthY: 1,
             type: "floor"
+      },
+      {
+            startX: -3,
+            startY: 24,
+            lengthX: 5,
+            lengthY: 1,
+            type: "floor"
       }],
       boxes: [{
             x: 1,
