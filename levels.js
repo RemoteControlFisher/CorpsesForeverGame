@@ -75,6 +75,20 @@ var tutorialLevel = {
             lengthX: 10,
             lengthY: 1,
             type: "floor"
+      },
+      {
+            startX: 12,
+            startY: 23,
+            lengthX: 5,
+            lengthY: 1,
+            type: "floor"
+      },
+      {
+            startX: -3,
+            startY: 24,
+            lengthX: 5,
+            lengthY: 1,
+            type: "floor"
       }],
       boxes: [{
             x: 1,
@@ -222,11 +236,14 @@ var tutorialLevel = {
             {x: -15, y: 5}
       ],
       hoppers:[
-            {x: -15, y: 3}
+            {x: 11, y: 2.3}
       ],
       buttons:[{x: -10, y:1}],
       textboxes:[{
             x:0, y:16
+      },
+      {
+            x:16, y:16
       }
       ]
 

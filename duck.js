@@ -562,10 +562,10 @@ this.animators["jump"]["r"] =
           this.velocityX = 300
         }
         if (this.facing == "r") {
-          
+
           this.velocityY = -550
           this.velocityX = -300
-          
+
         }
         this.state = "jump"
         this.game.jumpDisconnect = true
