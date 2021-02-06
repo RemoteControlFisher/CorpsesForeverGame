@@ -295,6 +295,9 @@ this.animators["jump"]["r"] =
     //From the lecture examples.
 
     this.velocityY += GRAVITY * tick
+    if (this.velocityY > TERMINAL_VELOCITY){
+			this.velocityY = TERMINAL_VELOCITY
+		}
     //Each state group method manages the controls and physics that are strictly unique to that
     //set of states.
 
