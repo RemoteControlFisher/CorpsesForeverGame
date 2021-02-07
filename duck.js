@@ -40,6 +40,7 @@ class duck {
     this.animators["squat"] = []
     this.animators["jump"] = []
     this.animators["freefall"] =[]
+    this.animators["wallslide"] = []
     this.armAnimators["walk"] = []
     this.armAnimators["run"] = []
     this.armAnimators["squat"] = []
@@ -58,6 +59,7 @@ class duck {
         true, // looping,
         null) //No idle animation because I am looping.
     //Facing isn't implemented yet.
+
     this.animators["stand"]["l"] =
       new animator(this.spritesheet, // Spritesheet
         167, //X
@@ -71,6 +73,7 @@ class duck {
         true, // looping,
         null) //No idle animation because I am looping.
     //Facing isn't implemented yet.
+
     this.animators["walk"]["r"] = new animator(this.spritesheet, // Spritesheet
       41, //X
       14, //Y
@@ -82,6 +85,7 @@ class duck {
       false, //reverse
       true, // looping,
       null) //No idle animation because I am looping.
+
     this.animators["walk"]["l"] = new animator(this.spritesheet, // Spritesheet
       6, //X
       129, //Y
@@ -93,6 +97,7 @@ class duck {
       true, //reverse
       true, // looping,
       null) //No idle animation because I am looping.
+
     this.armAnimators["walk"]["r"] = new animator(this.spritesheet,
       2,
       519,
@@ -104,6 +109,7 @@ class duck {
       false,
       true,
       null)
+
     this.armAnimators["walk"]["l"] = new animator(this.spritesheet,
       2,
       479,
@@ -115,6 +121,7 @@ class duck {
       true,
       true,
       null)
+
     this.animators["run"]["r"] = new animator(this.spritesheet, // Spritesheet
       41, //X
       14, //Y
@@ -126,6 +133,7 @@ class duck {
       false, //reverse
       true, // looping,
       null) //No idle animation because I am looping.
+
     this.animators["run"]["l"] = new animator(this.spritesheet, // Spritesheet
       6, //X
       129, //Y
@@ -137,6 +145,7 @@ class duck {
       true, //reverse
       true, // looping,
       null) //No idle animation because I am looping.
+
     this.armAnimators["run"]["r"] = new animator(this.spritesheet,
       2,
       519,
@@ -148,6 +157,7 @@ class duck {
       false,
       true,
       null)
+
     this.armAnimators["run"]["l"] = new animator(this.spritesheet,
       2,
       479,
@@ -159,6 +169,7 @@ class duck {
       true,
       true,
       null)
+
     this.animators["slide"]["r"] = new animator(this.spritesheet,
       5,
       79,
@@ -170,6 +181,7 @@ class duck {
       false,
       true,
       null)
+
     this.animators["slide"]["l"] = new animator(this.spritesheet,
       164,
       79,
@@ -181,6 +193,7 @@ class duck {
       false,
       true,
       null)
+
     this.animators["squat"]["r"] =
       new animator(this.spritesheet, // Spritesheet
         8, //X
@@ -194,6 +207,7 @@ class duck {
         true, // looping,
         null) //No idle animation because I am looping.
     //Facing isn't implemented yet.
+
     this.animators["squat"]["l"] =
       new animator(this.spritesheet, // Spritesheet
         167, //X
@@ -206,6 +220,7 @@ class duck {
         false, //reverse
         true, // looping,
         null) //No idle animation because I am looping.
+/** 
     this.animators["wallcling"]["r"] =
       new animator(this.spritesheet, // Spritesheet
         8, //X
@@ -219,6 +234,7 @@ class duck {
         true, // looping,
         null) //No idle animation because I am looping.
     //Facing isn't implemented yet.
+
     this.animators["wallcling"]["l"] =
       new animator(this.spritesheet, // Spritesheet
         167, //X
@@ -232,7 +248,7 @@ class duck {
         true, // looping,
         null) //No idle animation because I am looping.
     //Facing isn't implemented yet.
-
+  */
     this.animators["freefall"]["l"] =
     new animator(this.spritesheet, // Spritesheet
       106, //X
@@ -246,6 +262,7 @@ class duck {
       true, // looping,
       null) //No idle animation because I am looping.
   //Facing isn't implemented yet.
+
   this.animators["freefall"]["r"] =
     new animator(this.spritesheet, // Spritesheet
       71, //X
@@ -261,31 +278,61 @@ class duck {
   //Facing isn't implemented yet.
 
   this.animators["jump"]["l"] =
-  new animator(this.spritesheet, // Spritesheet
-    138, //X
-    158, //Y
-    16, //Width
-    25, //Height
-    1, //Frames
-    0.12, //Time
-    0, //Padding
-    false, //reverse
-    true, // looping,
-    null) //No idle animation because I am looping.
+    new animator(this.spritesheet, // Spritesheet
+      138, //X
+      158, //Y
+      16, //Width
+      25, //Height
+      1, //Frames
+      0.12, //Time
+      0, //Padding
+      false, //reverse
+      true, // looping,
+      null) //No idle animation because I am looping.
 //Facing isn't implemented yet.
+
 this.animators["jump"]["r"] =
   new animator(this.spritesheet, // Spritesheet
-    39, //X
-    45, //Y
-    16, //Width
-    27, //Height
-    1, //Frames
-    0.12, //Time
-    16, //Padding
-    false, //reverse
-    true, // looping,
-    null) //No idle animation because I am looping.
+      39, //X
+      45, //Y
+      16, //Width
+      27, //Height
+      1, //Frames
+      0.12, //Time
+      16, //Padding
+      false, //reverse
+      true, // looping,
+      null) //No idle animation because I am looping.
 //Facing isn't implemented yet.
+
+this.animators["wallcling"]["l"] =     //when wall cling left
+  new animator(this.spritesheet, // Spritesheet
+      107, //X
+      46, //Y
+      16, //Width
+      27, //Height
+      1, //Frames
+      0.12, //Time
+      16, //Padding
+      false, //reverse
+      true, // looping,
+      null) //No idle animation because I am looping.
+//Facing isn't implemented yet.
+
+this.animators["wallcling"]["r"] =     //when wall cling left
+  new animator(this.spritesheet, // Spritesheet
+      71, //X
+      158, //Y
+      16, //Width
+      27, //Height
+      1, //Frames
+      0.12, //Time
+      16, //Padding
+      false, //reverse
+      true, // looping,
+      null) //No idle animation because I am looping.
+//Facing isn't implemented yet.
+
   }
 
   update() {
@@ -553,6 +600,7 @@ this.animators["jump"]["r"] =
   wallLogic(tick) {
     //Negate part of gravity.
     if (this.game.left && this.facing == "l" || this.game.right && this.facing == "r") {
+      
       this.velocityY -= 0.7 * GRAVITY * tick
       if (this.game.up && !this.game.jumpDisconnect) {
         //This is where the wall jump would happen.
@@ -590,7 +638,7 @@ this.animators["jump"]["r"] =
   draw(ctx) {
     let offset = 0
     if (this.state == "slide") offset = 7
-      //this.animators["jumprising"]["l"].drawFrame(this.game.clockTick, ctx, this.x, this.y, 2)
+      //this.animators["wallcling"]["l"].drawFrame(this.game.clockTick, ctx, this.x, this.y, 2)
     this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - offset - this.game.camera.x, this.y - this.game.camera.y, 2)
     if (this.armAnimators[this.state] && this.armAnimators[this.state][this.facing] && this.state != "stand" && this.state != "slide" && this.armstate != "hold")
       if (this.armstate != "hold")
