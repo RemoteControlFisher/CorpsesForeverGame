@@ -69,7 +69,11 @@ class corpses {
 		//From the lecture examples.
 
 		this.velocityY += GRAVITY * tick
+		if (this.velocityY > TERMINAL_VELOCITY){
+			this.velocityY = TERMINAL_VELOCITY
+		}
 		this.y += this.velocityY * tick
+		
 		this.updateBB()
 
 		this.collide()
@@ -88,7 +92,7 @@ class corpses {
 
 			if (entity.BB && that.BB.isCollide(entity.BB)) {
 
-				if (entity.platform && that.oldBB.bottom <= entity.BB.top && that.velocityY > 0) {
+				if (entity != that && entity.platform && that.oldBB.bottom <= entity.BB.top && that.velocityY > 0) {
 					that.velocityY = 0
 					that.y = entity.BB.top - that.animations[that.type].height * that.scale
 					that.updateBB()

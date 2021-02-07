@@ -8,6 +8,7 @@ const ACC_AIR = 280;
 const ACC_RUN = 750.390625;
 const SLIDE_DECEL = 450;
 const GRAVITY = 1800;
+const TERMINAL_VELOCITY = 1600;
 
 class duck {
 
@@ -341,6 +342,9 @@ this.animators["wallcling"]["r"] =     //when wall cling left
     //From the lecture examples.
 
     this.velocityY += GRAVITY * tick
+    if (this.velocityY > TERMINAL_VELOCITY){
+			this.velocityY = TERMINAL_VELOCITY
+		}
     //Each state group method manages the controls and physics that are strictly unique to that
     //set of states.
 
