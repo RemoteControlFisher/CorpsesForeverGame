@@ -236,7 +236,7 @@ var tutorialLevel = {
             {x: -15, y: 5}
       ],
       hoppers:[
-            {x: 11, y: 2.3}
+            {x: 11, y: 5}
       ],
       buttons:[{x: -10, y:1}],
       textboxes:[{

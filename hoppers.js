@@ -133,7 +133,7 @@ class Hoppers
 	{
 	  let tick = this.game.clockTick;
 	  this.velocityY += GRAVITY * tick
-      
+      this.velocityX -= 20 * tick
 	  //Initial Walking animation
 	  //this.bounce(tick);
 
@@ -151,12 +151,22 @@ class Hoppers
 	
     updateBB(scale){
 	this.oldBB = this.BB;
-	this.BB = new boundingBox(this.x + 10, this.y + 45, 27 * scale, 14 * scale);
+	this.BB = new boundingBox(this.x + 7 * scale, this.y + 1 * scale, 25 * scale, 21 * scale);
 	this.oldcBB = this.cBB;
-    this.cBB = new boundingBox(this.x + 7 * scale, this.y + 1 * scale, 25 * scale, 21 * scale);
+    this.cBB = new boundingBox(this.x + 10, this.y + 45, 27 * scale, 14 * scale );
 	}
       
 	collide(){
+		var that = this;
+		this.game.entities.forEach(function (entity) {
+			if(entity.platform && that.cBB.isCollide(entity.BB)) {
+				if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
+					that.velocityY = 0
+					that.y = entity.BB.top - 73
+					that.updateBB(2)
+			   }
+			}
+		});
 		this.updateBB(2);
 	}
 
