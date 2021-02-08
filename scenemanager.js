@@ -29,9 +29,13 @@ class scenemanager {
         if (level.walls)
             for (let i = 0; i < level.walls.length; i++) {
                 let type = level.walls[i].type
+                this.game.addEntity(new long_floorsandwalls(this.game, startx  + level.walls[i].startX * PARAMS.BLOCKWIDTH, starty - level.walls[i].startY * PARAMS.BLOCKWIDTH, 
+                    level.walls[i].lengthX, level.walls[i].lengthY, type))
+                /*//Old floors and walls.
+
                 for (let j = level.walls[i].startX; j < level.walls[i].lengthX + level.walls[i].startX; j++)
                     for (let k = level.walls[i].startY; k < level.walls[i].lengthY + level.walls[i].startY; k++)
-                        this.game.addEntity(new floorsandwalls(this.game, startx + j * PARAMS.BLOCKWIDTH, starty - k * PARAMS.BLOCKWIDTH, type))
+                        this.game.addEntity(new floorsandwalls(this.game, startx + j * PARAMS.BLOCKWIDTH, starty - k * PARAMS.BLOCKWIDTH, type))*/
             }
         if (level.textboxes)
             for (let i = 0; i < level.textboxes.length; i++){

@@ -14,11 +14,25 @@ var tutorialLevel = {
             type: "bwall"
       }],
       walls: [{
-            startX: -5,
+            startX: -4,
             startY: 0,
-            lengthX: 20,
+            lengthX: 18,
             lengthY: 1,
             type: "floor"
+      },
+      {
+            startX: -5,
+            startY: 0,
+            lengthX: 1,
+            lengthY: 1,
+            type: "tright"
+      },
+      {
+            startX: 14,
+            startY: 0,
+            lengthX: 1,
+            lengthY: 1,
+            type: "tleft"
       },
       {
             startX: 8,
