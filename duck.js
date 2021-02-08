@@ -39,7 +39,7 @@ class duck {
     this.animators["slide"] = []
     this.animators["wallcling"] = []
     this.animators["squat"] = []
-    this.animators["ssquat"] = []
+    this.animators["crouch"] = []
     this.animators["jump"] = []
     this.animators["freefall"] = []
     this.animators["wallslide"] = []
@@ -223,7 +223,7 @@ class duck {
         true, // looping,
         null) //No idle animation because I am looping.
 
-    this.animators["ssquat"]["r"] =
+    this.animators["crouch"]["r"] =
       new animator(this.spritesheet, // Spritesheet
         167, //X
         46, //Y
@@ -237,7 +237,7 @@ class duck {
         null) //No idle animation because I am looping.
     //Facing isn't implemented yet.
 
-    this.animators["ssquat"]["l"] =
+    this.animators["crouch"]["l"] =
       new animator(this.spritesheet, // Spritesheet
         12, //X
         158, //Y
@@ -377,7 +377,7 @@ class duck {
     //set of states.
 
     //Walking acceleration and no friction in this state group.
-    if (this.state == "stand" || this.state == "ssquat" || this.state == "walk" || this.state == "run")
+    if (this.state == "stand" || this.state == "crouch" || this.state == "walk" || this.state == "run")
       this.walkingLogic(tick);
 
     //If above walk_max, slow down slightly but don't slow down
@@ -608,7 +608,7 @@ class duck {
     } else {
       if (this.velocityX == 0) {
         if(this.game.down)
-          this.state = "ssquat"
+          this.state = "crouch"
         else
           this.state = "stand"
       } else {
