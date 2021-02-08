@@ -247,7 +247,7 @@ var tutorialLevel = {
             //}
       ],
       chompers:[
-            {x: -15, y: 5}
+            {x: 15, y: 15}
       ],
       hoppers:[
             {x: 11, y: 5}
