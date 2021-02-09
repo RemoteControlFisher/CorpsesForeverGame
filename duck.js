@@ -9,6 +9,7 @@ const ACC_RUN = 750.390625;
 const SLIDE_DECEL = 450;
 const GRAVITY = 1800;
 const TERMINAL_VELOCITY = 1600;
+const troof = true;
 
 class duck {
 
@@ -408,7 +409,8 @@ class duck {
 
     //Bounding box logic.
     this.collide()
-    if (this.velocityY >0 && this.state!= "slide") {this.state = "freefall"}
+    //Check if we are falling.
+    if (this.velocityY > 0 && this.state != "slide" && this.state != "wallcling") { this.state = "freefall" }
   }
 
   updateBB(scale) {
@@ -427,12 +429,19 @@ class duck {
         if (entity.BB && that.BB.isCollide(entity.BB)) {
           //If we are landing on something, stop.
           if (entity.platform && that.oldBB.bottom <= entity.BB.top && that.velocityY > 0) {
-            //If the entity is droppable and down, let the player fall through it.
-            if (!entity.droppable || !that.game.down || that.state.slide) {
+            //If the entity is droppable and down, let the player fall through it if they are not sliding.
+            if (!entity.droppable || !that.game.down) {
               that.velocityY = 0
               that.y = entity.BB.top - 50
               if (that.state == "jump" || that.state == "hover" || that.state == "freefall" || that.state == "wallcling")
                 that.state = "stand"
+              if (entity.bounce) {
+                that.velocityY = -400
+                if(that.game.up){
+                  that.velocityY -= 550
+                }
+                that.state = "jump"
+              }
               that.updateBB(2)
             } else {
               that.state = "freefall"
@@ -608,7 +617,7 @@ class duck {
       this.squatTime = 0
     } else {
       if (this.velocityX == 0) {
-        if(this.game.down)
+        if (this.game.down)
           this.state = "crouch"
         else
           this.state = "stand"
@@ -681,10 +690,10 @@ class duck {
 
     let center = this.BB.center()
 
-		ctx.beginPath();
-		ctx.strokeStyle = 'Green';
-		ctx.arc(center.x  - this.game.camera.x, center.y - this.game.camera.y, 1, 0, 2*Math.PI)
-		ctx.stroke();
+    ctx.beginPath();
+    ctx.strokeStyle = 'Green';
+    ctx.arc(center.x - this.game.camera.x, center.y - this.game.camera.y, 1, 0, 2 * Math.PI)
+    ctx.stroke();
 
     ctx.strokeStyle = 'Red';
     ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);

@@ -56,7 +56,11 @@ class scenemanager {
                 let x = level.corpses[i].x
                 let y = level.corpses[i].y
                 let type = level.corpses[i].type
-                let myCorpse = new corpses(this.game, startx + x*PARAMS.BLOCKWIDTH, starty - y*PARAMS.BLOCKWIDTH, type)
+                let facing = "r"
+                if(level.corpses[i].facing){
+                    facing = level.corpses[i].facing
+                }
+                let myCorpse = new corpses(this.game, startx + x*PARAMS.BLOCKWIDTH, starty - y*PARAMS.BLOCKWIDTH, type, facing)
                 this.game.addEntity(myCorpse)
                 console.log(myCorpse)
             }

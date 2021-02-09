@@ -126,7 +126,8 @@ var tutorialLevel = {
       {
             x: 4.5,
             y: 5,
-            type: "duck"
+            type: "duck",
+            facing: "l"
       },
       {
             x: 2.75,
@@ -137,6 +138,8 @@ var tutorialLevel = {
             x: 2.5,
             y: 3,
             type: "chomper"
+            ,
+            facing: "l"
       },
       {
             x: 2.6,
@@ -151,7 +154,8 @@ var tutorialLevel = {
       {
             x: 8.7,
             y: 7,
-            type: "duck"
+            type: "duck",
+            facing: "l"
       },
       {
             x: 7,
@@ -166,7 +170,8 @@ var tutorialLevel = {
       {
             x: 8.2,
             y: 10,
-            type: "duck"
+            type: "duck",
+            facing: "l"
       },
       {
             x: 5,
@@ -222,6 +227,17 @@ var tutorialLevel = {
             x: 12,
             y: 55,
             type: "duck"
+      },
+      {
+            x: 12,
+            y: 50,
+            type: "hopper"
+      }
+      ,
+      {
+            x: -3,
+            y: 15,
+            type: "hopper"
       }
       ],
       traps: [
