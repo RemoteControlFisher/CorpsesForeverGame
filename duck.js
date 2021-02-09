@@ -8,7 +8,7 @@ const ACC_AIR = 280;
 const ACC_RUN = 750.390625;
 const SLIDE_DECEL = 450;
 const GRAVITY = 1800;
-const TERMINAL_VELOCITY = 1600;
+const TERMINAL_VELOCITY = 1300;
 const troof = true;
 
 class duck {
@@ -410,7 +410,7 @@ class duck {
     //Bounding box logic.
     this.collide()
     //Check if we are falling.
-    if (this.velocityY > 0 && this.state != "slide" && this.state != "wallcling") { this.state = "freefall" }
+    if (this.velocityY > 0 && this.state != "slide" && this.state != "wallcling" && this.state != "squat") { this.state = "freefall" }
   }
 
   updateBB(scale) {
@@ -438,7 +438,7 @@ class duck {
               if (entity.bounce) {
                 that.velocityY = -400
                 if(that.game.up){
-                  that.velocityY -= 550
+                  that.velocityY = -750
                 }
                 that.state = "jump"
               }
