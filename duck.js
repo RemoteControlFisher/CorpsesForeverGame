@@ -30,6 +30,7 @@ class duck {
     //Call it twice to initialize the old bounding box.
     this.updateBB(2)
     this.updateBB(2)
+    this.oldBB = this.BB;
 
     this.animators = []; //[state][facing]
     this.armAnimators = []; //[state][facing][hold] Does not render when standing unless we are holding something.
@@ -409,12 +410,13 @@ class duck {
 
     //Bounding box logic.
     this.collide()
+    this.oldBB = this.BB;
     //Check if we are falling.
     if (this.velocityY > 0 && this.state != "slide" && this.state != "wallcling" && this.state != "squat") { this.state = "freefall" }
   }
 
   updateBB(scale) {
-    this.oldBB = this.BB;
+    //this.oldBB = this.BB;
     this.BB = new boundingBox(this.x, this.y, 16 * scale, 25 * scale);
     this.oldcBB = this.cBB;
     this.cBB = new boundingBox(this.x - 3 * scale, this.y + 11 * scale, 22 * scale, 14 * scale);
