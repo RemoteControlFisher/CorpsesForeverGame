@@ -408,6 +408,7 @@ class duck {
 
     //Bounding box logic.
     this.collide()
+    if (this.velocityY >0 && this.state!= "slide") {this.state = "freefall"}
   }
 
   updateBB(scale) {
@@ -678,6 +679,12 @@ class duck {
       if (this.armstate != "hold")
         this.armAnimators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y + 16 - this.game.camera.y, 2)
 
+    let center = this.BB.center()
+
+		ctx.beginPath();
+		ctx.strokeStyle = 'Green';
+		ctx.arc(center.x  - this.game.camera.x, center.y - this.game.camera.y, 1, 0, 2*Math.PI)
+		ctx.stroke();
 
     ctx.strokeStyle = 'Red';
     ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);

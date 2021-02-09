@@ -223,6 +223,23 @@ class Chompers
 		this.animators["walk"][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1);
 		ctx.strokeStyle = 'Red';
         ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
+
+		let center = this.BB.center()
+
+		ctx.beginPath();
+		ctx.strokeStyle = 'Green';
+		ctx.arc(center.x  - this.game.camera.x, center.y - this.game.camera.y, 1, 0, 2*Math.PI)
+		ctx.stroke();
+
+		/** Drawing a detection circle as a prototype for some possible AI behavior.
+
+		ctx.beginPath();
+		ctx.strokeStyle = 'Yellow';
+		ctx.arc(center.x  - this.game.camera.x, center.y - this.game.camera.y, 250, 0, 2*Math.PI)
+		ctx.stroke();
+		
+
+		//*/
 	};
 
 	walkLogic(tick)
