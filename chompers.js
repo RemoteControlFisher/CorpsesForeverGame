@@ -6,9 +6,9 @@ class Chompers
 		
 		const MIN_WALK = 120.453125;
 		const GRAVITY = 1800;
-		this.facing = 'r';
+		this.facing = 'l';
 		this.dead = false;
-		this.velocityX = 0;
+		this.velocityX = -MIN_WALK;
 		this.velocityY = 0;
 		this.updateBB(1);
 		this.spritesheet = ASSET_MANAGER.getAsset("./sprites/wolfsheet1.png");
@@ -165,7 +165,6 @@ class Chompers
 	{
 		let tick = this.game.clockTick;
 		this.velocityY += GRAVITY * tick
-		this.velocityX = -MIN_WALK
   
 		this.x += this.velocityX * tick
 		this.y += this.velocityY * tick
@@ -183,13 +182,35 @@ class Chompers
 	collide(){
 		var that = this;
 		this.game.entities.forEach(function (entity) {
-			if(entity.platform && that.BB.isCollide(entity.BB)) {
+			if(entity.BB && that.BB.isCollide(entity.BB)) {
 				if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
 					that.velocityY = 0
 					that.y = entity.BB.top - 32
 					that.updateBB(1)
 			   }
+			   else if (entity.wall && that.velocityX < 0 && that.BB.left < entity.BB.right)
+			   {
+				   that.velocityX = MIN_WALK
+				   that.x = entity.BB.right
+				   that.facing = 'r'
+				   that.updateBB(1)
+			   }
+			   else if (entity.wall && that.velocityX > 0 && that.BB.right > entity.BB.left)
+			   {
+				   that.velocityX = -MIN_WALK
+				   that.x = entity.BB.left - 64
+				   that.facing = 'l'
+				   that.updateBB(1)
+			   }
+			   /*else if (entity.duck && that.velocityX < 0 && that.BB.left < entity.BB.right)
+			   {
+				   that.velocityX = MIN_WALK
+				   that.x = entity.BB.right
+				   that.facing = 'r'
+				   that.updateBB(1)
+			   }*/
 			}
+			
 		});
 		this.updateBB(1);
 	}
@@ -199,7 +220,7 @@ class Chompers
 		//this.animators["stand"]["r"].drawFrame(this.game.clockTick, ctx, this.x+90  - this.game.camera.x, this.y - this.game.camera.y, 1)
 		//this.animators["attack"]["r"].drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y - this.game.camera.y, 1)
 		//this.animators["woke"]["l"].drawFrame(this.game.clockTick, ctx, this.x+180  - this.game.camera.x, this.y - this.game.camera.y, 1)
-		this.animators["walk"]["l"].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1);
+		this.animators["walk"][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1);
 		ctx.strokeStyle = 'Red';
         ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
 	};
