@@ -14,11 +14,25 @@ var tutorialLevel = {
             type: "bwall"
       }],
       walls: [{
-            startX: -5,
+            startX: -4,
             startY: 0,
-            lengthX: 20,
+            lengthX: 18,
             lengthY: 1,
             type: "floor"
+      },
+      {
+            startX: -5,
+            startY: 0,
+            lengthX: 1,
+            lengthY: 1,
+            type: "tright"
+      },
+      {
+            startX: 14,
+            startY: 0,
+            lengthX: 1,
+            lengthY: 1,
+            type: "tleft"
       },
       {
             startX: 8,
@@ -112,7 +126,8 @@ var tutorialLevel = {
       {
             x: 4.5,
             y: 5,
-            type: "duck"
+            type: "duck",
+            facing: "l"
       },
       {
             x: 2.75,
@@ -123,6 +138,8 @@ var tutorialLevel = {
             x: 2.5,
             y: 3,
             type: "chomper"
+            ,
+            facing: "l"
       },
       {
             x: 2.6,
@@ -137,7 +154,8 @@ var tutorialLevel = {
       {
             x: 8.7,
             y: 7,
-            type: "duck"
+            type: "duck",
+            facing: "l"
       },
       {
             x: 7,
@@ -152,7 +170,8 @@ var tutorialLevel = {
       {
             x: 8.2,
             y: 10,
-            type: "duck"
+            type: "duck",
+            facing: "l"
       },
       {
             x: 5,
@@ -208,6 +227,36 @@ var tutorialLevel = {
             x: 12,
             y: 55,
             type: "duck"
+      },
+      {
+            x: 12,
+            y: 50,
+            type: "hopper"
+      }
+            ,
+      {
+            x: -3,
+            y: 15,
+            type: "hopper",
+            facing: "l"
+      },
+      {
+            x: 26,
+            y: 18,
+            type: "hopper",
+            facing: "r"
+      },
+      {
+            x: 26,
+            y: 19,
+            type: "hopper",
+            facing: "l"
+      },
+      {
+            x: 26,
+            y: 20,
+            type: "hopper",
+            facing: "l"
       }
       ],
       traps: [
@@ -224,7 +273,7 @@ var tutorialLevel = {
             {
                   x: -10,
                   y: 13,
-                 type: "bigSaw"
+                  type: "bigSaw"
             }//,
             //{
             //      x: -10,
@@ -232,18 +281,18 @@ var tutorialLevel = {
             //      type: "spike"
             //}
       ],
-      chompers:[
-            {x: -15, y: 5}
+      chompers: [
+            { x: 15, y: 15 }
       ],
-      hoppers:[
-            {x: 11, y: 5}
+      hoppers: [
+            { x: 11, y: 5 }
       ],
-      buttons:[{x: -10, y:1}],
-      textboxes:[{
-            x:0, y:16
+      buttons: [{ x: -10, y: 1 }],
+      textboxes: [{
+            x: 0, y: 16
       },
       {
-            x:16, y:16
+            x: 16, y: 16
       }
       ]
 

@@ -29,9 +29,13 @@ class scenemanager {
         if (level.walls)
             for (let i = 0; i < level.walls.length; i++) {
                 let type = level.walls[i].type
+                this.game.addEntity(new long_floorsandwalls(this.game, startx  + level.walls[i].startX * PARAMS.BLOCKWIDTH, starty - level.walls[i].startY * PARAMS.BLOCKWIDTH, 
+                    level.walls[i].lengthX, level.walls[i].lengthY, type))
+                /*//Old floors and walls.
+
                 for (let j = level.walls[i].startX; j < level.walls[i].lengthX + level.walls[i].startX; j++)
                     for (let k = level.walls[i].startY; k < level.walls[i].lengthY + level.walls[i].startY; k++)
-                        this.game.addEntity(new floorsandwalls(this.game, startx + j * PARAMS.BLOCKWIDTH, starty - k * PARAMS.BLOCKWIDTH, type))
+                        this.game.addEntity(new floorsandwalls(this.game, startx + j * PARAMS.BLOCKWIDTH, starty - k * PARAMS.BLOCKWIDTH, type))*/
             }
         if (level.textboxes)
             for (let i = 0; i < level.textboxes.length; i++){
@@ -52,7 +56,11 @@ class scenemanager {
                 let x = level.corpses[i].x
                 let y = level.corpses[i].y
                 let type = level.corpses[i].type
-                let myCorpse = new corpses(this.game, startx + x*PARAMS.BLOCKWIDTH, starty - y*PARAMS.BLOCKWIDTH, type)
+                let facing = "r"
+                if(level.corpses[i].facing){
+                    facing = level.corpses[i].facing
+                }
+                let myCorpse = new corpses(this.game, startx + x*PARAMS.BLOCKWIDTH, starty - y*PARAMS.BLOCKWIDTH, type, facing)
                 this.game.addEntity(myCorpse)
                 console.log(myCorpse)
             }
@@ -107,8 +115,9 @@ class scenemanager {
         let midpoint = PARAMS.CANVAS_WIDTH/2 - PARAMS.BLOCKWIDTH / 2;
         let midheight = PARAMS.CANVAS_HEIGHT/2  - PARAMS.BLOCKWIDTH / 2;
 
-        this.x = this.duck.x - midpoint;
-        this.y = this.duck.y - midheight;
+        let center = this.duck.BB.center()
+        this.x = center.x - midpoint;
+        this.y = center.y - midheight;
 
     };
 
