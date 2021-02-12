@@ -3,6 +3,7 @@ var gameEngine = new GameEngine();
 var ASSET_MANAGER = new AssetManager();
 
 ASSET_MANAGER.queueDownload("./sprites/duck.png")
+ASSET_MANAGER.queueDownload("./sprites/duck (Reverse).png")
 ASSET_MANAGER.queueDownload("./sprites/blade_1_3.png")
 ASSET_MANAGER.queueDownload("./sprites/blade_2_fix.png")
 ASSET_MANAGER.queueDownload("./sprites/spike_strip.png")
