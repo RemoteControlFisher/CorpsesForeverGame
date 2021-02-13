@@ -100,6 +100,7 @@ class GameEngine {
                     break;
                 case "KeyK":
                     that.keyK = false;
+                    that.kDisconnect = false;
                     break;
             }
         }, false);
