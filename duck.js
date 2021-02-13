@@ -175,7 +175,7 @@ class duck {
       true,
       true,
       null)
-    
+
     this.armAnimators["holding"]["l"] = new animator(this.spritesheet,
       37,
       572,
@@ -187,7 +187,7 @@ class duck {
       true,
       true,
       null)
-    
+
     this.armAnimators["holding"]["r"] = new animator(this.rEVspritesheet,
       372,
       588,
@@ -199,7 +199,7 @@ class duck {
       true,
       true,
       null)
-    
+
 
     this.animators["slide"]["r"] = new animator(this.spritesheet,
       5,
@@ -398,6 +398,17 @@ class duck {
     //These constants I did copy just so I remembered the basic constants I should use here. The rest I typed out manually with some vague inspirations being pulled
     //From the lecture examples.
 
+    if (this.game.keyK && !this.game.kDisconnect) {
+      this.game.kDisconnect = true;
+      console.log(this.armstate)
+      if (this.armstate == "down") {
+        this.armstate = "hold"
+      }
+      else {
+        this.armstate = this.armstate = "down"
+      }
+    }
+
     this.velocityY += GRAVITY * tick
     if (this.velocityY > TERMINAL_VELOCITY) {
       this.velocityY = TERMINAL_VELOCITY
@@ -466,7 +477,7 @@ class duck {
                 that.state = "stand"
               if (entity.bounce) {
                 that.velocityY = -400
-                if(that.game.up){
+                if (that.game.up) {
                   that.velocityY = -750
                 }
                 that.state = "jump"
@@ -711,7 +722,7 @@ class duck {
   draw(ctx) {
     let offset = 0
     if (this.state == "slide") offset = 7
-      //this.armAnimators["holding"]["r"].drawFrame(this.game.clockTick, ctx, this.x, this.y, 2)
+    //this.armAnimators["holding"]["r"].drawFrame(this.game.clockTick, ctx, this.x, this.y, 2)
     this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - offset - this.game.camera.x, this.y - this.game.camera.y, 2)
     if (this.armAnimators[this.state] && this.armAnimators[this.state][this.facing] && this.state != "stand" && this.state != "slide" && this.armstate != "hold")
       if (this.armstate != "hold")
@@ -728,6 +739,6 @@ class duck {
     ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
     ctx.strokeStyle = 'Blue';
     ctx.strokeRect(this.cBB.x - this.game.camera.x, this.cBB.y - this.game.camera.y, this.cBB.width, this.cBB.height);
-    
+
   }
 }

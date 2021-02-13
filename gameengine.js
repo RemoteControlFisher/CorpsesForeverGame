@@ -18,6 +18,7 @@ class GameEngine {
         this.sprint = false;
         this.act = false;
         this.jumpDisconnect = false;
+        this.kDisconnect = false;
 
     };
 
