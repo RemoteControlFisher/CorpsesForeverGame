@@ -15,7 +15,7 @@ class animator {
      * @param {*} loop 
      * @param {*} idleFrame 
      */
-    constructor (spritesheet, xStart, yStart, width, height, frameCount, frameDuration, framePadding, reverse, loop, idleFrame) {
+    constructor (spritesheet, xStart, yStart, width, height, frameCount, frameDuration, framePadding, reverse, loop, idleFrame = null) {
         Object.assign(this, {spritesheet, xStart, yStart, width, height, frameCount, frameDuration, framePadding, reverse, loop, idleFrame} )
         this.elapsedTime = 0
         this.totalTime = this.frameCount*this.frameDuration
@@ -31,9 +31,9 @@ class animator {
             else {
                 //Rather then returning on "Done" animations, we can have idle frames which are one frame animations which depict the animation continuing.
                 //The key use for this is I have an animated jump, and I want to display the fall frame after I am done animating the rising frames.
-                ctx.drawImage(
-                    this.idleFrame[0], this.idleFrame[1], this.idleFrame[2], this.idleframe[3], x, y,  this.idleFrame[2] * scale, this.idleFrame[3] * scale
-                )
+                if(idleFrame){
+                    idleFrame.drawFrame(thick, ctx, x, y, scale)
+                }
                 return
             }
         } 
