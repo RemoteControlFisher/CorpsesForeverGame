@@ -65,6 +65,9 @@ class GameEngine {
                 case "ShiftLeft":
                     that.sprint = true;
                     break;
+                case "KeyK":
+                    that.keyK = true;
+                    break;
                 default:
                     console.log(e.code)
                     break;
@@ -94,6 +97,9 @@ class GameEngine {
                 case "KeyJ":
                 case "ShiftLeft":
                     that.sprint = false;
+                    break;
+                case "KeyK":
+                    that.keyK = false;
                     break;
             }
         }, false);
