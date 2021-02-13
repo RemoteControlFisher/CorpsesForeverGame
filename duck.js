@@ -18,6 +18,7 @@ class duck {
     this.x = x
     this.y = y
     this.spritesheet = ASSET_MANAGER.getAsset("./sprites/duck.png")
+    this.rEVspritesheet = ASSET_MANAGER.getAsset("./sprites/duck (Reverse).png")
     this.facing = 'r' // l for left, r for right.
     this.state = state // stand, jump, walk, squat, slide, hover, freefall are considered valid options.
     this.armstate = 'down' // matchbody, hold
@@ -45,6 +46,7 @@ class duck {
     this.animators["jump"] = []
     this.animators["freefall"] = []
     this.animators["wallslide"] = []
+    this.armAnimators["holding"] = []
     this.armAnimators["walk"] = []
     this.armAnimators["run"] = []
     this.armAnimators["squat"] = []
@@ -173,6 +175,31 @@ class duck {
       true,
       true,
       null)
+    
+    this.armAnimators["holding"]["l"] = new animator(this.spritesheet,
+      37,
+      572,
+      12,
+      14,
+      1,
+      0.10,
+      4,
+      true,
+      true,
+      null)
+    
+    this.armAnimators["holding"]["r"] = new animator(this.rEVspritesheet,
+      372,
+      588,
+      12,
+      14,
+      1,
+      0.10,
+      4,
+      true,
+      true,
+      null)
+    
 
     this.animators["slide"]["r"] = new animator(this.spritesheet,
       5,
@@ -684,7 +711,7 @@ class duck {
   draw(ctx) {
     let offset = 0
     if (this.state == "slide") offset = 7
-    //this.animators["wallcling"]["l"].drawFrame(this.game.clockTick, ctx, this.x, this.y, 2)
+      //this.armAnimators["holding"]["r"].drawFrame(this.game.clockTick, ctx, this.x, this.y, 2)
     this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - offset - this.game.camera.x, this.y - this.game.camera.y, 2)
     if (this.armAnimators[this.state] && this.armAnimators[this.state][this.facing] && this.state != "stand" && this.state != "slide" && this.armstate != "hold")
       if (this.armstate != "hold")
@@ -701,7 +728,6 @@ class duck {
     ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
     ctx.strokeStyle = 'Blue';
     ctx.strokeRect(this.cBB.x - this.game.camera.x, this.cBB.y - this.game.camera.y, this.cBB.width, this.cBB.height);
-
-
+    
   }
 }
