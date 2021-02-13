@@ -14,22 +14,21 @@ class Hoppers
 	{
 		Object.assign(this, {game, x, y});
 
-		const MIN_WALK = 120.453125;
+		const MIN_WALK = 50;
 		const GRAVITY = 1800;
        
 		this.game = game
 		this.x = x
-		console.log("const x" + this.x)
+		//console.log("const x" + this.x)
 	    this.y = y
-		console.log("const y" + this.y)
-		this.facing = 'r'  //r for right & l for left
+		//console.log("const y" + this.y)
+		this.facing = 'l'  //r for right & l for left
 		//this.state = state   //Available state [walk], [attack], [hurt]
+		this.state = "walk"
 		this.dead = false
 
-        this.velocityX = 0;
-
+        this.velocityX = -MIN_WALK;
         this.velocityY = 0;
-
 
 		this.updateBB(2);
 
@@ -46,7 +45,7 @@ class Hoppers
 		this.animators["attack"] = []
 		this.animators["hurt"] = []
 
-		this.animators["walk"]["r"] = 
+		this.animators["walk"]["r"] =
 		   new animator (this.spritesheet, //Spritesheet
 			5,
 			6,
@@ -59,7 +58,7 @@ class Hoppers
 			true,
 			null)
 
-		this.animators["walk"]["l"] = 
+		this.animators["walk"]["l"] =
 			new animator (this.spritesheetR, //Spritesheet
 			 3,
 			 5,
@@ -124,7 +123,7 @@ class Hoppers
 	       true,
 	       null)
 };
-	
+
     //dead(){   Not yet implemented (please leave alone for now)
     //
 	//}
@@ -132,38 +131,55 @@ class Hoppers
 	update()
 	{
 	  let tick = this.game.clockTick;
-	  this.velocityY += GRAVITY * tick
-      this.velocityX -= 20 * tick
-	  //Initial Walking animation
-	  //this.bounce(tick);
+	  let center = this.BB.center()
+	  let dcenter = this.game.duck.BB.center()
 
-      this.x += this.velocityX * tick
+	  this.velocityY += GRAVITY * tick
+
+	  this.x += this.velocityX * tick
 	  this.y += this.velocityY * tick
+
+	  this.updateBB(2)
+      this.collide()
+
+	  //Initial Walking animation
 
 	  //Debug purposes
 	  //console.log("x" + this.x);
 	  //console.log("y" + this.y);
       //console.log("Vx" + this.velocityX);
 	  //console.log("Vy" + this.velocityY);
-	  
-      this.collide()
+
 	};
-	
+
     updateBB(scale){
 	this.oldBB = this.BB;
 	this.BB = new boundingBox(this.x + 7 * scale, this.y + 1 * scale, 25 * scale, 21 * scale);
 	this.oldcBB = this.cBB;
     this.cBB = new boundingBox(this.x + 10, this.y + 45, 27 * scale, 14 * scale );
 	}
-      
+
 	collide(){
 		var that = this;
 		this.game.entities.forEach(function (entity) {
-			if(entity.platform && that.cBB.isCollide(entity.BB)) {
+			//If platform and entity collided
+			if(entity.BB && that.cBB.isCollide(entity.BB)) {
+				//If slime bottom hit floor/wall
 				if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
 					that.velocityY = 0
 					that.y = entity.BB.top - 73
-					that.updateBB(2)
+
+			   }
+			   else if (entity.wall && !entity.platform && that.BB.left < entity.BB.right && that.facing == 'l'){
+				    that.x = that.BB.left
+				    that.velocityX += MIN_WALK
+                    that.facing = "r"
+					//that.x = that.entity.right
+			   }
+			   else if(entity.wall && !entity.platform && that.BB.right > entity.BB.left && that.facing == 'r'){
+				    that.velocityX -= MIN_WALK
+				    that.facing = "l"
+					//that.x = that.entity.left
 			   }
 			}
 		});
@@ -172,7 +188,7 @@ class Hoppers
 
 	draw(ctx)
 	{
-		this.animators["walk"]["l"].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 3);
+		this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 3);
 		//this.animators["hurt"]["l"].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 3);
 		//this.animators["attack"]["l"].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 3);
 
@@ -180,5 +196,21 @@ class Hoppers
         ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
 		ctx.strokeStyle = 'Blue';
         ctx.strokeRect(this.cBB.x - this.game.camera.x, this.cBB.y - this.game.camera.y, this.cBB.width, this.cBB.height);
+
+		let center = this.BB.center()
+
+		ctx.beginPath();
+		ctx.strokeStyle = 'Green';
+		ctx.arc(center.x - this.game.camera.x, center.y - this.game.camera.y, 1, 0, 2 * Math.PI)
+		ctx.stroke();
+
+		let dcenter = this.game.duck.BB.center()
+
+		ctx.beginPath();
+		ctx.strokeStyle = 'Pink';
+		ctx.moveTo(center.x - this.game.camera.x, center.y - this.game.camera.y);
+		ctx.lineTo(dcenter.x - this.game.camera.x, dcenter.y - this.game.camera.y);
+		ctx.stroke();
+
 	};
 };

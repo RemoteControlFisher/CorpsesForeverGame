@@ -405,7 +405,7 @@ class duck {
         this.armstate = "hold"
       }
       else {
-        this.armstate = this.armstate = "down"
+        this.armstate = "down"
       }
     }
 
