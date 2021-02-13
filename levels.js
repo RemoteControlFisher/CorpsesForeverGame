@@ -263,7 +263,7 @@ var tutorialLevel = {
             {
                   x: -4,
                   y: 7,
-                  type: "saw"
+                  type: "lsaw"
             },
             {
                   x: 12,

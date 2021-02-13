@@ -1,7 +1,9 @@
 class traps {
 	constructor(game, x, y, type) {
-		Object.assign(this, { game, x, y, type});
+		Object.assign(this, { game, x, y, type });
 		this.spritesheetSAW = ASSET_MANAGER.getAsset("./sprites/blade_1_3.png");
+		this.spritesheetSAWL = ASSET_MANAGER.getAsset("./sprites/blade_1_4.png");
+
 		this.spritesheetbigSAW = ASSET_MANAGER.getAsset("./sprites/blade_2_fix.png");
 		this.spritesheetSpikes = ASSET_MANAGER.getAsset("./sprites/spike_strip.png");
 
@@ -16,6 +18,18 @@ class traps {
 				0.13, //Time
 				3, //Padding
 				false, //reverse
+				true, // looping,
+				null)
+		this.animators["lsaw"] =
+			new animator(this.spritesheetSAWL, // Spritesheet
+				9, //X
+				0, //Y
+				64, //Width
+				72, //Height
+				3, //Frames
+				0.13, //Time
+				3, //Padding
+				true, //reverse
 				true, // looping,
 				null)
 		this.animators["spike"] =
@@ -49,6 +63,6 @@ class traps {
 	};
 
 	draw(ctx) {
-		this.animators[this.type].drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y - this.game.camera.y, 1)
+		this.animators[this.type].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1)
 	};
 };
