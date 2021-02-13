@@ -175,7 +175,7 @@ class duck {
       true,
       true,
       null)
-    
+
     this.armAnimators["holding"]["l"] = new animator(this.spritesheet,
       37,
       572,
@@ -187,7 +187,7 @@ class duck {
       true,
       true,
       null)
-    
+
     this.armAnimators["holding"]["r"] = new animator(this.rEVspritesheet,
       372,
       588,
@@ -199,7 +199,6 @@ class duck {
       true,
       true,
       null)
-    
 
     this.animators["slide"]["r"] = new animator(this.spritesheet,
       5,
