@@ -391,6 +391,12 @@ class duck {
         null) //No idle animation because I am looping.
     //Facing isn't implemented yet.
 
+    this.setSpawn(x,y)
+  }
+
+  setSpawn(x,y){
+    this.spawnX = x
+    this.spawnY = y
   }
 
   update() {
@@ -452,6 +458,8 @@ class duck {
     //Check if we are falling.
     if (this.velocityY > 0 && this.state != "slide" && this.state != "wallcling" && this.state != "squat") { this.state = "freefall" }
   }
+
+
 
   updateBB(scale) {
     //this.oldBB = this.BB;
