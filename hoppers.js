@@ -16,7 +16,7 @@ class Hoppers
 
 		const MIN_WALK = 50;
 		const GRAVITY = 1800;
-       
+
 		this.game = game
 		this.x = x
 		//console.log("const x" + this.x)
@@ -124,10 +124,6 @@ class Hoppers
 	       null)
 };
 
-    //dead(){   Not yet implemented (please leave alone for now)
-    //
-	//}
-
 	update()
 	{
 	  let tick = this.game.clockTick;
@@ -177,6 +173,7 @@ class Hoppers
 					//that.x = that.entity.right
 			   }
 			   else if(entity.wall && !entity.platform && that.BB.right > entity.BB.left && that.facing == 'r'){
+				    that.x = that.BB.right - 100
 				    that.velocityX -= MIN_WALK
 				    that.facing = "l"
 					//that.x = that.entity.left

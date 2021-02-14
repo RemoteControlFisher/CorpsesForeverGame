@@ -104,7 +104,12 @@ class scenemanager {
             for (let i = 0; i < level.spawns.length; i++) {
                 let x = level.spawns[i].x
                 let y = level.spawns[i].y
-                this.game.addEntity(new spawnpoints(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH))
+                let mySpawn = new spawnpoints(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH)
+                if (!this.game.duck.spawn) {
+                    let scenter = mySpawn.BB.center()
+                    this.game.duck.setSpawn(scenter.x, scenter.y, mySpawn)
+                }
+                this.game.addEntity(mySpawn)
             }
 
 

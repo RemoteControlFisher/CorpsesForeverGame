@@ -1,6 +1,6 @@
 class corpses {
-	constructor(game, x, y, type, facing = "r", velocityX = 0, velocityY = 0)  {
-		Object.assign(this, { game, x, y, type, facing, velocityX, velocityY});
+	constructor(game, x, y, type, facing = "r", velocityX = 0, velocityY = 0) {
+		Object.assign(this, { game, x, y, type, facing, velocityX, velocityY });
 		this.duck = ASSET_MANAGER.getAsset("./sprites/duck.png")
 		this.chomp = ASSET_MANAGER.getAsset("./sprites/wolfsheet1.png");
 		this.hop = ASSET_MANAGER.getAsset("./sprites/slimesprite/Slime_Walk.png");
@@ -136,35 +136,15 @@ class corpses {
 					that.velocityY = 0
 					that.y = entity.BB.bottom
 					that.updateBB(2)
-				  } else if (entity.wall && !entity.platform && that.BB.left < entity.BB.right && that.facing == 'l') {
-					if (!that.angry) {
-						if (length < 160) {
-							that.angry = true
-						}
-						else {
-							that.velocityX = MIN_WALK
-						}
-						that.x = entity.BB.right
-					}
-					else {
-						that.x = entity.BB.right
-						that.updateBB(1)
-					}
+				} else if (entity.wall && !entity.platform && that.BB.left < entity.BB.right && that.facing == 'l') {
+
+					that.velocityX = MIN_WALK
+					that.x = entity.BB.right
+
 				}
 				else if (entity.wall && !entity.platform && that.BB.right > entity.BB.left && that.facing == 'r') {
-					if (!that.angry) {
-						if (length < 160) {
-							that.angry = true
-						}
-						else {
-							that.velocityX = -MIN_WALK
-						}
-						that.x = entity.BB.left - 64
-					}
-					else {
-						that.x = entity.BB.left - 64
-						that.velocityX = 0;
-					}
+
+					that.velocityX = -MIN_WALK
 
 					that.updateBB(1)
 				}
