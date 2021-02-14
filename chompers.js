@@ -179,8 +179,20 @@ class Chompers {
 		this.collide()
 
 		if (this.angry) {
-			
-			if (this.facing == 'l') {
+			length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
+			if (length > 500)
+			{
+				this.angry = false;
+				if (this.facing == 'r')
+				{
+					this.velocityX = MIN_WALK
+				}
+				else
+				{
+					this.velocityX = -MIN_WALK;
+				}
+			}
+			else if (this.facing == 'l') {
 				if (this.BB.right > this.game.duck.BB.left && this.velocityX) {
 					this.velocityX = -MAX_WALK
 				}
@@ -212,10 +224,10 @@ class Chompers {
 					this.facing = 'l'
 				}
 			}
-			if (length > 500 && this.velocityX == Math.abs(MAX_RUN) && this.velocityX < 0) {
+			if (length > 320 && this.velocityX == MAX_WALK) {
 				this.velocityX = MIN_WALK
 			}
-			else if (length > 500 && this.velocityX == Math.abs(MAX_RUN) && this.velocityX > 0) {
+			else if (length > 320 && this.velocityX == -MAX_WALK) {
 				this.velocityX = -MIN_WALK
 			}
 			
