@@ -296,10 +296,9 @@ var tutorialLevel = {
       }
       ],
       spawns: [{
-            x: 25, y: 19
-      },
-      {
             x: -2, y: 7
+      },{
+            x: 25, y: 19
       }
       ]
 
