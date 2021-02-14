@@ -261,14 +261,14 @@ var tutorialLevel = {
       ],
       traps: [
             {
-                  x: -4,
-                  y: 7,
-                  type: "lsaw"
+                  x: -3.3,
+                  y: 16,
+                  type: "saw"
             },
             {
-                  x: 12,
-                  y: 8,
-                  type: "saw"
+                  x: 31,
+                  y: 27,
+                  type: "lsaw"
             },
             {
                   x: -10,
@@ -293,6 +293,13 @@ var tutorialLevel = {
       },
       {
             x: 16, y: 16
+      }
+      ],
+      spawns: [{
+            x: 25, y: 19
+      },
+      {
+            x: -2, y: 7
       }
       ]
 

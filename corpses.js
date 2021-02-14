@@ -1,6 +1,6 @@
 class corpses {
-	constructor(game, x, y, type, facing = "r") {
-		Object.assign(this, { game, x, y, type, facing });
+	constructor(game, x, y, type, facing = "r", velocityX = 0, velocityY = 0)  {
+		Object.assign(this, { game, x, y, type, facing, velocityX, velocityY});
 		this.duck = ASSET_MANAGER.getAsset("./sprites/duck.png")
 		this.chomp = ASSET_MANAGER.getAsset("./sprites/wolfsheet1.png");
 		this.hop = ASSET_MANAGER.getAsset("./sprites/slimesprite/Slime_Walk.png");
@@ -91,7 +91,7 @@ class corpses {
 		}
 		this.BB = new boundingBox(this.x, this.y, this.animations[this.type].width * this.scale, (this.animations[this.type].height) * this.scale)
 		this.updateBB()
-		this.velocityY = 0
+		console.log(this.velocityX)
 	};
 
 	update() {
@@ -104,6 +104,7 @@ class corpses {
 			this.velocityY = TERMINAL_VELOCITY
 		}
 		this.y += this.velocityY * tick
+		this.x += this.velocityX * tick
 
 		this.updateBB()
 
@@ -125,11 +126,47 @@ class corpses {
 
 				if (entity != that && entity.platform && that.oldBB.bottom <= entity.BB.top && that.velocityY > 0) {
 					that.velocityY = 0
+					that.velocityX = 0
 					that.y = entity.BB.top - that.animations[that.type][that.facing].height * that.scale
 					if (entity.bounce) {
 						that.velocityY = -400
 					}
 					that.updateBB()
+				} else if (entity.cieling && that.oldBB.top >= entity.BB.bottom) {
+					that.velocityY = 0
+					that.y = entity.BB.bottom
+					that.updateBB(2)
+				  } else if (entity.wall && !entity.platform && that.BB.left < entity.BB.right && that.facing == 'l') {
+					if (!that.angry) {
+						if (length < 160) {
+							that.angry = true
+						}
+						else {
+							that.velocityX = MIN_WALK
+						}
+						that.x = entity.BB.right
+					}
+					else {
+						that.x = entity.BB.right
+						that.updateBB(1)
+					}
+				}
+				else if (entity.wall && !entity.platform && that.BB.right > entity.BB.left && that.facing == 'r') {
+					if (!that.angry) {
+						if (length < 160) {
+							that.angry = true
+						}
+						else {
+							that.velocityX = -MIN_WALK
+						}
+						that.x = entity.BB.left - 64
+					}
+					else {
+						that.x = entity.BB.left - 64
+						that.velocityX = 0;
+					}
+
+					that.updateBB(1)
 				}
 			}
 

@@ -391,12 +391,42 @@ class duck {
         null) //No idle animation because I am looping.
     //Facing isn't implemented yet.
 
-    this.setSpawn(x,y)
+    this.setSpawn(x, y)
   }
 
-  setSpawn(x,y){
+  setSpawn(x, y, spawnPoint = null) {
+
+    if (this.spawn)
+      this.spawn.active = false //Deactivate the old spawn point if it exists.
+
     this.spawnX = x
     this.spawnY = y
+
+    this.spawn = spawnPoint //If no spawnpoint is given, the spawnpoint is null.
+    if (spawnPoint)
+      spawnPoint.active = true
+  }
+
+  die(killer) {
+    let myCenter = this.BB.center()
+    //Only the player character needs a death time.
+    this.deathTime = 0
+    this.state = "dead"
+    this.velocityX = 0
+    this.velocityY = 0
+
+    let corpseVX = 0
+    if (killer.facing) {
+      if (killer.facing == "r") {
+        corpseVX = 550
+      }
+      else {
+        corpseVX = -550
+      }
+    }
+
+    let myCorpse = new corpses(this.game, myCenter.x, myCenter.y, "duck", this.facing, corpseVX, - 720)
+    this.game.addEntity(myCorpse)
   }
 
   update() {
@@ -415,9 +445,11 @@ class duck {
       }
     }
 
-    this.velocityY += GRAVITY * tick
-    if (this.velocityY > TERMINAL_VELOCITY) {
-      this.velocityY = TERMINAL_VELOCITY
+    if (!(this.state == "dead")) {
+      this.velocityY += GRAVITY * tick
+      if (this.velocityY > TERMINAL_VELOCITY) {
+        this.velocityY = TERMINAL_VELOCITY
+      }
     }
     //Each state group method manages the controls and physics that are strictly unique to that
     //set of states.
@@ -449,6 +481,9 @@ class duck {
     if (this.state == "wallcling")
       this.wallLogic(tick);
 
+    if (this.state == "dead")
+      this.deathLogic(tick);
+
     this.x += this.velocityX * tick
     this.y += this.velocityY * tick
 
@@ -457,6 +492,17 @@ class duck {
     this.oldBB = this.BB;
     //Check if we are falling.
     if (this.velocityY > 0 && this.state != "slide" && this.state != "wallcling" && this.state != "squat") { this.state = "freefall" }
+  }
+
+  deathLogic(tick) {
+    this.deathTime += tick
+    if (this.deathTime > 3) {
+      this.state = "freefall"
+      this.x = this.spawnX - 16
+      this.y = this.spawnY - 25
+      this.velocityX = 0
+      this.velocityY = 0
+    }
   }
 
 
@@ -475,6 +521,18 @@ class duck {
     this.game.entities.forEach(function (entity) {
       if (that.state != "slide") {
         if (entity.BB && that.BB.isCollide(entity.BB)) {
+
+          //If the thing is a spawner, set it as our spawn.
+          if (entity.spawner) {
+            let spawnpoint = entity.BB.center();
+            that.setSpawn(spawnpoint.x, spawnpoint.y, entity)
+          }
+
+          if (!(that.state == "dead") && (entity.saw)) {
+            that.die(entity)
+          }
+
+
           //If we are landing on something, stop.
           if (entity.platform && that.oldBB.bottom <= entity.BB.top && that.velocityY > 0) {
             //If the entity is droppable and down, let the player fall through it if they are not sliding.
@@ -728,25 +786,26 @@ class duck {
   }
 
   draw(ctx) {
-    let offset = 0
-    if (this.state == "slide") offset = 7
-    //this.armAnimators["holding"]["r"].drawFrame(this.game.clockTick, ctx, this.x, this.y, 2)
-    this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - offset - this.game.camera.x, this.y - this.game.camera.y, 2)
-    if (this.armAnimators[this.state] && this.armAnimators[this.state][this.facing] && this.state != "stand" && this.state != "slide" && this.armstate != "hold")
-      if (this.armstate != "hold")
-        this.armAnimators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y + 16 - this.game.camera.y, 2)
+    if (!(this.state == "dead")) {
+      let offset = 0
+      if (this.state == "slide") offset = 7
+      //this.armAnimators["holding"]["r"].drawFrame(this.game.clockTick, ctx, this.x, this.y, 2)
+      this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - offset - this.game.camera.x, this.y - this.game.camera.y, 2)
+      if (this.armAnimators[this.state] && this.armAnimators[this.state][this.facing] && this.state != "stand" && this.state != "slide" && this.armstate != "hold")
+        if (this.armstate != "hold")
+          this.armAnimators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y + 16 - this.game.camera.y, 2)
 
-    let center = this.BB.center()
+      let center = this.BB.center()
 
-    ctx.beginPath();
-    ctx.strokeStyle = 'Green';
-    ctx.arc(center.x - this.game.camera.x, center.y - this.game.camera.y, 1, 0, 2 * Math.PI)
-    ctx.stroke();
+      ctx.beginPath();
+      ctx.strokeStyle = 'Green';
+      ctx.arc(center.x - this.game.camera.x, center.y - this.game.camera.y, 1, 0, 2 * Math.PI)
+      ctx.stroke();
 
-    ctx.strokeStyle = 'Red';
-    ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
-    ctx.strokeStyle = 'Blue';
-    ctx.strokeRect(this.cBB.x - this.game.camera.x, this.cBB.y - this.game.camera.y, this.cBB.width, this.cBB.height);
-
+      ctx.strokeStyle = 'Red';
+      ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
+      ctx.strokeStyle = 'Blue';
+      ctx.strokeRect(this.cBB.x - this.game.camera.x, this.cBB.y - this.game.camera.y, this.cBB.width, this.cBB.height);
+    }
   }
 }
