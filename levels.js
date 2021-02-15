@@ -12,6 +12,13 @@ var tutorialLevel = {
             lengthX: 20,
             lengthY: 30,
             type: "bwall"
+      },
+      {
+            startX: 34,           //slime area
+            startY: 11,
+            lengthX: 65,
+            lengthY: 30,
+            type: "bwall"
       }],
       walls: [{
             startX: -4,
@@ -71,9 +78,9 @@ var tutorialLevel = {
       },
       {
             startX: 33,
-            startY: 12,
+            startY: 11,
             lengthX: 1,
-            lengthY: 20,
+            lengthY: 17,
             type: "wleft"
       },
       {
@@ -101,6 +108,97 @@ var tutorialLevel = {
             startX: -3,
             startY: 24,
             lengthX: 5,
+            lengthY: 1,
+            type: "floor"
+      },
+      {
+            startX: 23,
+            startY: 26,
+            lengthX: 5,
+            lengthY: 1,
+            type: "floor"
+      },
+      {
+            startX: 34,   //1st platform
+            startY: 27,
+            lengthX: 10,
+            lengthY: 1,
+            type: "floor"
+      },
+      {
+            startX: 34,   // bottom platform
+            startY: 19,
+            lengthX: 57,
+            lengthY: 1,
+            type: "floor"
+      },
+      {
+            startX: 55,   //2nd platform
+            startY: 27,
+            lengthX: 5,
+            lengthY: 1,
+            type: "floor"
+      },
+      {
+            startX: 73,   //3nd platform
+            startY: 27,
+            lengthX: 3,
+            lengthY: 1,
+            type: "floor"
+      },
+      {
+            startX: 87,   //4nd platform
+            startY: 27,
+            lengthX: 1,
+            lengthY: 1,
+            type: "floor"
+      },
+      {
+            startX: 90,   //wall platform
+            startY: 20,
+            lengthX: 1,
+            lengthY: 7,
+            type: "wleft"
+      },
+      {
+            startX: 90,   //end #1 platform
+            startY: 27,
+            lengthX: 3,
+            lengthY: 1,
+            type: "floor"
+      },
+      {
+            startX: 95,   //end #2 platform
+            startY: 27,
+            lengthX: 3,
+            lengthY: 1,
+            type: "floor"
+      },
+      {
+            startX: 81,   //#2 bottom platform
+            startY: 15,
+            lengthX: 17,
+            lengthY: 1,
+            type: "floor"
+      },
+      {
+            startX: 97,   //wall platform
+            startY: 15,
+            lengthX: 1,
+            lengthY: 19,
+            type: "wleft"
+      },
+      {
+            startX: 90,   //wall block platform
+            startY: 18,
+            lengthX: 1,
+            lengthY: 1,
+            type: "wright"
+      },
+      {
+            startX: 81,   //slide platform
+            startY: 17,
+            lengthX: 10,
             lengthY: 1,
             type: "floor"
       }],
@@ -261,6 +359,71 @@ var tutorialLevel = {
       ],
       traps: [
             {
+                  x: 95,
+                  y: 20,
+                  type: "saw"
+            }
+            ,{
+                  x: 91,
+                  y: 20,
+                  type: "saw"
+            }
+            ,{
+                  x: 95,
+                  y: 23,
+                  type: "saw"
+            }
+            ,{
+                  x: 91,
+                  y: 23,
+                  type: "saw"
+            }
+            ,{
+                  x: 95,
+                  y: 26,
+                  type: "saw"
+            }
+            ,{
+                  x: 91,
+                  y: 26,
+                  type: "saw"
+            }
+            ,{
+                  x: 85,
+                  y: 27,
+                  type: "saw"
+            }
+            ,{
+                  x: 88,
+                  y: 27,
+                  type: "saw"
+            }
+            ,{
+                  x: 76,
+                  y: 27,
+                  type: "saw"
+            }
+            ,{
+                  x: 60,
+                  y: 27,
+                  type: "saw"
+            }
+            ,{
+                  x: 71,
+                  y: 27,
+                  type: "saw"
+            }
+            ,{
+                x: 44,
+                y: 27,
+                type: "saw"
+            }
+            ,{
+                  x: 53,
+                  y: 27,
+                  type: "saw"
+            }
+            ,{
                   x: -3.3,
                   y: 16,
                   type: "saw"
@@ -285,7 +448,14 @@ var tutorialLevel = {
             { x: 15, y: 15 }
       ],
       hoppers: [
-            { x: 11, y: 5 }
+            { x: 11, y: 5 },
+            { x: 40, y: 25  },
+            { x: 50, y: 25  },
+            { x: 60, y: 25  },
+            { x: 70, y: 25  },
+            { x: 80, y: 25  },
+            { x: 85, y: 25  },
+            { x: 87, y: 25  }
       ],
       buttons: [{ x: -10, y: 1 }],
       textboxes: [{

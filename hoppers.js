@@ -160,23 +160,39 @@ class Hoppers
 		this.game.entities.forEach(function (entity) {
 			//If platform and entity collided
 			if(entity.BB && that.cBB.isCollide(entity.BB)) {
-				//If slime bottom hit floor/wall
-				if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
+			   //If slime bottom hit floor/wall
+			   if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
 					that.velocityY = 0
 					that.y = entity.BB.top - 73
-
 			   }
+			   //If hits the left wall
 			   else if (entity.wall && !entity.platform && that.BB.left < entity.BB.right && that.facing == 'l'){
 				    that.x = that.BB.left
 				    that.velocityX += MIN_WALK
                     that.facing = "r"
 					//that.x = that.entity.right
 			   }
+			   //If hits the right wall
 			   else if(entity.wall && !entity.platform && that.BB.right > entity.BB.left && that.facing == 'r'){
 				    that.x = that.BB.right - 100
 				    that.velocityX -= MIN_WALK
 				    that.facing = "l"
 					//that.x = that.entity.left
+			   }
+			   //If hits any trap
+			   else if (entity.saw && that.state != "dead"){
+				   that.state = "dead"
+				   that.velocityX = 0
+				   that.velocityY = 0
+				   let corpseVX = 0
+				   //corpse velocity and speed it will repulse
+				   if(entity.facing == l){
+					  corpseVX = 550
+				   }else{
+					  corpseVX = -550
+				   }
+				   let slimeCorpse = new corpses(this.game, that.x, that.y, "hoppers", this.facing, corpseVX, - 720)
+                   this.game.addEntity(slimeCorpse)
 			   }
 			}
 		});

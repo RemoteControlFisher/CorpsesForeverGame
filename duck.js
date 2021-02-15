@@ -475,7 +475,8 @@ class duck {
         this.armstate = "down"
       }
     }
-
+      
+    // if duck isnt dead
     if (!(this.state == "dead")) {
       this.velocityY += GRAVITY * tick
       if (this.velocityY > TERMINAL_VELOCITY) {
@@ -517,7 +518,9 @@ class duck {
 
     this.x += this.velocityX * tick
     this.y += this.velocityY * tick
-
+    //console.log ("duck x: " + this.x)
+    //console.log ("duck y: " + this.y)
+    
     //Bounding box logic.
     this.collide()
     this.oldBB = this.BB;
