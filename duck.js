@@ -524,8 +524,8 @@ class duck {
     //console.log ("duck y: " + this.y)
     
     //Bounding box logic.
-    this.collide()
     this.oldBB = this.BB;
+    this.collide() 
     //Check if we are falling.
     if (this.velocityY > 0 && this.state != "slide" && this.state != "wallcling" && this.state != "squat") { this.state = "freefall" }
   }

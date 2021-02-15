@@ -287,7 +287,7 @@ class Chompers {
 
 					that.updateBB(1)
 				}
-				else if (entity.game.duck && that.BB.top >= entity.game.duck.BB.bottom && (entity.game.duck.BB.right >= that.BB.left && entity.game.duck.BB.right <= that.BB.right || entity.game.duck.BB.left <= that.BB.right && entity.game.duck.BB.left >= that.BB.left))
+				else if (entity.game.duck && that.BB.top <= entity.game.duck.BB.bottom && that.BB.top > entity.game.duck.oldBB.bottom && (entity.game.duck.BB.right >= that.BB.left && entity.game.duck.BB.right <= that.BB.right || entity.game.duck.BB.left <= that.BB.right && entity.game.duck.BB.left >= that.BB.left))
 				{
 					that.die()
 				}
