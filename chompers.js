@@ -10,8 +10,8 @@ class Chompers {
 		this.length = 0;
 		this.facing = 'l';
 		this.state = "walk"
-		this.dead = false;
 		this.angry = false;
+		this.dead = false;
 		this.velocityX = -MIN_WALK;
 		this.velocityY = 0;
 		this.updateBB(1);
@@ -166,65 +166,78 @@ class Chompers {
 	};
 
 	update() {
-		let tick = this.game.clockTick;
-		let center = this.BB.center()
-		let dcenter = this.game.duck.BB.center()
+		if (this.state != "dead") {
+			let tick = this.game.clockTick;
+			let center = this.BB.center()
+			let dcenter = this.game.duck.BB.center()
 
-		this.velocityY += GRAVITY * tick
+			this.velocityY += GRAVITY * tick
 
-		this.x += this.velocityX * tick
-		this.y += this.velocityY * tick
-		this.updateBB(1)
+			this.x += this.velocityX * tick
+			this.y += this.velocityY * tick
+			this.updateBB(1)
 
-		this.collide()
+			this.collide()
 
-		if (this.angry) {
-			
-			if (this.facing == 'l') {
-				if (this.BB.right > this.game.duck.BB.left && this.velocityX) {
-					this.velocityX = -MAX_WALK
+			if (this.angry) {
+				length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
+				if (length > 320) {
+					this.state = "walk";
+					if (this.facing == 'r') {
+						this.velocityX = MIN_WALK
+					}
+					else {
+						this.velocityX = -MIN_WALK;
+					}
+				}
+				else if (this.facing == 'l') {
+					if (this.BB.right > this.game.duck.BB.left && this.velocityX) {
+						this.velocityX = -MAX_WALK
+					}
+					else {
+						this.velocityX = MAX_WALK
+						this.facing = 'r'
+					}
 				}
 				else {
-					this.velocityX = MAX_WALK
-					this.facing = 'r'
+					if (this.BB.left < this.game.duck.BB.right) {
+						this.velocityX = MAX_WALK
+					}
+					else {
+						this.velocityX = -MAX_WALK
+						this.facing = 'l'
+					}
 				}
 			}
 			else {
-				if (this.BB.left < this.game.duck.BB.right) {
-					this.velocityX = MAX_WALK
+				length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
+
+				if (length <= 160) {
+					if (dcenter.x <= center.x) {
+						this.velocityX = MAX_WALK
+						this.facing = 'r'
+					}
+					else if (dcenter.x > center.x) {
+						this.velocityX = -MAX_WALK
+						this.facing = 'l'
+					}
 				}
-				else {
-					this.velocityX = -MAX_WALK
-					this.facing = 'l'
+				if (length > 320 && this.velocityX == MAX_WALK) {
+					this.velocityX = MIN_WALK
 				}
+				else if (length > 320 && this.velocityX == -MAX_WALK) {
+					this.velocityX = -MIN_WALK
+				}
+
 			}
 		}
-		else {
-			length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
-
-			if (length <= 160) {
-				if (dcenter.x <= center.x) {
-					this.velocityX = MAX_WALK
-					this.facing = 'r'
-				}
-				else if (dcenter.x > center.x) {
-					this.velocityX = -MAX_WALK
-					this.facing = 'l'
-				}
-			}
-			if (length > 500 && this.velocityX == Math.abs(MAX_RUN) && this.velocityX < 0) {
-				this.velocityX = MIN_WALK
-			}
-			else if (length > 500 && this.velocityX == Math.abs(MAX_RUN) && this.velocityX > 0) {
-				this.velocityX = -MIN_WALK
-			}
-			
-		}
-
-
-		
-
 	};
+
+	die() {
+		this.state = "dead"
+		this.cCorpse = new corpses(this.game, this.x, this.y, "chomper", this.facing, 0, 0)
+		this.game.addEntity(this.cCorpse)
+	}
 
 	updateBB(scale) {
 		this.oldBB = this.BB;
@@ -274,6 +287,10 @@ class Chompers {
 
 					that.updateBB(1)
 				}
+				else if (entity.game.duck && that.BB.top >= entity.game.duck.BB.bottom && (entity.game.duck.BB.right >= that.BB.left && entity.game.duck.BB.right <= that.BB.right || entity.game.duck.BB.left <= that.BB.right && entity.game.duck.BB.left >= that.BB.left))
+				{
+					that.die()
+				}
 				/*else if (entity.duck && that.velocityX < 0 && that.BB.left < entity.BB.right)
 				{
 					that.velocityX = MIN_WALK
@@ -291,33 +308,35 @@ class Chompers {
 		//this.animators["stand"]["r"].drawFrame(this.game.clockTick, ctx, this.x+90  - this.game.camera.x, this.y - this.game.camera.y, 1)
 		//this.animators["attack"]["r"].drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y - this.game.camera.y, 1)
 		//this.animators["woke"]["l"].drawFrame(this.game.clockTick, ctx, this.x+180  - this.game.camera.x, this.y - this.game.camera.y, 1)
-		this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1);
-		ctx.strokeStyle = 'Red';
-		ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
+		if (this.state != "dead") {
+			this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1);
+			ctx.strokeStyle = 'Red';
+			ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
 
-		let center = this.BB.center()
+			let center = this.BB.center()
 
-		ctx.beginPath();
-		ctx.strokeStyle = 'Green';
-		ctx.arc(center.x - this.game.camera.x, center.y - this.game.camera.y, 1, 0, 2 * Math.PI)
-		ctx.stroke();
+			ctx.beginPath();
+			ctx.strokeStyle = 'Green';
+			ctx.arc(center.x - this.game.camera.x, center.y - this.game.camera.y, 1, 0, 2 * Math.PI)
+			ctx.stroke();
 
-		let dcenter = this.game.duck.BB.center()
+			let dcenter = this.game.duck.BB.center()
 
-		ctx.beginPath();
-		ctx.strokeStyle = 'Pink';
-		ctx.moveTo(center.x - this.game.camera.x, center.y - this.game.camera.y);
-		ctx.lineTo(dcenter.x - this.game.camera.x, dcenter.y - this.game.camera.y);
-		ctx.stroke();
+			ctx.beginPath();
+			ctx.strokeStyle = 'Pink';
+			ctx.moveTo(center.x - this.game.camera.x, center.y - this.game.camera.y);
+			ctx.lineTo(dcenter.x - this.game.camera.x, dcenter.y - this.game.camera.y);
+			ctx.stroke();
 
-		/** Drawing a detection circle as a prototype for some possible AI behavior.
-
-		ctx.beginPath();
-		ctx.strokeStyle = 'Yellow';
-		ctx.arc(center.x  - this.game.camera.x, center.y - this.game.camera.y, 250, 0, 2*Math.PI)
-		ctx.stroke();
-		
-
-		//*/
+			/** Drawing a detection circle as a prototype for some possible AI behavior.
+	
+			ctx.beginPath();
+			ctx.strokeStyle = 'Yellow';
+			ctx.arc(center.x  - this.game.camera.x, center.y - this.game.camera.y, 250, 0, 2*Math.PI)
+			ctx.stroke();
+			
+	
+			//*/
+		}
 	};
 };
