@@ -23,6 +23,7 @@ class duck {
     this.state = state // stand, jump, walk, squat, slide, hover, freefall are considered valid options.
     this.armstate = "down" // matchbody, hold
     this.game.duck = this
+    this.deaths = 0;
 
     this.velocityX = 0;
     this.velocityY = 0;
@@ -445,6 +446,7 @@ class duck {
     this.state = "dead"
     this.velocityX = 0
     this.velocityY = 0
+    this.deaths = this.deaths + 1
 
     let corpseVX = 0
     if (killer.facing) {
