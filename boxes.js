@@ -33,4 +33,8 @@ class boxes
 		/*ctx.strokeStyle = 'Red';
 		ctx.strokeRect(this.BB.x  - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);*/
 	};
+
+	duckDraw(ctx, x, y){
+		this.mimic.drawFrame(this.game.clockTick, ctx, x - this.BB.width/2, y, this.scale);
+	}
 };

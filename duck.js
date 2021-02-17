@@ -28,6 +28,9 @@ class duck {
     this.velocityX = 0;
     this.velocityY = 0;
 
+    //Container for the entity we are carrying.
+    this.carried = null;
+
     //Bounding boxes.
     //Call it twice to initialize the old bounding box.
     this.updateBB(2)
@@ -52,16 +55,16 @@ class duck {
     this.armAnimators["run"] = []
     this.armAnimators["squat"] = []
     this.armAnimators["jump"] = []
-    this.armAnimators["walk"]["l"]= []  //done
-    this.armAnimators["walk"]["r"]= []  //done
-    this.armAnimators["run"]["l"]= []   //done
-    this.armAnimators["run"]["r"]= []   //done
-    this.armAnimators["squat"]["l"]= []
-    this.armAnimators["squat"]["r"]= []
-    this.armAnimators["stand"]["l"]= [] //done
-    this.armAnimators["stand"]["r"]= [] //done
-    this.armAnimators["jump"]["l"]= []  //done
-    this.armAnimators["jump"]["r"]= []  //done
+    this.armAnimators["walk"]["l"] = []  //done
+    this.armAnimators["walk"]["r"] = []  //done
+    this.armAnimators["run"]["l"] = []   //done
+    this.armAnimators["run"]["r"] = []   //done
+    this.armAnimators["squat"]["l"] = []
+    this.armAnimators["squat"]["r"] = []
+    this.armAnimators["stand"]["l"] = [] //done
+    this.armAnimators["stand"]["r"] = [] //done
+    this.armAnimators["jump"]["l"] = []  //done
+    this.armAnimators["jump"]["r"] = []  //done
 
 
     this.animators["stand"]["r"] =
@@ -116,7 +119,7 @@ class duck {
       true, // looping,
       null) //No idle animation because I am looping.
 
-    this.armAnimators["walk"]["r"]["down"]= new animator(this.spritesheet,
+    this.armAnimators["walk"]["r"]["down"] = new animator(this.spritesheet,
       2,
       519,
       12,
@@ -128,7 +131,7 @@ class duck {
       true,
       null)
 
-    this.armAnimators["walk"]["l"]["down"]= new animator(this.spritesheet,
+    this.armAnimators["walk"]["l"]["down"] = new animator(this.spritesheet,
       2,
       479,
       12,
@@ -140,7 +143,7 @@ class duck {
       true,
       null)
 
-    this.animators["run"]["r"]= new animator(this.spritesheet, // Spritesheet
+    this.animators["run"]["r"] = new animator(this.spritesheet, // Spritesheet
       41, //X
       14, //Y
       16, //Width
@@ -164,7 +167,7 @@ class duck {
       true, // looping,
       null) //No idle animation because I am looping.
 
-    this.armAnimators["run"]["r"]["down"]= new animator(this.spritesheet,
+    this.armAnimators["run"]["r"]["down"] = new animator(this.spritesheet,
       2,
       519,
       12,
@@ -176,7 +179,7 @@ class duck {
       true,
       null)
 
-    this.armAnimators["run"]["l"]["down"]= new animator(this.spritesheet,
+    this.armAnimators["run"]["l"]["down"] = new animator(this.spritesheet,
       2,
       479,
       12,
@@ -188,7 +191,7 @@ class duck {
       true,
       null)
 
-    this.armAnimators["run"]["l"]["holding"]= new animator(this.spritesheet,
+    this.armAnimators["run"]["l"]["holding"] = new animator(this.spritesheet,
       37,
       572,
       12,
@@ -200,7 +203,7 @@ class duck {
       true,
       null)
 
-    this.armAnimators["run"]["r"]["holding"]= new animator(this.rEVspritesheet,
+    this.armAnimators["run"]["r"]["holding"] = new animator(this.rEVspritesheet,
       372,
       588,
       12,
@@ -375,7 +378,7 @@ class duck {
         null) //No idle animation because I am looping.
     //Facing isn't implemented yet.
 
-    this.armAnimators["stand"]["l"]["down"]= new animator(this.spritesheet,
+    this.armAnimators["stand"]["l"]["down"] = new animator(this.spritesheet,
       49,
       478,
       12,
@@ -387,7 +390,7 @@ class duck {
       true,
       null)
 
-    this.armAnimators["stand"]["r"]["down"]= new animator(this.spritesheet,
+    this.armAnimators["stand"]["r"]["down"] = new animator(this.spritesheet,
       34,
       518,
       12,
@@ -399,7 +402,7 @@ class duck {
       true,
       null)
 
-    this.armAnimators["jump"]["l"]["down"]= new animator(this.spritesheet,
+    this.armAnimators["jump"]["l"]["down"] = new animator(this.spritesheet,
       47,
       478,
       12,
@@ -411,7 +414,7 @@ class duck {
       true,
       null)
 
-    this.armAnimators["jump"]["r"]["down"]= new animator(this.spritesheet,
+    this.armAnimators["jump"]["r"]["down"] = new animator(this.spritesheet,
       34,
       518,
       12,
@@ -459,6 +462,19 @@ class duck {
     }
 
     let myCorpse = new corpses(this.game, myCenter.x, myCenter.y, "duck", this.facing, corpseVX, - 720)
+
+    if (this.carried) {
+      //Release my carried item now!
+      this.carried.state = "idle"
+      this.carried.x = this.x
+      this.carried.y = this.y
+      this.carried.velocityY = - 550
+      this.carried.BB.active = true
+      this.carried.velocityX = Math.sign(corpseVX) * 420
+      this.carried = null // We are no longer carrying it.
+    }
+
+
     this.game.addEntity(myCorpse)
   }
 
@@ -467,17 +483,22 @@ class duck {
     //These constants I did copy just so I remembered the basic constants I should use here. The rest I typed out manually with some vague inspirations being pulled
     //From the lecture examples.
 
-    if (this.game.keyK && !this.game.kDisconnect) {
+    if (this.game.keyK && this.carried && !this.game.kDisconnect) {
       this.game.kDisconnect = true;
-      console.log(this.armstate)
+      if (!this.game.down) {
+        this.throwCorpse()
+      }
+      else { this.dropCorpse()
+      }
+      /*console.log(this.armstate)
       if (this.armstate == "down") {
         this.armstate = "hold"
       }
       else {
         this.armstate = "down"
-      }
+      }*/
     }
-      
+
     // if duck isnt dead
     if (!(this.state == "dead")) {
       this.velocityY += GRAVITY * tick
@@ -522,12 +543,39 @@ class duck {
     this.y += this.velocityY * tick
     //console.log ("duck x: " + this.x)
     //console.log ("duck y: " + this.y)
-    
+
     //Bounding box logic.
     this.oldBB = this.BB;
-    this.collide() 
+    this.collide()
     //Check if we are falling.
     if (this.velocityY > 0 && this.state != "slide" && this.state != "wallcling" && this.state != "squat") { this.state = "freefall" }
+  }
+
+  throwCorpse() {
+    this.carried.state = "thrown"
+    this.carried.velocityY = -240 + this.velocityY
+    this.carried.velocityX = 550 + this.velocityX
+    if (this.facing == "l")
+      this.carried.velocityX = - 550 + this.velocityX
+      //Flip our velocity.
+
+    this.carried.x = this.x
+    this.carried.y = this.y
+    this.carried = null
+    this.armstate = "down"
+  }
+
+  dropCorpse() {
+    this.carried.state = "idle"
+    this.carried.velocityY = -240 + this.velocityY
+    this.carried.velocityX = 0
+    if (this.facing == "l")
+      this.carried.velocityX *= -1//Flip our velocity.
+
+    this.carried.x = this.x
+    this.carried.y = this.y
+    this.carried = null
+    this.armstate = "down"
   }
 
   deathLogic(tick) {
@@ -558,6 +606,16 @@ class duck {
       if (that.state != "slide") {
         if (entity.BB && that.BB.isCollide(entity.BB)) {
 
+          if (that.game.keyK && !that.carried && !that.game.kDisconnect && entity.carriable) {
+            that.game.kDisconnect = true;
+            that.carried = entity
+            entity.state = "carried"
+            entity.BB.active = false
+            entity.oldBB.active = false
+            that.armstate = "hold"
+          }
+
+
           //If the thing is a spawner, set it as our spawn.
           if (entity.spawner) {
             let spawnpoint = entity.BB.center();
@@ -571,8 +629,9 @@ class duck {
 
           //If we are landing on something, stop.
           if (entity.platform && that.oldBB.bottom <= entity.BB.top && that.velocityY > 0) {
-            //If the entity is droppable and down, let the player fall through it if they are not sliding.
-            if (!entity.droppable || !that.game.down) {
+            //If the entity is droppable and dow is held, let the player fall through it if they are not sliding.
+            //Control blocks this behavior, to let the player drop corpses on platforms.
+            if (!(entity.droppable && that.game.down && !that.game.sprint)) {
               that.velocityY = 0
               that.y = entity.BB.top - 50
               if (that.state == "jump" || that.state == "hover" || that.state == "freefall" || that.state == "wallcling")
@@ -595,7 +654,9 @@ class duck {
               that.updateBB(2)
             } else
               if (entity.wall && that.velocityX > 0 && that.BB.right > entity.BB.left) {
-                if ((that.state == "jump" || that.state == "hover" || that.state == "freefall" || that.state == "wallcling") && !entity.platform && that.game.right) {
+                if ((that.state == "jump" || that.state == "hover" || that.state == "freefall" || that.state == "wallcling")
+                  && that.armstate != "hold"
+                  && !entity.platform && that.game.right) {
                   that.state = "wallcling"
                   that.facing = "r"
                   that.velocityY *= 0.6
@@ -605,7 +666,9 @@ class duck {
                 that.updateBB(2)
               } else
                 if (entity.wall && that.velocityX < 0 && that.BB.left < entity.BB.right) {
-                  if ((that.state == "jump" || that.state == "hover" || that.state == "freefall" || that.state == "wallcling") && !entity.platform && that.game.left) {
+                  if ((that.state == "jump" || that.state == "hover" || that.state == "freefall" || that.state == "wallcling")
+                    && that.armstate != "hold"
+                    && !entity.platform && that.game.left) {
                     that.velocityY *= 0.6
                     that.state = "wallcling"
                     that.facing = "l"
@@ -771,7 +834,7 @@ class duck {
           this.facing = "r"
         if (this.velocityX < -0.1)
           this.facing = "l"
-        if (this.game.down) {
+        if (this.game.down && this.armstate != "hold") {
           this.state = "slide"
           //Sliding gives a small instant speed boost, this includes some instant movement to keep the center of mass of the duck in line with its original center of mass.
           //This is proportional to how quickly a slide decelerates for now.
@@ -824,13 +887,20 @@ class duck {
   draw(ctx) {
     if (!(this.state == "dead")) {
       let offset = 0
+      //Lets use the center helper method to track our center of mass.
+      let center = this.BB.center()
+
       if (this.state == "slide") offset = 7
       //this.armAnimators["holding"]["r"].drawFrame(this.game.clockTick, ctx, this.x, this.y, 2)
       this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - offset - this.game.camera.x, this.y - this.game.camera.y, 2)
+
+      if (this.carried) {
+        this.carried.duckDraw(ctx, this.x, this.y + 16)
+      }
+
       if (this.armAnimators[this.state] && this.armAnimators[this.state][this.facing] && this.armAnimators[this.state][this.facing][this.armstate])
         this.armAnimators[this.state][this.facing][this.armstate].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y + 16 - this.game.camera.y, 2)
 
-      let center = this.BB.center()
 
       ctx.beginPath();
       ctx.strokeStyle = 'Green';

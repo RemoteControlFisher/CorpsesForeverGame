@@ -19,6 +19,8 @@ class GameEngine {
         this.act = false;
         this.jumpDisconnect = false;
         this.kDisconnect = false;
+        this.ctrl = false;
+
 
     };
 
@@ -69,6 +71,10 @@ class GameEngine {
                 case "KeyK":
                     that.keyK = true;
                     break;
+                case "ControlLeft":
+                case "ControlRight":
+                    that.ctrl = true;
+                    break;
                 default:
                     console.log(e.code)
                     break;
@@ -103,6 +109,11 @@ class GameEngine {
                     that.keyK = false;
                     that.kDisconnect = false;
                     break;
+                case "ControlLeft":
+                case "ControlRight":
+                    that.ctrl = false;
+                    break;
+
             }
         }, false);
         console.log("Finalizing inputs...")

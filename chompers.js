@@ -17,6 +17,8 @@ class Chompers {
 		this.updateBB(1);
 		this.spritesheet = ASSET_MANAGER.getAsset("./sprites/wolfsheet1.png");
 
+		this.killable = true;
+
 		this.animators = []; //[state][facing]
 
 		this.animators["stand"] = []
@@ -166,6 +168,7 @@ class Chompers {
 	};
 
 	update() {
+		console.log(this.y)
 		if (this.state != "dead") {
 			let tick = this.game.clockTick;
 			let center = this.BB.center()
@@ -233,10 +236,11 @@ class Chompers {
 		}
 	};
 
-	die() {
+	die(killer) {
 		this.state = "dead"
 		this.cCorpse = new corpses(this.game, this.x, this.y, "chomper", this.facing, 0, 0)
 		this.game.addEntity(this.cCorpse)
+		this.removeFromWorld = true;
 	}
 
 	updateBB(scale) {
@@ -287,10 +291,11 @@ class Chompers {
 
 					that.updateBB(1)
 				}
+				/*
 				else if (entity.game.duck && that.BB.top <= entity.game.duck.BB.bottom && that.BB.top > entity.game.duck.oldBB.bottom && (entity.game.duck.BB.right >= that.BB.left && entity.game.duck.BB.right <= that.BB.right || entity.game.duck.BB.left <= that.BB.right && entity.game.duck.BB.left >= that.BB.left))
 				{
-					that.die()
-				}
+					that.die(entity)
+				}*/
 				/*else if (entity.duck && that.velocityX < 0 && that.BB.left < entity.BB.right)
 				{
 					that.velocityX = MIN_WALK

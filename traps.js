@@ -7,6 +7,9 @@ class traps {
 		this.spritesheetbigSAW = ASSET_MANAGER.getAsset("./sprites/blade_2_fix.png");
 		this.spritesheetSpikes = ASSET_MANAGER.getAsset("./sprites/spike_strip.png");
 
+		//Add a type enumerator to verify this is a trap.
+		this.trap =  true;
+
 		this.animators = []; //[state][facing]
 		this.animators["saw"] =
 			new animator(this.spritesheetSAW, // Spritesheet
@@ -66,6 +69,8 @@ class traps {
 		if(this.type == "lsaw")
 				this.facing = "l"
 
+		if(!this.facing)
+				this.facing = "c" //"Facing the camera."
 
 		this.BB = new boundingBox(this.x, this.y, this.animators[this.type].width, this.animators[this.type].height)
 
