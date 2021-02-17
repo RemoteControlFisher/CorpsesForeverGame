@@ -8,7 +8,7 @@ const ACC_AIR = 280;
 const ACC_RUN = 750.390625;
 const SLIDE_DECEL = 450;
 const GRAVITY = 1800;
-const TERMINAL_VELOCITY = 1300;
+const TERMINAL_VELOCITY = 900;
 const troof = true;
 
 class duck {
@@ -23,6 +23,7 @@ class duck {
     this.state = state // stand, jump, walk, squat, slide, hover, freefall are considered valid options.
     this.armstate = "down" // matchbody, hold
     this.game.duck = this
+    this.deaths = 0;
 
     this.velocityX = 0;
     this.velocityY = 0;
@@ -473,6 +474,7 @@ class duck {
     this.state = "dead"
     this.velocityX = 0
     this.velocityY = 0
+    this.deaths = this.deaths + 1
 
     let corpseVX = 0
     if (killer.facing) {
@@ -550,8 +552,8 @@ class duck {
     //console.log ("duck y: " + this.y)
     
     //Bounding box logic.
-    this.collide()
     this.oldBB = this.BB;
+    this.collide() 
     //Check if we are falling.
     if (this.velocityY > 0 && this.state != "slide" && this.state != "wallcling" && this.state != "squat") { this.state = "freefall" }
   }

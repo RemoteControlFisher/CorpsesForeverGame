@@ -15,6 +15,8 @@ class scenemanager {
         this.game.entities = [];
         this.x = 0;
 
+        
+
         if (level.backs) {
             console.log(level.backs)
             for (let i = 0; i < level.backs.length; i++) {
@@ -110,14 +112,14 @@ class scenemanager {
                     this.game.duck.setSpawn(scenter.x, scenter.y, mySpawn)
                 }
                 this.game.addEntity(mySpawn)
+                
             }
-
-
-
 
         this.duck.x = startx;
         this.duck.y = starty - 3 * PARAMS.BLOCKWIDTH;
         this.game.addEntity(this.duck);
+        let myText = new text(this.game, PARAMS.BLOCKWIDTH, PARAMS.BLOCKWIDTH)
+        this.game.addEntity(myText);
     };
 
     update() {
@@ -129,10 +131,10 @@ class scenemanager {
         let center = this.duck.BB.center()
         this.x = center.x - midpoint;
         this.y = center.y - midheight;
-
+        
     };
 
     draw(ctx) {
-
+        
     };
 };
