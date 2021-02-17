@@ -36,21 +36,24 @@ class duck {
     this.animators = []; //[state][facing]
     this.armAnimators = []; //[state][facing][hold] Does not render when standing unless we are holding something.
 
+    //hold state need (press k)
+
     this.animators["stand"] = []
     this.animators["walk"] = []
     this.animators["run"] = []
     this.animators["slide"] = []
     this.animators["wallcling"] = []
-    this.animators["squat"] = []
-    this.animators["crouch"] = []
+    this.animators["squat"] = []     //squat need
+    this.animators["crouch"] = []    //crouch need
     this.animators["jump"] = []
-    this.animators["freefall"] = []
-    this.animators["wallslide"] = []
+    this.animators["freefall"] = []    //freefall need
+    this.animators["wallslide"] = []   //wallslide need
     this.armAnimators["stand"] = []
     this.armAnimators["walk"] = []
     this.armAnimators["run"] = []
     this.armAnimators["squat"] = []
     this.armAnimators["jump"] = []
+    this.armAnimators["wallslide"] = [] 
     this.armAnimators["walk"]["l"]= []  //done
     this.armAnimators["walk"]["r"]= []  //done
     this.armAnimators["run"]["l"]= []   //done
@@ -61,6 +64,8 @@ class duck {
     this.armAnimators["stand"]["r"]= [] //done
     this.armAnimators["jump"]["l"]= []  //done
     this.armAnimators["jump"]["r"]= []  //done
+    this.armAnimators["wallslide"]["l"] = []  //done
+    this.armAnimators["wallslide"]["r"] = []  //done
 
 
     this.animators["stand"]["r"] =
@@ -422,6 +427,29 @@ class duck {
       true,
       null)
 
+    this.armAnimators["wallslide"]["l"]["down"]= new animator(this.spritesheet,
+      47,
+      478,
+      12,
+      14,
+      1,
+      0.10,
+      4,
+      true,
+      true,
+      null)
+  
+    this.armAnimators["wallslide"]["r"]["down"]= new animator(this.spritesheet,
+      34,
+      518,
+      12,
+      14,
+      1,
+      0.10,
+      4,
+      true,
+      true,
+      null)
     this.setSpawn(x, y)
   }
 
