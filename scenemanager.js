@@ -21,9 +21,9 @@ class scenemanager {
             console.log(level.backs)
             for (let i = 0; i < level.backs.length; i++) {
                 let type = level.backs[i].type
-                //this.game.addEntity(new long_floorsandwalls(this.game, startx + level.backs[i].startX * PARAMS.BLOCKWIDTH, starty - level.backs[i].startY * PARAMS.BLOCKWIDTH,level.backs[i].lengthX,
-                //    level.backs[i].lengthY, type))
-                //*
+                this.game.addEntity(new long_backgrounds(this.game, startx + level.backs[i].startX * PARAMS.BLOCKWIDTH, starty - level.backs[i].startY * PARAMS.BLOCKWIDTH,level.backs[i].lengthX,
+                    level.backs[i].lengthY, type))
+                /*
                 for (let j = level.backs[i].startX; j < level.backs[i].lengthX + level.backs[i].startX; j++) {
                     for (let k = level.backs[i].startY; k < level.backs[i].lengthY + level.backs[i].startY; k++) {
                         this.game.addEntity(new background(this.game, startx + j * PARAMS.BLOCKWIDTH, starty - k * PARAMS.BLOCKWIDTH, type))

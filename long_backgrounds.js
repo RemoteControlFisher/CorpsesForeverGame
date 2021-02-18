@@ -5,6 +5,9 @@ class long_backgrounds {
 		this.animations = []
 		this.scales = []
 
+		this.x = startX
+		this.y = startY + 32 - 32 * lengthY
+
 		this.animations["bwall"] =
 			new animator(this.spritesheet,
 				0, //X
@@ -25,14 +28,14 @@ class long_backgrounds {
 
 	draw(ctx) {
 		this.animations[this.type].drawFrame(this.game.clockTick, ctx,
-			this.BB.x - this.game.camera.x,
-			this.BB.y - this.game.camera.y, 2)
+			this.x - this.game.camera.x,
+			this.y - this.game.camera.y, 2)
 
 		for (let j = 0; j < this.lengthX; j++) {
 			for (let k = 0; k < this.lengthY; k++) {
 				this.animations[this.type].drawFrame(this.game.clockTick, ctx,
-					this.BB.x + j * PARAMS.BLOCKWIDTH - this.game.camera.x,
-					this.BB.y + k * PARAMS.BLOCKWIDTH - this.game.camera.y, 2.03)
+					this.x + j * PARAMS.BLOCKWIDTH - this.game.camera.x,
+					this.y + k * PARAMS.BLOCKWIDTH - this.game.camera.y, 2.03)
 			}
 		}
 		//ctx.strokeStyle = 'Red';
