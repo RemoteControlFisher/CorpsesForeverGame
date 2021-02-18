@@ -382,7 +382,7 @@ var tutorialLevel = {
             {
                   x: 95,
                   y: 20,
-                  type: "saw"
+                  type: "lsaw"
             }
             ,{
                   x: 91,
@@ -392,7 +392,7 @@ var tutorialLevel = {
             ,{
                   x: 95,
                   y: 23,
-                  type: "saw"
+                  type: "lsaw"
             }
             ,{
                   x: 91,
@@ -402,7 +402,7 @@ var tutorialLevel = {
             ,{
                   x: 95,
                   y: 26,
-                  type: "saw"
+                  type: "lsaw"
             }
             ,{
                   x: 91,
@@ -478,7 +478,7 @@ var tutorialLevel = {
             { x: 85, y: 25  },
             { x: 87, y: 25  }
       ],
-      buttons: [{ x: -10, y: 1 }],
+      buttons: [{ x: -3, y: 24.3 }],
       textboxes: [{
             x: 0, y: 16
       },

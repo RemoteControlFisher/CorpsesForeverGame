@@ -12,6 +12,7 @@ class Hoppers {
 	constructor(game, x, y) {
 		Object.assign(this, { game, x, y });
 
+		const MAX_WALK = 70;
 		const MIN_WALK = 50;
 		const GRAVITY = 1800;
 
@@ -27,6 +28,7 @@ class Hoppers {
 
 		this.velocityX = -MIN_WALK;
 		this.velocityY = 0;
+		this.spotted = false;
 
 		this.updateBB(2);
 
@@ -100,12 +102,12 @@ class Hoppers {
 		this.animators["attack"]["r"] =
 			new animator(this.spritesheetAttk, //Spritesheet
 				0,
-				3,
-				27,
-				30,
+				0,
+				32,
+				32,
 				7,
 				0.1,
-				6,
+				0,
 				false,
 				true,
 				null)
@@ -113,38 +115,70 @@ class Hoppers {
 		this.animators["attack"]["l"] =
 			new animator(this.spritesheetAttkR, //Spritesheet
 				0,
-				2,
-				26,
-				30,
+				0,
+				32,
+				32,
 				7,
 				0.1,
-				6,
+				0,
 				true,
 				true,
 				null)
 	};
 
 	update() {
-		let tick = this.game.clockTick;
-		let center = this.BB.center()
-		let dcenter = this.game.duck.BB.center()
+		if (this.state != "dead") {
+			let tick = this.game.clockTick;
+			let center = this.BB.center()
+			let dcenter = this.game.duck.BB.center()
 
-		this.velocityY += GRAVITY * tick
+			//let dfacing = this.game.duck.facing
+			//console.log("duck facing: " + dfacing) 
 
-		this.x += this.velocityX * tick
-		this.y += this.velocityY * tick
+			//length between duck and hoppers
+			length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
+			//console.log("space: " + length)
 
-		this.updateBB(2)
-		this.collide()
+			this.velocityY += GRAVITY * tick
 
-		//Initial Walking animation
+			this.x += this.velocityX * tick
+			this.y += this.velocityY * tick
 
-		//Debug purposes
-		//console.log("x" + this.x);
-		//console.log("y" + this.y);
-		//console.log("Vx" + this.velocityX);
-		//console.log("Vy" + this.velocityY);
+			this.updateBB(2)
+			this.collide()
 
+			//Initial Walking animation
+
+			//Debug purposes
+			//console.log("x" + this.x);
+			//console.log("y" + this.y);
+			//console.log("Vx" + this.velocityX);
+			//console.log("Vy" + this.velocityY);
+
+			if (length <= 160) {
+				this.state = "attack"
+				this.spotted = true
+				if (center.x > dcenter.x) {
+					this.facing = "l"
+					this.velocityX = -MAX_WALK
+				}
+				else {
+					this.facing = "r"
+					this.velocityX = MAX_WALK
+				}
+			}
+			else {
+				this.state = "walk"
+				this.spotted = "false"
+				if (this.facing == "l") {
+					this.velocityX = -MIN_WALK
+				}
+				else {
+
+					this.velocityX = MIN_WALK
+				}
+			}
+		}
 	};
 
 	updateBB(scale) {
@@ -167,14 +201,14 @@ class Hoppers {
 				//If hits the left wall
 				else if (entity.wall && !entity.platform && that.BB.left < entity.BB.right && that.facing == 'l') {
 					that.x = that.BB.left
-					that.velocityX += MIN_WALK
+					that.velocityX = MIN_WALK
 					that.facing = "r"
 					//that.x = that.entity.right
 				}
 				//If hits the right wall
 				else if (entity.wall && !entity.platform && that.BB.right > entity.BB.left && that.facing == 'r') {
-					that.x = that.BB.right - 100
-					that.velocityX -= MIN_WALK
+					that.x = that.BB.right - 79
+					that.velocityX = -MIN_WALK
 					that.facing = "l"
 					//that.x = that.entity.left
 				}
@@ -182,6 +216,10 @@ class Hoppers {
 				else if (entity.saw && that.state != "dead") {
 					die(entity)
 				}
+                else if (entity.game.duck && entity.game.duck.state != "dead" && ((that.BB.left < entity.game.duck.BB.right && that.BB.left > entity.game.duck.BB.left) || (that.BB.right > entity.game.duck.BB.left && that.BB.right < entity.game.duck.BB.right)) && ((entity.game.duck.BB.bottom < that.BB.bottom && entity.game.duck.BB.bottom > that.BB.top) || (entity.game.duck.BB.top > that.BB.top && entity.game.duck.BB.top < that.BB.bottom)))
+                {
+					entity.game.duck.die(that);
+                }
 			}
 		});
 		this.updateBB(2);
@@ -208,7 +246,7 @@ class Hoppers {
 		//this.animators["hurt"]["l"].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 3);
 		//this.animators["attack"]["l"].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 3);
 
-		/*
+
 		ctx.strokeStyle = 'Red';
 		ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
 		ctx.strokeStyle = 'Blue';
@@ -216,7 +254,7 @@ class Hoppers {
 
 		let center = this.BB.center()
 
-		
+
 		ctx.beginPath();
 		ctx.strokeStyle = 'Green';
 		ctx.arc(center.x - this.game.camera.x, center.y - this.game.camera.y, 1, 0, 2 * Math.PI)
@@ -229,7 +267,7 @@ class Hoppers {
 		ctx.moveTo(center.x - this.game.camera.x, center.y - this.game.camera.y);
 		ctx.lineTo(dcenter.x - this.game.camera.x, dcenter.y - this.game.camera.y);
 		ctx.stroke();
-		*/
+
 
 	};
 };
