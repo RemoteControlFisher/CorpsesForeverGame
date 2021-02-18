@@ -500,6 +500,7 @@ class duck {
       this.carried.BB.active = true
       this.carried.velocityX = Math.sign(corpseVX) * 420
       this.carried = null // We are no longer carrying it.
+      this.armstate = "down"
     }
 
 
