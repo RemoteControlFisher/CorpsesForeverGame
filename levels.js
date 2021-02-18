@@ -2,7 +2,7 @@ var tutorialLevel = {
       backs: [
             { startX: -5, startY: 1, lengthX: 20, lengthY: 30, type: "bwall" },
             { startX: 14, startY: 11, lengthX: 20, lengthY: 20, type: "bwall" },
-            { startX: 34, startY: 24, lengthX: 30, lengthY: 11, type: "bwall" },
+            { startX: 34, startY: 24, lengthX: 72, lengthY: 11, type: "bwall" },
       //            //{ startX: 49, startY: 23, lengthX: 1, lengthY: 1, type: "tleft" },
       { startX: 44, startY: 18, lengthX: 61, lengthY: 6, type: "bwall" },
       { startX: 65, startY: 16, lengthX: 40, lengthY: 2, type: "bwall" },
@@ -96,26 +96,26 @@ var tutorialLevel = {
             { startX: 65, startY: 18, lengthX: 1, lengthY: 1, type: "tleft" },
             { startX: 45, startY: 18, lengthX: 20, lengthY: 1, type: "floor" },
 
+            { startX: 65, startY: 15, lengthX: 40, lengthY: 1, type: "floor" },
             { startX: 65, startY: 16, lengthX: 1, lengthY: 2, type: "wright" },
             { startX: 65, startY: 15, lengthX: 1, lengthY: 1, type: "tright" },
             { startX: 105, startY: 15, lengthX: 1, lengthY: 1, type: "tleft" },
-            { startX: 66, startY: 15, lengthX: 40, lengthY: 1, type: "floor" },
 
             { startX: 64, startY: 23, lengthX: 6, lengthY: 1, type: "floor" },
 
             { startX: 69, startY: 19, lengthX: 1, lengthY: 4, type: "wright" },
-            { startX: 64, startY: 23, lengthX: 36, lengthY: 1, type: "floor" },
-            { startX: 100, startY: 23, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: 64, startY: 23, lengthX: 35, lengthY: 1, type: "floor" },
+            { startX: 99, startY: 23, lengthX: 1, lengthY: 1, type: "tleft" },
 
             { startX: 69, startY: 19, lengthX: 31, lengthY: 1, type: "floor" },
-            { startX: 100, startY: 19, lengthX: 1, lengthY: 4, type: "wleft" },
+            { startX: 100, startY: 19, lengthX: 1, lengthY: 8, type: "wleft" },
 
 
 
 
             { startX: 105, startY: 15, lengthX: 1, lengthY: 1, type: "tleft" },
             { startX: 43, startY: 18, lengthX: 1, lengthY: 3, type: "wright" },
-            { startX: 105, startY: 15, lengthX: 1, lengthY: 14, type: "wright" },
+            { startX: 105, startY: 15, lengthX: 1, lengthY: 25, type: "wleft" },
 
 
 
@@ -232,7 +232,7 @@ var tutorialLevel = {
             // { x: 70, y: 25  },
             //  { x: 80, y: 25  },
             //  { x: 85, y: 25  },
-            //   { x: 87, y: 25  }
+               { x: 87, y: 25  }
       ],
       buttons: [{ x: -3, y: 24.3 }],
       textboxes: [
@@ -271,7 +271,10 @@ var tutorialLevel = {
 
             { x: 4, y: 34, toWrite: 'Pressing down while running lets you slide.', animated: false, delay: 0 },
             { x: 4, y: 33, toWrite: 'Jumping while sliding gives you a sorter, faster jump.', animated: false, delay: 0 },
-            { x: 4, y: 32, toWrite: 'Lightly tapping the jump button also gives you a short jump.', animated: false, delay: 0 }
+            { x: 4, y: 32, toWrite: 'Lightly tapping the jump button also gives you a short jump.', animated: false, delay: 0 },
+
+            { x: 80, y: 13, toWrite: 'The chomper is a fierce, but timid foe. If you corner it, it will slay you.', animated: false, delay: 0 },
+            { x: 80, y: 12, toWrite: 'Sadly, your flippers alone cannot slay it, if only you had something else...', animated: false, delay: 0 },
 
 
 
