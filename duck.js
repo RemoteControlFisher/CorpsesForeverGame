@@ -498,7 +498,6 @@ class duck {
       true,
       null)
 
-
   this.armAnimators["wallcling"]["l"]["down"]= new animator(this.spritesheet,
     38,
     518,
@@ -541,14 +540,14 @@ class duck {
       13,
       14,
       5,
-      0.10,
+      0.1,
       3,
       true,
       true,
       null)
           
     this.armAnimators["walk"]["r"]["hold"]= new animator(this.spritesheet,
-      0,
+      1,
       568,
       13,
       14,
