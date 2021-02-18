@@ -8,7 +8,7 @@ class scenemanager {
 
         this.duck = new duck(this.game, "stand", 0, 0);
         console.log(duck)
-        this.loadlevel(tutorialLevel, 100, 300);
+        this.loadlevel(tutorialLevel, 0, 0);
     };
 
     loadlevel(level, startx, starty) {
@@ -51,27 +51,7 @@ class scenemanager {
                 //let text = level.textboxes[i].text
                 this.game.addEntity(new textboxes(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, i))
             }
-        if (level.boxes)
-            for (let i = 0; i < level.boxes.length; i++) {
-                let x = level.boxes[i].x
-                let y = level.boxes[i].y
-                this.game.addEntity(new boxes(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH))
-            }
-        if (level.corpses) {
-            console.log("Hi.")
-            for (let i = 0; i < level.corpses.length; i++) {
-                let x = level.corpses[i].x
-                let y = level.corpses[i].y
-                let type = level.corpses[i].type
-                let facing = "r"
-                if (level.corpses[i].facing) {
-                    facing = level.corpses[i].facing
-                }
-                let myCorpse = new corpses(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, type, facing)
-                this.game.addEntity(myCorpse)
-                console.log(myCorpse)
-            }
-        }
+        
         if (level.traps)
             for (let i = 0; i < level.traps.length; i++) {
                 let x = level.traps[i].x
@@ -93,6 +73,18 @@ class scenemanager {
                 let y = level.doors[i].y
                 this.game.addEntity(new doors(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH))
             }
+        if (level.dtexts) {
+            for (let i = 0; i < level.dtexts.length; i++) {
+                let x = level.dtexts[i].x
+                let y = level.dtexts[i].y
+                let text = level.dtexts[i].toWrite
+                let anim = level.dtexts[i].animated
+                let delay = level.dtexts[i].delay
+                let myText = new dtext(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, text, anim, delay)
+                this.game.addEntity(myText)
+            }
+        }
+
         if (level.chompers)
             for (let i = 0; i < level.chompers.length; i++) {
                 let x = level.chompers[i].x
@@ -119,15 +111,25 @@ class scenemanager {
                 this.game.addEntity(mySpawn)
 
             }
-        if (level.dtexts) {
-            for (let i = 0; i < level.dtexts.length; i++) {
-                let x = level.dtexts[i].x
-                let y = level.dtexts[i].y
-                let text = level.dtexts[i].toWrite
-                let anim = level.dtexts[i].animated
-                let delay = level.dtexts[i].delay
-                let myText = new dtext(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, text, anim, delay)
-                this.game.addEntity(myText)
+            if (level.boxes)
+            for (let i = 0; i < level.boxes.length; i++) {
+                let x = level.boxes[i].x
+                let y = level.boxes[i].y
+                this.game.addEntity(new boxes(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH))
+            }
+        if (level.corpses) {
+            console.log("Hi.")
+            for (let i = 0; i < level.corpses.length; i++) {
+                let x = level.corpses[i].x
+                let y = level.corpses[i].y
+                let type = level.corpses[i].type
+                let facing = "r"
+                if (level.corpses[i].facing) {
+                    facing = level.corpses[i].facing
+                }
+                let myCorpse = new corpses(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, type, facing)
+                this.game.addEntity(myCorpse)
+                console.log(myCorpse)
             }
         }
 

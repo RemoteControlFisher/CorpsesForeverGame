@@ -1,6 +1,6 @@
 class textAnimator
 {
-	constructor(game, toWrite, delay = 0,  letterDuration = 0.12 )
+	constructor(game, toWrite, delay = 0,  letterDuration = 0.06 )
 	{
 		Object.assign(this, {game, toWrite});
         this.elapsedTime = delay;
@@ -11,7 +11,7 @@ class textAnimator
 	{
         this.elapsedTime += tick
         let pct = Math.min(1, this.elapsedTime/this.writeDuration)
-        console.log(pct)
+        //console.log(pct)
 
 
 		ctx.font = PARAMS.BLOCKWIDTH/2 + 'px neuropol_xregular';

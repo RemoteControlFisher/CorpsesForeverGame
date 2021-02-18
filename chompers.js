@@ -319,28 +319,30 @@ class Chompers {
 	}
 
 	draw(ctx) {
+		console.log(this.x/32 + " " +this.y/32)
 		//this.animators["stand"]["r"].drawFrame(this.game.clockTick, ctx, this.x+90  - this.game.camera.x, this.y - this.game.camera.y, 1)
 		//this.animators["attack"]["r"].drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y - this.game.camera.y, 1)
 		//this.animators["woke"]["l"].drawFrame(this.game.clockTick, ctx, this.x+180  - this.game.camera.x, this.y - this.game.camera.y, 1)
 		if (this.state != "dead") {
 			this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1);
-			ctx.strokeStyle = 'Red';
-			ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
+			
+			// ctx.strokeStyle = 'Red';
+			// ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
 
-			let center = this.BB.center()
+			// let center = this.BB.center()
 
-			ctx.beginPath();
-			ctx.strokeStyle = 'Green';
-			ctx.arc(center.x - this.game.camera.x, center.y - this.game.camera.y, 1, 0, 2 * Math.PI)
-			ctx.stroke();
+			// ctx.beginPath();
+			// ctx.strokeStyle = 'Green';
+			// ctx.arc(center.x - this.game.camera.x, center.y - this.game.camera.y, 1, 0, 2 * Math.PI)
+			// ctx.stroke();
 
-			let dcenter = this.game.duck.BB.center()
+			// let dcenter = this.game.duck.BB.center()
 
-			ctx.beginPath();
-			ctx.strokeStyle = 'Pink';
-			ctx.moveTo(center.x - this.game.camera.x, center.y - this.game.camera.y);
-			ctx.lineTo(dcenter.x - this.game.camera.x, dcenter.y - this.game.camera.y);
-			ctx.stroke();
+			// ctx.beginPath();
+			// ctx.strokeStyle = 'Pink';
+			// ctx.moveTo(center.x - this.game.camera.x, center.y - this.game.camera.y);
+			// ctx.lineTo(dcenter.x - this.game.camera.x, dcenter.y - this.game.camera.y);
+			// ctx.stroke();
 
 			/** Drawing a detection circle as a prototype for some possible AI behavior.
 	
