@@ -466,10 +466,10 @@ var tutorialLevel = {
             //}
       ],
       chompers: [
-            { x: 15, y: 15 }
+            { x: 20, y: 15 }
       ],
       hoppers: [
-            { x: 11, y: 5 },
+            //{ x: 11, y: 5 },
             { x: 40, y: 25  },
             { x: 50, y: 25  },
             { x: 60, y: 25  },
