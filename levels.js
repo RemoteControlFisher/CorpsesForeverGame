@@ -494,6 +494,18 @@ var tutorialLevel = {
             {x: -2, y: 7},
             {x: 25, y: 19},
             {x: 34, y: 35}
+      ],
+      dtexts: [
+            {x: 16, y: 7, toWrite: 'Uhg my head.', animated : true, delay : 3},
+            {x: 16, y: 6, toWrite: 'Everyones.... dead.', animated : true, delay : 8},
+            {x: 16, y: 5, toWrite: 'The corpses.... Are everywhere.', animated : true, delay : 11},
+            {x: 16, y: 4, toWrite: 'This.... Is beautiful, I need more corpses.', animated : true, delay : 19},
+            {x: 16, y: 3, toWrite: 'Lets go make them.', animated : true, delay : 24},
+            {x: -13, y: 3, toWrite: 'Press space to jump.', animated : false, delay : 0},
+            {x: -13, y: 2, toWrite: 'AD To walk.', animated : false, delay : 0},
+            {x: -13, y: 1, toWrite: 'Shift to sprint.', animated : false, delay : 0}
+
+
       ]
 
 };

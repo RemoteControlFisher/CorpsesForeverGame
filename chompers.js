@@ -168,7 +168,7 @@ class Chompers {
 	};
 
 	update() {
-		console.log(this.y)
+		//console.log(this.y)
 		if (this.state != "dead") {
 			let tick = this.game.clockTick;
 			let center = this.BB.center()

@@ -119,6 +119,17 @@ class scenemanager {
                 this.game.addEntity(mySpawn)
 
             }
+        if (level.dtexts) {
+            for (let i = 0; i < level.dtexts.length; i++) {
+                let x = level.dtexts[i].x
+                let y = level.dtexts[i].y
+                let text = level.dtexts[i].toWrite
+                let anim = level.dtexts[i].animated
+                let delay = level.dtexts[i].delay
+                let myText = new dtext(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, text, anim, delay)
+                this.game.addEntity(myText)
+            }
+        }
 
         this.duck.x = startx;
         this.duck.y = starty - 3 * PARAMS.BLOCKWIDTH;
