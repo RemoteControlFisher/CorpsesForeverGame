@@ -36,12 +36,18 @@ class buttons
 	update()
 	{
       this.updateBB(1)
+      this.collide()
 	};
 
     updateBB(scale) {
 		this.oldBB = this.BB;
 		this.BB = new boundingBox(this.x + 7 * scale, this.y + 1 * scale, 52 * scale, 10 * scale);
 	}
+    
+    collide(){
+        var that = this;
+		
+    }
 
 	draw(ctx)
 	{

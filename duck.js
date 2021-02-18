@@ -1134,10 +1134,6 @@ class duck {
         this.armAnimators[this.state][this.facing][this.armstate].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y + 16 - this.game.camera.y, 2)
 
         /*
-<<<<<<< HEAD
-=======
-
->>>>>>> c7cd0ef93f6d8ac3585e5ceb738dd367d8b801ee
       ctx.beginPath();
       ctx.strokeStyle = 'Green';
       ctx.arc(center.x - this.game.camera.x, center.y - this.game.camera.y, 1, 0, 2 * Math.PI)
@@ -1146,10 +1142,6 @@ class duck {
       ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
       ctx.strokeStyle = 'Blue';
       ctx.strokeRect(this.cBB.x - this.game.camera.x, this.cBB.y - this.game.camera.y, this.cBB.width, this.cBB.height);
-<<<<<<< HEAD
-=======
-
->>>>>>> c7cd0ef93f6d8ac3585e5ceb738dd367d8b801ee
       */
     }
   }

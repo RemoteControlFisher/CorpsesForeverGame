@@ -155,7 +155,7 @@ class Hoppers {
 			//console.log("Vx" + this.velocityX);
 			//console.log("Vy" + this.velocityY);
 
-			if (length <= 160) {
+			if (length <= 160 && this.game.duck.state != "dead") {
 				this.state = "attack"
 				this.spotted = true
 				if (center.x > dcenter.x) {
@@ -219,6 +219,7 @@ class Hoppers {
                 else if (entity.game.duck && entity.game.duck.state != "dead" && ((that.BB.left < entity.game.duck.BB.right && that.BB.left > entity.game.duck.BB.left) || (that.BB.right > entity.game.duck.BB.left && that.BB.right < entity.game.duck.BB.right)) && ((entity.game.duck.BB.bottom < that.BB.bottom && entity.game.duck.BB.bottom > that.BB.top) || (entity.game.duck.BB.top > that.BB.top && entity.game.duck.BB.top < that.BB.bottom)))
                 {
 					entity.game.duck.die(that);
+
                 }
 			}
 		});
