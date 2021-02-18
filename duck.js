@@ -912,6 +912,16 @@ class duck {
         }
       } else //Sliding uses a different hitbox.
         if (entity.BB && that.cBB.isCollide(entity.BB)) {
+           //If the thing is a spawner, set it as our spawn.
+           if (entity.spawner) {
+            let spawnpoint = entity.BB.center();
+            that.setSpawn(spawnpoint.x, spawnpoint.y, entity)
+          }
+
+          if (!(that.state == "dead") && (entity.saw)) {
+            that.die(entity)
+          }
+          
           if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
             that.velocityY = 0
             that.y = entity.BB.top - 50
