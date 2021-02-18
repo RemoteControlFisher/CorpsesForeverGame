@@ -465,10 +465,17 @@ var tutorialLevel = {
             //      type: "spike"
             //}
       ],
+      doors: [
+            {x: 33 ,y: 32},
+            {x: 33 ,y: 31},
+            {x: 33 ,y: 30},
+            {x: 33 ,y: 29},
+            {x: 33 ,y: 28}
+      ],
       chompers: [
             { x: 15, y: 15 }
       ],
-      hoppers: [
+      hoppers:[
             { x: 11, y: 5 },
             { x: 40, y: 25  },
             { x: 50, y: 25  },
@@ -479,12 +486,9 @@ var tutorialLevel = {
             { x: 87, y: 25  }
       ],
       buttons: [{ x: -3, y: 24.3 }],
-      textboxes: [{
-            x: 0, y: 16
-      },
-      {
-            x: 16, y: 16
-      }
+      textboxes: [
+            {x: 0, y: 16},
+            {x: 16, y: 16}
       ],
       spawns: [
             {x: -2, y: 7},

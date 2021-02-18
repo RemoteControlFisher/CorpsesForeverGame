@@ -20,11 +20,19 @@ class doors
 
 	update()
 	{
-		
+	   this.updateBB(1);
 	};
+
+	updateBB(scale) {
+		this.oldBB = this.BB;
+		this.BB = new boundingBox(this.x  * scale, this.y - 3 * scale, 35 * scale, 35 * scale);
+	}
 
 	draw(ctx)
 	{
 		this.door.drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y - this.game.camera.y, 2)
+
+		ctx.strokeStyle = 'Red';
+		ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
 	};
 };
