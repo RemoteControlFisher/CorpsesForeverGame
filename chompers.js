@@ -315,6 +315,7 @@ class Chompers {
 		//this.animators["woke"]["l"].drawFrame(this.game.clockTick, ctx, this.x+180  - this.game.camera.x, this.y - this.game.camera.y, 1)
 		if (this.state != "dead") {
 			this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1);
+			/*
 			ctx.strokeStyle = 'Red';
 			ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
 
@@ -332,6 +333,7 @@ class Chompers {
 			ctx.moveTo(center.x - this.game.camera.x, center.y - this.game.camera.y);
 			ctx.lineTo(dcenter.x - this.game.camera.x, dcenter.y - this.game.camera.y);
 			ctx.stroke();
+			*/
 
 			/** Drawing a detection circle as a prototype for some possible AI behavior.
 	
