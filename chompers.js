@@ -180,11 +180,16 @@ class Chompers {
 			this.y += this.velocityY * tick
 			this.updateBB(1)
 
+			this.length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
 			this.collide()
-
+			if (this.game.duck.state == "dead")
+			{
+				this.length = Number.MAX_VALUE
+				this.angry = false;
+			}
 			if (this.angry) {
-				length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
-				if (length > 320) {
+				
+				if (this.length > 320) {
 					this.state = "walk";
 					if (this.facing == 'r') {
 						this.velocityX = MIN_WALK
@@ -194,7 +199,7 @@ class Chompers {
 					}
 				}
 				else if (this.facing == 'l') {
-					if (this.BB.right > this.game.duck.BB.left && this.velocityX) {
+					if (this.BB.right > this.game.duck.BB.left) {
 						this.velocityX = -MAX_WALK
 					}
 					else {
@@ -213,9 +218,8 @@ class Chompers {
 				}
 			}
 			else {
-				length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
 
-				if (length <= 160) {
+				if (this.length <= 160) {
 					if (dcenter.x <= center.x) {
 						this.velocityX = MAX_WALK
 						this.facing = 'r'
@@ -225,10 +229,10 @@ class Chompers {
 						this.facing = 'l'
 					}
 				}
-				if (length > 320 && this.velocityX == MAX_WALK) {
+				if (this.length > 320 && this.velocityX == MAX_WALK) {
 					this.velocityX = MIN_WALK
 				}
-				else if (length > 320 && this.velocityX == -MAX_WALK) {
+				else if (this.length > 320 && this.velocityX == -MAX_WALK) {
 					this.velocityX = -MIN_WALK
 				}
 
@@ -259,7 +263,7 @@ class Chompers {
 				}
 				else if (entity.wall && !entity.platform && that.BB.left < entity.BB.right && that.facing == 'l') {
 					if (!that.angry) {
-						if (length < 160) {
+						if (that.length < 160) {
 							that.angry = true
 						}
 						else {
@@ -270,12 +274,13 @@ class Chompers {
 					}
 					else {
 						that.x = entity.BB.right
-						that.updateBB(1)
+						
 					}
+					that.updateBB(1)
 				}
 				else if (entity.wall && !entity.platform && that.BB.right > entity.BB.left && that.facing == 'r') {
 					if (!that.angry) {
-						if (length < 160) {
+						if (that.length < 160) {
 							that.angry = true
 						}
 						else {
@@ -290,6 +295,10 @@ class Chompers {
 					}
 
 					that.updateBB(1)
+				}
+				else if (entity.game.duck && entity.game.duck.state != "dead" && ((that.BB.left <= entity.game.duck.BB.right && that.BB.left >= entity.game.duck.BB.left) || (that.BB.right >= entity.game.duck.BB.left && that.BB.right <= entity.game.duck.BB.right)) && ((entity.game.duck.BB.bottom <= that.BB.bottom && entity.game.duck.BB.bottom >= that.BB.top) || (entity.game.duck.BB.top >= that.BB.top && entity.game.duck.BB.top <= that.BB.bottom)))
+				{
+					entity.game.duck.die(that)
 				}
 				/*
 				else if (entity.game.duck && that.BB.top <= entity.game.duck.BB.bottom && that.BB.top > entity.game.duck.oldBB.bottom && (entity.game.duck.BB.right >= that.BB.left && entity.game.duck.BB.right <= that.BB.right || entity.game.duck.BB.left <= that.BB.right && entity.game.duck.BB.left >= that.BB.left))
@@ -315,7 +324,6 @@ class Chompers {
 		//this.animators["woke"]["l"].drawFrame(this.game.clockTick, ctx, this.x+180  - this.game.camera.x, this.y - this.game.camera.y, 1)
 		if (this.state != "dead") {
 			this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1);
-			/*
 			ctx.strokeStyle = 'Red';
 			ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
 
@@ -333,7 +341,6 @@ class Chompers {
 			ctx.moveTo(center.x - this.game.camera.x, center.y - this.game.camera.y);
 			ctx.lineTo(dcenter.x - this.game.camera.x, dcenter.y - this.game.camera.y);
 			ctx.stroke();
-			*/
 
 			/** Drawing a detection circle as a prototype for some possible AI behavior.
 	

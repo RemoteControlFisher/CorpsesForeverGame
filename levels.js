@@ -66,7 +66,7 @@ var tutorialLevel = {
             startX: -5,
             startY: 1,
             lengthX: 1,
-            lengthY: 30,
+            lengthY: 40,
             type: "wright"
       },
       {
@@ -80,7 +80,7 @@ var tutorialLevel = {
             startX: 33,
             startY: 11,
             lengthX: 1,
-            lengthY: 17,
+            lengthY: 16,
             type: "wleft"
       },
       {
@@ -119,9 +119,9 @@ var tutorialLevel = {
             type: "floor"
       },
       {
-            startX: 34,   //1st platform
+            startX: 33,   //1st platform
             startY: 27,
-            lengthX: 10,
+            lengthX: 11,
             lengthY: 1,
             type: "floor"
       },
@@ -185,7 +185,7 @@ var tutorialLevel = {
             startX: 97,   //wall platform
             startY: 15,
             lengthX: 1,
-            lengthY: 19,
+            lengthY: 21,
             type: "wleft"
       },
       {
@@ -199,6 +199,27 @@ var tutorialLevel = {
             startX: 81,   //slide platform
             startY: 17,
             lengthX: 10,
+            lengthY: 1,
+            type: "floor"
+      },
+      {
+            startX: -5,   //ceiling #1
+            startY: 40,
+            lengthX: 39,
+            lengthY: 1,
+            type: "floor"
+      },
+      {
+            startX: 33,   //wall
+            startY: 33,
+            lengthX: 1,
+            lengthY: 7,
+            type: "wleft"
+      },
+      {
+            startX: 34,   //ceiling #2
+            startY: 36,
+            lengthX: 64,
             lengthY: 1,
             type: "floor"
       }],
@@ -288,47 +309,47 @@ var tutorialLevel = {
       },
       {
             x: 2.6,
-            y: 90,
+            y: 30,
             type: "duck"
       },
       {
             x: 2.9,
-            y: 300,
+            y: 30,
             type: "duck"
       },
       {
             x: 5.3,
-            y: 45,
+            y: 30,
             type: "chomper"
       },
       {
             x: -2.3,
-            y: 48,
+            y: 30,
             type: "chomper"
       },
       {
             x: -4,
-            y: 70,
+            y: 30,
             type: "duck"
       },
       {
             x: 5.3,
-            y: 42,
+            y: 30,
             type: "duck"
       },
       {
             x: 11,
-            y: 44,
+            y: 30,
             type: "chomper"
       },
       {
             x: 12,
-            y: 55,
+            y: 38,
             type: "duck"
       },
       {
             x: 12,
-            y: 50,
+            y: 39,
             type: "hopper"
       }
             ,
@@ -361,7 +382,7 @@ var tutorialLevel = {
             {
                   x: 95,
                   y: 20,
-                  type: "saw"
+                  type: "lsaw"
             }
             ,{
                   x: 91,
@@ -371,7 +392,7 @@ var tutorialLevel = {
             ,{
                   x: 95,
                   y: 23,
-                  type: "saw"
+                  type: "lsaw"
             }
             ,{
                   x: 91,
@@ -381,7 +402,7 @@ var tutorialLevel = {
             ,{
                   x: 95,
                   y: 26,
-                  type: "saw"
+                  type: "lsaw"
             }
             ,{
                   x: 91,
@@ -444,11 +465,18 @@ var tutorialLevel = {
             //      type: "spike"
             //}
       ],
-      chompers: [
-            { x: 15, y: 15 }
+      doors: [
+            {x: 33 ,y: 32},
+            {x: 33 ,y: 31},
+            {x: 33 ,y: 30},
+            {x: 33 ,y: 29},
+            {x: 33 ,y: 28}
       ],
-      hoppers: [
-            { x: 11, y: 5 },
+      chompers: [
+            { x: 20, y: 15 }
+      ],
+      hoppers:[
+            //{ x: 11, y: 5 },
             { x: 40, y: 25  },
             { x: 50, y: 25  },
             { x: 60, y: 25  },
@@ -457,19 +485,15 @@ var tutorialLevel = {
             { x: 85, y: 25  },
             { x: 87, y: 25  }
       ],
-      buttons: [{ x: -10, y: 1 }],
-      textboxes: [{
-            x: 0, y: 16
-      },
-      {
-            x: 16, y: 16
-      }
+      buttons: [{ x: -3, y: 24.3 }],
+      textboxes: [
+            {x: 0, y: 16},
+            {x: 16, y: 16}
       ],
-      spawns: [{
-            x: -2, y: 7
-      },{
-            x: 25, y: 19
-      }
+      spawns: [
+            {x: -2, y: 7},
+            {x: 25, y: 19},
+            {x: 34, y: 35}
       ]
 
 };
