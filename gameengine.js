@@ -19,6 +19,8 @@ class GameEngine {
         this.act = false;
         this.jumpDisconnect = false;
         this.kDisconnect = false;
+        this.ctrl = false;
+
 
     };
 
@@ -69,6 +71,10 @@ class GameEngine {
                 case "KeyK":
                     that.keyK = true;
                     break;
+                case "ControlLeft":
+                case "ControlRight":
+                    that.ctrl = true;
+                    break;
                 default:
                     console.log(e.code)
                     break;
@@ -103,6 +109,11 @@ class GameEngine {
                     that.keyK = false;
                     that.kDisconnect = false;
                     break;
+                case "ControlLeft":
+                case "ControlRight":
+                    that.ctrl = false;
+                    break;
+
             }
         }, false);
         console.log("Finalizing inputs...")
@@ -115,8 +126,10 @@ class GameEngine {
     draw() {
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
         for (var i = 0; i < this.entities.length; i++) {
-            this.entities[i].draw(this.ctx);
+            if (this.entities[i] != this.duck)
+                this.entities[i].draw(this.ctx);
         }
+        this.duck.draw(this.ctx)
     };
 
     update() {

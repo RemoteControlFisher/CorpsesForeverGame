@@ -6,6 +6,11 @@ class corpses {
 		this.hop = ASSET_MANAGER.getAsset("./sprites/slimesprite/Slime_Walk.png");
 		this.hopl = ASSET_MANAGER.getAsset("./sprites/slimesprite/Slime_Walk (Reverse).png");
 
+
+		this.state = "idle"
+
+		this.carriable = true
+
 		this.animations = []
 		this.animations.duck = []
 		this.animations.chomper = []
@@ -95,21 +100,26 @@ class corpses {
 	};
 
 	update() {
-		let tick = this.game.clockTick;
-		//These constants I did copy just so I remembered the basic constants I should use here. The rest I typed out manually with some vague inspirations being pulled
-		//From the lecture examples.
+		//WE DO NOT DRAW OR UPDATE OURSELVES WHEN CARRIED.
+		if (this.state != "carried") {
+			let tick = this.game.clockTick;
+			//These constants I did copy just so I remembered the basic constants I should use here. The rest I typed out manually with some vague inspirations being pulled
+			//From the lecture examples.
 
-		this.velocityY += GRAVITY * tick
-		if (this.velocityY > TERMINAL_VELOCITY) {
-			this.velocityY = TERMINAL_VELOCITY
+			this.velocityY += GRAVITY * tick
+			if (this.velocityY > TERMINAL_VELOCITY) {
+				this.velocityY = TERMINAL_VELOCITY
+			}
+			this.y += this.velocityY * tick
+			this.x += this.velocityX * tick
+
+			this.updateBB()
+
+			this.collide()
+		} else {
+			//Don't collide, be invisible when we are not carried!
+			this.BB.active = false
 		}
-		this.y += this.velocityY * tick
-		this.x += this.velocityX * tick
-
-		this.updateBB()
-
-		this.collide()
-
 	};
 
 	updateBB() {
@@ -117,36 +127,66 @@ class corpses {
 		this.BB = new boundingBox(this.x, this.y, this.animations[this.type][this.facing].width * this.scale, (this.animations[this.type][this.facing].height) * this.scale)
 	}
 
+	//Note to self: The duck sideways collision fixes I need to do.
 
 	collide() {
 		const that = this
 		this.game.entities.forEach(function (entity) {
 
 			if (entity.BB && that.BB.isCollide(entity.BB)) {
+				
 
-				if (entity != that && entity.platform && that.oldBB.bottom <= entity.BB.top && that.velocityY > 0) {
+				//Override usual behavior for killable things.
+				if (that.state == "thrown" && entity.killable) {
+					//Kill the target entity.
+					entity.die(that)
+					//Bounce off the thing I killed.
+					if (that.velocityY > 0) { // Thrown items ALWAYS have a sideways velocity.
+						that.velocityY = -150
+						that.velocityX = 150
+					} else {
+						that.velocityY = -150
+						that.velocityX = -15
+					}
+					that.state = "idle"
+				}
+
+				if (entity != that && entity.platform && (that.oldBB.bottom <= entity.BB.top
+					|| (entity.oldBB && that.oldBB.bottom <= that.oldBB.top)//EXTREMELY SPECIAL CASE: IF I WAS ABOVE THEM BEFORE THEY MOVED.
+					) && that.velocityY > 0) {
 					that.velocityY = 0
 					that.velocityX = 0
 					that.y = entity.BB.top - that.animations[that.type][that.facing].height * that.scale
 					if (entity.bounce) {
 						that.velocityY = -400
 					}
+					that.state = "idle"
 					that.updateBB()
 				} else if (entity.cieling && that.oldBB.top >= entity.BB.bottom) {
 					that.velocityY = 0
 					that.y = entity.BB.bottom
-					that.updateBB(2)
-				} else if (entity.wall && !entity.platform && that.BB.left < entity.BB.right && that.facing == 'l') {
+					that.state = "idle"
+
+					that.updateBB()
+				} else if (entity.wall && that.velocityX < 0 && that.BB.left < entity.BB.right) {
 
 					that.velocityX = MIN_WALK
 					that.x = entity.BB.right
+					that.state = "idle"
+
+					that.updateBB()
 
 				}
-				else if (entity.wall && !entity.platform && that.BB.right > entity.BB.left && that.facing == 'r') {
+				else if (entity.wall && that.velocityX > 0 && that.BB.right > entity.BB.left) {
 
 					that.velocityX = -MIN_WALK
+					that.x = entity.BB.left - that.BB.width
+					that.state = "idle"
 
-					that.updateBB(1)
+					that.updateBB()
+				} else if (entity.trap && that.velocityY > 0) { // If we fall onto a trap, follow the traps collision rules.
+					//Set our velocity by traps qualities.
+					that.trapBehavior(entity)
 				}
 			}
 
@@ -155,9 +195,43 @@ class corpses {
 
 	}
 
+	trapBehavior(trap){
+		switch(trap.facing){
+			case "r":
+				this.velocityY = -720
+				this.velocityX = 550
+				this.state = "thrown"
+			break;
+			case "l":
+				this.velocityY = -720
+				this.velocityX = 550
+				this.state = "thrown"
+			break;
+			default://No-facing entities should use this behavior.
+				if(this.oldBB <= entity.BB.top){
+					that.velocityY = 0
+					that.velocityX = 0
+					that.y = entity.BB.top - that.animations[that.type][that.facing].height * that.scale
+					if (entity.bounce) {
+						that.velocityY = -400
+					}
+					that.state = "idle"
+					that.updateBB()
+				}
+			break;
+		}
+	}
+
 	draw(ctx) {
-		this.animations[this.type][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, this.scale);
-		/*ctx.strokeStyle = 'Red';
-		ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);*/
+		if (this.state != "carried") {
+			this.animations[this.type][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, this.scale);
+			/*ctx.strokeStyle = 'Red';
+			ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);*/
+		}
 	};
+
+	//Used by the duck if it is carrying something.
+	duckDraw(ctx, x, y){
+		this.animations[this.type][this.facing].drawFrame(this.game.clockTick, ctx, x - this.game.camera.x, y - this.game.camera.y, this.scale * 0.9);
+	}
 };

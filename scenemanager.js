@@ -15,15 +15,20 @@ class scenemanager {
         this.game.entities = [];
         this.x = 0;
 
-        
+
 
         if (level.backs) {
             console.log(level.backs)
             for (let i = 0; i < level.backs.length; i++) {
                 let type = level.backs[i].type
-                for (let j = level.backs[i].startX; j < level.backs[i].lengthX + level.backs[i].startX; j++) {
-                    for (let k = level.backs[i].startY; k < level.backs[i].lengthY + level.backs[i].startY; k++) {
-                        this.game.addEntity(new background(this.game, startx + j * PARAMS.BLOCKWIDTH, starty - k * PARAMS.BLOCKWIDTH, type))
+                if (type = "bwall") // IF the type is an optimized background type.
+                    this.game.addEntity(new long_backgrounds(this.game, startx + level.backs[i].startX * PARAMS.BLOCKWIDTH, starty - level.backs[i].startY * PARAMS.BLOCKWIDTH, level.backs[i].lengthX,
+                        level.backs[i].lengthY, type))
+                else { // If the type is not an optimized background type.
+                    for (let j = level.backs[i].startX; j < level.backs[i].lengthX + level.backs[i].startX; j++) {
+                        for (let k = level.backs[i].startY; k < level.backs[i].lengthY + level.backs[i].startY; k++) {
+                            this.game.addEntity(new background(this.game, startx + j * PARAMS.BLOCKWIDTH, starty - k * PARAMS.BLOCKWIDTH, type))
+                        }
                     }
                 }
             }
@@ -112,7 +117,7 @@ class scenemanager {
                     this.game.duck.setSpawn(scenter.x, scenter.y, mySpawn)
                 }
                 this.game.addEntity(mySpawn)
-                
+
             }
 
         this.duck.x = startx;
@@ -131,10 +136,10 @@ class scenemanager {
         let center = this.duck.BB.center()
         this.x = center.x - midpoint;
         this.y = center.y - midheight;
-        
+
     };
 
     draw(ctx) {
-        
+
     };
 };
