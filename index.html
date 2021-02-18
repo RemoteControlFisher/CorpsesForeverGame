@@ -1,10 +1,10 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>Corpses Are Forever</title>
-    <link rel="stylesheet" type="text/css" href="fonts/stylesheet.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="styles.css" media="screen" />
     <link href='fonts/neuropol_x_rg-webfont.woff' rel='stylesheet' type='text/css'>
     <link href='fonts/neuropol_x_rg-webfont.woff2' rel='stylesheet' type='text/css'>
 
@@ -35,18 +35,40 @@
     <script type="text/javascript" src="./text.js"></script>
 
 </head>
-<body>
-    <canvas id="gameWorld" width="1800" height="768" style="background: cyan; border: 1px solid black" tabindex ="0"></canvas>
 
-    <ul id = "controlls">
-        <li>AD or arrow keys to move (WASD Reccomended.) Left Shift or J to sprint.</li>
-        <li>Space, w, or up arrow to jump. Hold jump to jump higher. (Short hop is 2 blocks tall, tall hop is 3 blocks tall, and special hops are 1 block tall.)</li>
-        <li>Down while moving to slide.</li>
-        <li>Jump while sliding for a special high speed horizontal jump.</li>
-        <li>Jump with your face against the wall to wall jump (Hint: The wall must be a certain height to allow wall jumps).</li>
-        <li>Press down while in the air or standing still to fall through soft platforms (Boxes, corpses.)</li>
-        <li>K to pick up corpses.</li>
-        <li><b>Hint:</b> use the corpses in the first room to escape.</li>
-    </ul>
+<body>
+    <canvas id="gameWorld" width="1800" height="744" style="background: cyan; border: 1px solid black"
+        tabindex="0"></canvas>
+
+    <div class="row">
+        <div class="column">
+            <ul id="controlls">
+                <li>CONTROLS:</li>
+                <li>AD or arrow keys to move (WASD Reccomended.) Left Shift or J to sprint.</li>
+                <li>Space, w, or up arrow to jump. Hold jump to jump higher. (Short hop is 2 blocks tall, tall hop is 3
+                    blocks tall, and special hops are 1 block tall.)</li>
+                <li>Down while moving to slide, down on soft objects to fall through, down while still to crouch.</li>
+                <li>Jump with your face against the wall to wall jump, jump while sliding for a special high speed horizontal jump.</li>
+                <li>Press down while in the air or standing still to fall through soft platforms (Boxes, corpses.)</li>
+                <li>K to pick up corpses, K again to throw them. K while crouching drops the corpse. Holding up adjustst the corpses trajectory too.</li>
+                <li>You can't slide while holding a corpse.</li>
+            
+            </ul>
+        </div>
+        <div class="column">
+            <ul id="Advanced Controls.">
+                <li>HINTS:</li>
+                <li>Use the corpses in the first room to escape.</li>
+                <li>Saws cam be used to propell corpses further then you can normally throw them.</li>
+                <li>Corpses inherit your momentum when thrown, this allows for a wide variety of throwing trajectories.</li>
+                <li>Chests can be used like corpses. They aren't for loot, <i>they are the loot.</i></li>
+                <li>Holding shift prevents the fall through platform command from working, this is useful when stacking dead bodies.</li>
+                <li>The cages are checkpoints, the one you see a duck inside of is your active spawn point.</li>
+                <li>The slide jump and the short jump are useful when the cieling is close to you.</li>
+                <li>Holding up while crouching lets you do the up throw from the ground, instead of dropping.</li>
+            </ul>
+        </div>
+    </div>
 </body>
+
 </html>

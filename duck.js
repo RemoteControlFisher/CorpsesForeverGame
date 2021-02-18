@@ -511,12 +511,25 @@ class duck {
     //These constants I did copy just so I remembered the basic constants I should use here. The rest I typed out manually with some vague inspirations being pulled
     //From the lecture examples.
 
+    //If the disconnectors are engaged and the button isn't pressed, disengage them.
+    if(!this.game.keyK){
+      this.game.kDisconnect = false;
+    }
+
+    if(!this.game.up){
+      this.game.jumpDisconnect = false;
+    }
+
+    //Throwing code.
     if (this.game.keyK && this.carried && !this.game.kDisconnect) {
       this.game.kDisconnect = true;
-      if (!this.game.down) {
-        this.throwCorpse()
+      if (this.game.up) {
+        this.upThrow()
+      } else
+      if (this.game.down) {
+        this.dropCorpse()
       }
-      else { this.dropCorpse()
+      else { this.throwCorpse()
       }
       /*console.log(this.armstate)
       if (this.armstate == "down") {
@@ -527,7 +540,7 @@ class duck {
       }*/
     }
 
-    // if duck isnt dead
+    // if duck isnt dead apply physics.
     if (!(this.state == "dead")) {
       this.velocityY += GRAVITY * tick
       if (this.velocityY > TERMINAL_VELOCITY) {
@@ -585,6 +598,20 @@ class duck {
     this.carried.velocityX = 550 + this.velocityX
     if (this.facing == "l")
       this.carried.velocityX = - 550 + this.velocityX
+      //Flip our velocity.
+
+    this.carried.x = this.x
+    this.carried.y = this.y
+    this.carried = null
+    this.armstate = "down"
+  }
+
+  upThrow() {
+    this.carried.state = "thrown"
+    this.carried.velocityY = -550 + Math.min(0, this.velocityY)
+    this.carried.velocityX = 240 + this.velocityX
+    if (this.facing == "l")
+      this.carried.velocityX = - 240 + this.velocityX
       //Flip our velocity.
 
     this.carried.x = this.x
@@ -845,7 +872,7 @@ class duck {
 
 
     //Select our state.
-    if (this.game.up && !this.game.jumpDisconnect) {
+    if (this.game.up && !this.game.down && !this.game.jumpDisconnect) {
       this.state = "squat"
       this.squatTime = 0
     } else {

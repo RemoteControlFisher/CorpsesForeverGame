@@ -2,3 +2,11 @@ canvas {
     image-rendering: crisp-edges ;
     image-rendering: -webkit-optimize-contrast;
   }
+
+  .row {
+    display: flex;
+  }
+  
+  .column {
+    flex: 50%;
+  }
