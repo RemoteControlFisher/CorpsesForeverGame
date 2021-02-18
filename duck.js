@@ -47,26 +47,25 @@ class duck {
     this.animators["run"] = []
     this.animators["slide"] = []
     this.animators["wallcling"] = []
-    this.animators["squat"] = [] 
-    this.animators["crouch"] = [] 
+    this.animators["squat"] = []     //squat need
+    this.animators["crouch"] = []    //crouch need
     this.animators["jump"] = []
-    this.animators["freefall"] = []   
-    this.animators["wallcling"] = []    //wallslide need
-    this.armAnimators["wallcling"] = []            //need hold
-    this.armAnimators["stand"] = []                //need hold
-    this.armAnimators["walk"] = []                 //need hold
-    this.armAnimators["run"] = []                  //need hold
-    this.armAnimators["squat"] = []                //need hold
-    this.armAnimators["jump"] = []                 //need hold
-    this.armAnimators["squat"] = []                //need hold
-    this.armAnimators["freefall"] = []  //done     //need hold
-    this.armAnimators["crouch"] = []    //done     //need hold
-    this.armAnimators["walk"]["l"]= []  //done     
+    this.animators["freefall"] = []    //freefall need
+    this.animators["wallslide"] = []   //wallslide need
+    this.armAnimators["freefall"] = []
+    this.armAnimators["crouch"] = []
+    this.armAnimators["stand"] = []
+    this.armAnimators["walk"] = []
+    this.armAnimators["run"] = []
+    this.armAnimators["squat"] = []
+    this.armAnimators["jump"] = []
+    this.armAnimators["wallcling"] = [] 
+    this.armAnimators["walk"]["l"]= []  //done
     this.armAnimators["walk"]["r"]= []  //done
     this.armAnimators["run"]["l"]= []   //done
     this.armAnimators["run"]["r"]= []   //done
-    this.armAnimators["squat"]["l"]= [] //done
-    this.armAnimators["squat"]["r"]= [] //done
+    this.armAnimators["squat"]["l"]= []
+    this.armAnimators["squat"]["r"]= []
     this.armAnimators["stand"]["l"]= [] //done
     this.armAnimators["stand"]["r"]= [] //done
     this.armAnimators["jump"]["l"]= []  //done
@@ -571,7 +570,7 @@ class duck {
       true,
       true,
       null)
-            
+
     this.armAnimators["run"]["r"]["hold"]= new animator(this.spritesheet,
       0,
       568,
@@ -583,7 +582,7 @@ class duck {
       true,
       true,
       null) 
-        
+
     this.armAnimators["jump"]["r"]["hold"]= new animator(this.spritesheet,
       46,
       603,
@@ -595,7 +594,7 @@ class duck {
       true,
       true,
       null) 
-              
+
     this.armAnimators["jump"]["l"]["hold"]= new animator(this.rEVspritesheet,
       323,
       604,
@@ -607,7 +606,7 @@ class duck {
       true,
       true,
       null) 
-              
+
     this.armAnimators["freefall"]["r"]["hold"]= new animator(this.spritesheet,
       46,
       603,
@@ -619,7 +618,7 @@ class duck {
       true,
       true,
       null) 
-                
+
     this.armAnimators["freefall"]["l"]["hold"]= new animator(this.rEVspritesheet,
       323,
       604,
@@ -631,7 +630,7 @@ class duck {
       true,
       true,
       null) 
-      
+
     this.setSpawn(x, y)
   }
 
@@ -678,6 +677,7 @@ class duck {
       this.carried.BB.active = true
       this.carried.velocityX = Math.sign(corpseVX) * 420
       this.carried = null // We are no longer carrying it.
+      this.armstate = "down"
     }
 
 
@@ -1135,6 +1135,10 @@ class duck {
         this.armAnimators[this.state][this.facing][this.armstate].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y + 16 - this.game.camera.y, 2)
 
         /*
+<<<<<<< HEAD
+=======
+
+>>>>>>> c7cd0ef93f6d8ac3585e5ceb738dd367d8b801ee
       ctx.beginPath();
       ctx.strokeStyle = 'Green';
       ctx.arc(center.x - this.game.camera.x, center.y - this.game.camera.y, 1, 0, 2 * Math.PI)
@@ -1143,6 +1147,10 @@ class duck {
       ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
       ctx.strokeStyle = 'Blue';
       ctx.strokeRect(this.cBB.x - this.game.camera.x, this.cBB.y - this.game.camera.y, this.cBB.width, this.cBB.height);
+<<<<<<< HEAD
+=======
+
+>>>>>>> c7cd0ef93f6d8ac3585e5ceb738dd367d8b801ee
       */
     }
   }
