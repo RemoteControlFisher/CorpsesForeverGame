@@ -81,8 +81,6 @@ class duck {
     this.armAnimators["wallcling"]["r"] = []  //done
 
 
-
-
     this.animators["stand"]["r"] =
       new animator(this.spritesheet, // Spritesheet
         8, //X
@@ -206,31 +204,6 @@ class duck {
       true,
       true,
       null)
-
-    this.armAnimators["run"]["l"]["holding"] = new animator(this.spritesheet,
-      37,
-      572,
-      12,
-      14,
-      1,
-      0.10,
-      4,
-      true,
-      true,
-      null)
-
-    this.armAnimators["run"]["r"]["holding"] = new animator(this.rEVspritesheet,
-      372,
-      588,
-      12,
-      14,
-      1,
-      0.10,
-      4,
-      true,
-      true,
-      null)
-
 
     this.animators["slide"]["r"] = new animator(this.spritesheet,
       5,
@@ -453,7 +426,7 @@ class duck {
       true,
       true,
       null)
-  
+
     this.armAnimators["crouch"]["l"]["down"]= new animator(this.spritesheet,
       80,
       476,
@@ -477,7 +450,7 @@ class duck {
       true,
       true,
       null)
-    
+
     this.armAnimators["freefall"]["r"]["down"]= new animator(this.spritesheet,
       35,
       552,
@@ -488,7 +461,7 @@ class duck {
       4,
       true,
       true,
-      null)  
+      null)
 
     this.armAnimators["squat"]["l"]["down"]= new animator(this.spritesheet,
       47,
@@ -501,7 +474,7 @@ class duck {
       true,
       true,
       null)
-  
+
     this.armAnimators["squat"]["r"]["down"]= new animator(this.spritesheet,
       34,
       518,
@@ -512,8 +485,8 @@ class duck {
       4,
       true,
       true,
-      null) 
-      
+      null)
+
     this.armAnimators["wallcling"]["r"]["down"]= new animator(this.spritesheet,
       45,
       478,
@@ -525,8 +498,8 @@ class duck {
       true,
       true,
       null)
-    
-  
+
+
   this.armAnimators["wallcling"]["l"]["down"]= new animator(this.spritesheet,
     38,
     518,
@@ -537,9 +510,9 @@ class duck {
     4,
     true,
     true,
-    null) 
-      
-    this.armAnimators["stand"]["l"]["hold"]= new animator(this.spritesheet,
+    null)
+    
+   this.armAnimators["stand"]["l"]["hold"]= new animator(this.spritesheet,
       86,
       383,
       12,
@@ -550,7 +523,7 @@ class duck {
       true,
       true,
       null)
-      
+  
     this.armAnimators["stand"]["r"]["hold"]= new animator(this.spritesheet,
       61,
       568,
@@ -562,7 +535,7 @@ class duck {
       true,
       true,
       null)
-        
+          
     this.armAnimators["walk"]["l"]["hold"]= new animator(this.rEVspritesheet,
       293,
       569,
@@ -574,7 +547,7 @@ class duck {
       true,
       true,
       null)
-        
+          
     this.armAnimators["walk"]["r"]["hold"]= new animator(this.spritesheet,
       0,
       568,
@@ -586,7 +559,7 @@ class duck {
       true,
       true,
       null) 
-  
+    
     this.armAnimators["run"]["l"]["hold"]= new animator(this.rEVspritesheet,
       293,
       569,
@@ -598,7 +571,7 @@ class duck {
       true,
       true,
       null)
-          
+            
     this.armAnimators["run"]["r"]["hold"]= new animator(this.spritesheet,
       0,
       568,
@@ -610,7 +583,7 @@ class duck {
       true,
       true,
       null) 
-      
+        
     this.armAnimators["jump"]["r"]["hold"]= new animator(this.spritesheet,
       46,
       603,
@@ -622,7 +595,7 @@ class duck {
       true,
       true,
       null) 
-            
+              
     this.armAnimators["jump"]["l"]["hold"]= new animator(this.rEVspritesheet,
       323,
       604,
@@ -634,7 +607,7 @@ class duck {
       true,
       true,
       null) 
-            
+              
     this.armAnimators["freefall"]["r"]["hold"]= new animator(this.spritesheet,
       46,
       603,
@@ -646,7 +619,7 @@ class duck {
       true,
       true,
       null) 
-              
+                
     this.armAnimators["freefall"]["l"]["hold"]= new animator(this.rEVspritesheet,
       323,
       604,
@@ -658,6 +631,7 @@ class duck {
       true,
       true,
       null) 
+      
     this.setSpawn(x, y)
   }
 
@@ -715,12 +689,25 @@ class duck {
     //These constants I did copy just so I remembered the basic constants I should use here. The rest I typed out manually with some vague inspirations being pulled
     //From the lecture examples.
 
+    //If the disconnectors are engaged and the button isn't pressed, disengage them.
+    if(!this.game.keyK){
+      this.game.kDisconnect = false;
+    }
+
+    if(!this.game.up){
+      this.game.jumpDisconnect = false;
+    }
+
+    //Throwing code.
     if (this.game.keyK && this.carried && !this.game.kDisconnect) {
       this.game.kDisconnect = true;
-      if (!this.game.down) {
-        this.throwCorpse()
+      if (this.game.up) {
+        this.upThrow()
+      } else
+      if (this.game.down) {
+        this.dropCorpse()
       }
-      else { this.dropCorpse()
+      else { this.throwCorpse()
       }
       /*console.log(this.armstate)
       if (this.armstate == "down") {
@@ -731,7 +718,7 @@ class duck {
       }*/
     }
 
-    // if duck isnt dead
+    // if duck isnt dead apply physics.
     if (!(this.state == "dead")) {
       this.velocityY += GRAVITY * tick
       if (this.velocityY > TERMINAL_VELOCITY) {
@@ -789,6 +776,20 @@ class duck {
     this.carried.velocityX = 550 + this.velocityX
     if (this.facing == "l")
       this.carried.velocityX = - 550 + this.velocityX
+      //Flip our velocity.
+
+    this.carried.x = this.x
+    this.carried.y = this.y
+    this.carried = null
+    this.armstate = "down"
+  }
+
+  upThrow() {
+    this.carried.state = "thrown"
+    this.carried.velocityY = -550 + Math.min(0, this.velocityY)
+    this.carried.velocityX = 240 + this.velocityX
+    if (this.facing == "l")
+      this.carried.velocityX = - 240 + this.velocityX
       //Flip our velocity.
 
     this.carried.x = this.x
@@ -1049,7 +1050,7 @@ class duck {
 
 
     //Select our state.
-    if (this.game.up && !this.game.jumpDisconnect) {
+    if (this.game.up && !this.game.down && !this.game.jumpDisconnect) {
       this.state = "squat"
       this.squatTime = 0
     } else {
@@ -1133,18 +1134,16 @@ class duck {
       if (this.armAnimators[this.state] && this.armAnimators[this.state][this.facing] && this.armAnimators[this.state][this.facing][this.armstate])
         this.armAnimators[this.state][this.facing][this.armstate].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y + 16 - this.game.camera.y, 2)
 
-      let center = this.BB.center()
-      
+        /*
       ctx.beginPath();
       ctx.strokeStyle = 'Green';
       ctx.arc(center.x - this.game.camera.x, center.y - this.game.camera.y, 1, 0, 2 * Math.PI)
       ctx.stroke();
-
       ctx.strokeStyle = 'Red';
       ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
       ctx.strokeStyle = 'Blue';
       ctx.strokeRect(this.cBB.x - this.game.camera.x, this.cBB.y - this.game.camera.y, this.cBB.width, this.cBB.height);
-      
+      */
     }
   }
 }
