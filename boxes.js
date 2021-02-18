@@ -5,7 +5,7 @@ class boxes {
 		this.mimic =
 			new animator(this.spritesheet, // Spritesheet
 				240, //X
-				48, //Y
+				80, //Y
 				16, //Width
 				16, //Height
 				1, //Frames
