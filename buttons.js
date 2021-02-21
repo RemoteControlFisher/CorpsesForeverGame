@@ -35,26 +35,40 @@ class buttons
 
 	update()
 	{
-      this.updateBB(1)
+      this.updateBB(.75)
       this.collide()
 	};
 
     updateBB(scale) {
 		this.oldBB = this.BB;
-		this.BB = new boundingBox(this.x + 7 * scale, this.y + 1 * scale, 52 * scale, 10 * scale);
+        if (this.state == "not pushed")
+		    this.BB = new boundingBox(this.x, this.y, 129 * scale, 24 * scale);
+        else
+        {
+            this.BB = new boundingBox(this.x, this.y + 6 * scale, 129 * scale, 18 * scale);
+        }
 	}
     
     collide(){
         var that = this;
-		
+		this.game.entities.forEach(function (entity) {
+            if (entity.BB && that.BB.isCollide(entity.BB)) {
+                
+            }
+        });
     }
 
 	draw(ctx)
 	{
-         this.button[this.state].drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y - this.game.camera.y, 0.5)
-        //this.button[0].drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y - this.game.camera.y, 0.5)
-        //this.button[1].drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y + 50 - this.game.camera.y, 0.5)
-
+        if (this.state == "pushed")
+        {
+            this.button[this.state].drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y + 6 * .75 - this.game.camera.y, .75)
+        }
+        else
+        {
+            this.button[this.state].drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y - this.game.camera.y, .75)
+        }
+        
         ctx.strokeStyle = 'Red';
 		ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
 	};

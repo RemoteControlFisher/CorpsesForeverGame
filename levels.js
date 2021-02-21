@@ -485,7 +485,7 @@ var tutorialLevel = {
             { x: 85, y: 25  },
             { x: 87, y: 25  }
       ],
-      buttons: [{ x: -3, y: 24.3 }],
+      buttons: [{ x: -3, y: 24.55 }],
       textboxes: [
             {x: 0, y: 16},
             {x: 16, y: 16}

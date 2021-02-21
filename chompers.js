@@ -181,12 +181,13 @@ class Chompers {
 			this.updateBB(1)
 
 			this.length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
-			this.collide()
 			if (this.game.duck.state == "dead")
 			{
 				this.length = Number.MAX_VALUE
 				this.angry = false;
 			}
+			this.collide()
+
 			if (this.angry) {
 				
 				if (this.length > 320) {
@@ -274,7 +275,6 @@ class Chompers {
 					}
 					else {
 						that.x = entity.BB.right
-						
 					}
 					that.updateBB(1)
 				}
@@ -291,7 +291,6 @@ class Chompers {
 					}
 					else {
 						that.x = entity.BB.left - 64
-						that.velocityX = 0;
 					}
 
 					that.updateBB(1)
