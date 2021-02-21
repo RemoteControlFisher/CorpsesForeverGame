@@ -688,6 +688,9 @@ class duck {
     //These constants I did copy just so I remembered the basic constants I should use here. The rest I typed out manually with some vague inspirations being pulled
     //From the lecture examples.
 
+    if(this.game.down)
+      console.log("X: " + this.x/32 + "\nY:" + this.y/32)
+
     //If the disconnectors are engaged and the button isn't pressed, disengage them.
     if(!this.game.keyK){
       this.game.kDisconnect = false;
@@ -912,6 +915,16 @@ class duck {
         }
       } else //Sliding uses a different hitbox.
         if (entity.BB && that.cBB.isCollide(entity.BB)) {
+           //If the thing is a spawner, set it as our spawn.
+           if (entity.spawner) {
+            let spawnpoint = entity.BB.center();
+            that.setSpawn(spawnpoint.x, spawnpoint.y, entity)
+          }
+
+          if (!(that.state == "dead") && (entity.saw)) {
+            that.die(entity)
+          }
+
           if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
             that.velocityY = 0
             that.y = entity.BB.top - 50

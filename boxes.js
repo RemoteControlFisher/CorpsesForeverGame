@@ -31,7 +31,6 @@ class boxes {
 	}
 
 	update() {
-		console.log(this.x + " " + this.y)
 		//WE DO NOT DRAW OR UPDATE OURSELVES WHEN CARRIED.
 		if (this.state != "carried") {
 			let tick = this.game.clockTick;

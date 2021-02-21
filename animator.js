@@ -32,7 +32,7 @@ class animator {
                 //Rather then returning on "Done" animations, we can have idle frames which are one frame animations which depict the animation continuing.
                 //The key use for this is I have an animated jump, and I want to display the fall frame after I am done animating the rising frames.
                 if(idleFrame){
-                    idleFrame.drawFrame(thick, ctx, x, y, scale)
+                    idleFrame.drawFrame(tick, ctx, x, y, scale)
                 }
                 return
             }
