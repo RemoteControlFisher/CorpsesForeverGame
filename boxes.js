@@ -112,6 +112,12 @@ class boxes {
 				} else if (entity.trap && that.velocityY > 0) { // If we fall onto a trap, follow the traps collision rules.
 					//Set our velocity by traps qualities.
 					that.trapBehavior(entity)
+				} else if (entity.button && that.BB.bottom >= entity.BB.top) {
+					that.velocityX = 0
+					that.velocityY = 0
+					that.y = entity.BB.top - that.BB.height + 6 * .75
+					that.state = "idle"
+					that.updateBB()
 				}
 			}
 
