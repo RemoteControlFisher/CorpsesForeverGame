@@ -8,7 +8,8 @@
     <link rel="stylesheet" type="text/css" href="fonts/stylesheet.css" media="screen"/>
     <link href='fonts/neuropol_x_rg-webfont.woff' rel='stylesheet' type='text/css'>
     <link href='fonts/neuropol_x_rg-webfont.woff2' rel='stylesheet' type='text/css'>
-
+    
+    
     <script type="text/javascript" src="./assetmanager.js"></script>
     <script type="text/javascript" src="./timer.js"></script>
     <script type="text/javascript" src="./gameengine.js"></script>
@@ -23,7 +24,7 @@
     <script type="text/javascript" src="./doors.js"></script>
     <script type="text/javascript" src="./corpses.js"></script>
     <script type="text/javascript" src="./boxes.js"></script>
-    <script type="text/javascript" src="./hoppers.js"></script>
+    <script type="text/javascript" src="./lurker.js"></script>
     <script type="text/javascript" src="./chompers.js"></script>
     <script type="text/javascript" src="./textboxes.js"></script>
     <script type="text/javascript" src="./scenemanager.js"></script>
@@ -45,27 +46,28 @@
 <body>
     <canvas id="gameWorld" width="1800" height="744" style="background: cyan; border: 1px solid black"
         tabindex="0" autofocus></canvas>
+    <div>
+        <br />
+        <input type ="checkbox" id="mute"> Mute <input type ="range" id="volume" min = "0" max="1" value="0.1", step="0.05"> Volume 
+    <div>
 
     <div class="row">
         <div class="column">
             <ul id="controlls">
                 <li>CONTROLS:</li>
                 <li>AD or arrow keys to move (WASD Reccomended.) Left Shift or J to sprint.</li>
-                <li>Space, w, or up arrow to jump. Hold jump to jump higher. (Short hop is 2 blocks tall, tall hop is 3
-                    blocks tall, and special hops are 1 block tall.)</li>
+                <li>Space, w, or up arrow to jump. Hold jump to jump higher. (Short : 2 blocks tall, tall : 3
+                    blocks tall, and special : 1 block tall.)</li>
                 <li>Down while moving to slide, down on soft objects to fall through, down while still to crouch.</li>
                 <li>Jump with your face against the wall to wall jump, jump while sliding for a special high speed horizontal jump.</li>
                 <li>Press down while in the air or standing still to fall through soft platforms (Boxes, corpses.)</li>
                 <li>K to pick up corpses, K again to throw them. K while crouching drops the corpse. Holding up adjustst the corpses trajectory too.</li>
-                <li>You can't slide while holding a corpse.</li>
-            
+
             </ul>
         </div>
         <div class="column">
             <ul id="Advanced Controls.">
                 <li>HINTS:</li>
-                <li>Use the corpses in the first room to escape.</li>
-                <li>Saws cam be used to propell corpses further then you can normally throw them.</li>
                 <li>Corpses inherit your momentum when thrown, this allows for a wide variety of throwing trajectories.</li>
                 <li>Chests can be used like corpses. They aren't for loot, <i>they are the loot.</i></li>
                 <li>Holding shift prevents the fall through platform command from working, this is useful when stacking dead bodies.</li>
