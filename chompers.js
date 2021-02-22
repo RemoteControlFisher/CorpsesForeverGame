@@ -318,7 +318,7 @@ class Chompers {
 	}
 
 	draw(ctx) {
-		console.log(this.x/32 + " " +this.y/32)
+		//console.log(this.x/32 + " " +this.y/32)
 		//this.animators["stand"]["r"].drawFrame(this.game.clockTick, ctx, this.x+90  - this.game.camera.x, this.y - this.game.camera.y, 1)
 		//this.animators["attack"]["r"].drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y - this.game.camera.y, 1)
 		//this.animators["woke"]["l"].drawFrame(this.game.clockTick, ctx, this.x+180  - this.game.camera.x, this.y - this.game.camera.y, 1)

@@ -571,7 +571,7 @@ class duck {
       null)
 
     this.armAnimators["run"]["r"]["hold"]= new animator(this.spritesheet,
-      0,
+      3,
       568,
       13,
       14,

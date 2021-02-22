@@ -97,13 +97,13 @@ class scenemanager {
                 let y = level.chompers[i].y
                 this.game.addEntity(new Chompers(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH))
             }
-        if (level.hoppers)
-            for (let i = 0; i < level.hoppers.length; i++) {
-                let x = level.hoppers[i].x
-                let y = level.hoppers[i].y
-                let myHopper = new Hoppers(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH)
-                console.log(myHopper)
-                this.game.addEntity(myHopper)
+        if (level.lurkers)
+            for (let i = 0; i < level.lurkers.length; i++) {
+                let x = level.lurkers[i].x
+                let y = level.lurkers[i].y
+                let myLurkers = new Lurkers(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH)
+                console.log(myLurkers)
+                this.game.addEntity(myLurkers)
             }
         if (level.spawns)
             for (let i = 0; i < level.spawns.length; i++) {
@@ -138,6 +138,13 @@ class scenemanager {
                 console.log(myCorpse)
             }
         }
+        
+        //If there is music in the level, play it!
+        if(level.music){
+             console.log("BMG is playing")
+             ASSET_MANAGER.pauseBGM();
+             ASSET_MANAGER.playAsset(level.music);
+        }
 
         this.duck.x = startx;
         this.duck.y = starty - 3 * PARAMS.BLOCKWIDTH;
@@ -145,6 +152,16 @@ class scenemanager {
         let myText = new text(this.game, PARAMS.BLOCKWIDTH, PARAMS.BLOCKWIDTH)
         this.game.addEntity(myText);
     };
+     
+    //check if mute box is checked
+    //check if volume is slided
+    updateAudio() {
+        var mute = document.getElementById("mute").checked;
+        var volume = document.getElementById("volume").checked;
+
+        ASSET_MANAGER.muteAudio(mute);
+        ASSET_MANAGER.adjustAudio(volume);
+    }
 
     update() {
         //PARAMS.DEBUG = document.getElementById("debug").checked;

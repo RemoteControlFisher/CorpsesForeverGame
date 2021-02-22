@@ -14,7 +14,7 @@ class corpses {
 		this.animations = []
 		this.animations.duck = []
 		this.animations.chomper = []
-		this.animations.hopper = []
+		this.animations.lurker = []
 		this.animations["duck"]["r"] =
 			new animator(this.duck, // Spritesheet
 				37, //X
@@ -63,7 +63,7 @@ class corpses {
 				false, //reverse
 				true, // looping,
 				null)
-		this.animations["hopper"]["r"] =
+		this.animations["lurker"]["r"] =
 			new animator(this.hop, // Spritesheet
 				262, //X
 				21, //Y
@@ -75,7 +75,7 @@ class corpses {
 				false, //reverse
 				true, // looping,
 				null)
-		this.animations["hopper"]["l"] =
+		this.animations["lurker"]["l"] =
 			new animator(this.hopl, // Spritesheet
 				6, //X
 				21, //Y
@@ -91,7 +91,7 @@ class corpses {
 		this.droppable = true;
 		this.scale = 2
 		if (this.type == "chomper") this.scale = 1
-		if (this.type == "hopper") {
+		if (this.type == "lurker") {
 			this.bounce = true
 		}
 		this.BB = new boundingBox(this.x, this.y, this.animations[this.type].width * this.scale, (this.animations[this.type].height) * this.scale)

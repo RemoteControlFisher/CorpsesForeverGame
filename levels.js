@@ -1,4 +1,5 @@
 var tutorialLevel = {
+      music: "./sound/World of Horror - Mode Select.mp3",
       backs: [
             { startX: -5, startY: 1, lengthX: 20, lengthY: 30, type: "bwall" },
             { startX: 14, startY: 11, lengthX: 20, lengthY: 20, type: "bwall" },
@@ -108,14 +109,19 @@ var tutorialLevel = {
             { startX: 99, startY: 23, lengthX: 1, lengthY: 1, type: "tleft" },
 
             { startX: 69, startY: 19, lengthX: 31, lengthY: 1, type: "floor" },
-            { startX: 100, startY: 19, lengthX: 1, lengthY: 8, type: "wleft" },
-
+            { startX: 100, startY: 19, lengthX: 1, lengthY: 7, type: "wleft" },
+            { startX: 100, startY: 26, lengthX: 1, lengthY: 1, type: "floor" },
 
 
 
             { startX: 105, startY: 15, lengthX: 1, lengthY: 1, type: "tleft" },
             { startX: 43, startY: 18, lengthX: 1, lengthY: 3, type: "wright" },
             { startX: 105, startY: 15, lengthX: 1, lengthY: 25, type: "wleft" },
+
+            { startX: 70, startY: 28, lengthX: 5, lengthY: 1, type: "floor" },
+            { startX: 80, startY: 29, lengthX: 5, lengthY: 1, type: "floor" },
+            { startX: 90, startY: 31, lengthX: 10, lengthY: 1, type: "floor" },
+            { startX: 102, startY: 33, lengthX: 3, lengthY: 1, type: "floor" },
 
 
 
@@ -170,14 +176,14 @@ var tutorialLevel = {
             { x: 5.3,y: 30,type: "duck"},
             {x: 11,y: 26,type: "chomper"},
             {x: 12,y: 28,type: "duck"},
-            {x: 12,y: 29,type: "hopper"},
-            {x: -3,y: 15,type: "hopper",facing: "l"},
-            {x: 26,y: 18,type: "hopper",facing: "r"},
-            {x: 26,y: 19,type: "hopper",facing: "l"},
-            {x: 26,y: 20,type: "hopper",facing: "l"},
+            {x: 12,y: 29,type: "lurker"},
+            {x: -3,y: 15,type: "lurker",facing: "l"},
+            {x: 26,y: 18,type: "lurker",facing: "r"},
+            {x: 26,y: 19,type: "lurker",facing: "l"},
+            {x: 26,y: 20,type: "lurker",facing: "l"},
 
             //{ startX: 49, startY: 23, lengthX: 1, lengthY: 1, type: "tleft" },
-            {x: 44,y: 24,type: "hopper",facing: "l"},
+            {x: 44,y: 24,type: "lurker",facing: "l"},
 
       ],
       traps: [
@@ -224,7 +230,7 @@ var tutorialLevel = {
 
             {x: 80, y:16.5}
       ],
-      hoppers: [
+      lurkers: [
             //{ x: 11, y: 5 },
             // { x: 40, y: 25  },
             // { x: 50, y: 25  },
