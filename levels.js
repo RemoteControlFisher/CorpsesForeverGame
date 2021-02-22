@@ -163,7 +163,8 @@ var tutorialLevel = {
 
             ],
       boxes: [
-            { x: 1, y: 1 }],
+            { x: 1, y: 1 },
+            { x: 68, y: 24 }],
       corpses: [
             { x: 6, y: 1, type: "duck" },
             { x: 3.25, y: 5, type: "duck" },
@@ -293,7 +294,8 @@ var tutorialLevel = {
             { x: 4, y: 31.2, toWrite: 'Corpses Inherit your jumping momentum when thrown.', animated: false, delay: 0 },
 
             { x: 80, y: 13, toWrite: 'The chomper is a fierce, but timid foe. If you corner it, it will slay you.', animated: false, delay: 0 },
-            { x: 80, y: 12, toWrite: 'Sadly, your flippers alone cannot slay it, if only you had something else...', animated: false, delay: 0 },
+            { x: 80, y: 12, toWrite: 'Sadly, your flippers alone cannot slay it,', animated: false, delay: 0 },
+            { x: 80, y: 11, toWrite: 'Boxes make excellent weapons, but other heavy things can be lethal....', animated: false, delay: 0 },
 
 
             { x: 96, y: 40, toWrite: 'If you have gotten this high, that is all for now.', animated: false, delay: 0 },
