@@ -4,6 +4,8 @@ class doors
 	{
 		Object.assign(this, {game, x, y});
 		this.spritesheet = ASSET_MANAGER.getAsset("./sprites/floorsandwalls.png");
+		this.wall = true
+		this.open = false
 		this.door =
 		new animator(this.spritesheet, // Spritesheet
 			144, //X
@@ -20,19 +22,25 @@ class doors
 
 	update()
 	{
-	   this.updateBB(1);
+		if (this.open)
+			this.wall = false
+		else
+			this.wall = true
+	   	this.updateBB(2);
 	};
 
 	updateBB(scale) {
 		this.oldBB = this.BB;
-		this.BB = new boundingBox(this.x  * scale, this.y - 3 * scale, 35 * scale, 35 * scale);
+		this.BB = new boundingBox(this.x, this.y, 16 * scale, 16 * scale);
 	}
 
 	draw(ctx)
 	{
-		this.door.drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y - this.game.camera.y, 2)
+		if (this.open == false) {
+			this.door.drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y - this.game.camera.y, 2)
+		}
 
-		//ctx.strokeStyle = 'Red';
-		//ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
+		ctx.strokeStyle = 'Red';
+		ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
 	};
 };

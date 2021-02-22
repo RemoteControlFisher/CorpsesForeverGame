@@ -10,7 +10,7 @@ class corpses {
 		this.state = "idle"
 
 		this.carriable = true
-
+		this.buttonPress = false
 		this.animations = []
 		this.animations.duck = []
 		this.animations.chomper = []
@@ -120,6 +120,7 @@ class corpses {
 			//Don't collide, be invisible when we are not carried!
 			this.BB.active = false
 		}
+
 	};
 
 	updateBB() {
@@ -188,7 +189,22 @@ class corpses {
 					//Set our velocity by traps qualities.
 					that.trapBehavior(entity)
 				}
+				else if (entity.button && entity.BB.top <= that.BB.bottom) {
+					//that.buttonPress = true
+					that.velocityX = 0
+					that.velocityY = 0
+					that.y = entity.BB.top - that.BB.height + 6 * .75
+					that.state = "idle"
+					that.updateBB()
+					//entity.corpseHelper()
+				  }
 			}
+			// else if (entity.BB && !that.BB.isCollide(entity.BB)) {
+			// 	if (entity.button) {
+			// 		that.buttonPress = false
+			// 		entity.corpseHelper()
+			// 	}
+			// }
 
 		}
 		)

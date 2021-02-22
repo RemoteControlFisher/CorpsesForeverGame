@@ -61,18 +61,24 @@ class scenemanager {
                 console.log(myTrap)
                 this.game.addEntity(myTrap)
             }
-        if (level.buttons)
+        if (level.buttons && level.doors) {
+            
             for (let i = 0; i < level.buttons.length; i++) {
+                let myDoors = [];
                 let x = level.buttons[i].x
                 let y = level.buttons[i].y
-                this.game.addEntity(new buttons(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH))
+                for (let j = 0; j < level.doors.length; j++) {
+                    if (level.buttons[i].key == level.doors[j].key) {
+                        let x = level.doors[j].x
+                        let y = level.doors[j].y
+                        let myDoor = new doors(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH)
+                        myDoors.push(myDoor)
+                        this.game.addEntity(myDoor)
+                    }
+                }
+                this.game.addEntity(new buttons(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, myDoors))
             }
-        if (level.doors)
-            for (let i = 0; i < level.doors.length; i++) {
-                let x = level.doors[i].x
-                let y = level.doors[i].y
-                this.game.addEntity(new doors(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH))
-            }
+        }
         if (level.dtexts) {
             for (let i = 0; i < level.dtexts.length; i++) {
                 let x = level.dtexts[i].x

@@ -214,9 +214,9 @@ var tutorialLevel = {
       doors: [
             //{ x: 33, y: 32 },
             //{ x: 33, y: 31 },
-            { x: 33, y: 30 },
-            { x: 33, y: 29 },
-            { x: 33, y: 28 }
+            { x: 33, y: 30, key: 1 },
+            { x: 33, y: 29, key: 1 },
+            { x: 33, y: 28 , key: 1 }
       ],
       chompers: [
              //{ x: 20, y: 15 }
@@ -234,7 +234,7 @@ var tutorialLevel = {
             //  { x: 85, y: 25  },
                { x: 87, y: 25  }
       ],
-      buttons: [{ x: -3, y: 24.55 }],
+      buttons: [{ x: -3, y: 24.55, key: 1 }],
       textboxes: [
             { x: 0, y: 16 },
             { x: 16, y: 16 }

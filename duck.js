@@ -850,6 +850,16 @@ class duck {
             that.armstate = "hold"
           }
 
+          if (entity.button && entity.BB.top <= that.BB.bottom) {
+            entity.duckPushed = true
+            that.velocityY = 0
+            that.y = entity.BB.top - 50 + 6 * .75
+            if (that.state == "jump" || that.state == "freefall" || that.state == "hover" || that.state == "wallcling") {
+              that.state = "stand"
+            }
+            that.updateBB(2)
+          }
+
 
           //If the thing is a spawner, set it as our spawn.
           if (entity.spawner) {
@@ -913,12 +923,29 @@ class duck {
                   that.updateBB(2)
                 }
         }
+        else if (entity.BB && !that.BB.isCollide(entity.BB)) {
+          if (entity.button) {
+            entity.duckPushed = false
+          }
+        }
+        
       } else //Sliding uses a different hitbox.
         if (entity.BB && that.cBB.isCollide(entity.BB)) {
            //If the thing is a spawner, set it as our spawn.
            if (entity.spawner) {
             let spawnpoint = entity.BB.center();
             that.setSpawn(spawnpoint.x, spawnpoint.y, entity)
+          }
+
+          if (entity.button && entity.BB.top <= that.BB.bottom) {
+            entity.duckPushed = true
+            that.velocityY = 0
+            entity.updateBB(.75)
+            that.y = entity.BB.top - 50 + 6 * .75
+            if (that.state == "jump" || that.state == "freefall" || that.state == "hover" || that.state == "wallcling") {
+              that.state = "stand"
+            } 
+            that.updateBB(2)
           }
 
           if (!(that.state == "dead") && (entity.saw)) {
@@ -941,6 +968,11 @@ class duck {
                 that.x = entity.BB.right + 7
                 that.updateBB(2)
               }
+        }
+        else if (entity.BB && !that.cBB.isCollide(entity.BB)) {
+          if (entity.button) {
+            entity.duckPushed = false
+          }
         }
     })
 

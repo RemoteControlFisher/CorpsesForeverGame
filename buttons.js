@@ -1,10 +1,13 @@
 class buttons
 {
-	constructor(game, x, y)
+	constructor(game, x, y, myDoors)
 	{
-		Object.assign(this, {game, x, y});
+		Object.assign(this, {game, x, y, myDoors});
         this.spritesheet = ASSET_MANAGER.getAsset("./sprites/Button.png")
         this.state = "not pushed"
+        this.duckPushed = false
+        this.corpsePushed = false
+        this.boxPushed = false
         this.button = [];
         this.button["not pushed"] = //Not pushed
             new animator(this.spritesheet, // Spritesheet
@@ -21,9 +24,9 @@ class buttons
         this.button["pushed"] = //Pushed
             new animator(this.spritesheet, // Spritesheet
                 94, //X
-                110, //Y
+                104, //Y
                 129, //Width
-                18, //Height
+                24, //Height
                 1, //Frames
                 0.12, //Time
                 16, //Padding
@@ -37,39 +40,60 @@ class buttons
 	{
       this.updateBB(.75)
       this.collide()
+      if (this.duckPushed || this.corpsePushed || this.boxPushed) {
+          this.state = "pushed"
+          this.myDoors.forEach(function (door) {
+              door.open = true
+          });
+      }
+      else {
+          this.state = "not pushed"
+          this.myDoors.forEach(function (door) {
+            door.open = false
+        });
+      }
 	};
 
     updateBB(scale) {
 		this.oldBB = this.BB;
-        if (this.state == "not pushed")
-		    this.BB = new boundingBox(this.x, this.y, 129 * scale, 24 * scale);
-        else
-        {
-            this.BB = new boundingBox(this.x, this.y + 6 * scale, 129 * scale, 18 * scale);
-        }
+		this.BB = new boundingBox(this.x, this.y, 129 * scale, 24 * scale);
 	}
     
     collide(){
+        this.corpsePushed = false
         var that = this;
 		this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BB.isCollide(entity.BB)) {
-                
+                if (entity.platform && entity.droppable && entity.state != "carried") {
+                    that.corpsePushed = true
+                }
+            }
+            else if (entity.BB && !that.BB.isCollide(entity.BB)) {
+                if (entity.platform && entity.droppable && entity.state != "carried" && that.corpsePushed != true) {
+                    that.corpsePushed = false
+                }
             }
         });
     }
 
 	draw(ctx)
 	{
-        if (this.state == "pushed")
-        {
-            this.button[this.state].drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y + 6 * .75 - this.game.camera.y, .75)
-        }
-        else
-        {
-            this.button[this.state].drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y - this.game.camera.y, .75)
-        }
-        
+
+        this.button[this.state].drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y - this.game.camera.y, .75) 
         ctx.strokeStyle = 'Red';
 		ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
 	};
+
+    // corpseHelper() {
+    //     this.corpsePushed = false
+    //     var that = this;
+    //     this.game.entities.forEach(function (entity) {
+    //         if (entity.platform && entity.droppable && entity.state != "carried") {
+    //             if (entity.buttonPress) {
+    //                 that.corpsePushed = true
+    //             }
+    //         }
+    //     });
+    // }
+
 };
