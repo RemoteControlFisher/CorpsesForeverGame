@@ -52,7 +52,8 @@ var tutorialLevel = {
             { startX: -5, startY: 31, lengthX: 39, lengthY: 1, type: "floor" },
 
             //ceiling #2
-            { startX: 34, startY: 35, lengthX: 64, lengthY: 1, type: "floor" },
+            { startX: 34, startY: 35, lengthX: 62, lengthY: 1, type: "floor" },
+            { startX: 96, startY: 35, lengthX: 1, lengthY: 1, type: "tleft" },
 
             //wall
             { startX: 33, startY: 31, lengthX: 1, lengthY: 4, type: "wleft" },
@@ -109,6 +110,8 @@ var tutorialLevel = {
 
             { startX: 69, startY: 19, lengthX: 31, lengthY: 1, type: "floor" },
             { startX: 100, startY: 19, lengthX: 1, lengthY: 8, type: "wleft" },
+            { startX: 100, startY: 27, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: 99, startY: 27, lengthX: 1, lengthY: 1, type: "tright" },
 
 
 
@@ -117,6 +120,20 @@ var tutorialLevel = {
             { startX: 43, startY: 18, lengthX: 1, lengthY: 3, type: "wright" },
             { startX: 105, startY: 15, lengthX: 1, lengthY: 25, type: "wleft" },
 
+            { startX: 64, startY: 28, lengthX: 5, lengthY: 1, type: "floor" },
+            { startX: 69, startY: 28, lengthX: 1, lengthY: 1, type: "tleft" },
+
+            { startX: 71, startY: 31, lengthX: 1, lengthY: 1, type: "tright" },
+            { startX: 72, startY: 31, lengthX: 5, lengthY: 1, type: "floor" },
+            { startX: 77, startY: 31, lengthX: 1, lengthY: 1, type: "tleft" },
+
+            { startX: 81, startY: 31, lengthX: 1, lengthY: 1, type: "tright" },
+            { startX: 82, startY: 31, lengthX: 16, lengthY: 1, type: "floor" },
+            { startX: 98, startY: 31, lengthX: 1, lengthY: 1, type: "tleft" },
+
+            { startX: 99, startY: 33, lengthX: 1, lengthY: 1, type: "tright" },
+            { startX: 100, startY: 33, lengthX: 4, lengthY: 1, type: "floor" },
+            { startX: 104, startY: 33, lengthX: 1, lengthY: 1, type: "tleft" },
 
 
             //KIETS LEVEL SEGMENT: Place later in the level.
@@ -272,11 +289,14 @@ var tutorialLevel = {
             { x: 4, y: 34, toWrite: 'Pressing down while running lets you slide.', animated: false, delay: 0 },
             { x: 4, y: 33, toWrite: 'Jumping while sliding gives you a sorter, faster jump.', animated: false, delay: 0 },
             { x: 4, y: 32, toWrite: 'Lightly tapping the jump button also gives you a short jump.', animated: false, delay: 0 },
+            { x: 4, y: 31.2, toWrite: 'Corpses Inherit your jumping momentum when thrown.', animated: false, delay: 0 },
 
             { x: 80, y: 13, toWrite: 'The chomper is a fierce, but timid foe. If you corner it, it will slay you.', animated: false, delay: 0 },
             { x: 80, y: 12, toWrite: 'Sadly, your flippers alone cannot slay it, if only you had something else...', animated: false, delay: 0 },
 
 
+            { x: 96, y: 40, toWrite: 'If you have gotten this high, that is all for now.', animated: false, delay: 0 },
+            { x: 96, y: 39, toWrite: 'Thank you for playtesting corpses are forever.', animated: false, delay: 0 },
 
       ]
 
