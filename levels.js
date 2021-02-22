@@ -7,6 +7,7 @@ var tutorialLevel = {
       //            //{ startX: 49, startY: 23, lengthX: 1, lengthY: 1, type: "tleft" },
       { startX: 44, startY: 18, lengthX: 61, lengthY: 6, type: "bwall" },
       { startX: 65, startY: 16, lengthX: 40, lengthY: 2, type: "bwall" },
+      { startX: 97, startY: 34, lengthX: 90, lengthY: 2, type: "bwall" },
 
 ],
       walls: [
@@ -110,7 +111,7 @@ var tutorialLevel = {
             { startX: 99, startY: 23, lengthX: 1, lengthY: 1, type: "tleft" },
 
             { startX: 69, startY: 19, lengthX: 31, lengthY: 1, type: "floor" },
-            { startX: 100, startY: 19, lengthX: 1, lengthY: 8, type: "wleft" },
+            { startX: 100, startY: 19, lengthX: 1, lengthY: 8, type: "wright" },
             { startX: 100, startY: 27, lengthX: 1, lengthY: 1, type: "tleft" },
             { startX: 99, startY: 27, lengthX: 1, lengthY: 1, type: "tright" },
 
@@ -119,7 +120,7 @@ var tutorialLevel = {
 
             { startX: 105, startY: 15, lengthX: 1, lengthY: 1, type: "tleft" },
             { startX: 43, startY: 18, lengthX: 1, lengthY: 3, type: "wright" },
-            { startX: 105, startY: 15, lengthX: 1, lengthY: 25, type: "wleft" },
+            { startX: 105, startY: 15, lengthX: 1, lengthY: 18, type: "wleft" },
 
             { startX: 64, startY: 28, lengthX: 5, lengthY: 1, type: "floor" },
             { startX: 69, startY: 28, lengthX: 1, lengthY: 1, type: "tleft" },
@@ -133,8 +134,11 @@ var tutorialLevel = {
             { startX: 98, startY: 31, lengthX: 1, lengthY: 1, type: "tleft" },
 
             { startX: 99, startY: 33, lengthX: 1, lengthY: 1, type: "tright" },
-            { startX: 100, startY: 33, lengthX: 4, lengthY: 1, type: "floor" },
-            { startX: 104, startY: 33, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: 100, startY: 33, lengthX: 90, lengthY: 1, type: "floor" },
+            { startX: 190, startY: 33, lengthX: 1, lengthY: 1, type: "tleft" },
+
+            { startX: 97, startY: 36, lengthX: 86, lengthY: 1, type: "floor" },
+            { startX: 96, startY: 36, lengthX: 1, lengthY: 1, type: "tright" },
 
 
             //KIETS LEVEL SEGMENT: Place later in the level.
@@ -300,6 +304,9 @@ var tutorialLevel = {
 
             { x: 96, y: 40, toWrite: 'If you have gotten this high, that is all for now.', animated: false, delay: 0 },
             { x: 96, y: 39, toWrite: 'Thank you for playtesting corpses are forever.', animated: false, delay: 0 },
+            { x: 132, y: 38, toWrite: 'Many of you liked the idea of the game ending with a jump into the bottomless Abyss.', animated: false, delay: 0 },
+            { x: 160, y: 37, toWrite: 'So at the end of this hall, go ahead. Take a dive.', animated: false, delay: 0 },
+            { x: 176, y: 36, toWrite: 'In the future, there will be about three more zones to level one, then a level two however.', animated: false, delay: 0 },
 
       ]
 
