@@ -155,10 +155,10 @@ class Hoppers {
 	velocityNext(distance, duckDir) {
 		// If the duck is close, jump to horizontally converge on the duck.
 		console.log(distance)
-		if (distance <= 700 && this.game.duck.state != "dead") {
+		if (distance <= 570 && this.game.duck.state != "dead") {
 			console.log("Going for the duck.")
 			// If the duck is extremely close, jump to kill the duck.
-			if (distance < 300) {
+			if (distance < 220) {
 				this.velocityN = 300 * duckDir / 3 + 2 * this.game.duck.velocityX / 3
 			} else {
 				this.velocityN = 450 * duckDir + this.game.duck.velocityX / 4
@@ -199,6 +199,8 @@ class Hoppers {
 				//If slime bottom hit floor/wall
 				if (entity == that.game.duck && that.oldBB.bottom <= entity.BB.top && entity.state != "dead") {
 					entity.die(that)
+					that.velocityX = - Math.sign(that.velocityX) * 200
+					that.velocityY = -150
 				}
 
 				if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
