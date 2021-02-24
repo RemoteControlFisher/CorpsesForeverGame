@@ -197,7 +197,7 @@ class Hoppers {
 			//If platform and entity collided
 			if (entity.BB && that.BB.isCollide(entity.BB)) {
 				//If slime bottom hit floor/wall
-				if (entity == that.game.duck && that.oldBB.bottom <= entity.BB.top) {
+				if (entity == that.game.duck && that.oldBB.bottom <= entity.BB.top && entity.state != "dead") {
 					entity.die(that)
 				}
 
