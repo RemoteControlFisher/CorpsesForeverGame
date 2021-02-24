@@ -7,7 +7,7 @@ var tutorialLevel = {
       //            //{ startX: 49, startY: 23, lengthX: 1, lengthY: 1, type: "tleft" },
       { startX: 44, startY: 18, lengthX: 61, lengthY: 6, type: "bwall" },
       { startX: 65, startY: 16, lengthX: 40, lengthY: 2, type: "bwall" },
-      { startX: 97, startY: 34, lengthX: 90, lengthY: 2, type: "bwall" },
+      { startX: 97, startY: 34, lengthX: 90, lengthY: 4, type: "bwall" },
 
 ],
       walls: [
@@ -111,11 +111,9 @@ var tutorialLevel = {
             { startX: 99, startY: 23, lengthX: 1, lengthY: 1, type: "tleft" },
 
             { startX: 69, startY: 19, lengthX: 31, lengthY: 1, type: "floor" },
-            { startX: 100, startY: 19, lengthX: 1, lengthY: 8, type: "wright" },
-            { startX: 100, startY: 27, lengthX: 1, lengthY: 1, type: "tleft" },
-            { startX: 99, startY: 27, lengthX: 1, lengthY: 1, type: "tright" },
-
-
+            { startX: 100, startY: 19, lengthX: 1, lengthY: 10, type: "wright" },
+            { startX: 100, startY: 29, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: 99, startY: 29, lengthX: 1, lengthY: 1, type: "tright" },
 
 
             { startX: 105, startY: 15, lengthX: 1, lengthY: 1, type: "tleft" },
@@ -134,11 +132,16 @@ var tutorialLevel = {
             { startX: 98, startY: 31, lengthX: 1, lengthY: 1, type: "tleft" },
 
             { startX: 99, startY: 33, lengthX: 1, lengthY: 1, type: "tright" },
+            { startX: 99, startY: 34, lengthX: 1, lengthY: 1, type: "tright" },
+            { startX: 100, startY: 34, lengthX: 1, lengthY: 1, type: "tleft" },
             { startX: 100, startY: 33, lengthX: 90, lengthY: 1, type: "floor" },
             { startX: 190, startY: 33, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: 189, startY: 34, lengthX: 1, lengthY: 1, type: "tright" },
+            { startX: 190, startY: 34, lengthX: 1, lengthY: 1, type: "tleft" },
 
-            { startX: 97, startY: 36, lengthX: 86, lengthY: 1, type: "floor" },
-            { startX: 96, startY: 36, lengthX: 1, lengthY: 1, type: "tright" },
+            { startX: 96, startY: 36, lengthX: 1, lengthY: 2, type: "wright" },
+            { startX: 97, startY: 38, lengthX: 86, lengthY: 1, type: "floor" },
+            { startX: 96, startY: 38, lengthX: 1, lengthY: 1, type: "tright" },
 
 
             //KIETS LEVEL SEGMENT: Place later in the level.
@@ -255,7 +258,21 @@ var tutorialLevel = {
             // { x: 70, y: 25  },
             //  { x: 80, y: 25  },
             //  { x: 85, y: 25  },
-               { x: 87, y: 25  }
+               { x: 120, y: 35  }
+      ],
+      hoppers: [
+            //{ x: 11, y: 5 },
+            // { x: 40, y: 25  },
+            // { x: 50, y: 25  },
+            // { x: 60, y: 25  },
+            // { x: 70, y: 25  },
+            //  { x: 80, y: 25  },
+            //  { x: 85, y: 25  },
+               { x: 89, y: 25 },
+               { x: 83, y: 25 },
+
+               { x: 84, y: 25 },
+
       ],
       buttons: [{ x: -3, y: 24.55, key: 1 }],
       textboxes: [
@@ -268,6 +285,8 @@ var tutorialLevel = {
             { x: 34, y: 34 },
             // At end of slide platform   { startX: 52, startY: 21, lengthX: 11, lengthY: 1, type: "floor" },
             { x: 49, y: 22 },
+            { x: 92, y: 34 },
+
       ],
       dtexts: [
             { x: 16, y: 7, toWrite: 'Uhg my head.', animated: true, delay: 3 },
@@ -302,11 +321,11 @@ var tutorialLevel = {
             { x: 80, y: 11, toWrite: 'Boxes make excellent weapons, but other heavy things can be lethal....', animated: false, delay: 0 },
 
 
-            { x: 96, y: 40, toWrite: 'If you have gotten this high, that is all for now.', animated: false, delay: 0 },
-            { x: 96, y: 39, toWrite: 'Thank you for playtesting corpses are forever.', animated: false, delay: 0 },
-            { x: 132, y: 38, toWrite: 'Many of you liked the idea of the game ending with a jump into the bottomless Abyss.', animated: false, delay: 0 },
-            { x: 160, y: 37, toWrite: 'So at the end of this hall, go ahead. Take a dive.', animated: false, delay: 0 },
-            { x: 176, y: 36, toWrite: 'In the future, there will be about three more zones to level one, then a level two however.', animated: false, delay: 0 },
+            { x: 96, y: 43, toWrite: 'If you have gotten this high, that is all for now.', animated: false, delay: 0 },
+            { x: 96, y: 42, toWrite: 'Thank you for playtesting corpses are forever.', animated: false, delay: 0 },
+            { x: 132, y: 41, toWrite: 'Many of you liked the idea of the game ending with a jump into the bottomless Abyss.', animated: false, delay: 0 },
+            { x: 160, y: 40, toWrite: 'So at the end of this hall, go ahead. Take a dive.', animated: false, delay: 0 },
+            { x: 176, y: 39, toWrite: 'In the future, there will be about two more zones to level one, then a level two however.', animated: false, delay: 0 },
 
       ]
 

@@ -199,14 +199,14 @@ class Lurkers {
 					that.y = entity.BB.top - 73
 				}
 				//If hits the left wall
-				else if (entity.wall && !entity.platform && that.BB.left < entity.BB.right && that.facing == 'l') {
+				else if (entity.wall && that.BB.left < entity.BB.right && that.facing == 'l') {
 					that.x = that.BB.left
 					that.velocityX = MIN_WALK
 					that.facing = "r"
 					//that.x = that.entity.right
 				}
 				//If hits the right wall
-				else if (entity.wall && !entity.platform && that.BB.right > entity.BB.left && that.facing == 'r') {
+				else if (entity.wall && that.BB.right > entity.BB.left && that.facing == 'r') {
 					that.x = that.BB.right - 79
 					that.velocityX = -MIN_WALK
 					that.facing = "l"

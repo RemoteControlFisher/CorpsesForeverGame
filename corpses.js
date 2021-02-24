@@ -5,7 +5,8 @@ class corpses {
 		this.chomp = ASSET_MANAGER.getAsset("./sprites/wolfsheet1.png");
 		this.hop = ASSET_MANAGER.getAsset("./sprites/slimesprite/Slime_Walk.png");
 		this.hopl = ASSET_MANAGER.getAsset("./sprites/slimesprite/Slime_Walk (Reverse).png");
-
+		this.hopeL = ASSET_MANAGER.getAsset("./sprites/slimesprite/Hopper jump.png");
+		this.hope = ASSET_MANAGER.getAsset("./sprites/slimesprite/Hopper jump r.png");
 
 		this.state = "idle"
 
@@ -14,6 +15,7 @@ class corpses {
 		this.animations = []
 		this.animations.duck = []
 		this.animations.chomper = []
+		this.animations.hopper = []
 		this.animations.lurker = []
 		this.animations["duck"]["r"] =
 			new animator(this.duck, // Spritesheet
@@ -63,6 +65,30 @@ class corpses {
 				false, //reverse
 				true, // looping,
 				null)
+		this.animations["hopper"]["r"] =
+			new animator(this.hope, // Spritesheet
+				262, //X
+				21, //Y
+				20, //Width
+				11, //Height
+				1, //Frames
+				0.12, //Time
+				3, //Padding
+				false, //reverse
+				true, // looping,
+				null)
+		this.animations["hopper"]["l"] =
+			new animator(this.hopeL, // Spritesheet
+				6, //X
+				21, //Y
+				20, //Width
+				11, //Height
+				1, //Frames
+				0.12, //Time
+				3, //Padding
+				false, //reverse
+				true, // looping,
+				null)
 		this.animations["lurker"]["r"] =
 			new animator(this.hop, // Spritesheet
 				262, //X
@@ -91,7 +117,7 @@ class corpses {
 		this.droppable = true;
 		this.scale = 2
 		if (this.type == "chomper") this.scale = 1
-		if (this.type == "lurker") {
+		if (this.type == "lurker" || this.type == "hopper") {
 			this.bounce = true
 		}
 		this.BB = new boundingBox(this.x, this.y, this.animations[this.type].width * this.scale, (this.animations[this.type].height) * this.scale)
@@ -135,7 +161,7 @@ class corpses {
 		this.game.entities.forEach(function (entity) {
 
 			if (entity.BB && that.BB.isCollide(entity.BB)) {
-				
+
 
 				//Override usual behavior for killable things.
 				if (that.state == "thrown" && entity.killable) {
@@ -154,7 +180,7 @@ class corpses {
 
 				if (entity != that && entity.platform && (that.oldBB.bottom <= entity.BB.top
 					|| (entity.oldBB && that.oldBB.bottom <= that.oldBB.top)//EXTREMELY SPECIAL CASE: IF I WAS ABOVE THEM BEFORE THEY MOVED.
-					) && that.velocityY > 0) {
+				) && that.velocityY > 0) {
 					that.velocityY = 0
 					that.velocityX = 0
 					that.y = entity.BB.top - that.animations[that.type][that.facing].height * that.scale
@@ -197,7 +223,7 @@ class corpses {
 					that.state = "idle"
 					that.updateBB()
 					//entity.corpseHelper()
-				  }
+				}
 			}
 			// else if (entity.BB && !that.BB.isCollide(entity.BB)) {
 			// 	if (entity.button) {
@@ -211,20 +237,20 @@ class corpses {
 
 	}
 
-	trapBehavior(trap){
-		switch(trap.facing){
+	trapBehavior(trap) {
+		switch (trap.facing) {
 			case "r":
 				this.velocityY = -720
 				this.velocityX = 550
 				this.state = "thrown"
-			break;
+				break;
 			case "l":
 				this.velocityY = -720
 				this.velocityX = 550
 				this.state = "thrown"
-			break;
+				break;
 			default://No-facing entities should use this behavior.
-				if(this.oldBB <= entity.BB.top){
+				if (this.oldBB <= entity.BB.top) {
 					that.velocityY = 0
 					that.velocityX = 0
 					that.y = entity.BB.top - that.animations[that.type][that.facing].height * that.scale
@@ -234,7 +260,7 @@ class corpses {
 					that.state = "idle"
 					that.updateBB()
 				}
-			break;
+				break;
 		}
 	}
 
@@ -247,7 +273,7 @@ class corpses {
 	};
 
 	//Used by the duck if it is carrying something.
-	duckDraw(ctx, x, y){
+	duckDraw(ctx, x, y) {
 		this.animations[this.type][this.facing].drawFrame(this.game.clockTick, ctx, x - this.game.camera.x, y - this.game.camera.y, this.scale * 0.9);
 	}
 };
