@@ -239,6 +239,7 @@ class Chompers {
 
 			}
 		}
+		this.oldBB = this.BB;
 	};
 
 	die(killer) {
@@ -310,7 +311,6 @@ class Chompers {
 					that.facing = 'r'
 					that.updateBB(1)
 				}*/
-				this.oldBB = this.BB;
 			}
 
 		});
