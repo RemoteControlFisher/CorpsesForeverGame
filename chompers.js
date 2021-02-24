@@ -249,7 +249,6 @@ class Chompers {
 	}
 
 	updateBB(scale) {
-		this.oldBB = this.BB;
 		this.BB = new boundingBox(this.x, this.y, 64 * scale, 32 * scale);
 	}
 
@@ -311,6 +310,7 @@ class Chompers {
 					that.facing = 'r'
 					that.updateBB(1)
 				}*/
+				this.oldBB = this.BB;
 			}
 
 		});
