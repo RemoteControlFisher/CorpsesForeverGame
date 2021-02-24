@@ -161,7 +161,7 @@ class Hoppers {
 			if (distance < 300) {
 				this.velocityN = 300 * duckDir / 3 + 2 * this.game.duck.velocityX / 3
 			} else {
-				this.velocityN = 450 * duckDir + 2 * this.game.duck.velocityX / 3
+				this.velocityN = 450 * duckDir + this.game.duck.velocityX / 4
 			}
 		}
 		else {// Jump at random.
