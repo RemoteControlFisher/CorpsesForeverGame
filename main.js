@@ -2,11 +2,11 @@ var gameEngine = new GameEngine();
 
 var ASSET_MANAGER = new AssetManager();
 
+// Game spritesheet
 ASSET_MANAGER.queueDownload("./sprites/duck.png")
 ASSET_MANAGER.queueDownload("./sprites/duck (Reverse).png")
 ASSET_MANAGER.queueDownload("./sprites/blade_1_3.png")
 ASSET_MANAGER.queueDownload("./sprites/blade_1_4.png")
-
 ASSET_MANAGER.queueDownload("./sprites/blade_2_fix.png")
 ASSET_MANAGER.queueDownload("./sprites/spike_strip.png")
 ASSET_MANAGER.queueDownload("./sprites/slimesprite/Slime_Walk.png")
@@ -19,9 +19,18 @@ ASSET_MANAGER.queueDownload("./sprites/wolfsheet1.png")
 ASSET_MANAGER.queueDownload("./sprites/floorsandwalls.png")
 ASSET_MANAGER.queueDownload("./sprites/Button.png")
 ASSET_MANAGER.queueDownload("./sprites/TempTextbox.png")
+ASSET_MANAGER.queueDownload("./sprites/slimesprite/Hopper jump.png")
+ASSET_MANAGER.queueDownload("./sprites/slimesprite/Hopper jump r.png")
 
+// Sound file (music)
+ASSET_MANAGER.queueDownload("./sound/World of Horror - Mode Select.mp3")
+
+// Sound effects
 
 ASSET_MANAGER.downloadAll(function () {
+    
+	ASSET_MANAGER.autoRepeat("./sound/World of Horror - Mode Select.mp3");
+
 	var canvas = document.getElementById('gameWorld');
 	var ctx = canvas.getContext('2d');
 

@@ -51,7 +51,7 @@ class scenemanager {
                 //let text = level.textboxes[i].text
                 this.game.addEntity(new textboxes(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, i))
             }
-        
+
         if (level.traps)
             for (let i = 0; i < level.traps.length; i++) {
                 let x = level.traps[i].x
@@ -62,7 +62,7 @@ class scenemanager {
                 this.game.addEntity(myTrap)
             }
         if (level.buttons && level.doors) {
-            
+
             for (let i = 0; i < level.buttons.length; i++) {
                 let myDoors = [];
                 let x = level.buttons[i].x
@@ -97,13 +97,23 @@ class scenemanager {
                 let y = level.chompers[i].y
                 this.game.addEntity(new Chompers(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH))
             }
+        if (level.lurkers)
+            for (let i = 0; i < level.lurkers.length; i++) {
+                let x = level.lurkers[i].x
+                let y = level.lurkers[i].y
+                let myLurkers = new Lurkers(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH)
+                console.log(myLurkers)
+                this.game.addEntity(myLurkers)
+            }
         if (level.hoppers)
             for (let i = 0; i < level.hoppers.length; i++) {
                 let x = level.hoppers[i].x
                 let y = level.hoppers[i].y
-                let myHopper = new Hoppers(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH)
-                console.log(myHopper)
-                this.game.addEntity(myHopper)
+                let facing = "l"
+                if (level.hoppers[i].facing) facing = level.hoppers[i].facing
+                let aHopper = new Hoppers(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, facing)
+                console.log(aHopper)
+                this.game.addEntity(aHopper)
             }
         if (level.spawns)
             for (let i = 0; i < level.spawns.length; i++) {
@@ -117,7 +127,7 @@ class scenemanager {
                 this.game.addEntity(mySpawn)
 
             }
-            if (level.boxes)
+        if (level.boxes)
             for (let i = 0; i < level.boxes.length; i++) {
                 let x = level.boxes[i].x
                 let y = level.boxes[i].y
@@ -139,12 +149,29 @@ class scenemanager {
             }
         }
 
+        //If there is music in the level, play it!
+        if (level.music) {
+            console.log("BMG is playing")
+            ASSET_MANAGER.pauseBGM();
+            ASSET_MANAGER.playAsset(level.music);
+        }
+
         this.duck.x = startx;
         this.duck.y = starty - 3 * PARAMS.BLOCKWIDTH;
         this.game.addEntity(this.duck);
         let myText = new text(this.game, PARAMS.BLOCKWIDTH, PARAMS.BLOCKWIDTH)
         this.game.addEntity(myText);
     };
+
+    //check if mute box is checked
+    //check if volume is slided
+    updateAudio() {
+        var mute = document.getElementById("mute").checked;
+        var volume = document.getElementById("volume").checked;
+
+        ASSET_MANAGER.muteAudio(mute);
+        ASSET_MANAGER.adjustAudio(volume);
+    }
 
     update() {
         //PARAMS.DEBUG = document.getElementById("debug").checked;
