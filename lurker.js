@@ -180,12 +180,12 @@ class Lurkers {
 				}
 			}
 		}
-		this.oldcBB = this.cBB;
 	};
 
 	updateBB(scale) {
 		this.oldBB = this.BB;
 		this.BB = new boundingBox(this.x + 7 * scale, this.y + 1 * scale, 25 * scale, 21 * scale);
+		this.oldcBB = this.cBB;
 		this.cBB = new boundingBox(this.x + 10, this.y + 45, 27 * scale, 14 * scale);
 	}
 
