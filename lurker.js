@@ -154,7 +154,8 @@ class Lurkers {
 			//console.log("y" + this.y);
 			//console.log("Vx" + this.velocityX);
 			//console.log("Vy" + this.velocityY);
-
+            
+		
 			if (length <= 160 && this.game.duck.state != "dead") {
 				this.state = "attack"
 				this.spotted = true
@@ -179,12 +180,12 @@ class Lurkers {
 				}
 			}
 		}
+		this.oldcBB = this.cBB;
 	};
 
 	updateBB(scale) {
 		this.oldBB = this.BB;
 		this.BB = new boundingBox(this.x + 7 * scale, this.y + 1 * scale, 25 * scale, 21 * scale);
-		this.oldcBB = this.cBB;
 		this.cBB = new boundingBox(this.x + 10, this.y + 45, 27 * scale, 14 * scale);
 	}
 
@@ -207,7 +208,7 @@ class Lurkers {
 				}
 				//If hits the right wall
 				else if (entity.wall && !entity.platform && that.BB.right > entity.BB.left && that.facing == 'r') {
-					that.x = that.BB.right - 79
+					that.x = that.BB.right - 60
 					that.velocityX = -MIN_WALK
 					that.facing = "l"
 					//that.x = that.entity.left

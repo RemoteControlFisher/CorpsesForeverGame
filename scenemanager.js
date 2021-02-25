@@ -136,10 +136,12 @@ class scenemanager {
                 let myCorpse = new corpses(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, type, facing)
                 this.game.addEntity(myCorpse)
                 console.log(myCorpse)
+
             }
         }
         
         //If there is music in the level, play it!
+        
         if(level.music){
              console.log("BMG is playing")
              ASSET_MANAGER.pauseBGM();
