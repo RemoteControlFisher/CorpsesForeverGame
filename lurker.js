@@ -25,7 +25,7 @@ class Lurkers {
 		//this.state = state   //Available state [walk], [attack], [hurt]
 		this.state = "walk"
 		this.dead = false
-
+        this.cooldown = 5;
 		this.velocityX = -MIN_WALK;
 		this.velocityY = 0;
 		this.spotted = false;
@@ -154,23 +154,24 @@ class Lurkers {
 			//console.log("y" + this.y);
 			//console.log("Vx" + this.velocityX);
 			//console.log("Vy" + this.velocityY);
-            
-		
+
 			if (length <= 160 && this.game.duck.state != "dead") {
 				this.state = "attack"
-				this.spotted = true
 				if (center.x > dcenter.x) {
 					this.facing = "l"
 					this.velocityX = -MAX_WALK
+					this.cooldown--
+                    //console.log(this.cooldown)
 				}
 				else {
 					this.facing = "r"
 					this.velocityX = MAX_WALK
+					this.cooldown--
+					//console.log(this.cooldown)
 				}
 			}
 			else {
 				this.state = "walk"
-				this.spotted = "false"
 				if (this.facing == "l") {
 					this.velocityX = -MIN_WALK
 				}
@@ -180,12 +181,13 @@ class Lurkers {
 				}
 			}
 		}
+		this.oldBB = this.cBB;
 	};
-
+dd
 	updateBB(scale) {
 		this.oldBB = this.BB;
 		this.BB = new boundingBox(this.x + 7 * scale, this.y + 1 * scale, 25 * scale, 21 * scale);
-		this.oldcBB = this.cBB;
+		//this.oldcBB = this.cBB;
 		this.cBB = new boundingBox(this.x + 10, this.y + 45, 27 * scale, 14 * scale);
 	}
 
@@ -200,15 +202,15 @@ class Lurkers {
 					that.y = entity.BB.top - 73
 				}
 				//If hits the left wall
-				else if (entity.wall && !entity.platform && that.BB.left < entity.BB.right && that.facing == 'l') {
+				else if (entity.wall && that.BB.left < entity.BB.right && that.facing == 'l') {
 					that.x = that.BB.left
 					that.velocityX = MIN_WALK
 					that.facing = "r"
 					//that.x = that.entity.right
 				}
 				//If hits the right wall
-				else if (entity.wall && !entity.platform && that.BB.right > entity.BB.left && that.facing == 'r') {
-					that.x = that.BB.right - 60
+				else if (entity.wall && that.BB.right > entity.BB.left && that.facing == 'r') {
+					that.x = that.BB.right - 79
 					that.velocityX = -MIN_WALK
 					that.facing = "l"
 					//that.x = that.entity.left

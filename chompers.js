@@ -239,6 +239,7 @@ class Chompers {
 
 			}
 		}
+		this.oldBB = this.BB;
 	};
 
 	die(killer) {
@@ -249,7 +250,6 @@ class Chompers {
 	}
 
 	updateBB(scale) {
-		this.oldBB = this.BB;
 		this.BB = new boundingBox(this.x, this.y, 64 * scale, 32 * scale);
 	}
 
