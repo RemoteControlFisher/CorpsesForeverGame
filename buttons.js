@@ -41,10 +41,10 @@ class buttons
       this.updateBB(.75)
       this.collide()
       if (this.duckPushed || this.corpsePushed || this.boxPushed) {
-        ASSET_MANAGER.playAsset("./sound/Sound effect/mixkit-arcade-mechanical-bling-210.wav")
           this.state = "pushed"
           this.myDoors.forEach(function (door) {
               door.open = true
+              ASSET_MANAGER.playAsset("./sound/Sound effect/mixkit-arcade-mechanical-bling-210.wav")
           });
       }
       else {
