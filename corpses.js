@@ -162,9 +162,10 @@ class corpses {
 
 			if (entity.BB && that.BB.isCollide(entity.BB)) {
 
-
+                
 				//Override usual behavior for killable things.
 				if (that.state == "thrown" && entity.killable) {
+					ASSET_MANAGER.playAsset("./sound/Sound effect/Punch - Gaming Sound Effect (HD).mp3")
 					//Kill the target entity.
 					entity.die(that)
 					//Bounce off the thing I killed.

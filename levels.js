@@ -1,5 +1,6 @@
 var tutorialLevel = {
-      music: "./sound/World of Horror - Mode Select.mp3",
+      music: "./sound/BMG/World of Horror - Mode Select.mp3",
+      //music: "./sound/BMG/World of Horror Soundtrack Mansion Combat.mp3",
       backs: [
             { startX: -5, startY: 1, lengthX: 20, lengthY: 30, type: "bwall" },
             { startX: 14, startY: 11, lengthX: 20, lengthY: 20, type: "bwall" },
@@ -146,9 +147,18 @@ var tutorialLevel = {
             //Le spike pito
 
             { startX: 188, startY: 10, lengthX: 7, lengthY: 1, type: "floor" },
-            { startX: 195, startY: 10, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: 194, startY: 10, lengthX: 1, lengthY: 1, type: "tleft" },
             { startX: 187, startY: 10, lengthX: 1, lengthY: 1, type: "tright" },
-            { startX: 188, startY: 11, lengthX: 1, lengthY: 6, type: "wleft" },
+            { startX: 187, startY: 11, lengthX: 1, lengthY: 6, type: "wright" },
+            { startX: 194, startY: 6, lengthX: 1, lengthY: 4, type: "wright" },
+            { startX: 194, startY: 6, lengthX: 17, lengthY: 1, type: "floor" },
+            { startX: 210, startY: 2, lengthX: 1, lengthY: 4, type: "wright" },
+            { startX: 210, startY: 1, lengthX: 19, lengthY: 1, type: "floor" },
+            { startX: 228, startY: 2, lengthX: 1, lengthY: 4, type: "wleft" },
+            { startX: 228, startY: 6, lengthX: 12, lengthY: 1, type: "floor" },
+            { startX: 233, startY: 7, lengthX: 9, lengthY: 1, type: "floor" },
+            { startX: 235, startY: 8, lengthX: 8, lengthY: 1, type: "floor" },
+            { startX: 237, startY: 9, lengthX: 7, lengthY: 1, type: "floor" },
             
 
             //KIETS LEVEL SEGMENT: Place later in the level.
@@ -239,9 +249,44 @@ var tutorialLevel = {
             //,
             //{   x: -10,    y: 13,     type: "bigSaw" }//,
             //{
-            //      x: -10,
-            //      y: 7,
-            //      type: "spike"
+            //{x: -10, y: 7, type: "spike"},
+            {x: 198, y: 7, type: "spike"},
+            {x: 199, y: 7, type: "spike"},
+            {x: 200, y: 7, type: "spike"},
+            {x: 201, y: 7, type: "spike"},
+            {x: 202, y: 7, type: "spike"},
+            {x: 203, y: 7, type: "spike"},
+            {x: 204, y: 7, type: "spike"},
+            {x: 205, y: 7, type: "spike"},
+            {x: 206, y: 7, type: "spike"},
+            {x: 207, y: 7, type: "spike"},
+            {x: 208, y: 7, type: "spike"},
+            {x: 209, y: 7, type: "spike"},
+            {x: 210, y: 7, type: "spike"},
+            
+            {x: 211, y: 2, type: "spike"},
+            {x: 212, y: 2, type: "spike"},
+            {x: 213, y: 2, type: "spike"},
+            {x: 214, y: 2, type: "spike"},
+            {x: 215, y: 2, type: "spike"},
+            {x: 216, y: 2, type: "spike"},
+            {x: 217, y: 2, type: "spike"},
+            {x: 218, y: 2, type: "spike"},
+            {x: 219, y: 2, type: "spike"},
+            {x: 220, y: 2, type: "spike"},
+            {x: 221, y: 2, type: "spike"},
+            {x: 222, y: 2, type: "spike"},
+            {x: 223, y: 2, type: "spike"},
+            {x: 224, y: 2, type: "spike"},
+            {x: 225, y: 2, type: "spike"},
+            {x: 226, y: 2, type: "spike"},
+            {x: 227, y: 2, type: "spike"},
+
+            {x: 228, y: 7, type: "spike"},
+            {x: 229, y: 7, type: "spike"},
+            {x: 230, y: 7, type: "spike"},
+            {x: 231, y: 7, type: "spike"},
+            {x: 232, y: 7, type: "spike"},
             //}
       ],
       doors: [

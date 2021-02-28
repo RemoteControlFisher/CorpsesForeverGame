@@ -648,6 +648,7 @@ class duck {
 
   die(killer) {
     let myCenter = this.BB.center()
+    ASSET_MANAGER.playAsset("./sound/Duck sound/mixkit-boxer-getting-hit-2055.wav")
     //Only the player character needs a death time.
     this.deathTime = 0
     this.state = "dead"

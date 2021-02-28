@@ -39,7 +39,6 @@ class scenemanager {
                 this.game.addEntity(new long_floorsandwalls(this.game, startx + level.walls[i].startX * PARAMS.BLOCKWIDTH, starty - level.walls[i].startY * PARAMS.BLOCKWIDTH,
                     level.walls[i].lengthX, level.walls[i].lengthY, type))
                 /*//Old floors and walls.
-
                 for (let j = level.walls[i].startX; j < level.walls[i].lengthX + level.walls[i].startX; j++)
                     for (let k = level.walls[i].startY; k < level.walls[i].lengthY + level.walls[i].startY; k++)
                         this.game.addEntity(new floorsandwalls(this.game, startx + j * PARAMS.BLOCKWIDTH, starty - k * PARAMS.BLOCKWIDTH, type))*/
@@ -146,7 +145,6 @@ class scenemanager {
                 let myCorpse = new corpses(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, type, facing)
                 this.game.addEntity(myCorpse)
                 console.log(myCorpse)
-
             }
         }
 
@@ -171,7 +169,7 @@ class scenemanager {
 
         console.log(volume)
 
-        ASSET_MANAGER.music.muteAudio(mute);
+        ASSET_MANAGER.muteAudio(mute);
         ASSET_MANAGER.adjustAudio(volume);
     }
 

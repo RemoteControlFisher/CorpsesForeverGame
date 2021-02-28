@@ -38,7 +38,7 @@ class traps {
 		this.animators["spike"] =
 			new animator(this.spritesheetSpikes, // Spritesheet
 				0, //X
-				0, //Y
+				4, //Y
 				31, //Width
 				13, //Height
 				1, //Frames
