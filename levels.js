@@ -250,6 +250,7 @@ var tutorialLevel = {
             //{   x: -10,    y: 13,     type: "bigSaw" }//,
             //{
             //{x: -10, y: 7, type: "spike"},
+            /** 
             {x: 198, y: 7, type: "spike"},
             {x: 199, y: 7, type: "spike"},
             {x: 200, y: 7, type: "spike"},
@@ -288,6 +289,7 @@ var tutorialLevel = {
             {x: 231, y: 7, type: "spike"},
             {x: 232, y: 7, type: "spike"},
             //}
+            */
       ],
       doors: [
             //{ x: 33, y: 32 },
