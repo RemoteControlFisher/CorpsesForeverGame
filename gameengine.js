@@ -48,6 +48,7 @@ class GameEngine {
         this.ctx.canvas.addEventListener("keydown", function (e) {
             if (!this.playMusic) {
                 this.playMusic = true
+                ASSET_MANAGER.playBGM()
             }
 
             switch (e.code) {
