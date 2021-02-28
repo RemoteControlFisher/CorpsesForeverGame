@@ -107,7 +107,24 @@ class AssetManager {
         }
     };
 
+    setBGM(path){
+        var audi = this.cache[path];
+        if(this.music){
+            this.music.pause();
+        }
+        this.music = audi
+        audi.loop ="true"
+    }
+
     pauseBGM(){
+        this.music.pause();
+    };
+
+    playBGM(){
+        this.music.play()
+    }
+
+    pauseAll(){
         for (var key in this.cache){
             let asset = this.cache[key];
             if(asset instanceof Audio) {

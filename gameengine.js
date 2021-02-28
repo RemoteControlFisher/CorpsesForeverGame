@@ -20,7 +20,7 @@ class GameEngine {
         this.jumpDisconnect = false;
         this.kDisconnect = false;
         this.ctrl = false;
-
+        this.playMusic
 
     };
 
@@ -46,6 +46,11 @@ class GameEngine {
 
         console.log("Starting inputs...")
         this.ctx.canvas.addEventListener("keydown", function (e) {
+            if (!this.playMusic) {
+                this.playMusic = true
+                ASSET_MANAGER.playBGM()
+            }
+
             switch (e.code) {
                 case "ArrowLeft":
                 case "KeyA":

@@ -152,9 +152,8 @@ class scenemanager {
 
         //If there is music in the level, play it!
         if (level.music) {
-            console.log("BMG is playing")
-            ASSET_MANAGER.pauseBGM();
-            ASSET_MANAGER.playAsset(level.music);
+            //ASSET_MANAGER.pauseBGM();
+            ASSET_MANAGER.setBGM(level.music);
         }
 
         this.duck.x = startx;
@@ -168,7 +167,9 @@ class scenemanager {
     //check if volume is slided
     updateAudio() {
         var mute = document.getElementById("mute").checked;
-        var volume = document.getElementById("volume").checked;
+        var volume = document.getElementById("volume").value;
+
+        console.log(volume)
 
         ASSET_MANAGER.music.muteAudio(mute);
         ASSET_MANAGER.adjustAudio(volume);
@@ -184,6 +185,7 @@ class scenemanager {
         this.x = center.x - midpoint;
         this.y = center.y - midheight;
 
+        this.updateAudio();
     };
 
     draw(ctx) {
