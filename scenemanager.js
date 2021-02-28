@@ -170,7 +170,7 @@ class scenemanager {
         var mute = document.getElementById("mute").checked;
         var volume = document.getElementById("volume").checked;
 
-        ASSET_MANAGER.muteAudio(mute);
+        ASSET_MANAGER.music.muteAudio(mute);
         ASSET_MANAGER.adjustAudio(volume);
     }
 

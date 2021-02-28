@@ -4,10 +4,10 @@ var tutorialLevel = {
             { startX: -5, startY: 1, lengthX: 20, lengthY: 30, type: "bwall" },
             { startX: 14, startY: 11, lengthX: 20, lengthY: 20, type: "bwall" },
             { startX: 34, startY: 24, lengthX: 72, lengthY: 11, type: "bwall" },
-      //            //{ startX: 49, startY: 23, lengthX: 1, lengthY: 1, type: "tleft" },
-      { startX: 44, startY: 18, lengthX: 61, lengthY: 6, type: "bwall" },
-      { startX: 65, startY: 16, lengthX: 40, lengthY: 2, type: "bwall" },
-      { startX: 97, startY: 34, lengthX: 90, lengthY: 4, type: "bwall" },
+          //{ startX: 49, startY: 23, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: 44, startY: 18, lengthX: 61, lengthY: 6, type: "bwall" },
+            { startX: 65, startY: 16, lengthX: 40, lengthY: 2, type: "bwall" },
+            { startX: 97, startY: 34, lengthX: 90, lengthY: 4, type: "bwall" },
 
 ],
       walls: [
@@ -143,6 +143,13 @@ var tutorialLevel = {
             { startX: 97, startY: 38, lengthX: 86, lengthY: 1, type: "floor" },
             { startX: 96, startY: 38, lengthX: 1, lengthY: 1, type: "tright" },
 
+            //Le spike pito
+
+            { startX: 188, startY: 10, lengthX: 7, lengthY: 1, type: "floor" },
+            { startX: 195, startY: 10, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: 187, startY: 10, lengthX: 1, lengthY: 1, type: "tright" },
+            { startX: 188, startY: 11, lengthX: 1, lengthY: 6, type: "wleft" },
+            
 
             //KIETS LEVEL SEGMENT: Place later in the level.
             // bottom platform
@@ -251,7 +258,7 @@ var tutorialLevel = {
             {x: 80, y:16.5}
       ],
       lurkers: [
-            { x: 11, y: 5 },
+            //{ x: 11, y: 5 },
             // { x: 40, y: 25  },
             // { x: 50, y: 25  },
             // { x: 60, y: 25  },
