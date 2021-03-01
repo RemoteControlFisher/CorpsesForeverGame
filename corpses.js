@@ -186,7 +186,7 @@ class corpses {
 					that.y = entity.BB.top - that.animations[that.type][that.facing].height * that.scale
 					if (entity.bounce) {
 						that.velocityY = -400
-						ASSET_MANAGER.playAsset("./sound/Sound effect/Bounce Sound Effect.mp3")
+						//ASSET_MANAGER.playAsset("./sound/Sound effect/Bounce Sound Effect.mp3")
 					}
 					that.state = "idle"
 					that.updateBB()

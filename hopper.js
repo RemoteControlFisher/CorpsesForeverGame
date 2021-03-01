@@ -116,7 +116,6 @@ class Hoppers {
 				}
 			} else if (this.state == "squat") {
 				this.squatBehavior(tick)
-				ASSET_MANAGER.playAsset("./sound/Slime sound/Slime Sounds (Minecraft) - Jump.mp3")
 			} else {
 				this.jumpBehavior(tick)
 				//ASSET_MANAGER.playAsset("./sound/Slime sound/All Slime Sounds (Minecraft) - Landed.mp3")
@@ -130,7 +129,7 @@ class Hoppers {
 			this.y += this.velocityY * tick
 
 			this.updateBB(2)
-			this.collide()
+			this.collide(length)
 
 			//Initial Walking animation
 
@@ -193,7 +192,7 @@ class Hoppers {
 		this.BB = new boundingBox(this.x, this.y, 60, 54);
 	}
 
-	collide() {
+	collide(length) {
 		var that = this;
 		this.game.entities.forEach(function (entity) {
 			//If platform and entity collided
@@ -212,6 +211,8 @@ class Hoppers {
 					that.y = entity.BB.top - 54
 					//Stand if we are landing.
 					if (that.state == "freefall") {
+						if (length <900)
+							ASSET_MANAGER.playAsset("./sound/Slime sound/Slime Sounds (Minecraft) - Jump.mp3")
 						that.state = "stand"
 						that.waitTimer()
 					}
