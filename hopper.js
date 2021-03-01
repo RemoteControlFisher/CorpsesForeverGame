@@ -116,8 +116,10 @@ class Hoppers {
 				}
 			} else if (this.state == "squat") {
 				this.squatBehavior(tick)
+				ASSET_MANAGER.playAsset("./sound/Slime sound/Slime Sounds (Minecraft) - Jump.mp3")
 			} else {
 				this.jumpBehavior(tick)
+				//ASSET_MANAGER.playAsset("./sound/Slime sound/All Slime Sounds (Minecraft) - Landed.mp3")
 			}
 
 

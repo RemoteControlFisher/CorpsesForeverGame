@@ -161,21 +161,19 @@ class corpses {
 		this.game.entities.forEach(function (entity) {
 
 			if (entity.BB && that.BB.isCollide(entity.BB)) {
-
-                
 				//Override usual behavior for killable things.
 				if (that.state == "thrown" && entity.killable) {
 					//Kill the target entity.
 					entity.die(that)
 					//Bounce off the thing I killed.
 					if (that.velocityY > 0) { // Thrown items ALWAYS have a sideways velocity.
+						ASSET_MANAGER.playAsset("./sound/Sound effect/Punch - Gaming Sound Effect (HD).mp3")
 						that.velocityY = -150
 						that.velocityX = 150
-						ASSET_MANAGER.playAsset("./sound/Sound effect/Punch - Gaming Sound Effect (HD).mp3")
 					} else {
+						ASSET_MANAGER.playAsset("./sound/Sound effect/Punch - Gaming Sound Effect (HD).mp3")
 						that.velocityY = -150
 						that.velocityX = -15
-						ASSET_MANAGER.playAsset("./sound/Sound effect/Punch - Gaming Sound Effect (HD).mp3")
 					}
 					that.state = "idle"
 				}
@@ -188,6 +186,7 @@ class corpses {
 					that.y = entity.BB.top - that.animations[that.type][that.facing].height * that.scale
 					if (entity.bounce) {
 						that.velocityY = -400
+						ASSET_MANAGER.playAsset("./sound/Sound effect/Bounce Sound Effect.mp3")
 					}
 					that.state = "idle"
 					that.updateBB()
@@ -216,6 +215,7 @@ class corpses {
 				} else if (entity.trap && that.velocityY > 0) { // If we fall onto a trap, follow the traps collision rules.
 					//Set our velocity by traps qualities.
 					that.trapBehavior(entity)
+					ASSET_MANAGER.playAsset("./sound/Sound effect/Circular Saw Sound Effect.mp3")
 				}
 				else if (entity.button && entity.BB.top <= that.BB.bottom) {
 					//that.buttonPress = true

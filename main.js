@@ -27,11 +27,21 @@ ASSET_MANAGER.queueDownload("./sound/BMG/World of Horror - Mode Select.mp3")
 ASSET_MANAGER.queueDownload("./sound/BMG/World of Horror Soundtrack Mansion Combat.mp3")
 
 // Sound effects
+
+//Le Duck
 ASSET_MANAGER.queueDownload("./sound/Duck sound/mixkit-boxer-getting-hit-2055.wav")
 ASSET_MANAGER.queueDownload("./sound/Duck sound/Quack Sound Effect.mp3")
 
+//Le Slime
+ASSET_MANAGER.queueDownload("./sound/Slime sound/Slime Sounds (Minecraft) - Jump.mp3")
+ASSET_MANAGER.queueDownload("./sound/Slime sound/Slime Sounds (Minecraft) - Landed.mp3")
+
+//General Sound
 ASSET_MANAGER.queueDownload("./sound/Sound effect/mixkit-arcade-mechanical-bling-210.wav")
 ASSET_MANAGER.queueDownload("./sound/Sound effect/Punch - Gaming Sound Effect (HD).mp3")
+ASSET_MANAGER.queueDownload("./sound/Sound effect/Ceil-door Open Sound.mp3")
+ASSET_MANAGER.queueDownload("./sound/Sound effect/Bounce Sound Effect.mp3")
+ASSET_MANAGER.queueDownload("./sound/Sound effect/Circular Saw Sound Effect.mp3")
 
 ASSET_MANAGER.downloadAll(function () {
     
