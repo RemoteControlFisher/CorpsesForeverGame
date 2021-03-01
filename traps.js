@@ -5,7 +5,7 @@ class traps {
 		this.spritesheetSAWL = ASSET_MANAGER.getAsset("./sprites/blade_1_4.png");
 
 		this.spritesheetbigSAW = ASSET_MANAGER.getAsset("./sprites/blade_2_fix.png");
-		this.spritesheetSpikes = ASSET_MANAGER.getAsset("./sprites/spike_strip.png");
+		this.spritesheetSpikes = ASSET_MANAGER.getAsset("./sprites/new_Spike_Strip.png");
 
 		//Add a type enumerator to verify this is a trap.
 		this.trap =  true;
