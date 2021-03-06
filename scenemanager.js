@@ -151,7 +151,7 @@ class scenemanager {
             for (let i = 0; i < level.goals.length; i++) {
                 let x = level.goals[i].x
                 let y = level.goals[i].y
-                let nextLevel = level.goals[i].nLevel
+                let nextLevel = allLevels[level.goals[i].nLevel]
                 let myGoal = new goal(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, nextLevel, this)
                 console.log(myGoal)
                 this.game.addEntity(myGoal)

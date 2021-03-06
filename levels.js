@@ -1,7 +1,12 @@
 var levelTwo = {
       walls: [
-            { startX: -4, startY: 0, lengthX: 18, lengthY: 1, type: "floor" }
-      ]
+            { startX: -4, startY: 0, lengthX: 20, lengthY: 1, type: "floor" }
+            
+      ],
+      //goals: [
+      //      { x: 12, y: 1, nLevel: "tutorial"}
+      //]
+
 };
 
 var tutorialLevel = {
@@ -391,7 +396,12 @@ var tutorialLevel = {
 
       ],
       goals: [
-            { x: 11, y: 1, nLevel: levelTwo}
+            { x: 11, y: 1, nLevel: "two"}
       ]
 
+};
+
+let allLevels = {
+      two: levelTwo,
+      tutorial: tutorialLevel
 };

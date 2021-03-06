@@ -43,11 +43,15 @@ class goal {
             null)
         
             this.BB = new boundingBox(this.x +28, this.y+2, 32, 38)
+            this.disconnect = false
     };
 
     update() {
-        if (this.scene.duck.BB.isCollide(this.BB)) {
+        if (this.scene.duck.BB.isCollide(this.BB) && !this.disconnect) {
             this.scene.loadlevel(this.level)
+            this.disconnect = true
+        } else {
+            this.disconnect = false
         }
     };
 
