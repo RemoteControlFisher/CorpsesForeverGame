@@ -143,7 +143,7 @@ class GameEngine {
         for (var i = 0; i < entitiesCount; i++) {
             var entity = this.entities[i];
 
-            if (!entity.removeFromWorld) {
+            if (entity && !entity.removeFromWorld) {
                 entity.update();
             }
         }
@@ -151,7 +151,7 @@ class GameEngine {
         this.camera.update();
 
         for (var i = this.entities.length - 1; i >= 0; --i) {
-            if (this.entities[i].removeFromWorld) {
+            if (this.entities[i] && this.entities[i].removeFromWorld) {
                 this.entities.splice(i, 1);
             }
         }

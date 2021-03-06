@@ -1,3 +1,9 @@
+var levelTwo = {
+      walls: [
+            { startX: -4, startY: 0, lengthX: 18, lengthY: 1, type: "floor" }
+      ]
+};
+
 var tutorialLevel = {
       music: "./sound/BMG/World of Horror - Mode Select.mp3",
       //music: "./sound/BMG/World of Horror Soundtrack Mansion Combat.mp3",
@@ -385,7 +391,7 @@ var tutorialLevel = {
 
       ],
       goals: [
-            { x: 11, y: 1, nLevel: null}
+            { x: 11, y: 1, nLevel: levelTwo}
       ]
 
 };

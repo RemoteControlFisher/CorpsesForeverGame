@@ -11,7 +11,7 @@ class scenemanager {
         this.loadlevel(tutorialLevel, 0, 0);
     };
 
-    loadlevel(level, startx, starty) {
+    loadlevel(level, startx = 0, starty = 0) {
         this.game.entities = [];
         this.x = 0;
 
@@ -152,7 +152,7 @@ class scenemanager {
                 let x = level.goals[i].x
                 let y = level.goals[i].y
                 let nextLevel = level.goals[i].nLevel
-                let myGoal = new goal(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, nextLevel)
+                let myGoal = new goal(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, nextLevel, this)
                 console.log(myGoal)
                 this.game.addEntity(myGoal)
             }
