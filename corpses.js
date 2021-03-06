@@ -248,7 +248,7 @@ class corpses {
 				break;
 			case "l":
 				this.velocityY = -720
-				this.velocityX = 550
+				this.velocityX = -550
 				this.state = "thrown"
 				break;
 			default://No-facing entities should use this behavior.
