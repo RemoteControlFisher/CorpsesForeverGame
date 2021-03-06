@@ -147,6 +147,15 @@ class scenemanager {
                 console.log(myCorpse)
             }
         }
+        if (level.goals)
+            for (let i = 0; i < level.goals.length; i++) {
+                let x = level.goals[i].x
+                let y = level.goals[i].y
+                let nextLevel = level.goals[i].nLevel
+                let myGoal = new goal(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, nextLevel)
+                console.log(myGoal)
+                this.game.addEntity(myGoal)
+            }
 
         //If there is music in the level, play it!
         if (level.music) {
@@ -167,7 +176,7 @@ class scenemanager {
         var mute = document.getElementById("mute").checked;
         var volume = document.getElementById("volume").value;
 
-        console.log(volume)
+        //console.log(volume)
 
         ASSET_MANAGER.muteAudio(mute);
         ASSET_MANAGER.adjustAudio(volume);

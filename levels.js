@@ -383,6 +383,9 @@ var tutorialLevel = {
             { x: 160, y: 40, toWrite: 'So at the end of this hall, go ahead. Take a dive.', animated: false, delay: 0 },
             { x: 176, y: 39, toWrite: 'In the future, there will be about two more zones to level one, then a level two however.', animated: false, delay: 0 },
 
+      ],
+      goals: [
+            { x: 11, y: 1, nLevel: null}
       ]
 
 };

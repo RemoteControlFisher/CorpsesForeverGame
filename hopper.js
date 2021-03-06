@@ -155,7 +155,7 @@ class Hoppers {
 	//Selects the ducks next velocity.
 	velocityNext(distance, duckDir) {
 		// If the duck is close, jump to horizontally converge on the duck.
-		console.log(distance)
+		//console.log(distance)
 		if (distance <= 570 && this.game.duck.state != "dead") {
 			console.log("Going for the duck.")
 			// If the duck is extremely close, jump to kill the duck.
