@@ -71,31 +71,45 @@ var levelTwo = {
       backs: [
             { startX: -6, startY: -16, lengthX: 60, lengthY: 22, type: "darkBwall" },
       ],
-      goals: [
-            { x: 12, y: 1, nLevel: "end" }
-      ],
+      
       dtexts: [
             { x: -4, y: 7, toWrite: 'You can fall through platforms by crouching.', animated: true, delay: 1 },
-      ]
+      ],
+      goals: [
+            //{ x: -5, y: 0, loc: {x:0,y: 9} },
+            { x: 12, y: 1, nLevel: "end" },
+      ],
 
 };
 
 var creditsLevel = {
       walls: [
-            { startX: -4, startY: 0, lengthX: 10, lengthY: 1, type: "floor" },
-            { startX: -5, startY: 1, lengthX: 1, lengthY: 4, type: "wleft" },
-            { startX: -4, startY: 5, lengthX: 10, lengthY: 1, type: "floor" },
-            { startX: 6, startY: 1, lengthX: 1, lengthY: 4, type: "wleft" },
+            { startX: -3, startY: 0, lengthX: 8, lengthY: 1, type: "thinPlatform" },
+
             { startX: -5, startY: 0, lengthX: 1, lengthY: 1, type: "tright" },
             { startX: 6, startY: 0, lengthX: 1, lengthY: 1, type: "tleft" },
             { startX: -5, startY: 5, lengthX: 1, lengthY: 1, type: "tright" },
+            { startX: -4, startY: 0, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: 5, startY: 0, lengthX: 1, lengthY: 1, type: "tright" },
             { startX: 6, startY: 5, lengthX: 1, lengthY: 1, type: "tleft" },
+
+
+            { startX: -4, startY: -6, lengthX: 10, lengthY: 1, type: "floor" },
+            { startX: -5, startY: 0, lengthX: 1, lengthY: 1, type: "tright" },
+            { startX: 6, startY: 0, lengthX: 1, lengthY: 1, type: "tleft" },
+
+            { startX: -5, startY: -6, lengthX: 1, lengthY: 11, type: "wleft" },
+            { startX: -4, startY: 5, lengthX: 10, lengthY: 1, type: "floor" },
+            { startX: 6, startY: -6, lengthX: 1, lengthY: 11, type: "wright" },
+
+            { startX: 3, startY: -3, lengthX: 3, lengthY: 1, type: "thinPlatform" },
+            { startX: -4, startY: -3, lengthX: 3, lengthY: 1, type: "thinPlatform" },
       ],
       spawns: [
             { x: 0, y: 4 },
       ],
       backs: [
-            { startX: -4, startY: 1, lengthX: 10, lengthY: 4, type: "tright" },
+            { startX: -4, startY: -5, lengthX: 10, lengthY: 10, type: "darkBwall" },
       ],
       traps: [
             { x: -4, y: 2, type: "saw" },
@@ -103,8 +117,17 @@ var creditsLevel = {
       ],
       dtexts: [
             { x: -6, y: 8, toWrite: 'Thank you for playtesting corpses are forever.', animated: false, delay: 0 },
-            { x: -4, y: 7, toWrite: 'This is as far as the levels go for now.', animated: true, delay: 1 },
-      ]
+            { x: -4.2, y: 7, toWrite: 'This is as far as the levels go for now.', animated: true, delay: 1 },
+            { x: -2, y: 6, toWrite: 'Below is the level select.', animated: true, delay: 2 },
+            { x: 3.5, y: -3.5, toWrite: 'Two.', animated: true, delay: 0 },
+            { x: -3.5, y: -3.5, toWrite: 'One.', animated: true, delay: 0 },
+
+      ],
+      goals: [
+            { x: 3, y: -2, nLevel: "two" },
+            { x: -4, y: -2, nLevel: "tutorial" },
+
+      ],
 }
 
 var tutorialLevel = {
@@ -494,7 +517,7 @@ var tutorialLevel = {
 
       ],
       goals: [
-            { x: 11, y: 1, nLevel: "two" },
+            //{ x: 11, y: 1, nLevel: "two" },
             { x: 170, y: 34, nLevel: "two" }
       ]
 
