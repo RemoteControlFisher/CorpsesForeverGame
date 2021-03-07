@@ -662,8 +662,8 @@ class duck {
     if (killer.facing) {
       if (killer.facing == "r") {
         corpseVX = 550
-      }
-      else {
+      } else if (killer.facing == "l")
+      {
         corpseVX = -550
       }
     }
@@ -707,7 +707,7 @@ class duck {
     //Throwing code.
     if (this.game.keyK && this.carried && !this.game.kDisconnect) {
       this.game.kDisconnect = true;
-      if (this.game.up) {
+      if (this.game.up && this.state!= "jump") { // IF the user wants to throw up while jumping, wait till the freefall.
         this.upThrow()
       } else
         if (this.game.down) {
@@ -884,6 +884,10 @@ class duck {
 
           //If we are landing on something, stop. 
           if (entity.platform && that.oldBB.bottom <= entity.BB.top && that.velocityY > 0) {
+
+            if(!(that.state == "dead") && entity.spike){
+              that.die(entity)
+            }
             //If the entity is droppable and dow is held, let the player fall through it if they are not sliding.
             //Control blocks this behavior, to let the player drop corpses on platforms.
             if (!(entity.droppable && that.game.down && !that.game.sprint)) {
@@ -979,6 +983,9 @@ class duck {
           }
 
           if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
+            if(!(that.state == "dead") && entity.spike){
+              that.die(entity)
+            }
             that.velocityY = 0
             that.y = entity.BB.top - 50
             that.updateBB(2)

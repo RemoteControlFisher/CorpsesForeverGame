@@ -205,6 +205,9 @@ class Hoppers {
 				}
 
 				if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
+					if(!(that.state == "dead") && entity.spike){
+						that.die(entity)
+					}
 					that.velocityY = 0
 					that.velocityX = that.velocityX * 2 / 3
 					if (Math.abs(that.velocityX) < 120) that.velocityX = 0
@@ -249,11 +252,12 @@ class Hoppers {
 		this.velocityY = 0
 		let corpseVX = 0
 		//corpse velocity and speed it will repulse
-		if (killer.facing == "l") {
-			corpseVX = -550
-		} else {
+		if (killer.facing == "r") {
 			corpseVX = 550
-		}
+		  } else if (killer.facing == "l")
+		  {
+			corpseVX = -550
+		  }
 		let slimeCorpse = new corpses(this.game, this.x, this.y, "hopper", this.facing, corpseVX, - 220)
 		this.game.addEntity(slimeCorpse)
 		this.removeFromWorld = true;

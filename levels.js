@@ -15,7 +15,8 @@ var levelTwo = {
             { startX: 12, startY: -3, lengthX: 1, lengthY: 1, type: "tleft" },
             { startX: 11, startY: -3, lengthX: 1, lengthY: 1, type: "tright" },
             { startX: 12, startY: -12, lengthX: 1, lengthY: 9, type: "wright" },
-
+            { startX: 12, startY: -12, lengthX: 1, lengthY: 1, type: "tright" },
+            { startX: 13, startY: -12, lengthX: 1, lengthY: 1, type: "tleft" },
             { startX: -6, startY: 6, lengthX: 1, lengthY: 1, type: "tright" },
             { startX: 11, startY: 6, lengthX: 1, lengthY: 1, type: "tleft" },
 
@@ -23,11 +24,11 @@ var levelTwo = {
 
             { startX: -7, startY: -16, lengthX: 1, lengthY: 1, type: "tright" },
             { startX: -6, startY: -16, lengthX: 20, lengthY: 1, type: "floor" },
-            
-            { startX: 14, startY: -17, lengthX: 30, lengthY: 1, type: "floor" },
+
+            { startX: 14, startY: -17, lengthX: 25, lengthY: 1, type: "floor" },
             { startX: 13, startY: -17, lengthX: 1, lengthY: 1, type: "tright" },
             { startX: 14, startY: -16, lengthX: 1, lengthY: 1, type: "tleft" },
-  
+
 
             { startX: 1, startY: -14, lengthX: 3, lengthY: 1, type: "floor" },
             { startX: 0, startY: -14, lengthX: 1, lengthY: 1, type: "tright" },
@@ -36,10 +37,36 @@ var levelTwo = {
       ],
       boxes: [
             { x: 3, y: -13 },
-            ]
-      ,
+      ],
+      hoppers: [
+            { x: 3, y: -11 },
+      ],
+      traps: [
+            { x: 15, y: -16 },
+            { x: 16, y: -16 },
+            { x: 17, y: -16 },
+            { x: 18, y: -16 },
+            { x: 19, y: -16 },
+            { x: 20, y: -16 },
+            { x: 21, y: -16 },
+            { x: 22, y: -16 },
+            { x: 23, y: -16 },
+            { x: 24, y: -16 },
+            { x: 25, y: -16 },
+            { x: 26, y: -16 },
+            { x: 27, y: -16 },
+            { x: 28, y: -16 },
+            { x: 29, y: -16 },
+            { x: 30, y: -16 },
+            { x: 31, y: -16 },
+            { x: 32, y: -16 },
+            { x: 33, y: -16 },
+            { x: 34, y: -16 },
+            { x: 35, y: -16 },
+      ],
       spawns: [
             { x: 0, y: 5 },
+            { x: 13, y:-13}
       ],
       backs: [
             { startX: -6, startY: -16, lengthX: 60, lengthY: 22, type: "darkBwall" },
@@ -49,8 +76,6 @@ var levelTwo = {
       ],
       dtexts: [
             { x: -4, y: 7, toWrite: 'You can fall through platforms by crouching.', animated: true, delay: 1 },
-            { x: -4, y: 7, toWrite: 'You can fall through platforms by crouching.', animated: true, delay: 5 },
-
       ]
 
 };
