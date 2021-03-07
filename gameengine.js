@@ -20,7 +20,7 @@ class GameEngine {
         this.jumpDisconnect = false;
         this.kDisconnect = false;
         this.ctrl = false;
-
+        this.playMusic
 
     };
 
@@ -46,6 +46,11 @@ class GameEngine {
 
         console.log("Starting inputs...")
         this.ctx.canvas.addEventListener("keydown", function (e) {
+            if (!this.playMusic) {
+                this.playMusic = true
+                ASSET_MANAGER.playBGM()
+            }
+
             switch (e.code) {
                 case "ArrowLeft":
                 case "KeyA":
@@ -126,7 +131,7 @@ class GameEngine {
     draw() {
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
         for (var i = 0; i < this.entities.length; i++) {
-            if (this.entities[i] != this.duck)
+            if (this.entities[i] && this.entities[i] != this.duck)
                 this.entities[i].draw(this.ctx);
         }
         this.duck.draw(this.ctx)
@@ -138,7 +143,7 @@ class GameEngine {
         for (var i = 0; i < entitiesCount; i++) {
             var entity = this.entities[i];
 
-            if (!entity.removeFromWorld) {
+            if (entity && !entity.removeFromWorld) {
                 entity.update();
             }
         }
@@ -146,7 +151,7 @@ class GameEngine {
         this.camera.update();
 
         for (var i = this.entities.length - 1; i >= 0; --i) {
-            if (this.entities[i].removeFromWorld) {
+            if (this.entities[i] && this.entities[i].removeFromWorld) {
                 this.entities.splice(i, 1);
             }
         }

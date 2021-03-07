@@ -253,9 +253,9 @@ class Lurkers {
 			//console.log("Vy" + this.velocityY);
 			if (length <= 160 && this.state != "attack") {
 				this.state = "attack"
-				setTimeout(function() {
-					if (this.state == "attack")
-				})
+				// setTimeout(function() {
+				// 	if (this.state == "attack")
+				// })
 			}
 			if (length <= 160 && this.game.duck.state != "dead" && this.state == "attack") {
 				let speed = MAX_WALK

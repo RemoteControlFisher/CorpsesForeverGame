@@ -8,7 +8,7 @@ ASSET_MANAGER.queueDownload("./sprites/duck (Reverse).png")
 ASSET_MANAGER.queueDownload("./sprites/blade_1_3.png")
 ASSET_MANAGER.queueDownload("./sprites/blade_1_4.png")
 ASSET_MANAGER.queueDownload("./sprites/blade_2_fix.png")
-ASSET_MANAGER.queueDownload("./sprites/spike_strip.png")
+ASSET_MANAGER.queueDownload("./sprites/new_Spike_Strip.png")
 ASSET_MANAGER.queueDownload("./sprites/slimesprite/Slime_Walk.png")
 ASSET_MANAGER.queueDownload("./sprites/slimesprite/Slime_Walk (Reverse).png")
 ASSET_MANAGER.queueDownload("./sprites/slimesprite/Slime_Hurt.png")
@@ -23,13 +23,30 @@ ASSET_MANAGER.queueDownload("./sprites/slimesprite/Hopper jump.png")
 ASSET_MANAGER.queueDownload("./sprites/slimesprite/Hopper jump r.png")
 
 // Sound file (music)
-ASSET_MANAGER.queueDownload("./sound/World of Horror - Mode Select.mp3")
+ASSET_MANAGER.queueDownload("./sound/BMG/World of Horror - Mode Select.mp3")
+ASSET_MANAGER.queueDownload("./sound/BMG/World of Horror Soundtrack Mansion Combat.mp3")
 
 // Sound effects
 
+//Le Duck
+ASSET_MANAGER.queueDownload("./sound/Duck sound/mixkit-boxer-getting-hit-2055.wav")
+ASSET_MANAGER.queueDownload("./sound/Duck sound/Quack Sound Effect.mp3")
+
+//Le Slime
+ASSET_MANAGER.queueDownload("./sound/Slime sound/Slime Sounds (Minecraft) - Jump.mp3")
+ASSET_MANAGER.queueDownload("./sound/Slime sound/Slime Sounds (Minecraft) - Landed.mp3")
+
+//General Sound
+ASSET_MANAGER.queueDownload("./sound/Sound effect/mixkit-arcade-mechanical-bling-210.wav")
+ASSET_MANAGER.queueDownload("./sound/Sound effect/Punch - Gaming Sound Effect (HD).mp3")
+ASSET_MANAGER.queueDownload("./sound/Sound effect/Ceil-door Open Sound.mp3")
+ASSET_MANAGER.queueDownload("./sound/Sound effect/Bounce Sound Effect.mp3")
+ASSET_MANAGER.queueDownload("./sound/Sound effect/Circular Saw Sound Effect.mp3")
+
 ASSET_MANAGER.downloadAll(function () {
     
-	ASSET_MANAGER.autoRepeat("./sound/World of Horror - Mode Select.mp3");
+	ASSET_MANAGER.autoRepeat("./sound/BMG/World of Horror - Mode Select.mp3");
+	//ASSET_MANAGER.autoRepeat("./sound/BMG/World of Horror Soundtrack Mansion Combat.mp3");
 
 	var canvas = document.getElementById('gameWorld');
 	var ctx = canvas.getContext('2d');
@@ -39,7 +56,7 @@ ASSET_MANAGER.downloadAll(function () {
 	PARAMS.CANVAS_HEIGHT = canvas.height;
 
 	gameEngine.init(ctx);
-
+    
 	new scenemanager(gameEngine);
     /*
 	for (i = 0; i < 16; i++) {

@@ -118,6 +118,7 @@ class Hoppers {
 				this.squatBehavior(tick)
 			} else {
 				this.jumpBehavior(tick)
+				//ASSET_MANAGER.playAsset("./sound/Slime sound/All Slime Sounds (Minecraft) - Landed.mp3")
 			}
 
 
@@ -128,7 +129,7 @@ class Hoppers {
 			this.y += this.velocityY * tick
 
 			this.updateBB(2)
-			this.collide()
+			this.collide(length)
 
 			//Initial Walking animation
 
@@ -154,11 +155,11 @@ class Hoppers {
 	//Selects the ducks next velocity.
 	velocityNext(distance, duckDir) {
 		// If the duck is close, jump to horizontally converge on the duck.
-		console.log(distance)
-		if (distance <= 700 && this.game.duck.state != "dead") {
+		//console.log(distance)
+		if (distance <= 570 && this.game.duck.state != "dead") {
 			console.log("Going for the duck.")
 			// If the duck is extremely close, jump to kill the duck.
-			if (distance < 300) {
+			if (distance < 220) {
 				this.velocityN = 300 * duckDir / 3 + 2 * this.game.duck.velocityX / 3
 			} else {
 				this.velocityN = 450 * duckDir + this.game.duck.velocityX / 4
@@ -191,7 +192,7 @@ class Hoppers {
 		this.BB = new boundingBox(this.x, this.y, 60, 54);
 	}
 
-	collide() {
+	collide(length) {
 		var that = this;
 		this.game.entities.forEach(function (entity) {
 			//If platform and entity collided
@@ -199,15 +200,22 @@ class Hoppers {
 				//If slime bottom hit floor/wall
 				if (entity == that.game.duck && that.oldBB.bottom <= entity.BB.top && entity.state != "dead") {
 					entity.die(that)
+					that.velocityX = - Math.sign(that.velocityX) * 200
+					that.velocityY = -150
 				}
 
 				if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
+					if (!(that.state == "dead") && entity.spike) {
+						that.die(entity)
+					}
 					that.velocityY = 0
 					that.velocityX = that.velocityX * 2 / 3
 					if (Math.abs(that.velocityX) < 120) that.velocityX = 0
 					that.y = entity.BB.top - 54
 					//Stand if we are landing.
 					if (that.state == "freefall") {
+						if (length < 900)
+							ASSET_MANAGER.playAsset("./sound/Slime sound/Slime Sounds (Minecraft) - Jump.mp3")
 						that.state = "stand"
 						that.waitTimer()
 					}
@@ -218,13 +226,13 @@ class Hoppers {
 						that.updateBB(2)
 					}
 					//If hits the left wall
-					else if (entity.wall  && that.BB.left < entity.BB.right && that.velocityX < 0) {
+					else if (entity.wall && that.BB.left < entity.BB.right && that.velocityX < 0) {
 						that.x = entity.BB.right
 						that.velocityX = -that.velocityX
 						//that.x = that.entity.right
 					}
 					//If hits the right wall
-					else if (entity.wall  && that.BB.right > entity.BB.left && that.velocityX > 0) {
+					else if (entity.wall && that.BB.right > entity.BB.left && that.velocityX > 0) {
 						that.x = entity.BB.left - 60
 						that.velocityX = -that.velocityX
 						//that.x = that.entity.left
@@ -244,10 +252,10 @@ class Hoppers {
 		this.velocityY = 0
 		let corpseVX = 0
 		//corpse velocity and speed it will repulse
-		if (killer.facing == "l") {
-			corpseVX = -550
-		} else {
+		if (killer.facing == "r") {
 			corpseVX = 550
+		} else if (killer.facing == "l") {
+			corpseVX = -550
 		}
 		let slimeCorpse = new corpses(this.game, this.x, this.y, "hopper", this.facing, corpseVX, - 220)
 		this.game.addEntity(slimeCorpse)

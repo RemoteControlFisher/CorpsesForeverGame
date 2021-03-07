@@ -11,7 +11,7 @@ class scenemanager {
         this.loadlevel(tutorialLevel, 0, 0);
     };
 
-    loadlevel(level, startx, starty) {
+    loadlevel(level, startx = 0, starty = 0) {
         this.game.entities = [];
         this.x = 0;
 
@@ -21,7 +21,7 @@ class scenemanager {
             console.log(level.backs)
             for (let i = 0; i < level.backs.length; i++) {
                 let type = level.backs[i].type
-                if (type = "bwall") // IF the type is an optimized background type.
+                if (type == "bwall" || type == "darkBwall") // IF the type is an optimized background type.
                     this.game.addEntity(new long_backgrounds(this.game, startx + level.backs[i].startX * PARAMS.BLOCKWIDTH, starty - level.backs[i].startY * PARAMS.BLOCKWIDTH, level.backs[i].lengthX,
                         level.backs[i].lengthY, type))
                 else { // If the type is not an optimized background type.
@@ -39,7 +39,6 @@ class scenemanager {
                 this.game.addEntity(new long_floorsandwalls(this.game, startx + level.walls[i].startX * PARAMS.BLOCKWIDTH, starty - level.walls[i].startY * PARAMS.BLOCKWIDTH,
                     level.walls[i].lengthX, level.walls[i].lengthY, type))
                 /*//Old floors and walls.
-
                 for (let j = level.walls[i].startX; j < level.walls[i].lengthX + level.walls[i].startX; j++)
                     for (let k = level.walls[i].startY; k < level.walls[i].lengthY + level.walls[i].startY; k++)
                         this.game.addEntity(new floorsandwalls(this.game, startx + j * PARAMS.BLOCKWIDTH, starty - k * PARAMS.BLOCKWIDTH, type))*/
@@ -166,12 +165,28 @@ class scenemanager {
                 console.log(myCorpse)
             }
         }
+        if (level.goals)
+            for (let i = 0; i < level.goals.length; i++) {
+                let x = level.goals[i].x
+                let y = level.goals[i].y
+                let nextLevel = null
+                let loc = {x:0, y:0}
+                if(level.goals[i].nLevel)
+                    nextLevel = allLevels[level.goals[i].nLevel]
+                if (level.goals[i].loc)
+                    loc = level.goals[i].loc
+                let myGoal = new goal(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, nextLevel, this, loc)
+                console.log(myGoal)
+                this.game.addEntity(myGoal)
+            }
+        if (level.scripts){
+            level.scripts()
+        }
 
         //If there is music in the level, play it!
         if (level.music) {
-            console.log("BMG is playing")
-            ASSET_MANAGER.pauseBGM();
-            ASSET_MANAGER.playAsset(level.music);
+            //ASSET_MANAGER.pauseBGM();
+            ASSET_MANAGER.setBGM(level.music);
         }
 
         this.duck.x = startx;
@@ -185,7 +200,9 @@ class scenemanager {
     //check if volume is slided
     updateAudio() {
         var mute = document.getElementById("mute").checked;
-        var volume = document.getElementById("volume").checked;
+        var volume = document.getElementById("volume").value;
+
+        //console.log(volume)
 
         ASSET_MANAGER.muteAudio(mute);
         ASSET_MANAGER.adjustAudio(volume);
@@ -201,6 +218,7 @@ class scenemanager {
         this.x = center.x - midpoint;
         this.y = center.y - midheight;
 
+        this.updateAudio();
     };
 
     draw(ctx) {

@@ -15,6 +15,18 @@ class long_floorsandwalls {
 				false, //reverse
 				true, // looping,
 				null)
+		this.animations["thinPlatform"] =
+			new animator(this.spritesheet, // Spritesheet
+				209, //X
+				48, //Y
+				16, //Width
+				16, //Height
+				1, //Frames
+				0.12, //Time
+				3, //Padding
+				false, //reverse
+				true, // looping,
+				null)
 		this.animations["wleft"] =
 			new animator(this.spritesheet, //Spritesheet
 				16, //X
@@ -101,8 +113,12 @@ class long_floorsandwalls {
 				null)
 		if (this.type != "wleft" && this.type != "wright")
 			this.platform = true;
-		this.wall = true;
-		this.cieling = true;
+		if (this.type != "thinPlatform") {
+			this.wall = true;
+			this.cieling = true;
+		} else {
+			this.droppable = true
+		}
 		this.BB = new boundingBox(startX, startY + 32 - 32 * lengthY, 32 * lengthX, 32 * lengthY)
 	};
 

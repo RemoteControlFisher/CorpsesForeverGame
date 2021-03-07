@@ -69,9 +69,11 @@ class boxes {
 					if (that.velocityY > 0) { // Thrown items ALWAYS have a sideways velocity.
 						that.velocityY = -150
 						that.velocityX = 150
+						ASSET_MANAGER.playAsset("./sound/Sound effect/Punch - Gaming Sound Effect (HD).mp3")
 					} else {
 						that.velocityY = -150
 						that.velocityX = -15
+						ASSET_MANAGER.playAsset("./sound/Sound effect/Punch - Gaming Sound Effect (HD).mp3")
 					}
 					that.state = "idle"
 				}

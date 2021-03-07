@@ -259,6 +259,9 @@ class Chompers {
 		this.game.entities.forEach(function (entity) {
 			if (entity.BB && that.BB.isCollide(entity.BB)) {
 				if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
+					if(!(that.state == "dead") && entity.spike){
+						that.die(entity)
+					}
 					that.velocityY = 0
 					that.y = entity.BB.top - 32
 					that.updateBB(1)

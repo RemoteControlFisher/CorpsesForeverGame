@@ -34,8 +34,8 @@ class buttons
                 true, // looping,
                 null) //No idle animation because I am looping.
 
-	};
-
+        this.updateBB(.75)
+    };
 	update()
 	{
       this.updateBB(.75)
@@ -44,6 +44,7 @@ class buttons
           this.state = "pushed"
           this.myDoors.forEach(function (door) {
               door.open = true
+              ASSET_MANAGER.playAsset("./sound/Sound effect/mixkit-arcade-mechanical-bling-210.wav")
           });
           this.myDText.forEach(function (dtext) {
             dtext.enabled = true
@@ -61,14 +62,14 @@ class buttons
 	};
 
     updateBB(scale) {
-		this.oldBB = this.BB;
-		this.BB = new boundingBox(this.x, this.y, 129 * scale, 24 * scale);
-	}
-    
-    collide(){
+        this.oldBB = this.BB;
+        this.BB = new boundingBox(this.x, this.y, 129 * scale, 24 * scale);
+    }
+
+    collide() {
         this.corpsePushed = false
         var that = this;
-		this.game.entities.forEach(function (entity) {
+        this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BB.isCollide(entity.BB)) {
                 if (entity.platform && entity.droppable && entity.state != "carried") {
                     that.corpsePushed = true
@@ -82,13 +83,12 @@ class buttons
         });
     }
 
-	draw(ctx)
-	{
+    draw(ctx) {
 
-        this.button[this.state].drawFrame(this.game.clockTick, ctx, this.x  - this.game.camera.x, this.y - this.game.camera.y, .75) 
+        this.button[this.state].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, .75)
         ctx.strokeStyle = 'Red';
-		ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
-	};
+        ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
+    };
 
     // corpseHelper() {
     //     this.corpsePushed = false
