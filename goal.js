@@ -1,7 +1,7 @@
 class goal {
-    constructor(game, x, y, level, scene) {
+    constructor(game, x, y, level = null, scene, loc = {x:0,y:0}) {
         y= y-8
-        Object.assign(this, { game, x, y, level, scene });
+        Object.assign(this, { game, x, y, level, scene, loc });
         this.spritesheet = ASSET_MANAGER.getAsset("./sprites/duck.png")
         this.rsheet = ASSET_MANAGER.getAsset("./sprites/duck (Reverse).png")
         this.isGoal
@@ -48,8 +48,13 @@ class goal {
 
     update() {
         if (this.scene.duck.BB.isCollide(this.BB) && !this.disconnect) {
-            this.scene.loadlevel(this.level)
-            this.disconnect = true
+            if(this.level) {
+                this.scene.loadlevel(this.level)
+                this.disconnect = true
+            } else {
+                this.game.duck.x = this.loc.x*PARAMS.BLOCKWIDTH
+                this.game.duck.y = -this.loc.y*PARAMS.BLOCKWIDTH
+            }
         } else {
             this.disconnect = false
         }

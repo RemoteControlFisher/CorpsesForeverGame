@@ -1,5 +1,7 @@
 class traps {
-	constructor(game, x, y, type) {
+	constructor(game, x, y, type ="spike") {
+		if(type == "spike")
+			y+=21
 		Object.assign(this, { game, x, y, type });
 		this.spritesheetSAW = ASSET_MANAGER.getAsset("./sprites/blade_1_3.png");
 		this.spritesheetSAWL = ASSET_MANAGER.getAsset("./sprites/blade_1_4.png");
@@ -62,6 +64,11 @@ class traps {
 
 		if(this.type == "saw" || this.type == "lsaw" || this.type == "bigSaw")
 				this.saw=true
+
+		if(this.type == "spike"){
+				this.spike=true
+				this.platform=true
+		}
 
 		if(this.type =="saw"|| this.type == "bigSaw")
 				this.facing = "r"

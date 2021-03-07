@@ -204,14 +204,17 @@ class Hoppers {
 					that.velocityY = -150
 				}
 
-				if (entity.platform  && that.oldBB.bottom <= entity.BB.top) {
+				if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
+					if (!(that.state == "dead") && entity.spike) {
+						that.die(entity)
+					}
 					that.velocityY = 0
 					that.velocityX = that.velocityX * 2 / 3
 					if (Math.abs(that.velocityX) < 120) that.velocityX = 0
 					that.y = entity.BB.top - 54
 					//Stand if we are landing.
 					if (that.state == "freefall") {
-						if (length <900)
+						if (length < 900)
 							ASSET_MANAGER.playAsset("./sound/Slime sound/Slime Sounds (Minecraft) - Jump.mp3")
 						that.state = "stand"
 						that.waitTimer()
@@ -223,13 +226,13 @@ class Hoppers {
 						that.updateBB(2)
 					}
 					//If hits the left wall
-					else if (entity.wall  && that.BB.left < entity.BB.right && that.velocityX < 0) {
+					else if (entity.wall && that.BB.left < entity.BB.right && that.velocityX < 0) {
 						that.x = entity.BB.right
 						that.velocityX = -that.velocityX
 						//that.x = that.entity.right
 					}
 					//If hits the right wall
-					else if (entity.wall  && that.BB.right > entity.BB.left && that.velocityX > 0) {
+					else if (entity.wall && that.BB.right > entity.BB.left && that.velocityX > 0) {
 						that.x = entity.BB.left - 60
 						that.velocityX = -that.velocityX
 						//that.x = that.entity.left
@@ -249,10 +252,10 @@ class Hoppers {
 		this.velocityY = 0
 		let corpseVX = 0
 		//corpse velocity and speed it will repulse
-		if (killer.facing == "l") {
-			corpseVX = -550
-		} else {
+		if (killer.facing == "r") {
 			corpseVX = 550
+		} else if (killer.facing == "l") {
+			corpseVX = -550
 		}
 		let slimeCorpse = new corpses(this.game, this.x, this.y, "hopper", this.facing, corpseVX, - 220)
 		this.game.addEntity(slimeCorpse)

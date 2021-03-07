@@ -131,7 +131,7 @@ class GameEngine {
     draw() {
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
         for (var i = 0; i < this.entities.length; i++) {
-            if (this.entities[i] != this.duck)
+            if (this.entities[i] && this.entities[i] != this.duck)
                 this.entities[i].draw(this.ctx);
         }
         this.duck.draw(this.ctx)

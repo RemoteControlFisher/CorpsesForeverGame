@@ -25,7 +25,7 @@ class Lurkers {
 		//this.state = state   //Available state [walk], [attack], [hurt]
 		this.state = "walk"
 		this.dead = false
-        this.cooldown = 5;
+		this.cooldown = 5;
 		this.velocityX = -MIN_WALK;
 		this.velocityY = 0;
 		this.spotted = false;
@@ -161,7 +161,7 @@ class Lurkers {
 					this.facing = "l"
 					this.velocityX = -MAX_WALK
 					this.cooldown--
-                    //console.log(this.cooldown)
+					//console.log(this.cooldown)
 				}
 				else {
 					this.facing = "r"
@@ -183,7 +183,7 @@ class Lurkers {
 		}
 		this.oldBB = this.cBB;
 	};
-dd
+	dd
 	updateBB(scale) {
 		this.oldBB = this.BB;
 		this.BB = new boundingBox(this.x + 7 * scale, this.y + 1 * scale, 25 * scale, 21 * scale);
@@ -200,6 +200,9 @@ dd
 				if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
 					that.velocityY = 0
 					that.y = entity.BB.top - 73
+					if (!(that.state == "dead") && entity.spike) {
+						that.die(entity)
+					}
 				}
 				//If hits the left wall
 				else if (entity.wall && that.BB.left < entity.BB.right && that.facing == 'l') {
@@ -219,16 +222,10 @@ dd
 				else if (entity.saw && that.state != "dead") {
 					die(entity)
 				}
-				else if (entity.saw && that.oldBB.bottom <= entity.BB.top){
-                    that.velocityY = 0
-					that.y = entity.BB.top - 73
-				}
-
-                else if (entity.game.duck && entity.game.duck.state != "dead" && ((that.BB.left < entity.game.duck.BB.right && that.BB.left > entity.game.duck.BB.left) || (that.BB.right > entity.game.duck.BB.left && that.BB.right < entity.game.duck.BB.right)) && ((entity.game.duck.BB.bottom < that.BB.bottom && entity.game.duck.BB.bottom > that.BB.top) || (entity.game.duck.BB.top > that.BB.top && entity.game.duck.BB.top < that.BB.bottom)))
-                {
+				else if (entity.game.duck && entity.game.duck.state != "dead" && ((that.BB.left < entity.game.duck.BB.right && that.BB.left > entity.game.duck.BB.left) || (that.BB.right > entity.game.duck.BB.left && that.BB.right < entity.game.duck.BB.right)) && ((entity.game.duck.BB.bottom < that.BB.bottom && entity.game.duck.BB.bottom > that.BB.top) || (entity.game.duck.BB.top > that.BB.top && entity.game.duck.BB.top < that.BB.bottom))) {
 					entity.game.duck.die(that);
 
-                }
+				}
 			}
 		});
 		this.updateBB(2);
@@ -240,10 +237,10 @@ dd
 		this.velocityY = 0
 		let corpseVX = 0
 		//corpse velocity and speed it will repulse
-		if (killer.facing == "l") {
-			corpseVX = -550
-		} else {
+		if (killer.facing == "r") {
 			corpseVX = 550
+		} else if (killer.facing == "l") {
+			corpseVX = -550
 		}
 		let lurkCorpse = new corpses(this.game, this.x, this.y, "lurker", this.facing, corpseVX, - 220)
 		this.game.addEntity(lurkCorpse)

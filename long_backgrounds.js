@@ -20,6 +20,18 @@ class long_backgrounds {
 				false,
 				true,
 				null)
+		this.animations["darkBwall"] =
+			new animator(this.spritesheet,
+				208, //X
+				144, //Y
+				16, //Width
+				16, //Height
+				1, //Frames
+				0.12, //Time
+				12, //Pading
+				false,
+				true,
+				null)
 	};
 
 	update() {

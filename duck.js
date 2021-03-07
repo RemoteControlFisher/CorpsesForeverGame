@@ -570,7 +570,7 @@ class duck {
       true,
       null)
 
-    this.armAnimators["run"]["r"]["hold"]= new animator(this.spritesheet,
+    this.armAnimators["run"]["r"]["hold"] = new animator(this.spritesheet,
       3,
       568,
       13,
@@ -631,6 +631,8 @@ class duck {
       null)
 
     this.setSpawn(x, y)
+
+    this.trystand = false
   }
 
   setSpawn(x, y, spawnPoint = null) {
@@ -660,8 +662,8 @@ class duck {
     if (killer.facing) {
       if (killer.facing == "r") {
         corpseVX = 550
-      }
-      else {
+      } else if (killer.facing == "l")
+      {
         corpseVX = -550
       }
     }
@@ -686,6 +688,7 @@ class duck {
 
   update() {
     let tick = this.game.clockTick;
+    this.trystand = false
     //These constants I did copy just so I remembered the basic constants I should use here. The rest I typed out manually with some vague inspirations being pulled
     //From the lecture examples.
 
@@ -704,7 +707,7 @@ class duck {
     //Throwing code.
     if (this.game.keyK && this.carried && !this.game.kDisconnect) {
       this.game.kDisconnect = true;
-      if (this.game.up) {
+      if (this.game.up && this.state!= "jump") { // IF the user wants to throw up while jumping, wait till the freefall.
         this.upThrow()
       } else
         if (this.game.down) {
@@ -769,7 +772,7 @@ class duck {
 
     //Bounding box logic.
     this.oldBB = this.BB;
-    this.collide()
+    this.collide(tick)
     //Check if we are falling.
     if (this.velocityY > 0 && this.state != "slide" && this.state != "wallcling" && this.state != "squat") { this.state = "freefall" }
   }
@@ -835,7 +838,7 @@ class duck {
     this.cBB = new boundingBox(this.x - 3 * scale, this.y + 11 * scale, 22 * scale, 14 * scale);
   }
 
-  collide() {
+  collide(tick) {
     this.updateBB(2)
 
     const that = this
@@ -843,7 +846,7 @@ class duck {
       if (that.state != "slide") {
         if (entity.BB && that.BB.isCollide(entity.BB)) {
 
-          if (that.game.keyK && !that.carried && !that.game.kDisconnect && entity.carriable) {
+          if (!(that.state == "dead") && that.game.keyK && !that.carried && !that.game.kDisconnect && entity.carriable) {
             that.game.kDisconnect = true;
             that.carried = entity
             entity.state = "carried"
@@ -863,6 +866,8 @@ class duck {
           }
 
 
+
+
           //If the thing is a spawner, set it as our spawn.
           if (entity.spawner) {
             let spawnpoint = entity.BB.center();
@@ -877,8 +882,12 @@ class duck {
             ASSET_MANAGER.playAsset("./sound/Sound effect/Circular Saw Sound Effect.mp3")
           }
 
-          //If we are landing on something, stop.
+          //If we are landing on something, stop. 
           if (entity.platform && that.oldBB.bottom <= entity.BB.top && that.velocityY > 0) {
+
+            if(!(that.state == "dead") && entity.spike){
+              that.die(entity)
+            }
             //If the entity is droppable and dow is held, let the player fall through it if they are not sliding.
             //Control blocks this behavior, to let the player drop corpses on platforms.
             if (!(entity.droppable && that.game.down && !that.game.sprint)) {
@@ -904,33 +913,43 @@ class duck {
               that.y = entity.BB.bottom
               that.updateBB(2)
             } else
-              if (entity.wall && that.velocityX > 0 && that.BB.right > entity.BB.left) {
-                if ((that.state == "jump" || that.state == "hover" || that.state == "freefall" || that.state == "wallcling")
-                  && that.armstate != "hold"
-                  && !entity.platform && that.game.right) {
-                  if (that.state != "freefall")
-                    that.velocityY *= 0.6
-                  that.state = "wallcling"
-                  that.facing = "r"
-
-                }
-                that.velocityX = 0
-                that.x = entity.BB.left - 32
+              if (that.trystand && entity.cieling && that.BB.top < entity.BB.bottom && that.cBB.top > entity.BB.bottom) { //CHECK IF WE ARE COLLIDING DUE TO TRYING TO STAND.
+                console.log("I tried standing with a roof over my head. " + that.trystand)
+                that.state = "slide"
+                that.velocityX = that.trystand[0] 
+                if(Math.abs(that.velocityX) > MAX_WALK * 0.25)
+                  that.velocityX -= SLIDE_DECEL * Math.sign(that.trystand[0]) * tick
+                that.x = that.velocityX*tick + that.trystand[1]
+                console.log(that.velocityX)
                 that.updateBB(2)
               } else
-                if (entity.wall && that.velocityX < 0 && that.BB.left < entity.BB.right) {
+                if (entity.wall && that.velocityX > 0 && that.BB.right > entity.BB.left) {
                   if ((that.state == "jump" || that.state == "hover" || that.state == "freefall" || that.state == "wallcling")
                     && that.armstate != "hold"
-                    && !entity.platform && that.game.left) {
+                    && !entity.platform && that.game.right) {
                     if (that.state != "freefall")
                       that.velocityY *= 0.6
                     that.state = "wallcling"
-                    that.facing = "l"
+                    that.facing = "r"
+
                   }
                   that.velocityX = 0
-                  that.x = entity.BB.right
+                  that.x = entity.BB.left - 32
                   that.updateBB(2)
-                }
+                } else
+                  if (entity.wall && that.velocityX < 0 && that.BB.left < entity.BB.right) {
+                    if ((that.state == "jump" || that.state == "hover" || that.state == "freefall" || that.state == "wallcling")
+                      && that.armstate != "hold"
+                      && !entity.platform && that.game.left) {
+                      if (that.state != "freefall")
+                        that.velocityY *= 0.6
+                      that.state = "wallcling"
+                      that.facing = "l"
+                    }
+                    that.velocityX = 0
+                    that.x = entity.BB.right
+                    that.updateBB(2)
+                  }
         }
         else if (entity.BB && !that.BB.isCollide(entity.BB)) {
           if (entity.button) {
@@ -964,6 +983,9 @@ class duck {
           }
 
           if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
+            if(!(that.state == "dead") && entity.spike){
+              that.die(entity)
+            }
             that.velocityY = 0
             that.y = entity.BB.top - 50
             that.updateBB(2)
@@ -1036,6 +1058,7 @@ class duck {
     //console.log(this.velocityX)
     //Check if we should leave the slide state.
     if (!this.game.down) {
+      this.trystand = [this.velocityX, this.x]
       if (Math.abs(this.velocityX) > MAX_RUN) {
         this.velocityX = Math.sign(this.velocityX) * MAX_RUN
       }
