@@ -161,6 +161,9 @@ class scenemanager {
                 console.log(myGoal)
                 this.game.addEntity(myGoal)
             }
+        if (level.scripts){
+            level.scripts()
+        }
 
         //If there is music in the level, play it!
         if (level.music) {

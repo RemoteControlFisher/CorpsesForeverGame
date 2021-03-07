@@ -126,8 +126,10 @@ var creditsLevel = {
       goals: [
             { x: 3, y: -2, nLevel: "two" },
             { x: -4, y: -2, nLevel: "tutorial" },
-
       ],
+      scripts: function(){
+            tutorialLevel.goals[0].nLevel = "end"
+      }
 }
 
 var tutorialLevel = {
@@ -517,8 +519,9 @@ var tutorialLevel = {
 
       ],
       goals: [
-            //{ x: 11, y: 1, nLevel: "two" },
-            { x: 170, y: 34, nLevel: "two" }
+            { x: 170, y: 34, nLevel: "two" },
+            //{ x: 11, y: 1, nLevel: "end" },
+
       ]
 
 };
