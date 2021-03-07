@@ -1,8 +1,8 @@
 class buttons
 {
-	constructor(game, x, y, myDoors)
+	constructor(game, x, y, myDoors, myDText)
 	{
-		Object.assign(this, {game, x, y, myDoors});
+		Object.assign(this, {game, x, y, myDoors, myDText});
         this.spritesheet = ASSET_MANAGER.getAsset("./sprites/Button.png")
         this.state = "not pushed"
         this.duckPushed = false
@@ -45,11 +45,17 @@ class buttons
           this.myDoors.forEach(function (door) {
               door.open = true
           });
+          this.myDText.forEach(function (dtext) {
+            dtext.enabled = true
+          });
       }
       else {
-          this.state = "not pushed"
-          this.myDoors.forEach(function (door) {
+        this.state = "not pushed"
+        this.myDoors.forEach(function (door) {
             door.open = false
+        });
+        this.myDText.forEach(function (dtext) {
+            dtext.enabled = false
         });
       }
 	};
