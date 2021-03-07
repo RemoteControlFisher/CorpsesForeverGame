@@ -204,7 +204,7 @@ class Hoppers {
 					that.velocityY = -150
 				}
 
-				if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
+				if (entity.platform  && that.oldBB.bottom <= entity.BB.top) {
 					that.velocityY = 0
 					that.velocityX = that.velocityX * 2 / 3
 					if (Math.abs(that.velocityX) < 120) that.velocityX = 0
@@ -234,7 +234,7 @@ class Hoppers {
 						that.velocityX = -that.velocityX
 						//that.x = that.entity.left
 					}
-					//If hits any trap
+					//If hits a saw
 					else if (entity.saw && that.state != "dead") {
 						that.die(entity)
 					}

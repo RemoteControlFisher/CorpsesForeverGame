@@ -219,6 +219,11 @@ dd
 				else if (entity.saw && that.state != "dead") {
 					die(entity)
 				}
+				else if (entity.saw && that.oldBB.bottom <= entity.BB.top){
+                    that.velocityY = 0
+					that.y = entity.BB.top - 73
+				}
+
                 else if (entity.game.duck && entity.game.duck.state != "dead" && ((that.BB.left < entity.game.duck.BB.right && that.BB.left > entity.game.duck.BB.left) || (that.BB.right > entity.game.duck.BB.left && that.BB.right < entity.game.duck.BB.right)) && ((entity.game.duck.BB.bottom < that.BB.bottom && entity.game.duck.BB.bottom > that.BB.top) || (entity.game.duck.BB.top > that.BB.top && entity.game.duck.BB.top < that.BB.bottom)))
                 {
 					entity.game.duck.die(that);

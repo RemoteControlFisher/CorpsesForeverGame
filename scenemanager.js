@@ -4,18 +4,46 @@ class scenemanager {
         this.game.camera = this;
         this.x = 0;
         this.y = 0;
+        this.isTitle = true; //should title be on?
         this.score = 0 //not yet implemented
-
+        this.currentWorld = "null";
         this.duck = new duck(this.game, "stand", 0, 0);
         console.log(duck)
-        this.loadlevel(tutorialLevel, 0, 0);
+        this.loadlevel(tutorialLevel, 0, 0, true);
+    };
+    
+    //should delete entity once level is finished 
+    clearEntities(){
+         this.game.entities.forEach(function (entity) {
+             entity.removeFromWorld = true; 
+         });
     };
 
-    loadlevel(level, startx = 0, starty = 0) {
+    loadlevel(level, startx = 0, starty = 0, isTitle) {
+        this.isTitle = isTitle
+        this.currentWorld = "tutorial";
         this.game.entities = [];
         this.x = 0;
-
-
+       
+       //if there is a title in level and title should be on
+       if(level.title && isTitle){
+          let x = title.x
+          let y = title.y
+          let mytitle = new title(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, isTitle)
+          console.log(mytitle)
+          this.game.addEntity(mytitle)
+        }
+        /** 
+        if (level.goals)
+        for (let i = 0; i < level.goals.length; i++) {
+            let x = level.goals[i].x
+            let y = level.goals[i].y
+            let nextLevel = allLevels[level.goals[i].nLevel]
+            let myGoal = new goal(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, nextLevel, this)
+            console.log(myGoal)
+            this.game.addEntity(myGoal)
+        }
+        */
 
         if (level.backs) {
             console.log(level.backs)
@@ -184,6 +212,24 @@ class scenemanager {
 
     update() {
         //PARAMS.DEBUG = document.getElementById("debug").checked;
+        //if(this.title && this.game.click){
+        //    if(this.game.click && this.game.click.y > 9 * PARAMS.BLOCKWIDTH && this.game.click.y < 9.5 * PARAMS.BLOCKWIDTH){
+        //       this.title = false;
+        //       this.duck = new duck(this.game, "stand", 0, 0);
+        //       console.log(duck)
+        //       this.loadlevel(tutorialLevel, 0, 0);
+        //   }
+            //for Options (Optional)
+            //if(this.game.click && this.game.click.y > 10 * PARAMS.BLOCKWIDTH && this.game.click.y < 10.5 * PARAMS.BLOCKWIDTH){
+            //}
+            //for Help (Optional)
+            //if(this.game.click && this.game.click.y > 10 * PARAMS.BLOCKWIDTH && this.game.click.y < 11.5 * PARAMS.BLOCKWIDTH){
+            //}
+            //for Quit Game (Optional)
+            //if(this.game.click && this.game.click.y > 10 * PARAMS.BLOCKWIDTH && this.game.click.y < 12.5 * PARAMS.BLOCKWIDTH){
+            //}
+        //}
+
 
         let midpoint = PARAMS.CANVAS_WIDTH / 2 - PARAMS.BLOCKWIDTH / 2;
         let midheight = PARAMS.CANVAS_HEIGHT / 2 - PARAMS.BLOCKWIDTH / 2;
@@ -196,6 +242,21 @@ class scenemanager {
     };
 
     draw(ctx) {
+        /** 
+        if(this.title){
+           var width = 176;
+           var height = 88;
 
+           //ctx.drawImage(ASSET_MANAGER.getAsset("add a title screen!"), 2.5 *PARAMS.BLOCKWIDTH, 2 & PARAMS.BLOCKWIDTH, width * PARAMS.SCALE, height * PARAMS.SCALE);
+           ctx.fillStyle = this.game.mouse && this.game.mouse.y > 9 * PARAMS.BLOCKWIDTH && this.game.mouse.y < 9.5 * PARAMS.BLOCKWIDTH ?" Grey" : "White";
+           ctx.fillText("Start Game!", 6.75 * PARAMS.BLOCKWIDTH, 9.5 & PARAMS.BLOCKWIDTH);
+           ctx.fillStyle = this.game.mouse && this.game.mouse.y > 10 * PARAMS.BLOCKWIDTH && this.game.mouse.y < 10.5 * PARAMS.BLOCKWIDTH ?" Grey" : "White";
+           ctx.fillText("Options", 6.75 * PARAMS.BLOCKWIDTH, 10.5 & PARAMS.BLOCKWIDTH);
+           ctx.fillStyle = this.game.mouse && this.game.mouse.y > 10 * PARAMS.BLOCKWIDTH && this.game.mouse.y < 11.5 * PARAMS.BLOCKWIDTH ?" Grey" : "White";
+           ctx.fillText("Help!", 6.75 * PARAMS.BLOCKWIDTH, 11.5 & PARAMS.BLOCKWIDTH);
+           ctx.fillStyle = this.game.mouse && this.game.mouse.y > 10 * PARAMS.BLOCKWIDTH && this.game.mouse.y < 12.5 * PARAMS.BLOCKWIDTH ?" Grey" : "White";
+           ctx.fillText("Quit Game", 6.75 * PARAMS.BLOCKWIDTH, 12.5 & PARAMS.BLOCKWIDTH);
+        }
+        */
     };
 };

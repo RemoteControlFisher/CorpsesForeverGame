@@ -867,8 +867,8 @@ class duck {
           if (entity.spawner) {
             let spawnpoint = entity.BB.center();
             that.setSpawn(spawnpoint.x, spawnpoint.y, entity)
+            ASSET_MANAGER.playAsset("./sound/Sound effect/Ceil-door Open Sound.mp3")
             if (that.spawn != entity)
-              ASSET_MANAGER.playAsset("./sound/Sound effect/Ceil-door Open Sound.mp3")
             console.log(that.spawn != entity)
           }
 
@@ -876,7 +876,6 @@ class duck {
             that.die(entity)
             ASSET_MANAGER.playAsset("./sound/Sound effect/Circular Saw Sound Effect.mp3")
           }
-
 
           //If we are landing on something, stop.
           if (entity.platform && that.oldBB.bottom <= entity.BB.top && that.velocityY > 0) {
@@ -961,7 +960,7 @@ class duck {
           }
 
           if (!(that.state == "dead") && (entity.saw)) {
-            that.die(entity)
+             that.die(entity)
           }
 
           if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
