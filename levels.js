@@ -1,7 +1,9 @@
 var levelTwo = {
       walls: [
             { startX: -3, startY: 0, lengthX: 13, lengthY: 1, type: "thinPlatform" },
-            { startX: -4, startY: -2, lengthX: 15, lengthY: 1, type: "floor" },
+            { startX: -3, startY: -2, lengthX: 14, lengthY: 1, type: "floor" },
+            { startX: -4, startY: -2, lengthX: 1, lengthY: 1, type: "tright" },
+
             { startX: -6, startY: 1, lengthX: 1, lengthY: 5, type: "wleft" },
             { startX: 11, startY: -2, lengthX: 1, lengthY: 9, type: "wright" },
             { startX: -5, startY: 6, lengthX: 16, lengthY: 1, type: "floor" },
@@ -10,6 +12,9 @@ var levelTwo = {
             { startX: -4, startY: 0, lengthX: 1, lengthY: 1, type: "tleft" },
             { startX: 10, startY: 0, lengthX: 1, lengthY: 1, type: "tright" },
             { startX: 10, startY: -1, lengthX: 1, lengthY: 1, type: "wleft" },
+            { startX: 12, startY: -3, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: 11, startY: -3, lengthX: 1, lengthY: 1, type: "tright" },
+            { startX: 12, startY: -12, lengthX: 1, lengthY: 9, type: "wright" },
 
             { startX: -6, startY: 6, lengthX: 1, lengthY: 1, type: "tright" },
             { startX: 11, startY: 6, lengthX: 1, lengthY: 1, type: "tleft" },
@@ -18,15 +23,26 @@ var levelTwo = {
 
             { startX: -7, startY: -16, lengthX: 1, lengthY: 1, type: "tright" },
             { startX: -6, startY: -16, lengthX: 20, lengthY: 1, type: "floor" },
-            { startX: -0, startY: -14, lengthX: 5, lengthY: 1, type: "floor" },
+            
+            { startX: 14, startY: -17, lengthX: 30, lengthY: 1, type: "floor" },
+            { startX: 13, startY: -17, lengthX: 1, lengthY: 1, type: "tright" },
+            { startX: 14, startY: -16, lengthX: 1, lengthY: 1, type: "tleft" },
+  
 
+            { startX: 1, startY: -14, lengthX: 3, lengthY: 1, type: "floor" },
+            { startX: 0, startY: -14, lengthX: 1, lengthY: 1, type: "tright" },
+            { startX: 4, startY: -14, lengthX: 1, lengthY: 1, type: "tleft" },
 
       ],
-      spawns:[
-            { x: 0, y: 4},
+      boxes: [
+            { x: 3, y: -13 },
+            ]
+      ,
+      spawns: [
+            { x: 0, y: 5 },
       ],
       backs: [
-            {startX: -6, startY: -15, lengthX: 18, lengthY: 21, type: "darkBwall" },
+            { startX: -6, startY: -16, lengthX: 60, lengthY: 22, type: "darkBwall" },
       ],
       goals: [
             { x: 12, y: 1, nLevel: "end" }
@@ -50,11 +66,11 @@ var creditsLevel = {
             { startX: -5, startY: 5, lengthX: 1, lengthY: 1, type: "tright" },
             { startX: 6, startY: 5, lengthX: 1, lengthY: 1, type: "tleft" },
       ],
-      spawns:[
-            { x: 0, y: 4},
+      spawns: [
+            { x: 0, y: 4 },
       ],
       backs: [
-            {startX: -4, startY: 1, lengthX: 10, lengthY: 4, type: "tright" },
+            { startX: -4, startY: 1, lengthX: 10, lengthY: 4, type: "tright" },
       ],
       traps: [
             { x: -4, y: 2, type: "saw" },
