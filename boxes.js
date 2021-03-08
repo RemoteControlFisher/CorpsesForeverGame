@@ -86,6 +86,7 @@ class boxes {
 					that.y = entity.BB.top - 32
 					if (entity.bounce) {
 						that.velocityY = -400
+						ASSET_MANAGER.playAsset("./sound/Sound effect/Bounce Sound Effect.mp3")
 					}
 					that.state = "idle"
 					that.updateBB()

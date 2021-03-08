@@ -979,7 +979,7 @@ class duck {
           }
 
           if (!(that.state == "dead") && (entity.saw)) {
-            that.die(entity)
+             that.die(entity)
           }
 
           if (entity.platform && that.oldBB.bottom <= entity.BB.top) {

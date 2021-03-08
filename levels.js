@@ -136,6 +136,9 @@ var creditsLevel = {
 }
 
 var tutorialLevel = {
+
+      title: [{x: 0, y: 0, title:true}],
+
       music: "./sound/BMG/World of Horror - Mode Select.mp3",
       //music: "./sound/BMG/World of Horror Soundtrack Mansion Combat.mp3",
       backs: [
@@ -146,6 +149,7 @@ var tutorialLevel = {
             { startX: 44, startY: 18, lengthX: 61, lengthY: 6, type: "bwall" },
             { startX: 65, startY: 16, lengthX: 40, lengthY: 2, type: "bwall" },
             { startX: 97, startY: 34, lengthX: 90, lengthY: 4, type: "bwall" },
+            { startX: 187, startY: 1, lengthX: 61, lengthY: 16, type: "bwall" },
 
       ],
       walls: [
@@ -386,8 +390,8 @@ var tutorialLevel = {
             //,
             //{   x: -10,    y: 13,     type: "bigSaw" }//,
             //{
-            //{x: -10, y: 7, type: "spike"},
-            /** 
+            {x: -10, y: 7, type: "spike"},
+            
             {x: 198, y: 7, type: "spike"},
             {x: 199, y: 7, type: "spike"},
             {x: 200, y: 7, type: "spike"},
@@ -402,31 +406,30 @@ var tutorialLevel = {
             {x: 209, y: 7, type: "spike"},
             {x: 210, y: 7, type: "spike"},
             
-            //{x: 211, y: 2, type: "spike"},
-            //{x: 212, y: 2, type: "spike"},
-            //{x: 213, y: 2, type: "spike"},
-            //{x: 214, y: 2, type: "spike"},
-            //{x: 215, y: 2, type: "spike"},
-            //{x: 216, y: 2, type: "spike"},
-            //{x: 217, y: 2, type: "spike"},
-            //{x: 218, y: 2, type: "spike"},
-            //{x: 219, y: 2, type: "spike"},
-            //{x: 220, y: 2, type: "spike"},
-            //{x: 221, y: 2, type: "spike"},
-           /// {x: 222, y: 2, type: "spike"},
-            //{x: 223, y: 2, type: "spike"},
-            //{x: 224, y: 2, type: "spike"},
-            //{x: 225, y: 2, type: "spike"},
-           // {x: 226, y: 2, type: "spike"},
-           // {x: 227, y: 2, type: "spike"},
+            {x: 211, y: 2, type: "spike"},
+            {x: 212, y: 2, type: "spike"},
+            {x: 213, y: 2, type: "spike"},
+            {x: 214, y: 2, type: "spike"},
+            {x: 215, y: 2, type: "spike"},
+            {x: 216, y: 2, type: "spike"},
+            {x: 217, y: 2, type: "spike"},
+            {x: 218, y: 2, type: "spike"},
+            {x: 219, y: 2, type: "spike"},
+            {x: 220, y: 2, type: "spike"},
+            {x: 221, y: 2, type: "spike"},
+            {x: 222, y: 2, type: "spike"},
+            {x: 223, y: 2, type: "spike"},
+            {x: 224, y: 2, type: "spike"},
+            {x: 225, y: 2, type: "spike"},
+            {x: 226, y: 2, type: "spike"},
+            {x: 227, y: 2, type: "spike"},
 
-            //{x: 228, y: 7, type: "spike"},
-            //{x: 229, y: 7, type: "spike"},
-            //{x: 230, y: 7, type: "spike"},
-            //{x: 231, y: 7, type: "spike"},
-            //{x: 232, y: 7, type: "spike"},
-            //}
-            */
+            {x: 228, y: 7, type: "spike"},
+            {x: 229, y: 7, type: "spike"},
+            {x: 230, y: 7, type: "spike"},
+            {x: 231, y: 7, type: "spike"},
+            {x: 232, y: 7, type: "spike"},
+            
       ],
       doors: [
             //{ x: 33, y: 32 },
@@ -465,6 +468,9 @@ var tutorialLevel = {
             { x: 83, y: 25 },
 
             { x: 84, y: 25 },
+
+            //on spike section
+            {x:220 ,y: 5},   
 
       ],
       buttons: [{ x: -3, y: 24.55, key: 1 }],
@@ -524,8 +530,8 @@ var tutorialLevel = {
 
       ],
       goals: [
-            { x: 170, y: 34, nLevel: "two" },
-            //{ x: 11, y: 1, nLevel: "end" },
+            //{ x: 11, y: 1, nLevel: "two"}
+            { x: 241, y: 10, nLevel: "two"}
 
       ]
 

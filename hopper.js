@@ -237,7 +237,7 @@ class Hoppers {
 						that.velocityX = -that.velocityX
 						//that.x = that.entity.left
 					}
-					//If hits any trap
+					//If hits a saw
 					else if (entity.saw && that.state != "dead") {
 						that.die(entity)
 					}
