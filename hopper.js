@@ -233,7 +233,7 @@ class Hoppers {
 					}
 					//If hits the right wall
 					else if (entity.wall && that.BB.right > entity.BB.left && that.velocityX > 0) {
-						that.x = entity.BB.left - 60
+						that.x = entity.BB.left - 62
 						that.velocityX = -that.velocityX
 						//that.x = that.entity.left
 					}

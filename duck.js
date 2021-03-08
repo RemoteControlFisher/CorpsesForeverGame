@@ -871,9 +871,9 @@ class duck {
           //If the thing is a spawner, set it as our spawn.
           if (entity.spawner) {
             let spawnpoint = entity.BB.center();
-            that.setSpawn(spawnpoint.x, spawnpoint.y, entity)
             if (that.spawn != entity)
               ASSET_MANAGER.playAsset("./sound/Sound effect/Ceil-door Open Sound.mp3")
+            that.setSpawn(spawnpoint.x, spawnpoint.y, entity)
             console.log(that.spawn != entity)
           }
 

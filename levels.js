@@ -63,6 +63,8 @@ var levelTwo = {
             { x: 33, y: -16 },
             { x: 34, y: -16 },
             { x: 35, y: -16 },
+            { x: 36, y: -16 },
+            { x: 37, y: -16 },
       ],
       spawns: [
             { x: 0, y: 5 },
@@ -74,6 +76,7 @@ var levelTwo = {
       
       dtexts: [
             { x: -4, y: 7, toWrite: 'You can fall through platforms by crouching.', animated: true, delay: 1 },
+            { x: -4.5, y: 6.4, toWrite: 'Holding shift prevents you from falling through.', animated: true, delay: 1.5 },
       ],
       goals: [
             //{ x: -5, y: 0, loc: {x:0,y: 9} },
@@ -476,6 +479,8 @@ var tutorialLevel = {
             // At end of slide platform   { startX: 52, startY: 21, lengthX: 11, lengthY: 1, type: "floor" },
             { x: 49, y: 22 },
             { x: 92, y: 34 },
+            { x: 99, y: 32 },
+
 
       ],
       dtexts: [
