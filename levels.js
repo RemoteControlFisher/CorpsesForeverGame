@@ -373,7 +373,7 @@ var tutorialLevel = {
             //{x: 53,y: 27,type: "saw"}, 
             { x: -3.3, y: 16, type: "saw" },
             { x: 29, y: 27, type: "lsaw" },
-            { x: 54, y: 33.5, type: "lsaw" },
+            //{ x: 54, y: 33.5, type: "lsaw" },
             //Next to.            { startX: 58, startY: 24, lengthX: 1, lengthY: 6, type: "wright" },
             { x: 59, y: 29, type: "saw" },
             { x: 59, y: 27, type: "saw" },
@@ -428,9 +428,9 @@ var tutorialLevel = {
       doors: [
             //{ x: 33, y: 32 },
             //{ x: 33, y: 31 },
-            { x: 33, y: 30, key: 1 },
-            { x: 33, y: 29, key: 1 },
-            { x: 33, y: 28, key: 1 }
+            //{ x: 33, y: 30, key: 1 },
+            //{ x: 33, y: 29, key: 1 },
+            //{ x: 33, y: 28, key: 1 }
       ],
       chompers: [
             //{ x: 20, y: 15 }
@@ -449,6 +449,7 @@ var tutorialLevel = {
             { x: 120, y: 35 },
             { x: 130, y: 35 },
             { x: 140, y: 35 },
+            // { x: 10, y: 10 },
       ],
       hoppers: [
             //{ x: 11, y: 5 },

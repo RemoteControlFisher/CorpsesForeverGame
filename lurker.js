@@ -237,10 +237,7 @@ class Lurkers {
 			length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
 			//console.log("space: " + length)
 
-			this.velocityY += this.gravity * tick
 
-			this.x += this.velocityX * tick
-			this.y += this.velocityY * tick
 
 
 
@@ -251,7 +248,7 @@ class Lurkers {
 			//console.log("y" + this.y);
 			//console.log("Vx" + this.velocityX);
 			//console.log("Vy" + this.velocityY);
-			if (length <= 160 && this.state != "attack") {
+			if (length <= 160 && this.state != "attack" && this.game.duck.state != "dead") {
 				this.state = "attack"
 				// setTimeout(function() {
 				// 	if (this.state == "attack")
@@ -260,54 +257,64 @@ class Lurkers {
 			if (length <= 160 && this.game.duck.state != "dead" && this.state == "attack") {
 				let speed = MAX_WALK
 				if (center.x > dcenter.x) {
-					this.facing = "l"
+					this.facing = 'l'
 					this.velocityX = -speed
 				}
 				else {
-					this.facing = "r"
+					this.facing = 'r'
 					this.velocityX = speed
 				}
 			}
 			else if (this.state == "attack" && (length > 160 || this.game.duck.state == "dead")) {
 				this.state = "jump"
 				this.animators[this.state][this.facing].elapsedTime = 0
-				if (this.facing == "l") {
+				if (this.facing == 'l') {
 					this.velocityX = -this.min_walk
 				}
 				else {
 					this.velocityX = this.min_walk
 				}
 			}
+
+			if (this.velocityY > 0 && this.state == "jump") {
+				this.state = "freefall"
+				this.animators[this.state][this.facing].elapsedTime = 0
+			}
+	
+			this.velocityY += this.gravity * tick
+	
+			this.x += this.velocityX * tick
+			this.y += this.velocityY * tick
+	
+			this.oldBB = this.BB
+			this.updateBB(3)
+			this.collide()
 		}
-		if (this.velocityY > 0 && this.state == "jump") {
-			this.state = "freefall"
-			this.animators[this.state][this.facing].elapsedTime = 0
-		}
-		this.updateBB(3)
-		this.collide()
-		this.oldBB = this.BB
-		this.updateBB(3)
+
+		
 	};
 
 	updateBB(scale) {
-		this.index = this.animators[this.state][this.facing].calculateFrame(this.game.clockTick)
-		if (this.state == "jump") {
-			if (this.index >= 6) this.index = 5
-			this.BB = new boundingBox(this.x + this.jumpX[this.index] * scale, this.y + this.jumpY[this.index] * scale, this.jumpWidths[this.index] * scale, this.jumpHeights[this.index] * scale);
-		} else if (this.state == "freefall") {
-			if (this.index >= 2) this.index = 1
-			this.BB = new boundingBox(this.x + this.freefallX[this.index] * scale, this.y + this.freefallY[this.index] * scale, this.freefallWidths[this.index] * scale, this.freefallHeights[this.index] * scale);
-		} else if (this.state == "landing") {
-			this.BB = new boundingBox(this.x + this.landingX * scale, this.y + this.landingY * scale, this.landingWidths * scale, this.landingHeights * scale);
-		} else if (this.state == "attack"){
-			if (this.index >= 7) {
-				this.index = 0
+		if (this.state != "dead") {
+			this.index = this.animators[this.state][this.facing].calculateFrame(this.game.clockTick)
+			if (this.state == "jump") {
+				if (this.index >= 6) this.index = 5
+				this.BB = new boundingBox(this.x + this.jumpX[this.index] * scale, this.y + this.jumpY[this.index] * scale, this.jumpWidths[this.index] * scale, this.jumpHeights[this.index] * scale);
+			} else if (this.state == "freefall") {
+				if (this.index >= 2) this.index = 1
+				this.BB = new boundingBox(this.x + this.freefallX[this.index] * scale, this.y + this.freefallY[this.index] * scale, this.freefallWidths[this.index] * scale, this.freefallHeights[this.index] * scale);
+			} else if (this.state == "landing") {
+				this.BB = new boundingBox(this.x + this.landingX * scale, this.y + this.landingY * scale, this.landingWidths * scale, this.landingHeights * scale);
+			} else if (this.state == "attack") {
+				if (this.index >= 7) {
+					this.index = 0
+				}
+				if (this.facing == 'r')
+					this.BB = new boundingBox(this.x + this.attackX['r'][this.index] * scale, this.y + (this.attackY[this.index] + this.drawAttackY[this.index]) * scale, this.attackWidths[this.index] * scale, this.attackHeights[this.index] * scale)
+				else
+					this.BB = new boundingBox(this.x + this.attackX['l'][this.index] * scale, this.y + (this.attackY[this.index] + this.drawAttackY[this.index]) * scale, this.attackWidths[this.index] * scale, this.attackHeights[this.index] * scale)
 			}
-			if (this.facing == 'r')
-				this.BB = new boundingBox(this.x + this.attackX['r'][this.index] * scale, this.y + (this.attackY[this.index] + this.drawAttackY[this.index]) * scale, this.attackWidths[this.index] * scale, this.attackHeights[this.index] * scale)
-			else
-				this.BB = new boundingBox(this.x + this.attackX['l'][this.index] * scale, this.y + (this.attackY[this.index] + this.drawAttackY[this.index]) * scale, this.attackWidths[this.index] * scale, this.attackHeights[this.index] * scale)
-		}	
+		}
 	}
 
 
@@ -321,7 +328,7 @@ class Lurkers {
 				if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
 					if (that.state == "freefall") {
 						that.velocityY = 0
-						that.state = "landing"		
+						that.state = "landing"
 					} else if (that.state == "landing") {
 						if (that.velocityY > 50) {
 							that.velocityY = -80
@@ -344,7 +351,7 @@ class Lurkers {
 					that.velocityX = that.min_walk
 					that.facing = "r"
 					that.animators[that.state]['r'].elapsedTime = that.animators[that.state]['l'].elapsedTime
-					
+
 					if (that.state == "jump") {
 						if (that.index >= 6) that.index = 5
 						that.x = entity.BB.right - that.jumpX[that.index] * 3
@@ -357,7 +364,8 @@ class Lurkers {
 					else if (that.state == "attack") {
 						if (that.index >= 7) that.index = 0
 						that.x = entity.BB.right - that.attackX['r'][that.index] * 3
-						that.velocityX = MAX_WALK
+						that.facing = 'l'
+						that.velocityX = -MAX_WALK
 					}
 				} else if (entity.wall && that.BB.left < entity.BB.right && that.facing == 'l') {
 					that.velocityX = -that.min_walk
@@ -374,7 +382,7 @@ class Lurkers {
 					else if (that.state == "attack") {
 						if (that.index >= 7) that.index = 0
 						that.x = entity.BB.left - 96 + that.attackX['l'][that.index] * 3
-						that.velocityX = MAX_WALK
+						that.velocityX = -MAX_WALK
 					}
 				}
 				//If hits the right wall
@@ -394,11 +402,12 @@ class Lurkers {
 					else if (that.state == "attack") {
 						if (that.index >= 7) that.index = 0
 						that.x = entity.BB.left - 96 + that.attackX['l'][that.index] * 3
+						that.facing = 'r'
 						that.velocityX = MAX_WALK
 					}
 				} else if (entity.wall && that.BB.right > entity.BB.left && that.facing == 'r') {
 					that.velocityX = that.min_walk
-					that.facing = "r"				
+					that.facing = "r"
 					if (that.state == "jump") {
 						if (that.index >= 6) that.index = 5
 						that.x = entity.BB.right - that.jumpX[that.index] * 3
@@ -416,7 +425,7 @@ class Lurkers {
 				}
 				//If hits any trap
 				else if (entity.saw && that.state != "dead") {
-					die(entity)
+					that.die(entity)
 				}
 				else if (entity == that.game.duck && that.game.duck.state != "dead") {
 					that.game.duck.die(that);
@@ -444,38 +453,39 @@ class Lurkers {
 	}
 
 	draw(ctx) {
-		this.index = this.animators[this.state][this.facing].calculateFrame(this.game.clockTick)
-		if (this.state != "attack") {
-			this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 3);
-		}
-		else {
-			if (this.index >= 7) {
-				this.index = 0
+		if (this.state != "dead") {
+			this.index = this.animators[this.state][this.facing].calculateFrame(this.game.clockTick)
+			if (this.state != "attack") {
+				this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 3);
 			}
-			this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y + this.drawAttackY[this.index] * 3 - this.game.camera.y, 3);
+			else {
+				if (this.index >= 7) {
+					this.index = 0
+				}
+				this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y + this.drawAttackY[this.index] * 3 - this.game.camera.y, 3);
+			}
+			//this.animators["hurt"]["l"].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 3);
+			//this.animators["attack"]["l"].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 3);
+
+			ctx.strokeStyle = 'Red';
+			ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
+
+			let center = this.BB.center()
+
+
+			ctx.beginPath();
+			ctx.strokeStyle = 'Green';
+			ctx.arc(center.x - this.game.camera.x, center.y - this.game.camera.y, 1, 0, 2 * Math.PI)
+			ctx.stroke();
+
+			let dcenter = this.game.duck.BB.center()
+
+			ctx.beginPath();
+			ctx.strokeStyle = 'Pink';
+			ctx.moveTo(center.x - this.game.camera.x, center.y - this.game.camera.y);
+			ctx.lineTo(dcenter.x - this.game.camera.x, dcenter.y - this.game.camera.y);
+			ctx.stroke();
+
 		}
-		//this.animators["hurt"]["l"].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 3);
-		//this.animators["attack"]["l"].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 3);
-
-		ctx.strokeStyle = 'Red';
-		ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
-
-		let center = this.BB.center()
-
-
-		ctx.beginPath();
-		ctx.strokeStyle = 'Green';
-		ctx.arc(center.x - this.game.camera.x, center.y - this.game.camera.y, 1, 0, 2 * Math.PI)
-		ctx.stroke();
-
-		let dcenter = this.game.duck.BB.center()
-
-		ctx.beginPath();
-		ctx.strokeStyle = 'Pink';
-		ctx.moveTo(center.x - this.game.camera.x, center.y - this.game.camera.y);
-		ctx.lineTo(dcenter.x - this.game.camera.x, dcenter.y - this.game.camera.y);
-		ctx.stroke();
-
-
 	};
 };
