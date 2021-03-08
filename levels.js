@@ -531,7 +531,7 @@ var tutorialLevel = {
       ],
       goals: [
             //{ x: 11, y: 1, nLevel: "two"}
-            { x: 241, y: 10, nLevel: "two"}
+            { x: 187, y: 34, nLevel: "two"}
 
       ]
 
