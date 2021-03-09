@@ -40,7 +40,7 @@ class traps {
 		this.animators["spike"] =
 			new animator(this.spritesheetSpikes, // Spritesheet
 				0, //X
-				-20, //Y
+				4, //Y
 				31, //Width
 				34, //Height
 				1, //Frames
@@ -82,7 +82,7 @@ class traps {
 		this.BB = new boundingBox(this.x, this.y, this.animators[this.type].width, this.animators[this.type].height)
 
 		if(this.type == "spike")
-		       this.BB = new boundingBox(this.x, this.y + 19, this.animators[this.type].width, 15)
+	           this.BB = new boundingBox(this.x, this.y, this.animators[this.type].width, 10)
 	};
 
 	update() {
@@ -91,9 +91,9 @@ class traps {
 
 	draw(ctx) {
 		this.animators[this.type].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1)
-		 
+		 /** 
 		ctx.strokeStyle = 'Red';
 			ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
-			
+		*/	
 	};
 };

@@ -8,8 +8,9 @@ class scenemanager {
         this.score = 0 //not yet implemented
         this.currentWorld = "null";
         this.duck = new duck(this.game, "stand", 0, 0);
-        console.log(duck)
-        this.loadlevel(tutorialLevel, 0, 0, true);
+        console.log(duck);
+        //this.loadlevel(tutorialLevel, 0, 0, true);
+        this.loadlevel(levelTwo, 0, 0, true );
     };
     
     //should delete entity once level is finished 
@@ -199,8 +200,8 @@ class scenemanager {
             ASSET_MANAGER.setBGM(level.music);
         }
 
-        this.duck.x = startx;
-        this.duck.y = starty - 3 * PARAMS.BLOCKWIDTH;
+        //this.duck.x = startx;
+        //this.duck.y = starty - 3 * PARAMS.BLOCKWIDTH;
         this.game.addEntity(this.duck);
         let myText = new text(this.game, PARAMS.BLOCKWIDTH, PARAMS.BLOCKWIDTH)
         this.game.addEntity(myText);

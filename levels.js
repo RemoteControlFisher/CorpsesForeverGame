@@ -1,4 +1,5 @@
 var levelTwo = {
+      music: "./sound/BMG/World of Horror Soundtrack Mansion Combat.mp3",
       walls: [
             { startX: -3, startY: 0, lengthX: 13, lengthY: 1, type: "thinPlatform" },
             { startX: -3, startY: -2, lengthX: 14, lengthY: 1, type: "floor" },
@@ -33,6 +34,50 @@ var levelTwo = {
             { startX: 1, startY: -14, lengthX: 3, lengthY: 1, type: "floor" },
             { startX: 0, startY: -14, lengthX: 1, lengthY: 1, type: "tright" },
             { startX: 4, startY: -14, lengthX: 1, lengthY: 1, type: "tleft" },
+             
+            //Spike pit
+            { startX: 38, startY: -29, lengthX: 7, lengthY: 1, type: "floor" },    // x: 191, y: 20  difference x = 153 y: -48
+            { startX: 44, startY: -30, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: 38, startY: -29, lengthX: 1, lengthY: 1, type: "tright" },
+            { startX: 38, startY: -28, lengthX: 1, lengthY: 11, type: "wright" },
+            { startX: 44, startY: -34, lengthX: 1, lengthY: 4, type: "wright" },
+            { startX: 44, startY: -34, lengthX: 17, lengthY: 1, type: "floor" },
+            { startX: 60, startY: -38, lengthX: 1, lengthY: 4, type: "wright" },
+            { startX: 60, startY: -39, lengthX: 19, lengthY: 1, type: "floor" },
+            { startX: 78, startY: -38, lengthX: 1, lengthY: 4, type: "wleft" },
+            { startX: 78, startY: -34, lengthX: 12, lengthY: 1, type: "floor" },
+            { startX: 83, startY: -33, lengthX: 9, lengthY: 1, type: "floor" },
+            { startX: 85, startY: -32, lengthX: 8, lengthY: 1, type: "floor" },
+            { startX: 87, startY: -31, lengthX: 7, lengthY: 1, type: "floor" },
+            { startX: 39, startY: -23, lengthX: 1, lengthY: 1, type: "tleft" },
+
+            //KIETS LEVEL SEGMENT: Place later in the level.
+            // bottom platform
+            { startX: 93, startY: -39, lengthX: 51, lengthY: 1, type: "floor" }, // x: 34 y: 19 difference: x:55 y: -58 
+            //2nd platform
+            { startX: 100, startY: -31, lengthX: 5, lengthY: 1, type: "floor" },
+            //3nd platforms
+            { startX: 110, startY: -28, lengthX: 5, lengthY: 1, type: "floor" },
+            //4nd platform
+            { startX: 120, startY: -25, lengthX: 5, lengthY: 1, type: "floor" },
+            //wall platforms
+            { startX: 93, startY: -38, lengthX: 1, lengthY: 7, type: "wright" },
+            //end #1 platform
+            { startX: 134, startY: -23, lengthX: 4, lengthY: 1, type: "floor" },
+            //end #2 platform
+            { startX: 140, startY: -19, lengthX: 4, lengthY: 1, type: "floor" },
+            //#2 bottom platform
+            //{ startX: 136, startY: -43, lengthX: 17, lengthY: 1, type: "floor" },
+            //wall platform
+            { startX: 143, startY: -38, lengthX: 1, lengthY: 19, type: "wleft" },
+             // helper platform
+             { startX: 94, startY: -36, lengthX: 1, lengthY: 1, type: "floor" },
+            // helper platform
+            { startX: 95, startY: -36, lengthX: 1, lengthY: 1, type: "tleft" },
+            //wall block platform
+            //{ startX: 145, startY: -40, lengthX: 1, lengthY: 1, type: "wright" },
+            //slide platform
+            //{ startX: 136, startY: -39, lengthX: 10, lengthY: 1, type: "floor" },
 
       ],
       boxes: [
@@ -40,8 +85,20 @@ var levelTwo = {
       ],
       hoppers: [
             { x: 3, y: -11 },
+            //{ x: 63,y: -35}   //dies?
+      ],
+      chompers: [
+            { x: 94, y: -33 },
+            { x: 130, y: -33}
+      ],
+      lurkers: [
+            { x: 93, y: -32},
+            { x: 115, y: -32 },
+            { x: 110, y: -32 },
+            { x: 120, y: -32 },
       ],
       traps: [
+            
             { x: 15, y: -16 },
             { x: 16, y: -16 },
             { x: 17, y: -16 },
@@ -65,15 +122,77 @@ var levelTwo = {
             { x: 35, y: -16 },
             { x: 36, y: -16 },
             { x: 37, y: -16 },
+            
+            //spike for spike pit
+            {x: 48, y: -33, type: "spike"},
+            {x: 49, y: -33, type: "spike"},
+            {x: 50, y: -33, type: "spike"},
+            {x: 51, y: -33, type: "spike"},
+            {x: 52, y: -33, type: "spike"},
+            {x: 53, y: -33, type: "spike"},
+            {x: 54, y: -33, type: "spike"},
+            {x: 55, y: -33, type: "spike"},
+            {x: 56, y: -33, type: "spike"},
+            {x: 57, y: -33, type: "spike"},
+            {x: 58, y: -33, type: "spike"},
+            {x: 59, y: -33, type: "spike"},
+            {x: 60, y: -33, type: "spike"},
+            
+            {x: 61, y: -38, type: "spike"},
+            {x: 62, y: -38, type: "spike"},
+            {x: 63, y: -38, type: "spike"},
+            {x: 64, y: -38, type: "spike"},
+            {x: 65, y: -38, type: "spike"},
+            {x: 66, y: -38, type: "spike"},
+            {x: 67, y: -38, type: "spike"},
+            {x: 68, y: -38, type: "spike"},
+            {x: 69, y: -38, type: "spike"},
+            {x: 70, y: -38, type: "spike"},
+            {x: 71, y: -38, type: "spike"},
+            {x: 72, y: -38, type: "spike"},
+            {x: 73, y: -38, type: "spike"},
+            {x: 74, y: -38, type: "spike"},
+            {x: 75, y: -38, type: "spike"},
+            {x: 76, y: -38, type: "spike"},
+            {x: 77, y: -38, type: "spike"},
+
+            //{x: 231, y: 17, type: "spike"},
+            {x: 79, y: -33, type: "spike"},
+            {x: 80, y: -33, type: "spike"},
+            {x: 81, y: -33, type: "spike"},
+            {x: 82, y: -33, type: "spike"},
+            
+            //keiso saw
+            { x: 97, y: -31, type: "saw" }, 
+            { x: 107,y: -29,type: "saw"}, 
+            {x: 117,y: -26,type: "lsaw"}, 
+            { x: 131,y: -24,type: "saw"}, 
+            {x: 128, y: -24, type: "lsaw"},
+            //{x: 91,y: 26,type: "saw"}, 
+            //{x: 85,y: 27,type: "saw" }, 
+            //{x: 88,y: 27,type: "saw"}, 
+            //{x: 76,y: 27,type: "saw" }, 
+            //{x: 60,y: 27,type: "saw"}, 
+            //{x: 71,y: 27,type: "saw"}, 
+            //{x: 44,y: 27,type: "saw"}, 
+            //{x: 53,y: 27,type: "saw"}, 
+            
       ],
       spawns: [
             { x: 0, y: 5 },
-            { x: 13, y:-13}
+            { x: 13, y:-13},
+            { x: 39, y: -24},
+            { x: 90, y: -28}
       ],
       backs: [
             { startX: -6, startY: -16, lengthX: 60, lengthY: 22, type: "darkBwall" },
+            { startX: 38, startY: -40, lengthX: 106, lengthY: 24, type: "darkBwall" },
       ],
-      
+      corpses: [
+            { x: 77, y: -34, type: "lurker", facing: "l" },
+            { x: 136, y: -21, type: "lurker", facing: "l" },
+            { x: 94, y: -35, type: "lurker", facing: "l" },
+      ],
       dtexts: [
             { x: -4, y: 7, toWrite: 'You can fall through platforms by crouching.', animated: true, delay: 1 },
             { x: -4.5, y: 6.4, toWrite: 'Holding shift prevents you from falling through.', animated: true, delay: 1.5 },
@@ -107,6 +226,8 @@ var creditsLevel = {
 
             { startX: 3, startY: -3, lengthX: 3, lengthY: 1, type: "thinPlatform" },
             { startX: -4, startY: -3, lengthX: 3, lengthY: 1, type: "thinPlatform" },
+
+      
       ],
       spawns: [
             { x: 0, y: 4 },
@@ -117,6 +238,7 @@ var creditsLevel = {
       traps: [
             { x: -4, y: 2, type: "saw" },
             { x: 4, y: 2, type: "lsaw" },
+
       ],
       dtexts: [
             { x: -6, y: 8, toWrite: 'Thank you for playtesting corpses are forever.', animated: false, delay: 0 },
@@ -149,7 +271,7 @@ var tutorialLevel = {
             { startX: 44, startY: 18, lengthX: 61, lengthY: 6, type: "bwall" },
             { startX: 65, startY: 16, lengthX: 40, lengthY: 2, type: "bwall" },
             { startX: 97, startY: 34, lengthX: 90, lengthY: 4, type: "bwall" },
-            { startX: 187, startY: 1, lengthX: 61, lengthY: 16, type: "bwall" },
+
 
       ],
       walls: [
@@ -285,46 +407,6 @@ var tutorialLevel = {
             { startX: 97, startY: 38, lengthX: 86, lengthY: 1, type: "floor" },
             { startX: 96, startY: 38, lengthX: 1, lengthY: 1, type: "tright" },
 
-            //Le spike pito
-
-            { startX: 188, startY: 10, lengthX: 7, lengthY: 1, type: "floor" },
-            { startX: 194, startY: 10, lengthX: 1, lengthY: 1, type: "tleft" },
-            { startX: 187, startY: 10, lengthX: 1, lengthY: 1, type: "tright" },
-            { startX: 187, startY: 11, lengthX: 1, lengthY: 6, type: "wright" },
-            { startX: 194, startY: 6, lengthX: 1, lengthY: 4, type: "wright" },
-            { startX: 194, startY: 6, lengthX: 17, lengthY: 1, type: "floor" },
-            { startX: 210, startY: 2, lengthX: 1, lengthY: 4, type: "wright" },
-            { startX: 210, startY: 1, lengthX: 19, lengthY: 1, type: "floor" },
-            { startX: 228, startY: 2, lengthX: 1, lengthY: 4, type: "wleft" },
-            { startX: 228, startY: 6, lengthX: 12, lengthY: 1, type: "floor" },
-            { startX: 233, startY: 7, lengthX: 9, lengthY: 1, type: "floor" },
-            { startX: 235, startY: 8, lengthX: 8, lengthY: 1, type: "floor" },
-            { startX: 237, startY: 9, lengthX: 7, lengthY: 1, type: "floor" },
-
-
-            //KIETS LEVEL SEGMENT: Place later in the level.
-            // bottom platform
-            //{ startX: 34, startY: 19, lengthX: 57, lengthY: 1, type: "floor" },
-            //2nd platform
-            //{ startX: 55, startY: 27, lengthX: 5, lengthY: 1, type: "floor" },
-            //3nd platforms
-            //{ startX: 73, startY: 27, lengthX: 3, lengthY: 1, type: "floor" },
-            //4nd platform
-            //{ startX: 87, startY: 27, lengthX: 1, lengthY: 1, type: "floor" },
-            //wall platforms
-            //{ startX: 90, startY: 20, lengthX: 1, lengthY: 7, type: "wleft" },
-            //end #1 platform
-            //{ startX: 90, startY: 27, lengthX: 3, lengthY: 1, type: "floor" },
-            //end #2 platform
-            //{ startX: 95, startY: 27, lengthX: 3, lengthY: 1, type: "floor" },
-            //#2 bottom platform
-            //{ startX: 81, startY: 15, lengthX: 17, lengthY: 1, type: "floor" },
-            //wall platform
-            //{ startX: 97, startY: 15, lengthX: 1, lengthY: 21, type: "wleft" },
-            //wall block platform
-            //{ startX: 90, startY: 18, lengthX: 1, lengthY: 1, type: "wright" },
-            //slide platform
-            //{ startX: 81, startY: 17, lengthX: 10, lengthY: 1, type: "floor" },
 
       ],
       boxes: [
@@ -365,19 +447,6 @@ var tutorialLevel = {
 
       ],
       traps: [
-            //{ x: 95, y: 20, type: "lsaw" }, 
-            //{x: 91,y: 20,type: "saw"}, 
-            //{x: 95,y: 23,type: "lsaw"}, 
-            //{ x: 91,y: 23,type: "saw"}, 
-            //{x: 95, y: 26, type: "lsaw"},
-            //{x: 91,y: 26,type: "saw"}, 
-            //{x: 85,y: 27,type: "saw" }, 
-            //{x: 88,y: 27,type: "saw"}, 
-            //{x: 76,y: 27,type: "saw" }, 
-            //{x: 60,y: 27,type: "saw"}, 
-            //{x: 71,y: 27,type: "saw"}, 
-            //{x: 44,y: 27,type: "saw"}, 
-            //{x: 53,y: 27,type: "saw"}, 
             { x: -3.3, y: 16, type: "saw" },
             { x: 29, y: 27, type: "lsaw" },
             { x: 54, y: 33.5, type: "lsaw" },
@@ -390,45 +459,8 @@ var tutorialLevel = {
             //,
             //{   x: -10,    y: 13,     type: "bigSaw" }//,
             //{
-            {x: -10, y: 7, type: "spike"},
+            //{x: -10, y: 7, type: "spike"},
             
-            {x: 198, y: 7, type: "spike"},
-            {x: 199, y: 7, type: "spike"},
-            {x: 200, y: 7, type: "spike"},
-            {x: 201, y: 7, type: "spike"},
-            {x: 202, y: 7, type: "spike"},
-            {x: 203, y: 7, type: "spike"},
-            {x: 204, y: 7, type: "spike"},
-            {x: 205, y: 7, type: "spike"},
-            {x: 206, y: 7, type: "spike"},
-            {x: 207, y: 7, type: "spike"},
-            {x: 208, y: 7, type: "spike"},
-            {x: 209, y: 7, type: "spike"},
-            {x: 210, y: 7, type: "spike"},
-            
-            {x: 211, y: 2, type: "spike"},
-            {x: 212, y: 2, type: "spike"},
-            {x: 213, y: 2, type: "spike"},
-            {x: 214, y: 2, type: "spike"},
-            {x: 215, y: 2, type: "spike"},
-            {x: 216, y: 2, type: "spike"},
-            {x: 217, y: 2, type: "spike"},
-            {x: 218, y: 2, type: "spike"},
-            {x: 219, y: 2, type: "spike"},
-            {x: 220, y: 2, type: "spike"},
-            {x: 221, y: 2, type: "spike"},
-            {x: 222, y: 2, type: "spike"},
-            {x: 223, y: 2, type: "spike"},
-            {x: 224, y: 2, type: "spike"},
-            {x: 225, y: 2, type: "spike"},
-            {x: 226, y: 2, type: "spike"},
-            {x: 227, y: 2, type: "spike"},
-
-            {x: 228, y: 7, type: "spike"},
-            {x: 229, y: 7, type: "spike"},
-            {x: 230, y: 7, type: "spike"},
-            {x: 231, y: 7, type: "spike"},
-            {x: 232, y: 7, type: "spike"},
             
       ],
       doors: [
@@ -457,13 +489,6 @@ var tutorialLevel = {
             { x: 140, y: 35 },
       ],
       hoppers: [
-            //{ x: 11, y: 5 },
-            // { x: 40, y: 25  },
-            // { x: 50, y: 25  },
-            // { x: 60, y: 25  },
-            // { x: 70, y: 25  },
-            //  { x: 80, y: 25  },
-            //  { x: 85, y: 25  },
             { x: 89, y: 25 },
             { x: 83, y: 25 },
 
@@ -531,7 +556,7 @@ var tutorialLevel = {
       ],
       goals: [
             //{ x: 11, y: 1, loc: {x: 73, y:22}},
-            { x: 187, y: 34, nLevel: "two"}
+            { x: 189, y: 35, nLevel: "two"}
 
       ]
 
