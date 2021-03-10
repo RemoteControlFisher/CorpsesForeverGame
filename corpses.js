@@ -132,6 +132,8 @@ class corpses {
 		let dcenter = this.game.duck.BB.center()
 		let length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
 		if (this.state != "carried" && length < 1500) {
+			this.BB.active = true
+
 			let tick = this.game.clockTick;
 			//These constants I did copy just so I remembered the basic constants I should use here. The rest I typed out manually with some vague inspirations being pulled
 			//From the lecture examples.
@@ -144,7 +146,6 @@ class corpses {
 			this.x += this.velocityX * tick
 
 			this.updateBB()
-
 			this.collide()
 		} else {
 			//Don't collide, be invisible when we are not carried!
