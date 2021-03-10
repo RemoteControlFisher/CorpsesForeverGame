@@ -141,7 +141,7 @@ var levelTwo = {
             {x: 57, y: -33, type: "spike"},
             {x: 58, y: -33, type: "spike"},
             {x: 59, y: -33, type: "spike"},
-            {x: 60, y: -33, type: "spike"},
+            {x: 59.6, y: -33, type: "spike"},
             
             {x: 61, y: -38, type: "spike"},
             {x: 62, y: -38, type: "spike"},
@@ -159,13 +159,13 @@ var levelTwo = {
             {x: 74, y: -38, type: "spike"},
             {x: 75, y: -38, type: "spike"},
             {x: 76, y: -38, type: "spike"},
-            {x: 77, y: -38, type: "spike"},
+            {x: 76.6, y: -38, type: "spike"},
 
             //{x: 231, y: 17, type: "spike"},
             {x: 79, y: -33, type: "spike"},
             {x: 80, y: -33, type: "spike"},
             {x: 81, y: -33, type: "spike"},
-            {x: 82, y: -33, type: "spike"},
+            {x: 81.6, y: -33, type: "spike"},
             
             //keiso saw
             //{ x: 97, y: -31, type: "saw" }, 
