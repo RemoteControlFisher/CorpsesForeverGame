@@ -62,6 +62,15 @@ class scenemanager {
                 }
             }
         }
+        if (level.traps)
+            for (let i = 0; i < level.traps.length; i++) {
+                let x = level.traps[i].x
+                let y = level.traps[i].y
+                let type = level.traps[i].type
+                let myTrap = new traps(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, type)
+                console.log(myTrap)
+                this.game.addEntity(myTrap)
+            }
         if (level.walls)
             for (let i = 0; i < level.walls.length; i++) {
                 let type = level.walls[i].type
@@ -80,15 +89,6 @@ class scenemanager {
                 this.game.addEntity(new textboxes(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, i))
             }
 
-        if (level.traps)
-            for (let i = 0; i < level.traps.length; i++) {
-                let x = level.traps[i].x
-                let y = level.traps[i].y
-                let type = level.traps[i].type
-                let myTrap = new traps(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, type)
-                console.log(myTrap)
-                this.game.addEntity(myTrap)
-            }
         if (level.buttons && level.doors) {
 
             for (let i = 0; i < level.buttons.length; i++) {

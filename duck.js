@@ -6,7 +6,7 @@ const MAX_RUN = 550.75;
 const ACC_WALK = 153.59375;
 const ACC_AIR = 280;
 const ACC_RUN = 750.390625;
-const SLIDE_DECEL = 450;
+const SLIDE_DECEL = 350;
 const GRAVITY = 1800;
 const TERMINAL_VELOCITY = 900;
 const troof = true;
@@ -771,8 +771,9 @@ class duck {
     //console.log ("duck y: " + this.y)
 
     //Bounding box logic.
-    this.oldBB = this.BB;
     this.collide(tick)
+    this.oldBB = this.BB;
+    this.oldcBB = this.cBB;
     //Check if we are falling.
     if (this.velocityY > 0 && this.state != "slide" && this.state != "wallcling" && this.state != "squat") { this.state = "freefall" }
   }
@@ -837,7 +838,7 @@ class duck {
   updateBB(scale) {
     //this.oldBB = this.BB;
     this.BB = new boundingBox(this.x, this.y, 16 * scale, 25 * scale);
-    this.oldcBB = this.cBB;
+    //this.oldcBB = this.cBB;
     this.cBB = new boundingBox(this.x - 3 * scale, this.y + 11 * scale, 22 * scale, 14 * scale);
   }
 

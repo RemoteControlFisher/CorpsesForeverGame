@@ -119,6 +119,7 @@ class corpses {
 		if (this.type == "chomper") this.scale = 1
 		if (this.type == "lurker" || this.type == "hopper") {
 			this.bounce = true
+			this.scale = 2.5
 		}
 		this.BB = new boundingBox(this.x, this.y, this.animations[this.type].width * this.scale, (this.animations[this.type].height) * this.scale)
 		this.oldBB = this.BB
@@ -147,6 +148,8 @@ class corpses {
 
 			this.updateBB()
 			this.collide()
+
+			this.oldBB = this.BB;
 		} //else {
 			//Don't collide, be invisible when we are not carried!
 			//this.BB.active = false
@@ -155,8 +158,7 @@ class corpses {
 	};
 
 	updateBB() {
-		this.oldBB = this.BB;
-		this.BB = new boundingBox(this.x, this.y, this.animations[this.type][this.facing].width * this.scale, (this.animations[this.type][this.facing].height) * this.scale)
+		this.BB = new boundingBox(this.x, this.y + 5 , this.animations[this.type][this.facing].width * this.scale, (this.animations[this.type][this.facing].height) * this.scale - 5)
 	}
 
 	//Note to self: The duck sideways collision fixes I need to do.

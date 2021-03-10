@@ -29,7 +29,6 @@ class boxes {
 	};
 
 	updateBB() {
-		this.oldBB = this.BB;
 		this.BB = new boundingBox(this.x, this.y, 32, 32)
 	}
 
@@ -54,6 +53,7 @@ class boxes {
 			this.updateBB()
 
 			this.collide()
+			this.oldBB = this.BB;
 		} //else {
 			//Don't collide, be invisible when we are not carried!
 		//	this.BB.active = false

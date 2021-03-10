@@ -194,7 +194,7 @@ var levelTwo = {
             { startX: 38, startY: -40, lengthX: 106, lengthY: 24, type: "darkBwall" },
       ],
       corpses: [
-            { x: 76.5, y: -33, type: "lurker", facing: "l" },
+            { x: 76, y: -33, type: "lurker", facing: "l" },
             { x: 136, y: -21, type: "lurker", facing: "l" },
             { x: 94, y: -35, type: "lurker", facing: "l" },
             { x: 118, y: -37 },
