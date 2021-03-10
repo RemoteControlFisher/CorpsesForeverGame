@@ -683,7 +683,7 @@ var tutorialLevel = {
 
             { x: 184, y: 34, nLevel: "two"},
             //{ x: -4, y: 9, nLevel: "two"}
-            { x: 11, y: 1, nLevel: "two"}//, loc: {x:15,y: 2}},
+            //{ x: 11, y: 1, nLevel: "two"}//, loc: {x:15,y: 2}},
 
       ]
 
