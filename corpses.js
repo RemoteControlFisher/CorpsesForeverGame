@@ -1,5 +1,5 @@
 class corpses {
-	constructor(game, x, y, type, facing = "r", velocityX = 0, velocityY = 0) {
+	constructor(game, x, y, type = "duck", facing = "r", velocityX = 0, velocityY = 0) {
 		Object.assign(this, { game, x, y, type, facing, velocityX, velocityY });
 		this.duck = ASSET_MANAGER.getAsset("./sprites/duck.png")
 		this.chomp = ASSET_MANAGER.getAsset("./sprites/wolfsheet1.png");
@@ -127,7 +127,10 @@ class corpses {
 
 	update() {
 		//WE DO NOT DRAW OR UPDATE OURSELVES WHEN CARRIED.
-		if (this.state != "carried") {
+		let center = this.BB.center()
+		let dcenter = this.game.duck.BB.center()
+		let length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
+		if (this.state != "carried" && length < 1500) {
 			let tick = this.game.clockTick;
 			//These constants I did copy just so I remembered the basic constants I should use here. The rest I typed out manually with some vague inspirations being pulled
 			//From the lecture examples.

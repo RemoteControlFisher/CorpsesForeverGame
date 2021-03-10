@@ -84,17 +84,17 @@ class Hoppers {
 	}
 
 	update() {
+		let center = this.BB.center()
+		let dcenter = this.game.duck.BB.center()
+		let length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
 		//console.log(this.x / 32 + " " + this.y / 32 + " " + this.state)
-		if (this.state != "dead") {
+		if (this.state != "dead" && length < 1500) {
 			let tick = this.game.clockTick;
-			let center = this.BB.center()
-			let dcenter = this.game.duck.BB.center()
 
 			//let dfacing = this.game.duck.facing
 			//console.log("duck facing: " + dfacing) 
 
 			//length between duck and hoppers
-			let length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
 			//Calculate where the duck is.
 			let duckDir = Math.sign(dcenter.x - center.x)
 

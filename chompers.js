@@ -169,10 +169,12 @@ class Chompers {
 
 	update() {
 		//console.log(this.y)
-		if (this.state != "dead") {
+		let center = this.BB.center()
+		let dcenter = this.game.duck.BB.center()
+		this.length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
+
+		if (this.state != "dead" && this.length < 1500) {
 			let tick = this.game.clockTick;
-			let center = this.BB.center()
-			let dcenter = this.game.duck.BB.center()
 
 			this.velocityY += GRAVITY * tick
 
@@ -180,7 +182,6 @@ class Chompers {
 			this.y += this.velocityY * tick
 			this.updateBB(1)
 
-			this.length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
 			if (this.game.duck.state == "dead")
 			{
 				this.length = Number.MAX_VALUE

@@ -20,6 +20,7 @@ var levelTwo = {
             { startX: 13, startY: -12, lengthX: 1, lengthY: 1, type: "tleft" },
             { startX: -6, startY: 6, lengthX: 1, lengthY: 1, type: "tright" },
             { startX: 11, startY: 6, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: 13, startY: -9, lengthX: 32, lengthY: 1, type: "floor" },
 
             { startX: -7, startY: -15, lengthX: 1, lengthY: 15, type: "wleft" },
 
@@ -82,6 +83,10 @@ var levelTwo = {
       ],
       boxes: [
             { x: 3, y: -13 },
+            { x: 41, y: -25 },
+
+
+
       ],
       hoppers: [
             { x: 3, y: -11 },
@@ -118,10 +123,10 @@ var levelTwo = {
             { x: 31, y: -16 },
             { x: 32, y: -16 },
             { x: 33, y: -16 },
-            { x: 34, y: -16 },
-            { x: 35, y: -16 },
-            { x: 36, y: -16 },
-            { x: 37, y: -16 },
+            //{ x: 34, y: -16 },
+            //{ x: 35, y: -16 },
+            //{ x: 36, y: -16 },
+            //{ x: 37, y: -16 },
             
             //spike for spike pit
             {x: 48, y: -33, type: "spike"},
@@ -163,10 +168,10 @@ var levelTwo = {
             {x: 82, y: -33, type: "spike"},
             
             //keiso saw
-            { x: 97, y: -31, type: "saw" }, 
+            //{ x: 97, y: -31, type: "saw" }, 
             { x: 107,y: -29,type: "saw"}, 
             {x: 117,y: -26,type: "lsaw"}, 
-            { x: 131,y: -24,type: "saw"}, 
+            //{ x: 131,y: -24,type: "saw"}, 
             {x: 128, y: -24, type: "lsaw"},
             //{x: 91,y: 26,type: "saw"}, 
             //{x: 85,y: 27,type: "saw" }, 
@@ -192,6 +197,10 @@ var levelTwo = {
             { x: 77, y: -34, type: "lurker", facing: "l" },
             { x: 136, y: -21, type: "lurker", facing: "l" },
             { x: 94, y: -35, type: "lurker", facing: "l" },
+            { x: 118, y: -37 },
+            { x: 41, y: -26 },
+            { x: 41, y: -27, type: "chomper" },
+
       ],
       dtexts: [
             { x: -4, y: 7, toWrite: 'You can fall through platforms by crouching.', animated: true, delay: 1 },
@@ -556,7 +565,8 @@ var tutorialLevel = {
       ],
       goals: [
             //{ x: 11, y: 1, loc: {x: 73, y:22}},
-            { x: 189, y: 35, nLevel: "two"}
+            { x: 189, y: 35, nLevel: "two"},
+            { x: -4, y: 9, nLevel: "two"}
 
       ]
 

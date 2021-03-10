@@ -127,16 +127,18 @@ class Lurkers {
 	};
 
 	update() {
-		if (this.state != "dead") {
+
+		let center = this.BB.center()
+		let dcenter = this.game.duck.BB.center()
+		let length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
+		if (this.state != "dead" && length < 1500) {
 			let tick = this.game.clockTick;
-			let center = this.BB.center()
-			let dcenter = this.game.duck.BB.center()
+
 
 			//let dfacing = this.game.duck.facing
 			//console.log("duck facing: " + dfacing) 
 
 			//length between duck and hoppers
-			length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
 			//console.log("space: " + length)
 
 			this.velocityY += GRAVITY * tick
@@ -183,7 +185,7 @@ class Lurkers {
 		}
 		this.oldBB = this.cBB;
 	};
-	dd
+	
 	updateBB(scale) {
 		this.oldBB = this.BB;
 		this.BB = new boundingBox(this.x + 7 * scale, this.y + 1 * scale, 25 * scale, 21 * scale);

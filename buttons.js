@@ -37,20 +37,30 @@ class buttons {
     };
 
     update() {
-        this.updateBB(.75)
-        this.collide()
-        if (this.duckPushed || this.corpsePushed || this.boxPushed) {
-            this.state = "pushed"
-            this.myDoors.forEach(function (door) {
-                door.open = true
-                ASSET_MANAGER.playAsset("./sound/Sound effect/mixkit-arcade-mechanical-bling-210.wav")
-            });
-        }
-        else {
-            this.state = "not pushed"
-            this.myDoors.forEach(function (door) {
-                door.open = false
-            });
+        let center = this.BB.center()
+        let dcenter = this.game.duck.BB.center()
+        let length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
+        if (length < 1400) {
+            this.updateBB(.75)
+            this.collide()
+            if (this.duckPushed || this.corpsePushed || this.boxPushed) {
+                if (this.state != "pushed"){
+                    ASSET_MANAGER.playAsset("./sound/Sound effect/mixkit-arcade-mechanical-bling-210.wav")
+                }
+                this.state = "pushed"
+                this.myDoors.forEach(function (door) {
+                    door.open = true
+                });
+            }
+            else {
+                if (this.state == "pushed"){
+                    ASSET_MANAGER.playAsset("./sound/Sound effect/mixkit-arcade-mechanical-bling-210.wav")
+                }
+                this.state = "not pushed"
+                this.myDoors.forEach(function (door) {
+                    door.open = false
+                });
+            }
         }
     };
 

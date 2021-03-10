@@ -787,6 +787,7 @@ class duck {
 
     this.carried.x = this.x
     this.carried.y = this.y
+    this.carried.updateBB()
     this.carried = null
     this.armstate = "down"
   }
@@ -801,6 +802,7 @@ class duck {
 
     this.carried.x = this.x
     this.carried.y = this.y
+    this.carried.updateBB()
     this.carried = null
     this.armstate = "down"
   }
@@ -814,6 +816,7 @@ class duck {
 
     this.carried.x = this.x
     this.carried.y = this.y
+    this.carried.updateBB()
     this.carried = null
     this.armstate = "down"
   }
