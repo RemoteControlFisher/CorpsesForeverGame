@@ -79,6 +79,17 @@ var levelTwo = {
             //{ startX: 145, startY: -40, lengthX: 1, lengthY: 1, type: "wright" },
             //slide platform
             //{ startX: 136, startY: -39, lengthX: 10, lengthY: 1, type: "floor" },
+            { startX: 143, startY: -18, lengthX: 1, lengthY: 10, type: "wright" },
+
+
+            //Hall of spikes.
+            { startX: 88, startY: -15, lengthX: 49, lengthY: 1, type: "floor" },
+            { startX: 107, startY: -12, lengthX: 27, lengthY: 1, type: "floor" },
+            { startX: 106, startY: -11, lengthX: 2, lengthY: 1, type: "floor" },
+
+            { startX: 133, startY: -8, lengthX: 11, lengthY: 1, type: "floor" },
+
+            { startX: 133, startY: -11, lengthX: 1, lengthY: 3, type: "wleft" },
 
       ],
       boxes: [
@@ -93,8 +104,8 @@ var levelTwo = {
             //{ x: 63,y: -35}   //dies?
       ],
       chompers: [
-            { x: 94, y: -33 },
-            { x: 130, y: -33}
+           // { x: 94, y: -33 },
+           // { x: 130, y: -33}
       ],
       lurkers: [
             //{ x: 93, y: -32},
@@ -128,6 +139,26 @@ var levelTwo = {
             //{ x: 36, y: -16 },
             //{ x: 37, y: -16 },
             
+            //HALL OF SPIKES SPIKES
+            { x: 108, y: -14 },
+            { x: 109, y: -14 },
+            { x: 110, y: -14 },
+            { x: 111, y: -14 },
+            { x: 112, y: -14 },
+            { x: 113, y: -14 },
+            { x: 114, y: -14 },
+            { x: 115, y: -14 },
+            { x: 116, y: -14 },
+            { x: 117, y: -14 },
+            { x: 118, y: -14 },
+            { x: 119, y: -14 },
+            { x: 120, y: -14 },
+            { x: 121, y: -14 },
+            { x: 122, y: -14 },
+            { x: 123, y: -14 },
+
+
+
             //spike for spike pit
             {x: 48, y: -33, type: "spike"},
             {x: 49, y: -33, type: "spike"},
@@ -187,10 +218,12 @@ var levelTwo = {
             { x: 0, y: 5 },
             { x: 13, y:-13},
             { x: 39, y: -24},
-            { x: 90, y: -28}
+            { x: 90, y: -28},
+            { x: 105.5, y: -12},
+
       ],
       backs: [
-            { startX: -6, startY: -16, lengthX: 60, lengthY: 22, type: "darkBwall" },
+            { startX: -6, startY: -16, lengthX: 150, lengthY: 22, type: "darkBwall" },
             { startX: 38, startY: -40, lengthX: 106, lengthY: 24, type: "darkBwall" },
       ],
       corpses: [
@@ -205,9 +238,12 @@ var levelTwo = {
       dtexts: [
             { x: -4, y: 7, toWrite: 'You can fall through platforms by crouching.', animated: true, delay: 1 },
             { x: -4.5, y: 6.4, toWrite: 'Holding shift prevents you from falling through.', animated: true, delay: 1.5 },
+            { x: 120, y: -14, toWrite: 'You remember that spikes only kill you when you land on them.', animated: false, delay: 1.5 },
+            { x: 129, y: -14.6, toWrite: 'Oops, that might have been helpful.', animated: false, delay: 1.5 },
+
       ],
       goals: [
-            //{ x: -5, y: 0, loc: {x:0,y: 9} },
+            { x: -5, y: 3, loc: {x:141,y: -15} },
             { x: 12, y: 1, nLevel: "end" },
       ],
 
