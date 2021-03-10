@@ -66,7 +66,7 @@ var levelTwo = {
             //end #1 platform
             { startX: 134, startY: -23, lengthX: 4, lengthY: 1, type: "floor" },
             //end #2 platform
-            { startX: 140, startY: -19, lengthX: 4, lengthY: 1, type: "floor" },
+            { startX: 140, startY: -19, lengthX: 11, lengthY: 1, type: "floor" },
             //#2 bottom platform
             //{ startX: 136, startY: -43, lengthX: 17, lengthY: 1, type: "floor" },
             //wall platform
@@ -75,10 +75,41 @@ var levelTwo = {
              { startX: 94, startY: -36, lengthX: 1, lengthY: 1, type: "floor" },
             // helper platform
             { startX: 95, startY: -36, lengthX: 1, lengthY: 1, type: "tleft" },
-            //wall block platform
-            //{ startX: 145, startY: -40, lengthX: 1, lengthY: 1, type: "wright" },
             //slide platform
             //{ startX: 136, startY: -39, lengthX: 10, lengthY: 1, type: "floor" },
+
+            //Authoritarian Rat platform 
+            //(the solution is very simple, and you can time it by sticking to a wall & just wall slide)
+
+            //side wall block 1
+            { startX: 140, startY: -15, lengthX: 1, lengthY: 21, type: "wright" },
+            //side wall block 2
+            { startX: 150, startY: -18, lengthX: 1, lengthY: 24, type: "wleft" },
+            //1st platform
+            { startX: 141, startY: -15, lengthX: 9, lengthY: 1, type: "thinPlatform" },
+            //2nd platform
+            { startX: 141, startY: -12, lengthX: 9, lengthY: 1, type: "thinPlatform" },
+            //3rd platform
+            { startX: 141, startY: -9, lengthX: 9, lengthY: 1, type: "thinPlatform" },
+            //4th platform
+            { startX: 141, startY: -6, lengthX: 9, lengthY: 1, type: "thinPlatform" },
+            //5th platform
+            { startX: 141, startY: -3, lengthX: 9, lengthY: 1, type: "thinPlatform" },
+            //6th platform
+            { startX: 141, startY: 0, lengthX: 9, lengthY: 1, type: "thinPlatform" },
+            //7th platform
+            { startX: 141, startY: 3, lengthX: 9, lengthY: 1, type: "thinPlatform" },
+            //bounce platform
+            { startX: 141, startY: 3, lengthX: 9, lengthY: 1, type: "thinPlatform" },
+            //freedom platform
+             { startX: 141, startY: 6, lengthX: 9, lengthY: 1, type: "thinPlatform" },
+
+            //next level? 
+
+            //platform right
+            { startX: 130, startY: 6, lengthX: 11, lengthY: 1, type: "floor" },
+            //platform left
+            { startX: 150, startY: 6, lengthX: 10, lengthY: 1, type: "floor" },
 
       ],
       boxes: [
@@ -94,7 +125,14 @@ var levelTwo = {
       ],
       chompers: [
             { x: 94, y: -33 },
-            { x: 130, y: -33}
+            { x: 130, y: -33},
+            { x: 141, y: -14},
+            { x: 143, y: -11},
+            { x: 145, y: -6},
+            { x: 147, y: -3},
+            { x: 145, y: -0},
+            { x: 143, y: 3},
+
       ],
       lurkers: [
             //{ x: 93, y: -32},
@@ -187,7 +225,8 @@ var levelTwo = {
             { x: 0, y: 5 },
             { x: 13, y:-13},
             { x: 39, y: -24},
-            { x: 90, y: -28}
+            { x: 90, y: -28},
+            { x: 148, y: -15}
       ],
       backs: [
             { startX: -6, startY: -16, lengthX: 60, lengthY: 22, type: "darkBwall" },
@@ -197,6 +236,11 @@ var levelTwo = {
             { x: 76, y: -33, type: "lurker", facing: "l" },
             { x: 136, y: -21, type: "lurker", facing: "l" },
             { x: 94, y: -35, type: "lurker", facing: "l" },
+            //{ x: 148, y: -18, type: "lurker", facing: "l" },
+            { x: 144, y: -18, type: "hopper", facing: "l" },
+            { x: 144, y: 6, type: "lurker", facing: "l" },
+            { x: 141, y: 6, type: "hopper", facing: "l" },
+            { x: 147, y: 6, type: "hopper", facing: "l" },
             { x: 118, y: -37 },
             { x: 41, y: -20 },
             { x: 41, y: -25, type: "chomper" },
@@ -208,12 +252,14 @@ var levelTwo = {
       ],
       goals: [
             //{ x: -5, y: 0, loc: {x:0,y: 9} },
-            { x: 12, y: 1, nLevel: "end" },
+            //{ x: 12, y: 1, nLevel: "end" },
+            { x: 135, y: 7, nLevel: "end"},
       ],
 
 };
 
 var creditsLevel = {
+      music: "./sound/BMG/World of Horror - Home (Extended).mp3",
       walls: [
             { startX: -3, startY: 0, lengthX: 8, lengthY: 1, type: "thinPlatform" },
 
@@ -566,7 +612,7 @@ var tutorialLevel = {
       goals: [
             //{ x: 11, y: 1, loc: {x: 73, y:22}},
             { x: 189, y: 35, nLevel: "two"},
-            { x: -4, y: 9, nLevel: "two"}
+            { x: -4, y: 9, nLevel: "two"},
 
       ]
 
