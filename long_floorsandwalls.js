@@ -135,7 +135,7 @@ class long_floorsandwalls {
 			for (let k = 0; k < this.lengthY; k++) {
 				this.animations[this.type].drawFrame(this.game.clockTick, ctx,
 					this.BB.x + j * PARAMS.BLOCKWIDTH - this.game.camera.x,
-					this.BB.y + k * PARAMS.BLOCKWIDTH - this.game.camera.y, 2.03)
+					this.BB.y + k * PARAMS.BLOCKWIDTH - this.game.camera.y, 2.05)
 			}
 		}
 		//ctx.strokeStyle = 'Red';
