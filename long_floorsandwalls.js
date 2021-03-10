@@ -138,6 +138,14 @@ class long_floorsandwalls {
 					this.BB.y + k * PARAMS.BLOCKWIDTH - this.game.camera.y, 2.05)
 			}
 		}
+		if (this.type == "floor" && this.lengthY == 1 && this.lengthX>1) {
+			this.animations.tright.drawFrame(this.game.clockTick, ctx,
+				this.BB.x - this.game.camera.x,
+				this.BB.y - this.game.camera.y, 2.05)
+			this.animations.tleft.drawFrame(this.game.clockTick, ctx,
+				this.BB.x + PARAMS.BLOCKWIDTH * (this.lengthX-1)- this.game.camera.x,
+				this.BB.y - this.game.camera.y, 2.05)
+		}
 		//ctx.strokeStyle = 'Red';
 		//ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
 	};

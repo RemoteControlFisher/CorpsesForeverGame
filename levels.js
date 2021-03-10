@@ -2,15 +2,15 @@ var levelTwo = {
       music: "./sound/BMG/World of Horror Soundtrack Mansion Combat.mp3",
       walls: [
             { startX: -3, startY: 0, lengthX: 13, lengthY: 1, type: "thinPlatform" },
-            { startX: -3, startY: -2, lengthX: 14, lengthY: 1, type: "floor" },
-            { startX: -4, startY: -2, lengthX: 1, lengthY: 1, type: "tright" },
+            { startX: -4, startY: -2, lengthX: 15, lengthY: 1, type: "floor" },
+            //    { startX: -4, startY: -2, lengthX: 1, lengthY: 1, type: "tright" },
 
             { startX: -6, startY: 1, lengthX: 1, lengthY: 5, type: "wleft" },
             { startX: 11, startY: -2, lengthX: 1, lengthY: 9, type: "wright" },
-            { startX: -5, startY: 6, lengthX: 16, lengthY: 1, type: "floor" },
-            { startX: -7, startY: 0, lengthX: 1, lengthY: 1, type: "tright" },
-            { startX: -6, startY: 0, lengthX: 2, lengthY: 1, type: "floor" },
-            { startX: -4, startY: 0, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: -6, startY: 6, lengthX: 18, lengthY: 1, type: "floor" },
+            //{ startX: -7, startY: 0, lengthX: 1, lengthY: 1, type: "tright" },
+            { startX: -7, startY: 0, lengthX: 4, lengthY: 1, type: "floor" },
+            //{ startX: -4, startY: 0, lengthX: 1, lengthY: 1, type: "tleft" },
             { startX: 10, startY: 0, lengthX: 1, lengthY: 1, type: "tright" },
             { startX: 10, startY: -1, lengthX: 1, lengthY: 1, type: "wleft" },
             { startX: 12, startY: -3, lengthX: 1, lengthY: 1, type: "tleft" },
@@ -24,22 +24,22 @@ var levelTwo = {
 
             { startX: -7, startY: -15, lengthX: 1, lengthY: 15, type: "wleft" },
 
-            { startX: -7, startY: -16, lengthX: 1, lengthY: 1, type: "tright" },
-            { startX: -6, startY: -16, lengthX: 20, lengthY: 1, type: "floor" },
+            //{ startX: -7, startY: -16, lengthX: 1, lengthY: 1, type: "tright" },
+            { startX: -7, startY: -16, lengthX: 22, lengthY: 1, type: "floor" },
 
-            { startX: 14, startY: -17, lengthX: 25, lengthY: 1, type: "floor" },
-            { startX: 13, startY: -17, lengthX: 1, lengthY: 1, type: "tright" },
-            { startX: 14, startY: -16, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: 13, startY: -17, lengthX: 26, lengthY: 1, type: "floor" },
+            //{ startX: 13, startY: -17, lengthX: 1, lengthY: 1, type: "tright" },
+            //{ startX: 14, startY: -16, lengthX: 1, lengthY: 1, type: "tleft" },
 
 
-            { startX: 1, startY: -14, lengthX: 3, lengthY: 1, type: "floor" },
-            { startX: 0, startY: -14, lengthX: 1, lengthY: 1, type: "tright" },
-            { startX: 4, startY: -14, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: 0, startY: -14, lengthX: 5, lengthY: 1, type: "floor" },
+            //{ startX: 0, startY: -14, lengthX: 1, lengthY: 1, type: "tright" },
+            //{ startX: 4, startY: -14, lengthX: 1, lengthY: 1, type: "tleft" },
              
             //Spike pit
             { startX: 38, startY: -29, lengthX: 7, lengthY: 1, type: "floor" },    // x: 191, y: 20  difference x = 153 y: -48
             { startX: 44, startY: -30, lengthX: 1, lengthY: 1, type: "tleft" },
-            { startX: 38, startY: -29, lengthX: 1, lengthY: 1, type: "tright" },
+            //{ startX: 38, startY: -29, lengthX: 1, lengthY: 1, type: "tright" },
             { startX: 38, startY: -28, lengthX: 1, lengthY: 11, type: "wright" },
             { startX: 44, startY: -34, lengthX: 1, lengthY: 4, type: "wright" },
             { startX: 44, startY: -34, lengthX: 17, lengthY: 1, type: "floor" },
@@ -225,9 +225,9 @@ var creditsLevel = {
             { startX: 6, startY: 5, lengthX: 1, lengthY: 1, type: "tleft" },
 
 
-            { startX: -4, startY: -6, lengthX: 10, lengthY: 1, type: "floor" },
-            { startX: -5, startY: 0, lengthX: 1, lengthY: 1, type: "tright" },
-            { startX: 6, startY: 0, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: -5, startY: -6, lengthX: 12, lengthY: 1, type: "floor" },
+            //{ startX: -5, startY: 0, lengthX: 1, lengthY: 1, type: "tright" },
+            //{ startX: 6, startY: 0, lengthX: 1, lengthY: 1, type: "tleft" },
 
             { startX: -5, startY: -6, lengthX: 1, lengthY: 11, type: "wleft" },
             { startX: -4, startY: 5, lengthX: 10, lengthY: 1, type: "floor" },
@@ -284,51 +284,51 @@ var tutorialLevel = {
 
       ],
       walls: [
-            { startX: -4, startY: 0, lengthX: 18, lengthY: 1, type: "floor" },
-            { startX: -5, startY: 0, lengthX: 1, lengthY: 1, type: "tright" },
-            { startX: 14, startY: 0, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: -5, startY: 0, lengthX: 20, lengthY: 1, type: "floor" },
+            //{ startX: -5, startY: 0, lengthX: 1, lengthY: 1, type: "tright" },
+            //{ startX: 14, startY: 0, lengthX: 1, lengthY: 1, type: "tleft" },
             //right starting platform.
-            { startX: 8, startY: 9, lengthX: 1, lengthY: 1, type: "tright" },
-            { startX: 9, startY: 9, lengthX: 4, lengthY: 1, type: "floor" },
-            { startX: 13, startY: 9, lengthX: 1, lengthY: 1, type: "tleft" },
+            //{ startX: 8, startY: 9, lengthX: 1, lengthY: 1, type: "tright" },
+            { startX: 8, startY: 9, lengthX: 6, lengthY: 1, type: "floor" },
+            //{ startX: 13, startY: 9, lengthX: 1, lengthY: 1, type: "tleft" },
 
             //left starting platform
-            { startX: -4, startY: 8, lengthX: 1, lengthY: 1, type: "tright" },
-            { startX: -3, startY: 8, lengthX: 3, lengthY: 1, type: "floor" },
-            { startX: 0, startY: 8, lengthX: 1, lengthY: 1, type: "tleft" },
+            //{ startX: -4, startY: 8, lengthX: 1, lengthY: 1, type: "tright" },
+            { startX: -4, startY: 8, lengthX: 5, lengthY: 1, type: "floor" },
+            //{ startX: 0, startY: 8, lengthX: 1, lengthY: 1, type: "tleft" },
 
             //Level floor 2
-            { startX: 14, startY: 11, lengthX: 1, lengthY: 1, type: "tright" },
-            { startX: 15, startY: 11, lengthX: 18, lengthY: 1, type: "floor" },
+            //{ startX: 14, startY: 11, lengthX: 1, lengthY: 1, type: "tright" },
+            { startX: 14, startY: 11, lengthX: 19, lengthY: 1, type: "floor" },
 
-            { startX: -5, startY: 1, lengthX: 1, lengthY: 30, type: "wright" },
+            { startX: -5, startY: 1, lengthX: 1, lengthY: 30, type: "wleft" },
             { startX: 14, startY: 1, lengthX: 1, lengthY: 10, type: "wleft" },
             { startX: 33, startY: 11, lengthX: 1, lengthY: 16, type: "wleft" },
             { startX: 29, startY: 14, lengthX: 1, lengthY: 6, type: "wright" },
 
             //Spawn 2 platform
-            { startX: 20, startY: 20, lengthX: 1, lengthY: 1, type: "tright" },
-            { startX: 29, startY: 20, lengthX: 1, lengthY: 1, type: "tleft" },
-            { startX: 21, startY: 20, lengthX: 8, lengthY: 1, type: "floor" },
+           // { startX: 20, startY: 20, lengthX: 1, lengthY: 1, type: "tright" },
+            //{ startX: 29, startY: 20, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: 20, startY: 20, lengthX: 10, lengthY: 1, type: "floor" },
 
-            { startX: 12, startY: 23, lengthX: 1, lengthY: 1, type: "tright" },
-            { startX: 16, startY: 23, lengthX: 1, lengthY: 1, type: "tleft" },
-            { startX: 13, startY: 23, lengthX: 3, lengthY: 1, type: "floor" },
+            //{ startX: 12, startY: 23, lengthX: 1, lengthY: 1, type: "tright" },
+            //{ startX: 16, startY: 23, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: 12, startY: 23, lengthX: 6, lengthY: 1, type: "floor" },
 
-            { startX: -4, startY: 24, lengthX: 1, lengthY: 1, type: "tright" },
-            { startX: 1, startY: 24, lengthX: 1, lengthY: 1, type: "tleft" },
-            { startX: -3, startY: 24, lengthX: 4, lengthY: 1, type: "floor" },
+            //{ startX: -4, startY: 24, lengthX: 1, lengthY: 1, type: "tright" },
+            //{ startX: 1, startY: 24, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: -4, startY: 24, lengthX: 6, lengthY: 1, type: "floor" },
 
-            { startX: 22, startY: 26, lengthX: 1, lengthY: 1, type: "tright" },
-            { startX: 27, startY: 26, lengthX: 1, lengthY: 1, type: "tleft" },
-            { startX: 23, startY: 26, lengthX: 4, lengthY: 1, type: "floor" },
+            //{ startX: 22, startY: 26, lengthX: 1, lengthY: 1, type: "tright" },
+            //{ startX: 27, startY: 26, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: 22, startY: 26, lengthX: 6, lengthY: 1, type: "floor" },
 
             //ceiling #1
             { startX: -5, startY: 31, lengthX: 39, lengthY: 1, type: "floor" },
 
             //ceiling #2
-            { startX: 34, startY: 35, lengthX: 62, lengthY: 1, type: "floor" },
-            { startX: 96, startY: 35, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: 34, startY: 35, lengthX: 63, lengthY: 1, type: "floor" },
+            //{ startX: 96, startY: 35, lengthX: 1, lengthY: 1, type: "tleft" },
 
             //wall
             { startX: 33, startY: 31, lengthX: 1, lengthY: 4, type: "wleft" },
@@ -336,9 +336,9 @@ var tutorialLevel = {
 
 
             //1st platform
-            { startX: 33, startY: 27, lengthX: 1, lengthY: 1, type: "tright" },
-            { startX: 38, startY: 27, lengthX: 1, lengthY: 1, type: "tleft" },
-            { startX: 34, startY: 27, lengthX: 4, lengthY: 1, type: "floor" },
+            //{ startX: 33, startY: 27, lengthX: 1, lengthY: 1, type: "tright" },
+            //{ startX: 38, startY: 27, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: 33, startY: 27, lengthX: 6, lengthY: 1, type: "floor" },
 
             { startX: 38, startY: 26, lengthX: 1, lengthY: 1, type: "tright" },
             { startX: 39, startY: 26, lengthX: 1, lengthY: 1, type: "tleft" },
@@ -347,19 +347,19 @@ var tutorialLevel = {
 
             { startX: 39, startY: 24, lengthX: 1, lengthY: 2, type: "wright" },
 
-            { startX: 33, startY: 23, lengthX: 1, lengthY: 1, type: "tright" },
-            { startX: 58, startY: 23, lengthX: 1, lengthY: 1, type: "tleft" },
-            { startX: 34, startY: 23, lengthX: 24, lengthY: 1, type: "floor" },
+            //{ startX: 33, startY: 23, lengthX: 1, lengthY: 1, type: "tright" },
+            //{ startX: 58, startY: 23, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: 33, startY: 23, lengthX: 26, lengthY: 1, type: "floor" },
 
             { startX: 49, startY: 24, lengthX: 1, lengthY: 6, type: "wleft" },
             { startX: 45, startY: 31, lengthX: 1, lengthY: 4, type: "wright" },
 
-            { startX: 49, startY: 30, lengthX: 1, lengthY: 1, type: "tright" },
-            { startX: 58, startY: 30, lengthX: 1, lengthY: 1, type: "tleft" },
-            { startX: 50, startY: 30, lengthX: 8, lengthY: 1, type: "floor" },
+            //{ startX: 49, startY: 30, lengthX: 1, lengthY: 1, type: "tright" },
+            //{ startX: 58, startY: 30, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: 49, startY: 30, lengthX: 10, lengthY: 1, type: "floor" },
 
             { startX: 58, startY: 24, lengthX: 1, lengthY: 6, type: "wright" },
-            { startX: 63, startY: 21, lengthX: 1, lengthY: 15, type: "wleft" },
+            { startX: 63, startY: 21, lengthX: 1, lengthY: 14, type: "wleft" },
 
 
 
@@ -367,21 +367,21 @@ var tutorialLevel = {
             { startX: 52, startY: 21, lengthX: 11, lengthY: 1, type: "floor" },
 
             //After      { startX: 44, startY: 18, lengthX: 60, lengthY: 6, type: "bwall" },
-            { startX: 43, startY: 18, lengthX: 1, lengthY: 6, type: "wright" },
-            { startX: 44, startY: 18, lengthX: 1, lengthY: 1, type: "tright" },
-            { startX: 65, startY: 18, lengthX: 1, lengthY: 1, type: "tleft" },
-            { startX: 45, startY: 18, lengthX: 20, lengthY: 1, type: "floor" },
+            { startX: 43, startY: 18, lengthX: 1, lengthY: 5, type: "wright" },
+            //{ startX: 44, startY: 18, lengthX: 1, lengthY: 1, type: "tright" },
+            //{ startX: 65, startY: 18, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: 44, startY: 18, lengthX: 22, lengthY: 1, type: "floor" },
 
             { startX: 65, startY: 15, lengthX: 40, lengthY: 1, type: "floor" },
             { startX: 65, startY: 16, lengthX: 1, lengthY: 2, type: "wright" },
-            { startX: 65, startY: 15, lengthX: 1, lengthY: 1, type: "tright" },
-            { startX: 105, startY: 15, lengthX: 1, lengthY: 1, type: "tleft" },
+            //{ startX: 65, startY: 15, lengthX: 1, lengthY: 1, type: "tright" },
+            //{ startX: 105, startY: 15, lengthX: 1, lengthY: 1, type: "tleft" },
 
             { startX: 64, startY: 23, lengthX: 6, lengthY: 1, type: "floor" },
 
             { startX: 69, startY: 19, lengthX: 1, lengthY: 4, type: "wright" },
-            { startX: 64, startY: 23, lengthX: 35, lengthY: 1, type: "floor" },
-            { startX: 99, startY: 23, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: 64, startY: 23, lengthX: 36, lengthY: 1, type: "floor" },
+            //{ startX: 99, startY: 23, lengthX: 1, lengthY: 1, type: "tleft" },
 
             { startX: 69, startY: 19, lengthX: 31, lengthY: 1, type: "floor" },
             { startX: 100, startY: 19, lengthX: 1, lengthY: 10, type: "wright" },
@@ -394,26 +394,28 @@ var tutorialLevel = {
             { startX: 105, startY: 15, lengthX: 1, lengthY: 18, type: "wleft" },
 
             { startX: 64, startY: 28, lengthX: 5, lengthY: 1, type: "floor" },
-            { startX: 69, startY: 28, lengthX: 1, lengthY: 1, type: "tleft" },
+            //{ startX: 69, startY: 28, lengthX: 1, lengthY: 1, type: "tleft" },
 
-            { startX: 71, startY: 31, lengthX: 1, lengthY: 1, type: "tright" },
-            { startX: 72, startY: 31, lengthX: 5, lengthY: 1, type: "floor" },
-            { startX: 77, startY: 31, lengthX: 1, lengthY: 1, type: "tleft" },
+            //{ startX: 71, startY: 31, lengthX: 1, lengthY: 1, type: "tright" },
+            { startX: 71, startY: 31, lengthX: 7, lengthY: 1, type: "floor" },
+            //{ startX: 77, startY: 31, lengthX: 1, lengthY: 1, type: "tleft" },
 
-            { startX: 81, startY: 31, lengthX: 1, lengthY: 1, type: "tright" },
-            { startX: 82, startY: 31, lengthX: 16, lengthY: 1, type: "floor" },
-            { startX: 98, startY: 31, lengthX: 1, lengthY: 1, type: "tleft" },
+            //{ startX: 81, startY: 31, lengthX: 1, lengthY: 1, type: "tright" },
+            { startX: 81, startY: 31, lengthX: 18, lengthY: 1, type: "floor" },
+            //{ startX: 98, startY: 31, lengthX: 1, lengthY: 1, type: "tleft" },
 
-            { startX: 99, startY: 33, lengthX: 1, lengthY: 1, type: "tright" },
+            //{ startX: 99, startY: 33, lengthX: 1, lengthY: 1, type: "tright" },
             { startX: 99, startY: 34, lengthX: 1, lengthY: 1, type: "tright" },
             { startX: 100, startY: 34, lengthX: 1, lengthY: 1, type: "tleft" },
-            { startX: 100, startY: 33, lengthX: 90, lengthY: 1, type: "floor" },
-            { startX: 190, startY: 33, lengthX: 1, lengthY: 1, type: "tleft" },
-            { startX: 189, startY: 34, lengthX: 1, lengthY: 1, type: "tright" },
-            { startX: 190, startY: 34, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: 99, startY: 33, lengthX: 89, lengthY: 1, type: "floor" },
+            //{ startX: 190, startY: 33, lengthX: 1, lengthY: 1, type: "tleft" },
+           // { startX: 189, startY: 34, lengthX: 1, lengthY: 1, type: "tright" },
+            //{ startX: 190, startY: 34, lengthX: 1, lengthY: 1, type: "tleft" },
+            { startX: 96, startY: 36, lengthX: 1, lengthY: 2, type: "wright" },
+            { startX: 187, startY: 34, lengthX: 1, lengthY: 4, type: "wright" },
 
             { startX: 96, startY: 36, lengthX: 1, lengthY: 2, type: "wright" },
-            { startX: 97, startY: 38, lengthX: 86, lengthY: 1, type: "floor" },
+            { startX: 97, startY: 38, lengthX: 91, lengthY: 1, type: "floor" },
             { startX: 96, startY: 38, lengthX: 1, lengthY: 1, type: "tright" },
 
 
@@ -556,17 +558,17 @@ var tutorialLevel = {
             { x: 80, y: 11, toWrite: 'Boxes make excellent weapons, but other heavy things can be lethal....', animated: false, delay: 0 },
 
 
-            { x: 96, y: 43, toWrite: 'If you have gotten this high, that is all for now.', animated: false, delay: 0 },
-            { x: 96, y: 42, toWrite: 'Thank you for playtesting corpses are forever.', animated: false, delay: 0 },
-            { x: 132, y: 41, toWrite: 'Many of you liked the idea of the game ending with a jump into the bottomless Abyss.', animated: false, delay: 0 },
-            { x: 160, y: 40, toWrite: 'So at the end of this hall, go ahead. Take a dive.', animated: false, delay: 0 },
-            { x: 176, y: 39, toWrite: 'In the future, there will be about two more zones to level one, then a level two however.', animated: false, delay: 0 },
+            //{ x: 96, y: 43, toWrite: 'If you have gotten this high, that is all for now.', animated: false, delay: 0 },
+            ///{ x: 96, y: 42, toWrite: 'Thank you for playtesting corpses are forever.', animated: false, delay: 0 },
+            //{ x: 132, y: 41, toWrite: 'Many of you liked the idea of the game ending with a jump into the bottomless Abyss.', animated: false, delay: 0 },
+            //{ x: 160, y: 40, toWrite: 'So at the end of this hall, go ahead. Take a dive.', animated: false, delay: 0 },
+            //{ x: 176, y: 39, toWrite: 'In the future, there will be about two more zones to level one, then a level two however.', animated: false, delay: 0 },
 
       ],
       goals: [
-            //{ x: 11, y: 1, loc: {x: 73, y:22}},
-            { x: 189, y: 35, nLevel: "two"},
-            { x: -4, y: 9, nLevel: "two"}
+            { x: 11, y: 1, loc: {x: 182, y:35}},
+            { x: 184, y: 34, nLevel: "two"},
+            //{ x: -4, y: 9, nLevel: "two"}
 
       ]
 
