@@ -121,6 +121,7 @@ class corpses {
 			this.bounce = true
 		}
 		this.BB = new boundingBox(this.x, this.y, this.animations[this.type].width * this.scale, (this.animations[this.type].height) * this.scale)
+		this.oldBB = this.BB
 		this.updateBB()
 		console.log(this.velocityX)
 	};

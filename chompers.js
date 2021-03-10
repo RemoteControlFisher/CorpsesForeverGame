@@ -165,6 +165,8 @@ class Chompers {
 			true, //reverse
 			true, // looping,
 			null) //No idle animation because I am looping.   
+			this.leashDistance = Math.random()*300
+
 	};
 
 	update() {
@@ -173,7 +175,7 @@ class Chompers {
 		let dcenter = this.game.duck.BB.center()
 		this.length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
 
-		if (this.state != "dead" && this.length < 1500) {
+		if (this.state != "dead" && this.length < (1500 - this.leashDistance)) {
 			let tick = this.game.clockTick;
 
 			this.velocityY += GRAVITY * tick

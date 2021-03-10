@@ -124,6 +124,8 @@ class Lurkers {
 				true,
 				true,
 				null)
+
+		this.leashDistance = Math.random()*300
 	};
 
 	update() {
@@ -131,7 +133,7 @@ class Lurkers {
 		let center = this.BB.center()
 		let dcenter = this.game.duck.BB.center()
 		let length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
-		if (this.state != "dead" && length < 1500) {
+		if (this.state != "dead" && length < 1700 - this.leashDistance) {
 			let tick = this.game.clockTick;
 
 
