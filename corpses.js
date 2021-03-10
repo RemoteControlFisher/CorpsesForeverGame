@@ -147,10 +147,10 @@ class corpses {
 
 			this.updateBB()
 			this.collide()
-		} else {
+		} //else {
 			//Don't collide, be invisible when we are not carried!
-			this.BB.active = false
-		}
+			//this.BB.active = false
+		//}
 
 	};
 
