@@ -61,6 +61,7 @@ class buttons {
                     door.open = false
                 });
             }
+            this.corpsePushed = false
         }
     };
 
@@ -74,15 +75,15 @@ class buttons {
         var that = this;
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BB.isCollide(entity.BB)) {
-                if (entity.platform && entity.droppable && entity.state != "carried") {
+                if (entity.platform && entity.carriable && entity.state != "carried") {
                     that.corpsePushed = true
                 }
             }
-            else if (entity.BB && !that.BB.isCollide(entity.BB)) {
-                if (entity.platform && entity.droppable && entity.state != "carried" && that.corpsePushed != true) {
-                    that.corpsePushed = false
-                }
-            }
+            //else if (entity.BB && !that.BB.isCollide(entity.BB)) {
+            //    if (entity.platform && entity.droppable && entity.state != "carried" && that.corpsePushed != true) {
+            //        that.corpsePushed = false
+            //    }
+            //}
         });
     }
 

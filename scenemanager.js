@@ -123,7 +123,9 @@ class scenemanager {
             for (let i = 0; i < level.chompers.length; i++) {
                 let x = level.chompers[i].x
                 let y = level.chompers[i].y
-                this.game.addEntity(new Chompers(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH))
+                let facing = 'l'
+                if (level.chompers[i].facing) facing = level.chompers[i].facing
+                this.game.addEntity(new Chompers(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, facing))
             }
         if (level.lurkers)
             for (let i = 0; i < level.lurkers.length; i++) {

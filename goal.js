@@ -1,6 +1,6 @@
 class goal {
-    constructor(game, x, y, level = null, scene, loc = {x:0,y:0}) {
-        y= y-8
+    constructor(game, x, y, level = null, scene, loc = { x: 0, y: 0 }) {
+        y = y - 8
         Object.assign(this, { game, x, y, level, scene, loc });
         this.spritesheet = ASSET_MANAGER.getAsset("./sprites/duck.png")
         this.rsheet = ASSET_MANAGER.getAsset("./sprites/duck (Reverse).png")
@@ -18,7 +18,7 @@ class goal {
             true, // looping,
             null)
 
-        this.cAnimation = new animator(this.rsheet, 
+        this.cAnimation = new animator(this.rsheet,
             298, //X
             284, //Y
             16, //Width
@@ -41,19 +41,20 @@ class goal {
             false, //reverse
             true, // looping,
             null)
-        
-            this.BB = new boundingBox(this.x +28, this.y+2, 32, 38)
-            this.disconnect = false
+
+        this.BB = new boundingBox(this.x + 28, this.y + 2, 32, 38)
+        this.disconnect = false
     };
 
     update() {
         if (this.scene.duck.BB.isCollide(this.BB) && !this.disconnect) {
-            if(this.level) {
+            if (this.level) {
                 this.scene.loadlevel(this.level)
                 this.disconnect = true
-            } else {
-                this.game.duck.x = this.loc.x*PARAMS.BLOCKWIDTH
-                this.game.duck.y = -this.loc.y*PARAMS.BLOCKWIDTH
+            }
+            if (this.loc) {
+                this.game.duck.x = this.loc.x * PARAMS.BLOCKWIDTH
+                this.game.duck.y = -this.loc.y * PARAMS.BLOCKWIDTH
             }
         } else {
             this.disconnect = false
@@ -61,10 +62,10 @@ class goal {
     };
 
     draw(ctx) {
-		this.fAnimation.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x , this.y - this.game.camera.y, 2);
-		this.cAnimation.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x +28, this.y - this.game.camera.y+2, 2);
-		this.bAnimation.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x +64, this.y - this.game.camera.y, 2);
+        this.fAnimation.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 2);
+        this.cAnimation.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x + 28, this.y - this.game.camera.y + 2, 2);
+        this.bAnimation.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x + 64, this.y - this.game.camera.y, 2);
         ctx.strokeStyle = 'Red';
-	    ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
+        ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
     };
 };

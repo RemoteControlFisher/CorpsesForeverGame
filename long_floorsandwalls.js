@@ -1,6 +1,15 @@
 class long_floorsandwalls {
 	constructor(game, startX, startY, lengthX, lengthY, type) {
 		Object.assign(this, { game, startX, startY, lengthX, lengthY, type });
+		//Alias's to reduce the typing needed to make a level.
+		if (type == "p")
+			this.type = "thinPlatform"
+		if (type == "wl")
+			this.type = "wleft"
+		if (type == "wr")
+			this.type = "wright"
+		if (type == "f")
+			this.type = "floor"
 		this.spritesheet = ASSET_MANAGER.getAsset("./sprites/floorsandwalls.png");
 		this.animations = []
 		this.animations["floor"] =
