@@ -85,7 +85,7 @@ class traps {
 		this.BB = new boundingBox(this.x, this.y, this.animators[this.type].width * this.scale, this.animators[this.type].height * this.scale)
 
 		if(this.type == "spike")
-	           this.BB = new boundingBox(this.x, this.y, this.animators[this.type].width, this.animators[this.type].height * this.scale -6)
+	           this.BB = new boundingBox(this.x, this.y +6 , this.animators[this.type].width * this.scale, this.animators[this.type].height * this.scale)
 	};
 
 	update() {
