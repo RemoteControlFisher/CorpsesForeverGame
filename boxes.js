@@ -17,7 +17,8 @@ class boxes {
 		this.platform = true;
 		this.droppable = true;
 		this.BB = new boundingBox(x, y, 32, 32)
-
+		this.updateBB()
+		
 		this.velocityX = 0
 		this.velocityY = 0
 

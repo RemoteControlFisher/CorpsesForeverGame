@@ -198,8 +198,8 @@ var levelTwo = {
             { x: 136, y: -21, type: "lurker", facing: "l" },
             { x: 94, y: -35, type: "lurker", facing: "l" },
             { x: 118, y: -37 },
-            { x: 41, y: -26 },
-            { x: 41, y: -27, type: "chomper" },
+            { x: 41, y: -20 },
+            { x: 41, y: -25, type: "chomper" },
 
       ],
       dtexts: [

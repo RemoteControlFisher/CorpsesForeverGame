@@ -114,6 +114,7 @@ class AssetManager {
         }
         this.music = audi
         audi.loop ="true"
+        this.music.play()
     }
 
     pauseBGM(){

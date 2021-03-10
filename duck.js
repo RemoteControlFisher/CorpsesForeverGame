@@ -1096,7 +1096,11 @@ class duck {
       if (this.velocityX > -MIN_WALK)
         this.velocityX = -MIN_WALK;
       if (this.game.sprint) {
+        if (this.velocityX > - MIN_WALK * 1.5){
+          this.velocityX = -MIN_WALK * 1.5
+        } else 
         this.velocityX -= ACC_RUN * tick
+        
       } else {
         this.velocityX -= ACC_WALK * tick
       }
@@ -1105,6 +1109,9 @@ class duck {
         if (this.velocityX < MIN_WALK)
           this.velocityX = +MIN_WALK;
         if (this.game.sprint) {
+          if (this.velocityX < MIN_WALK * 1.5){
+            this.velocityX = MIN_WALK * 1.5
+          } else 
           this.velocityX += ACC_RUN * tick
         } else {
           this.velocityX += ACC_WALK * tick
