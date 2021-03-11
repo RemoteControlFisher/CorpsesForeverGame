@@ -66,7 +66,7 @@ var levelTwo = {
             //end #1 platform
             { startX: 134, startY: -23, lengthX: 4, lengthY: 1, type: "floor" },
             //end #2 platform
-            { startX: 140, startY: -19, lengthX: 11, lengthY: 1, type: "floor" },
+            { startX: 139, startY: -19, lengthX: 11, lengthY: 1, type: "floor" },
             //#2 bottom platform
             //{ startX: 136, startY: -43, lengthX: 17, lengthY: 1, type: "floor" },
             //wall platform
@@ -336,10 +336,10 @@ var levelTwo = {
             { x: 136, y: -21, type: "lurker", facing: "l" },
             { x: 94, y: -35, type: "lurker", facing: "l" },
             //{ x: 148, y: -18, type: "lurker", facing: "l" },
-            { x: 144, y: -18, type: "hopper", facing: "l" },
-            { x: 144, y: 6, type: "lurker", facing: "l" },
-            { x: 141, y: 6, type: "hopper", facing: "l" },
-            { x: 147, y: 6, type: "hopper", facing: "l" },
+            //{ x: 144, y: -18, type: "hopper", facing: "l" },
+            { x: 141, y: -18, type: "lurker", facing: "l" },
+            //{ x: 141, y: 3, type: "hopper", facing: "l" },
+            //{ x: 147, y: 6, type: "hopper", facing: "l" },
             { x: 118, y: -37 },
             { x: 41, y: -20 },
             { x: 41, y: -25, type: "chomper" },
@@ -717,7 +717,7 @@ var tutorialLevel = {
       goals: [
 
             { x: 184, y: 34, nLevel: "two"},
-            //{ x: -4, y: 9, nLevel: "two"}
+            { x: -4, y: 9, nLevel: "two"}
             //{ x: 11, y: 1, nLevel: "two"}//, loc: {x:15,y: 2}},
       ],
       title: {x: 0, y: 0, title:true}

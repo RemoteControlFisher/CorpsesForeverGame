@@ -33,6 +33,9 @@ ASSET_MANAGER.queueDownload("./sound/BMG/World of Horror - Home (Extended).mp3")
 //Le Duck
 ASSET_MANAGER.queueDownload("./sound/Duck sound/mixkit-boxer-getting-hit-2055.wav")
 ASSET_MANAGER.queueDownload("./sound/Duck sound/Quack Sound Effect.mp3")
+ASSET_MANAGER.queueDownload("./sound/Duck sound/Duck Game - Quack Sound.mp3")
+ASSET_MANAGER.queueDownload("./sound/Duck sound/quack.wav")
+ASSET_MANAGER.queueDownload("./sound/Duck sound/jump.wav")
 
 //Le Slime
 ASSET_MANAGER.queueDownload("./sound/Slime sound/Slime Sounds (Minecraft) - Jump.mp3")

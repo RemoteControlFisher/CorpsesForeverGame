@@ -650,7 +650,8 @@ class duck {
 
   die(killer) {
     let myCenter = this.BB.center()
-    ASSET_MANAGER.playAsset("./sound/Duck sound/mixkit-boxer-getting-hit-2055.wav")
+    //ASSET_MANAGER.playAsset("./sound/Duck sound/mixkit-boxer-getting-hit-2055.wav")
+    ASSET_MANAGER.playAsset("./sound/Duck sound/quack.wav")
     //Only the player character needs a death time.
     this.deathTime = 0
     this.state = "dead"
@@ -903,7 +904,8 @@ class duck {
                 that.velocityY = -400
                 ASSET_MANAGER.playAsset("./sound/Sound effect/Bounce Sound Effect.mp3")
                 if (that.game.up) {
-                  that.velocityY = -750
+      
+                that.velocityY = -750
                 }
                 that.state = "jump"
               }
@@ -1032,9 +1034,9 @@ class duck {
       if (this.game.left && !this.game.right) {
         this.velocityX -= ACC_AIR * tick
       } else
-        if (this.game.right && !this.game.left) {
+      if (this.game.right && !this.game.left) {
           this.velocityX += ACC_AIR * tick
-        }
+      }
     }
     //Falling physics
     //Horizontal walking movement.
@@ -1060,6 +1062,7 @@ class duck {
   jumpSquatLogic(tick) {
     this.squatTime += tick
     if (this.squatTime > 0.08) {
+      ASSET_MANAGER.playAsset("./sound/Duck sound/jump.wav")
       if (this.game.up) this.velocityY = -625
       else this.velocityY = -500
       this.state = "jump"
@@ -1196,6 +1199,7 @@ class duck {
 
       if (this.game.up && !this.game.jumpDisconnect) {
         //This is where the wall jump would happen.
+      ASSET_MANAGER.playAsset("./sound/Duck sound/jump.wav")
         if (this.facing == "l") {
           this.velocityY = -550
           this.velocityX = 300
@@ -1213,6 +1217,7 @@ class duck {
     } else {
       //If we aren't pressing into the wall, and trying to kick away from the wall, shoot off to the side.
       this.state = "jump"
+      ASSET_MANAGER.playAsset("./sound/Duck sound/jump.wav")
       if (this.facing == "l" && this.game.right) {
         this.facing = "r"
         this.velocityX += 350
