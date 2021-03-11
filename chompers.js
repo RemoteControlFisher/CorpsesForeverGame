@@ -1,18 +1,20 @@
 
 
 class Chompers {
-	constructor(game, x, y) {
-		Object.assign(this, { game, x, y });
+	constructor(game, x, y, facing = "l") {
+		Object.assign(this, { game, x, y , facing});
 		const MAX_WALK = 293.75;
 		const MAX_RUN = 550.75;
 		const MIN_WALK = 120.453125;
 		const GRAVITY = 1800;
 		this.length = 0;
-		this.facing = 'l';
+		//this.facing = 'l';
 		this.state = "walk"
 		this.angry = false;
 		this.dead = false;
 		this.velocityX = -MIN_WALK;
+		if (facing == "r") this.velocityX = MIN_WALK;
+
 		this.velocityY = 0;
 		this.updateBB(1);
 		this.spritesheet = ASSET_MANAGER.getAsset("./sprites/wolfsheet1.png");
@@ -165,15 +167,18 @@ class Chompers {
 			true, //reverse
 			true, // looping,
 			null) //No idle animation because I am looping.   
+			this.leashDistance = Math.random()*300
+
 	};
 
 	update() {
 		//console.log(this.y)
-		this.oldBB = this.BB;
-		if (this.state != "dead") {
+		let center = this.BB.center()
+		let dcenter = this.game.duck.BB.center()
+		this.length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
+
+		if (this.state != "dead" && this.length < (1500 - this.leashDistance)) {
 			let tick = this.game.clockTick;
-			let center = this.BB.center()
-			let dcenter = this.game.duck.BB.center()
 
 			this.velocityY += GRAVITY * tick
 
@@ -181,8 +186,7 @@ class Chompers {
 			this.y += this.velocityY * tick
 			this.updateBB(1)
 
-			this.length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
-			if (this.game.duck.state == "dead")
+			if (this.game.duck.state == "dead" || this.length > 320)
 			{
 				this.length = Number.MAX_VALUE
 				this.angry = false;

@@ -1,6 +1,15 @@
 class floorsandwalls {
 	constructor(game, x, y, type) {
+		//A few alias's to serve as syntax sugar.
 		Object.assign(this, { game, x, y, type });
+		if (type == "p")
+			this.type = "thinPlatform"
+		if (type == "wl")
+			this.type = "wleft"
+		if (type == "wr")
+			this.type = "wright"
+		if (type == "f")
+			this.type = "floor"
 		this.spritesheet = ASSET_MANAGER.getAsset("./sprites/floorsandwalls.png");
 		this.animations = []
 		this.animations["floor"] =
@@ -115,6 +124,7 @@ class floorsandwalls {
 	};
 
 	draw(ctx) {
+		console.log(this.type)
 		this.animations[this.type].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 2)
 		/**ctx.strokeStyle = 'Red';
 		ctx.strokeRect(this.BB.x  - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);*/

@@ -47,7 +47,7 @@ class long_backgrounds {
 			for (let k = 0; k < this.lengthY; k++) {
 				this.animations[this.type].drawFrame(this.game.clockTick, ctx,
 					this.x + j * PARAMS.BLOCKWIDTH - this.game.camera.x,
-					this.y + k * PARAMS.BLOCKWIDTH - this.game.camera.y, 2.03)
+					this.y + k * PARAMS.BLOCKWIDTH - this.game.camera.y, 2.05)
 			}
 		}
 		//ctx.strokeStyle = 'Red';

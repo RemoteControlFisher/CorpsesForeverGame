@@ -8,8 +8,9 @@ class scenemanager {
         this.score = 0 //not yet implemented
         this.currentWorld = "null";
         this.duck = new duck(this.game, "stand", 0, 0);
-        console.log(duck)
-        this.loadlevel(levelTwo, 0, 0, true);
+        console.log(duck);
+        //this.loadlevel(tutorialLevel, 0, 0, true);
+        this.loadlevel(tutorialLevel, 0, 0, true );
     };
     
     //should delete entity once level is finished 
@@ -61,6 +62,15 @@ class scenemanager {
                 }
             }
         }
+        if (level.traps)
+            for (let i = 0; i < level.traps.length; i++) {
+                let x = level.traps[i].x
+                let y = level.traps[i].y
+                let type = level.traps[i].type
+                let myTrap = new traps(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, type)
+                console.log(myTrap)
+                this.game.addEntity(myTrap)
+            }
         if (level.walls)
             for (let i = 0; i < level.walls.length; i++) {
                 let type = level.walls[i].type
@@ -89,6 +99,7 @@ class scenemanager {
                 this.game.addEntity(myTrap)
             }
         if (level.buttons && level.doors || level.buttons && level.dtexts) {
+
             for (let i = 0; i < level.buttons.length; i++) {
                 let myDoors = [];
                 let myDTexts = [];
@@ -140,7 +151,9 @@ class scenemanager {
             for (let i = 0; i < level.chompers.length; i++) {
                 let x = level.chompers[i].x
                 let y = level.chompers[i].y
-                this.game.addEntity(new Chompers(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH))
+                let facing = 'l'
+                if (level.chompers[i].facing) facing = level.chompers[i].facing
+                this.game.addEntity(new Chompers(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, facing))
             }
         if (level.lurkers)
             for (let i = 0; i < level.lurkers.length; i++) {

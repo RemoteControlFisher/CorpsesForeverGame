@@ -35,31 +35,43 @@ class buttons
                 null) //No idle animation because I am looping.
 
         this.updateBB(.75)
+
     };
-	update()
-	{
-      this.updateBB(.75)
-      this.collide()
-      if (this.duckPushed || this.corpsePushed || this.boxPushed) {
-          this.state = "pushed"
-          this.myDoors.forEach(function (door) {
-              door.open = true
-              ASSET_MANAGER.playAsset("./sound/Sound effect/mixkit-arcade-mechanical-bling-210.wav")
-          });
-          this.myDText.forEach(function (dtext) {
-            dtext.enabled = true
-          });
-      }
-      else {
-        this.state = "not pushed"
-        this.myDoors.forEach(function (door) {
-            door.open = false
-        });
-        this.myDText.forEach(function (dtext) {
-            dtext.enabled = false
-        });
-      }
-	};
+
+    update() {
+        let center = this.BB.center()
+        let dcenter = this.game.duck.BB.center()
+        let length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
+        if (length < 1400) {
+            this.updateBB(.75)
+            this.collide()
+            if (this.duckPushed || this.corpsePushed || this.boxPushed) {
+                if (this.state != "pushed"){
+                    ASSET_MANAGER.playAsset("./sound/Sound effect/mixkit-arcade-mechanical-bling-210.wav")
+                }
+                this.state = "pushed"
+                this.myDoors.forEach(function (door) {
+                    door.open = true
+                });
+                this.myDText.forEach(function (dtext) {
+                    dtext.enabled = true
+                });
+            }
+            else {
+                if (this.state == "pushed"){
+                    ASSET_MANAGER.playAsset("./sound/Sound effect/mixkit-arcade-mechanical-bling-210.wav")
+                }
+                this.state = "not pushed"
+                this.myDoors.forEach(function (door) {
+                    door.open = false
+                });
+                this.myDText.forEach(function (dtext) {
+                    dtext.enabled = false
+                });
+            }
+            this.corpsePushed = false
+        }
+    };
 
     updateBB(scale) {
         this.oldBB = this.BB;
@@ -71,15 +83,15 @@ class buttons
         var that = this;
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BB.isCollide(entity.BB)) {
-                if (entity.platform && entity.droppable && entity.state != "carried") {
+                if (entity.platform && entity.carriable && entity.state != "carried") {
                     that.corpsePushed = true
                 }
             }
-            else if (entity.BB && !that.BB.isCollide(entity.BB)) {
-                if (entity.platform && entity.droppable && entity.state != "carried" && that.corpsePushed != true) {
-                    that.corpsePushed = false
-                }
-            }
+            //else if (entity.BB && !that.BB.isCollide(entity.BB)) {
+            //    if (entity.platform && entity.droppable && entity.state != "carried" && that.corpsePushed != true) {
+            //        that.corpsePushed = false
+            //    }
+            //}
         });
     }
 

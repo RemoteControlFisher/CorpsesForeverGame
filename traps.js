@@ -1,7 +1,7 @@
 class traps {
 	constructor(game, x, y, type ="spike") {
 		if(type == "spike")
-			y+=21
+			y+=14
 		Object.assign(this, { game, x, y, type });
 		this.spritesheetSAW = ASSET_MANAGER.getAsset("./sprites/blade_1_3.png");
 		this.spritesheetSAWL = ASSET_MANAGER.getAsset("./sprites/blade_1_4.png");
@@ -40,9 +40,9 @@ class traps {
 		this.animators["spike"] =
 			new animator(this.spritesheetSpikes, // Spritesheet
 				0, //X
-				-20, //Y
+				1, //Y
 				31, //Width
-				34, //Height
+				12, //Height
 				1, //Frames
 				0.13, //Time
 				3, //Padding
@@ -64,10 +64,13 @@ class traps {
 
 		if(this.type == "saw" || this.type == "lsaw" || this.type == "bigSaw")
 				this.saw=true
+		
+		this.scale = 1
 
 		if(this.type == "spike"){
 				this.spike=true
 				this.platform=true
+				this.scale = 1.5
 		}
 
 		if(this.type =="saw"|| this.type == "bigSaw")
@@ -79,10 +82,10 @@ class traps {
 		if(!this.facing)
 				this.facing = "c" //"Facing the camera."
 
-		this.BB = new boundingBox(this.x, this.y, this.animators[this.type].width, this.animators[this.type].height)
+		this.BB = new boundingBox(this.x, this.y, this.animators[this.type].width * this.scale, this.animators[this.type].height * this.scale)
 
 		if(this.type == "spike")
-		       this.BB = new boundingBox(this.x, this.y + 19, this.animators[this.type].width, 15)
+	           this.BB = new boundingBox(this.x, this.y +6 , this.animators[this.type].width * this.scale, this.animators[this.type].height * this.scale)
 	};
 
 	update() {
@@ -90,10 +93,10 @@ class traps {
 	};
 
 	draw(ctx) {
-		this.animators[this.type].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1)
-		 
+		this.animators[this.type].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, this.scale)
+		 /** 
 		ctx.strokeStyle = 'Red';
 			ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
-			
+		*/	
 	};
 };

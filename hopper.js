@@ -48,7 +48,7 @@ class Hoppers {
 
 		//xStart, yStart, width, height, frameCount, frameDuration, framePadding
 		this.animators["stand"]["r"] =
-			new animator(this.spritesheet, 5, 14, 20, 18, 4, 0.1, 12, false, true, null)
+			new animator(this.spritesheet, 6, 14, 20, 18, 4, 0.1, 12, false, true, null)
 
 		this.animators["stand"]["l"] =
 			new animator(this.spritesheetL, 166, 14, 20, 18, 4, 0.1, 12, true, true, null)
@@ -67,7 +67,7 @@ class Hoppers {
 
 		this.animators["freefall"]["r"] =
 			new animator(this.spritesheet, 198, 14, 20, 18, 2, 0.2, 12, false, false,
-				new animator(this.spritesheetL, 230, 14, 20, 18, 1, 0.1, 12, true, true, null)
+				new animator(this.spritesheet, 230, 14, 20, 18, 1, 0.1, 12, true, true, null)
 			)
 
 		this.animators["freefall"]["l"] =
@@ -84,17 +84,17 @@ class Hoppers {
 	}
 
 	update() {
+		let center = this.BB.center()
+		let dcenter = this.game.duck.BB.center()
+		let length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
 		//console.log(this.x / 32 + " " + this.y / 32 + " " + this.state)
-		if (this.state != "dead") {
+		if (this.state != "dead" && length < 1500) {
 			let tick = this.game.clockTick;
-			let center = this.BB.center()
-			let dcenter = this.game.duck.BB.center()
 
 			//let dfacing = this.game.duck.facing
 			//console.log("duck facing: " + dfacing) 
 
 			//length between duck and hoppers
-			let length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
 			//Calculate where the duck is.
 			let duckDir = Math.sign(dcenter.x - center.x)
 
@@ -146,6 +146,8 @@ class Hoppers {
 
 	jumpBehavior(tick) {
 		if (this.velocityY > 0) {
+			if (this.state == "jump")
+				this.animators["freefall"][this.facing].elapsedTime = 0
 			this.state = "freefall"
 		} else {
 			this.state = "jump"
@@ -189,7 +191,7 @@ class Hoppers {
 	}
 
 	updateBB(scale) {
-		this.BB = new boundingBox(this.x, this.y, 60, 54);
+		this.BB = new boundingBox(this.x+4, this.y, 52, 54);
 	}
 
 	collide(length) {
@@ -229,12 +231,16 @@ class Hoppers {
 					else if (entity.wall && that.BB.left < entity.BB.right && that.velocityX < 0) {
 						that.x = entity.BB.right
 						that.velocityX = -that.velocityX
+						that.updateBB(2)
+
 						//that.x = that.entity.right
 					}
 					//If hits the right wall
 					else if (entity.wall && that.BB.right > entity.BB.left && that.velocityX > 0) {
 						that.x = entity.BB.left - 62
 						that.velocityX = -that.velocityX
+						that.updateBB(2)
+
 						//that.x = that.entity.left
 					}
 					//If hits a saw
@@ -268,8 +274,8 @@ class Hoppers {
 		//this.animators["attack"]["l"].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 3);
 
 
-		// ctx.strokeStyle = 'Red';
-		// ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
+		ctx.strokeStyle = 'Red';
+		ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
 		// ctx.strokeStyle = 'Blue';
 		// ctx.strokeRect(this.cBB.x - this.game.camera.x, this.cBB.y - this.game.camera.y, this.cBB.width, this.cBB.height);
 

@@ -270,19 +270,23 @@ class Lurkers {
 				null)
 		this.updateBB(3);
 		this.oldBB = this.BB
+
+		this.leashDistance = Math.random()*300
 	};
 
 	update() {
-		if (this.state != "dead") {
+
+		let center = this.BB.center()
+		let dcenter = this.game.duck.BB.center()
+		let length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
+		if (this.state != "dead" && length < 1700 - this.leashDistance) {
 			let tick = this.game.clockTick;
-			let center = this.BB.center()
-			let dcenter = this.game.duck.BB.center()
+
 
 			//let dfacing = this.game.duck.facing
 			//console.log("duck facing: " + dfacing)
 
 			//length between duck and hoppers
-			length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
 			//console.log("space: " + length)
 
 
@@ -358,7 +362,7 @@ class Lurkers {
 
 		
 	};
-
+	
 	updateBB(scale) {
 		if (this.state != "dead") {
 			let index = Math.floor(this.elapsedTimes[this.state][this.facing] / this.animators[this.state][this.facing].frameDuration)

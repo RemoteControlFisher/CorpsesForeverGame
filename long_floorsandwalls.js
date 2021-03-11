@@ -1,6 +1,15 @@
 class long_floorsandwalls {
 	constructor(game, startX, startY, lengthX, lengthY, type) {
 		Object.assign(this, { game, startX, startY, lengthX, lengthY, type });
+		//Alias's to reduce the typing needed to make a level.
+		if (type == "p")
+			this.type = "thinPlatform"
+		if (type == "wl")
+			this.type = "wleft"
+		if (type == "wr")
+			this.type = "wright"
+		if (type == "f")
+			this.type = "floor"
 		this.spritesheet = ASSET_MANAGER.getAsset("./sprites/floorsandwalls.png");
 		this.animations = []
 		this.animations["floor"] =
@@ -135,8 +144,16 @@ class long_floorsandwalls {
 			for (let k = 0; k < this.lengthY; k++) {
 				this.animations[this.type].drawFrame(this.game.clockTick, ctx,
 					this.BB.x + j * PARAMS.BLOCKWIDTH - this.game.camera.x,
-					this.BB.y + k * PARAMS.BLOCKWIDTH - this.game.camera.y, 2)
+					this.BB.y + k * PARAMS.BLOCKWIDTH - this.game.camera.y, 2.05)
 			}
+		}
+		if (this.type == "floor" && this.lengthY == 1 && this.lengthX>1) {
+			this.animations.tright.drawFrame(this.game.clockTick, ctx,
+				this.BB.x - this.game.camera.x,
+				this.BB.y - this.game.camera.y, 2.05)
+			this.animations.tleft.drawFrame(this.game.clockTick, ctx,
+				this.BB.x + PARAMS.BLOCKWIDTH * (this.lengthX-1)- this.game.camera.x,
+				this.BB.y - this.game.camera.y, 2.05)
 		}
 		//ctx.strokeStyle = 'Red';
 		//ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);

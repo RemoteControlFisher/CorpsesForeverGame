@@ -1,5 +1,5 @@
 class corpses {
-	constructor(game, x, y, type, facing = "r", velocityX = 0, velocityY = 0) {
+	constructor(game, x, y, type = "duck", facing = "r", velocityX = 0, velocityY = 0) {
 		Object.assign(this, { game, x, y, type, facing, velocityX, velocityY });
 		this.duck = ASSET_MANAGER.getAsset("./sprites/duck.png")
 		this.chomp = ASSET_MANAGER.getAsset("./sprites/wolfsheet1.png");
@@ -119,15 +119,22 @@ class corpses {
 		if (this.type == "chomper") this.scale = 1
 		if (this.type == "lurker" || this.type == "hopper") {
 			this.bounce = true
+			this.scale = 2.5
 		}
 		this.BB = new boundingBox(this.x, this.y, this.animations[this.type].width * this.scale, (this.animations[this.type].height) * this.scale)
+		this.oldBB = this.BB
 		this.updateBB()
 		console.log(this.velocityX)
 	};
 
 	update() {
 		//WE DO NOT DRAW OR UPDATE OURSELVES WHEN CARRIED.
-		if (this.state != "carried") {
+		let center = this.BB.center()
+		let dcenter = this.game.duck.BB.center()
+		let length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
+		if (this.state != "carried" && length < 1500) {
+			this.BB.active = true
+
 			let tick = this.game.clockTick;
 			//These constants I did copy just so I remembered the basic constants I should use here. The rest I typed out manually with some vague inspirations being pulled
 			//From the lecture examples.
@@ -140,18 +147,18 @@ class corpses {
 			this.x += this.velocityX * tick
 
 			this.updateBB()
-
 			this.collide()
-		} else {
+
+			this.oldBB = this.BB;
+		} //else {
 			//Don't collide, be invisible when we are not carried!
-			this.BB.active = false
-		}
+			//this.BB.active = false
+		//}
 
 	};
 
 	updateBB() {
-		this.oldBB = this.BB;
-		this.BB = new boundingBox(this.x, this.y, this.animations[this.type][this.facing].width * this.scale, (this.animations[this.type][this.facing].height) * this.scale)
+		this.BB = new boundingBox(this.x, this.y + 4 , this.animations[this.type][this.facing].width * this.scale, (this.animations[this.type][this.facing].height) * this.scale - 4)
 	}
 
 	//Note to self: The duck sideways collision fixes I need to do.

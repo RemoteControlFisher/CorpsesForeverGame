@@ -17,6 +17,9 @@ class boxes {
 		this.platform = true;
 		this.droppable = true;
 		this.BB = new boundingBox(x, y, 32, 32)
+		this.oldBB = this.BB
+
+		this.updateBB()
 
 		this.velocityX = 0
 		this.velocityY = 0
@@ -26,14 +29,17 @@ class boxes {
 	};
 
 	updateBB() {
-		this.oldBB = this.BB;
 		this.BB = new boundingBox(this.x, this.y, 32, 32)
 	}
 
 	update() {
-		//WE DO NOT DRAW OR UPDATE OURSELVES WHEN CARRIED.
-		if (this.state != "carried") {
+		let center = this.BB.center()
+		let dcenter = this.game.duck.BB.center()
+		let length = Math.sqrt(Math.pow(center.x - dcenter.x, 2) + Math.pow(center.y - dcenter.y, 2))
+		if (this.state != "carried" && length < 1500) {
 			let tick = this.game.clockTick;
+			this.BB.active = true
+
 			//These constants I did copy just so I remembered the basic constants I should use here. The rest I typed out manually with some vague inspirations being pulled
 			//From the lecture examples.
 
@@ -47,10 +53,11 @@ class boxes {
 			this.updateBB()
 
 			this.collide()
-		} else {
+			this.oldBB = this.BB;
+		} //else {
 			//Don't collide, be invisible when we are not carried!
-			this.BB.active = false
-		}
+		//	this.BB.active = false
+		//}
 	};
 
 
@@ -86,7 +93,7 @@ class boxes {
 					that.y = entity.BB.top - 32
 					if (entity.bounce) {
 						that.velocityY = -400
-						ASSET_MANAGER.playAsset("./sound/Sound effect/Bounce Sound Effect.mp3")
+						//ASSET_MANAGER.playAsset("./sound/Sound effect/Bounce Sound Effect.mp3")
 					}
 					that.state = "idle"
 					that.updateBB()
