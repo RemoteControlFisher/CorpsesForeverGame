@@ -1,5 +1,5 @@
 class dtext {
-	constructor(game, x, y, toWrite, animated, delay, enabled) {
+	constructor(game, x, y, toWrite, animated, delay, enabled = 1) {
 		Object.assign(this, { game, x, y, toWrite, animated, enabled });
 		if (animated) this.drawer = new textAnimator(game, toWrite, -delay)
 	};

@@ -129,7 +129,7 @@ class scenemanager {
         }
         if (level.dtexts) {
             for (let i = 0; i < level.dtexts.length; i++) {
-                if (level.dtexts[i].key == -1) {
+                if (!level.dtexts[i].key || level.dtexts[i].key == -1) {
                     let x = level.dtexts[i].x
                     let y = level.dtexts[i].y
                     let text = level.dtexts[i].toWrite
@@ -172,7 +172,7 @@ class scenemanager {
                 let x = level.spawns[i].x
                 let y = level.spawns[i].y
                 let mySpawn = new spawnpoints(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH)
-                if (!this.game.duck.spawn) {
+                if (i==0) {
                     let scenter = mySpawn.BB.center()
                     this.game.duck.setSpawn(scenter.x, scenter.y, mySpawn)
                 }

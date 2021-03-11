@@ -448,9 +448,8 @@ var creditsLevel = {
             { x: -6, y: 8, toWrite: 'Thank you for playtesting corpses are forever.', animated: false, delay: 0 },
             { x: -4.2, y: 7, toWrite: 'This is as far as the levels go for now.', animated: true, delay: 1 },
             { x: -2, y: 6, toWrite: 'Below is the level select.', animated: true, delay: 2 },
-            { x: 3.5, y: -3.5, toWrite: 'Two.', animated: true, delay: 0 },
-            { x: -3.5, y: -3.5, toWrite: 'One.', animated: true, delay: 0 },
-
+            { x: 3.5, y: -3.5, toWrite: 'Two.', animated: false, delay: 0 },
+            { x: -3.5, y: -3.5, toWrite: 'One.', animated: false, delay: 0 },
       ],
       goals: [
             { x: 3, y: -2, nLevel: "two", loc:{x:0, y:3} },
@@ -764,7 +763,7 @@ var tutorialLevel = {
       goals: [
 
             { x: 184, y: 34, nLevel: "two"},
-            //{ x:  11, y: 1, nLevel: "two"},
+            //{ x:  11, y: 1, nLevel: "end"},
             //{ x: 11, y: 1, nLevel: "two", loc: {x:50,y: 2}},
             //{ x:-4, y :9, nLevel: "two", loc: {x:60 ,y: 8}},
       ],
