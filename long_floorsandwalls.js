@@ -120,6 +120,19 @@ class long_floorsandwalls {
 				false,
 				true,
 				null)
+		this.animations["invis"] =
+			new animator(this.spritesheet,
+				303, //X
+				1, //Y
+				16, //Width
+				16, //Height
+				1, //Frames
+				0.12, //Time
+				12, //Pading
+				false,
+				true,
+				null)
+
 		if (this.type != "wleft" && this.type != "wright")
 			this.platform = true;
 		if (this.type != "thinPlatform") {
@@ -147,12 +160,12 @@ class long_floorsandwalls {
 					this.BB.y + k * PARAMS.BLOCKWIDTH - this.game.camera.y, 2.05)
 			}
 		}
-		if (this.type == "floor" && this.lengthY == 1 && this.lengthX>1) {
+		if (this.type == "floor" && this.lengthY == 1 && this.lengthX > 1) {
 			this.animations.tright.drawFrame(this.game.clockTick, ctx,
 				this.BB.x - this.game.camera.x,
 				this.BB.y - this.game.camera.y, 2.05)
 			this.animations.tleft.drawFrame(this.game.clockTick, ctx,
-				this.BB.x + PARAMS.BLOCKWIDTH * (this.lengthX-1)- this.game.camera.x,
+				this.BB.x + PARAMS.BLOCKWIDTH * (this.lengthX - 1) - this.game.camera.x,
 				this.BB.y - this.game.camera.y, 2.05)
 		}
 		//ctx.strokeStyle = 'Red';
