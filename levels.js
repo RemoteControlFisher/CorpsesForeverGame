@@ -89,7 +89,7 @@ var levelTwo = {
 
             { startX: 133, startY: -11, lengthX: 1, lengthY: 3, type: "wleft" },
             { startX: 88, startY: -14, lengthX: 1, lengthY: 19, type: "wleft" },
-            { startX: 106, startY: -10, lengthX: 1, lengthY: 20, type: "wright" },
+            { startX: 106, startY: -10, lengthX: 1, lengthY: 21, type: "wright" },
 
             //The "Tower"
             { startX: 89, startY: -11, lengthX: 11, lengthY: 1, type: "p" },
@@ -108,7 +108,7 @@ var levelTwo = {
             { startX: 100, startY: 0, lengthX: 6, lengthY: 1, type: "f" },
 
             { startX: 79, startY: 5, lengthX: 21, lengthY: 1, type: "f" },
-            { startX: 74, startY: 10, lengthX: 33, lengthY: 1, type: "f" },
+            { startX: 60, startY: 11, lengthX: 47, lengthY: 1, type: "f" },   //top floor
             { startX: 79, startY: -5, lengthX: 1, lengthY: 10, type: "wl" },
             { startX: 44, startY: -5, lengthX: 35, lengthY: 1, type: "f" },
             { startX: 44, startY: -8, lengthX: 1, lengthY: 3, type: "wl" },
@@ -144,6 +144,16 @@ var levelTwo = {
             { startX: 89, startY: -25, lengthX: 3, lengthY: 1, type: "f" },
 
 
+            // Celest inspired
+            { startX: 74, startY: 4, lengthX: 1, lengthY: 7, type: "wr" },   //wall #1
+            { startX: 70, startY: -4, lengthX: 1, lengthY: 11, type: "wr" }, //wall #2
+            { startX: 67, startY: 7, lengthX: 4, lengthY: 1, type: "f" },    //platform #1
+            { startX: 65, startY: 3, lengthX: 1, lengthY: 8, type: "wr" },    //platform #3
+            { startX: 64, startY: 3, lengthX: 2, lengthY: 1, type: "f" },    //platform #2
+            { startX: 61, startY: -4, lengthX: 1, lengthY: 11, type: "wr" }, //wall #3
+            { startX: 60, startY: 7, lengthX: 3, lengthY: 1, type: "f" }, //platform #4
+            
+            { startX: 39, startY: -5, lengthX: 5, lengthY: 1, type: "p" },
 
             //Authoritarian Rat platform 
             //(the solution is very simple, and you can time it by sticking to a wall & just wall slide)
@@ -194,6 +204,9 @@ var levelTwo = {
       ],
       hoppers: [
             { x: 3, y: -11 },
+            { x: 46, y: -2},
+            { x: 49, y: -2},
+            { x: 41, y: -2},
             //{ x: 63,y: -35}   //dies?
       ],
       chompers: [
@@ -207,6 +220,8 @@ var levelTwo = {
             { x: 115, y: -32 },
             { x: 110, y: -32 },
             { x: 120, y: -32 },
+            //{ x: 45, y: -2},
+           // { x: 41, y: -2},
       ],
       traps: [
             
@@ -292,6 +307,26 @@ var levelTwo = {
             {x: 80, y: -33, type: "spike"},
             {x: 81, y: -33, type: "spike"},
             {x: 81.6, y: -33, type: "spike"},
+
+            //Celeste spike
+            {x: 71, y: -4, type: "spike"},
+            {x: 72, y: -4, type: "spike"},
+            {x: 73, y: -4, type: "spike"},
+            {x: 74, y: -4, type: "spike"},
+            {x: 75, y: -4, type: "spike"},
+            {x: 76, y: -4, type: "spike"},
+            {x: 77, y: -4, type: "spike"},
+            {x: 78, y: -4, type: "spike"},
+
+            {x: 69, y: -4, type: "spike"},
+            {x: 68, y: -4, type: "spike"},
+            {x: 67, y: -4, type: "spike"},
+            {x: 66, y: -4, type: "spike"},
+            {x: 65, y: -4, type: "spike"},
+            {x: 64, y: -4, type: "spike"},
+            {x: 63, y: -4, type: "spike"},
+            {x: 62, y: -4, type: "spike"},
+
             
             //keiso saw
             //{ x: 97, y: -31, type: "saw" }, 
@@ -325,6 +360,7 @@ var levelTwo = {
             //            { startX: 79, startY: 10, lengthX: 28, lengthY: 1, type: "f" },
 
             { x: 82, y:9},
+            { x:60 , y: 10}
 
       ],
       backs: [
@@ -338,9 +374,9 @@ var levelTwo = {
             //{ x: 148, y: -18, type: "lurker", facing: "l" },
             //{ x: 144, y: -18, type: "hopper", facing: "l" },
             { x: 141, y: -18, type: "lurker", facing: "l" },
-            //{ x: 141, y: 3, type: "hopper", facing: "l" },
-            //{ x: 147, y: 6, type: "hopper", facing: "l" },
-            { x: 118, y: -37 },
+            {x: 71, y: -2, type: "hopper", facing: "l" },
+            { x: 65, y: 0, type: "hopper", facing: "l" },
+            //{ x: 118, y: -37 },
             { x: 41, y: -20 },
             { x: 41, y: -25, type: "chomper" },
             { x: 41, y: -4 },
@@ -717,8 +753,9 @@ var tutorialLevel = {
       goals: [
 
             { x: 184, y: 34, nLevel: "two"},
-            { x: -4, y: 9, nLevel: "two"}
-            //{ x: 11, y: 1, nLevel: "two"}//, loc: {x:15,y: 2}},
+            //{ x: -4, y: 9, nLevel: "two"},
+            //{ x: 11, y: 1, nLevel: "two", loc: {x:15,y: 2}},
+            { x:-4, y :9, nLevel: "two", loc: {x:60 ,y: 8}},
       ],
       title: {x: 0, y: 0, title:true}
 

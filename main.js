@@ -35,6 +35,7 @@ ASSET_MANAGER.queueDownload("./sound/Duck sound/mixkit-boxer-getting-hit-2055.wa
 ASSET_MANAGER.queueDownload("./sound/Duck sound/happyQuack01.wav")
 ASSET_MANAGER.queueDownload("./sound/Duck sound/quack.wav")
 ASSET_MANAGER.queueDownload("./sound/Duck sound/jump.wav")
+ASSET_MANAGER.queueDownload("./sound/Duck sound/goody.wav")
 
 //Le Slime
 ASSET_MANAGER.queueDownload("./sound/Slime sound/Slime Sounds (Minecraft) - Jump.mp3")

@@ -1157,9 +1157,9 @@ class duck {
     } else {
       if (this.velocityX == 0) {
         if (this.game.down)
-          this.state = "crouch"
+          this.state = "crouch" && ASSET_MANAGER.playAsset("./sound/Duck sound/goody.wav")
         else
-          this.state = "stand"
+          this.state = "stand" && ASSET_MANAGER.playAsset("./sound/Duck sound/goody.wav")
       } else {
         this.state = "walk"
         if (this.velocityX < -MAX_WALK || this.velocityX > MAX_WALK)
