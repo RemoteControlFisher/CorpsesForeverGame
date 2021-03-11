@@ -935,7 +935,10 @@ class duck {
                       that.velocityY *= 0.6
                     that.state = "wallcling"
                     that.facing = "r"
-
+                  }
+                  if(that.trystand){
+                    that.trystand[0] = -that.trystand[0]
+                    that.facing = "l"
                   }
                   that.velocityX = 0
                   that.x = entity.BB.left - 32
@@ -949,6 +952,10 @@ class duck {
                         that.velocityY *= 0.6
                       that.state = "wallcling"
                       that.facing = "l"
+                    }
+                    if(that.trystand){
+                      that.trystand[0] = -that.trystand[0]
+                      that.facing = "r"
                     }
                     that.velocityX = 0
                     that.x = entity.BB.right
@@ -996,12 +1003,14 @@ class duck {
           }
           else
             if (entity.wall && that.velocityX > 0 && that.cBB.right > entity.BB.left) {
-              that.velocityX = 0
+              that.velocityX = -that.velocityX
+              that.facing = "l"
               that.x = entity.BB.left - 38
               that.updateBB(2)
             } else
               if (entity.wall && that.velocityX < 0 && that.cBB.left < entity.BB.right) {
-                that.velocityX = 0
+                that.velocityX = -that.velocityX
+                that.facing = "r"
                 that.x = entity.BB.right + 7
                 that.updateBB(2)
               }

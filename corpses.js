@@ -158,7 +158,7 @@ class corpses {
 	};
 
 	updateBB() {
-		this.BB = new boundingBox(this.x, this.y + 5 , this.animations[this.type][this.facing].width * this.scale, (this.animations[this.type][this.facing].height) * this.scale - 5)
+		this.BB = new boundingBox(this.x, this.y + 4 , this.animations[this.type][this.facing].width * this.scale, (this.animations[this.type][this.facing].height) * this.scale - 4)
 	}
 
 	//Note to self: The duck sideways collision fixes I need to do.
