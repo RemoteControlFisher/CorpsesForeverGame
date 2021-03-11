@@ -5,16 +5,15 @@
     <meta charset="utf-8">
     <title>Corpses Are Forever</title>
     <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" type="text/css" href="fonts/stylesheet.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="fonts/stylesheet.css" media="screen" />
     <link href='fonts/neuropol_x_rg-webfont.woff' rel='stylesheet' type='text/css'>
     <link href='fonts/neuropol_x_rg-webfont.woff2' rel='stylesheet' type='text/css'>
-    
-    
+
+
     <script type="text/javascript" src="./assetmanager.js"></script>
     <script type="text/javascript" src="./timer.js"></script>
     <script type="text/javascript" src="./gameengine.js"></script>
     <script type="text/javascript" src="./util.js"></script>
-    <script type="text/javascript" src="./main.js"></script>
     <script type="text/javascript" src="./animator.js"></script>
     <script type="text/javascript" src="./duck.js"></script>
     <script type="text/javascript" src="./traps.js"></script>
@@ -41,8 +40,6 @@
     <script type="text/javascript" src="./textAnimator.js"></script>
     <script type="text/javascript" src="./goal.js"></script>
     <script type="text/javascript" src="./title.js"></script>
-    <script type="text/javascript" src="./long_spike.js"></script>
-
 
 
 
@@ -50,12 +47,13 @@
 </head>
 
 <body>
-    <canvas id="gameWorld" width="1800" height="744" style="background: cyan; border: 1px solid black"
-        tabindex="0" autofocus></canvas>
+    <canvas id="gameWorld" width="1800" height="744" style="background: cyan; border: 1px solid black" tabindex="0"
+        autofocus></canvas>
     <div>
         <br />
-        <input type ="checkbox" id="mute"> Mute <input type ="range" id="volume" min = "0" max="1" value="0.1", step="0.05"> Volume 
-    <div>
+        <input type="checkbox" id="mute"> Mute <input type="range" id="volume" min="0" max="1" value="0.1" ,
+            step="0.05"> Volume
+    </div>
     <!--
     <div class="row">
         <div class="column">
@@ -85,5 +83,7 @@
     </div>
     -->
 </body>
+<!--Moving the main method loading till after the HTML body is processed fixes a major issue with firefox.-->
+<script type="text/javascript" src="./main.js"></script>
 
 </html>
