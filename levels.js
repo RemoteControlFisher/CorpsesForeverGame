@@ -98,14 +98,14 @@ var levelTwo = {
             { startX: 95, startY: -8, lengthX: 11, lengthY: 1, type: "p" },
             { startX: 89, startY: -8, lengthX: 9, lengthY: 1, type: "f" },
 
-            { startX: 89, startY: -6, lengthX: 11, lengthY: 1, type: "p" },
-            { startX: 100, startY: -6, lengthX: 6, lengthY: 1, type: "f" },
+            { startX: 89, startY: -5, lengthX: 11, lengthY: 1, type: "p" },
+            { startX: 100, startY: -5, lengthX: 6, lengthY: 1, type: "f" },
 
-            { startX: 89, startY: -3, lengthX: 11, lengthY: 1, type: "f" },
-            { startX: 100, startY: -3, lengthX: 6, lengthY: 1, type: "p" },
+            { startX: 89, startY: -2, lengthX: 11, lengthY: 1, type: "f" },
+            { startX: 100, startY: -2, lengthX: 6, lengthY: 1, type: "p" },
 
-            { startX: 89, startY: 0, lengthX: 11, lengthY: 1, type: "p" },
-            { startX: 100, startY: 0, lengthX: 6, lengthY: 1, type: "f" },
+            { startX: 89, startY: 1, lengthX: 11, lengthY: 1, type: "p" },
+            { startX: 100, startY: 1, lengthX: 6, lengthY: 1, type: "f" },
 
             { startX: 79, startY: 5, lengthX: 21, lengthY: 1, type: "f" },
             { startX: 60, startY: 11, lengthX: 47, lengthY: 1, type: "f" },   //top floor
@@ -213,7 +213,7 @@ var levelTwo = {
            // { startX: 96, startY: -3, lengthX: 6, lengthY: 1, type: "p" },
 
            { x: 96, y: -4},
-           { x: 96, y: -2, facing: "r"}
+           { x: 96, y: -1, facing: "r"}
       ],
       lurkers: [
             //{ x: 93, y: -32},
@@ -395,7 +395,7 @@ var levelTwo = {
             { x: -4.5, y: 6.4, toWrite: 'Holding shift prevents you from falling through.', animated: true, delay: 1.5 },
             { x: 120, y: -14, toWrite: 'You remember that spikes only kill you when you land on them.', animated: false, delay: 1.5 },
             { x: 129, y: -14.6, toWrite: 'Oops, that might have been helpful.', animated: false, delay: 1.5 },
-            { x: 70, y: -8, toWrite: 'The chompers fear can be used to control them.', animated: false, delay: 1.5 },
+            { x: 90, y: -16.5, toWrite: 'The chompers fear can be used to control them.', animated: false, delay: 1.5 },
 
       ],
       goals: [
@@ -704,10 +704,10 @@ var tutorialLevel = {
 
       ],
       buttons: [{ x: -3, y: 24.55, key: 1 }],
-      textboxes: [
-            { x: 0, y: 16 },
-            { x: 16, y: 16 }
-      ],
+      //textboxes: [
+      //      { x: 0, y: 16 },
+      //      { x: 16, y: 16 }
+      //],
       spawns: [
             { x: -2, y: 7 },
             { x: 25, y: 19 },

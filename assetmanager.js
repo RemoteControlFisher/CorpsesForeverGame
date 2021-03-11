@@ -89,7 +89,7 @@ class AssetManager {
         let audio = this.cache[path];
         audio.volume = volume
         audio.currentTime = 0;
-        console.log(volume)
+        //console.log(volume)
         audio.play();
     };
 
