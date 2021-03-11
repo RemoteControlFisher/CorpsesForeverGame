@@ -618,6 +618,7 @@ var tutorialLevel = {
             { x: 68, y: 24 }],
       corpses: [
             { x: 6, y: 1, type: "duck" },
+            { x: 78, y: 25, type: "duck" },
             { x: 3.25, y: 5, type: "duck" },
             { x: 2.5, y: 5, type: "duck" },
             { x: 4.5, y: 5, type: "duck", facing: "l" },
@@ -688,9 +689,10 @@ var tutorialLevel = {
             // { x: 70, y: 25  },
             //  { x: 80, y: 25  },
             //  { x: 85, y: 25  },
+            { x: 100, y: 35 },
+            { x: 110, y: 35 },
             { x: 120, y: 35 },
-            { x: 130, y: 35 },
-            { x: 140, y: 35 },
+            // { x: 10, y: 15 },
       ],
       hoppers: [
             { x: 89, y: 25 },
@@ -719,36 +721,36 @@ var tutorialLevel = {
 
       ],
       dtexts: [
-            { x: 16, y: 7, toWrite: 'Uhg my head.', animated: true, delay: 3 },
-            { x: 16, y: 6, toWrite: 'Everyones.... dead.', animated: true, delay: 7 },
-            { x: 16, y: 5, toWrite: 'The corpses.... Are everywhere.', animated: true, delay: 9 },
-            { x: 16, y: 4, toWrite: 'This.... Is beautiful, I need more corpses.', animated: true, delay: 13 },
-            { x: 16, y: 3, toWrite: 'Lets go make them.', animated: true, delay: 16 },
-            { x: 16, y: 2, toWrite: 'Press K to pickup, drop, or throw corpses.', animated: true, delay: 18 },
-            { x: 16, y: 1, toWrite: 'Use the corpses to escape, corpses ARE platforms.', animated: true, delay: 18 },
+            { x: 16, y: 7, toWrite: 'Uhg my head.', animated: true, delay: 3, key: -1 },
+            { x: 16, y: 6, toWrite: 'Everyones.... dead.', animated: true, delay: 7, key: -1 },
+            { x: 16, y: 5, toWrite: 'The corpses.... Are everywhere.', animated: true, delay: 9, key: -1 },
+            { x: 16, y: 4, toWrite: 'This.... Is beautiful, I need more corpses.', animated: true, delay: 13, key: -1 },
+            { x: 16, y: 3, toWrite: 'Lets go make them.', animated: true, delay: 16, key: -1 },
+            { x: 16, y: 2, toWrite: 'Press K to pickup, drop, or throw corpses.', animated: true, delay: 18, key: -1 },
+            { x: 16, y: 1, toWrite: 'Use the corpses to escape, corpses ARE platforms.', animated: true, delay: 18, key: -1 },
 
 
-            { x: -16, y: 3, toWrite: 'Press space to jump.', animated: false, delay: 0 },
-            { x: -14.5, y: 2, toWrite: 'AD To walk.', animated: false, delay: 0 },
-            { x: -15, y: 1, toWrite: 'Shift to sprint.', animated: false, delay: 0 },
-            { x: -17, y: 0, toWrite: 'S to fall through platforms.', animated: false, delay: 0 },
-            { x: -18, y: -1, toWrite: '(Only some "platforms" let you.)', animated: false, delay: 0 },
+            { x: -16, y: 3, toWrite: 'Press space to jump.', animated: false, delay: 0, key: -1 },
+            { x: -14.5, y: 2, toWrite: 'AD To walk.', animated: false, delay: 0, key: -1 },
+            { x: -15, y: 1, toWrite: 'Shift to sprint.', animated: false, delay: 0, key: -1 },
+            { x: -17, y: 0, toWrite: 'S to fall through platforms.', animated: false, delay: 0, key: -1 },
+            { x: -18, y: -1, toWrite: '(Only some "platforms" let you.)', animated: false, delay: 0, key: -1 },
 
 
 
-            { x: 35, y: 16, toWrite: 'Jumping into a wall lets you wall slide.', animated: false, delay: 0 },
-            { x: 35, y: 15, toWrite: 'You can jump again while wall sliding.', animated: false, delay: 0 },
-            { x: 35, y: 13, toWrite: 'You cannot wall slide while holding corpses.', animated: true, delay: 20 },
-            { x: 35, y: 14, toWrite: 'The cages are checkpoints, jump into them to save your progress.', animated: false, delay: 0 },
+            { x: 35, y: 16, toWrite: 'Jumping into a wall lets you wall slide.', animated: false, delay: 0, key: -1 },
+            { x: 35, y: 15, toWrite: 'You can jump again while wall sliding.', animated: false, delay: 0, key: -1 },
+            { x: 35, y: 13, toWrite: 'You cannot wall slide while holding corpses.', animated: true, delay: 20, key: -1 },
+            { x: 35, y: 14, toWrite: 'The cages are checkpoints, jump into them to save your progress.', animated: false, delay: 0, key: -1 },
 
-            { x: 4, y: 34, toWrite: 'Pressing down while running lets you slide.', animated: false, delay: 0 },
-            { x: 4, y: 33, toWrite: 'Jumping while sliding gives you a sorter, faster jump.', animated: false, delay: 0 },
-            { x: 4, y: 32, toWrite: 'Lightly tapping the jump button also gives you a short jump.', animated: false, delay: 0 },
-            { x: 4, y: 31.2, toWrite: 'Corpses Inherit your jumping momentum when thrown.', animated: false, delay: 0 },
+            { x: 4, y: 34, toWrite: 'Pressing down while running lets you slide.', animated: false, delay: 0, key: -1 },
+            { x: 4, y: 33, toWrite: 'Jumping while sliding gives you a sorter, faster jump.', animated: false, delay: 0, key: -1 },
+            { x: 4, y: 32, toWrite: 'Lightly tapping the jump button also gives you a short jump.', animated: false, delay: 0, key: -1 },
+            { x: 4, y: 31.2, toWrite: 'Corpses Inherit your jumping momentum when thrown.', animated: false, delay: 0, key: -1 },
 
-            { x: 80, y: 13, toWrite: 'The chomper is a fierce, but timid foe. If you corner it, it will slay you.', animated: false, delay: 0 },
-            { x: 80, y: 12, toWrite: 'Sadly, your flippers alone cannot slay it,', animated: false, delay: 0 },
-            { x: 80, y: 11, toWrite: 'Boxes make excellent weapons, but other heavy things can be lethal....', animated: false, delay: 0 },
+            { x: 80, y: 13, toWrite: 'The chomper is a fierce, but timid foe. If you corner it, it will slay you.', animated: false, delay: 0, key: -1 },
+            { x: 80, y: 12, toWrite: 'Sadly, your flippers alone cannot slay it,', animated: false, delay: 0, key: -1 },
+            { x: 80, y: 11, toWrite: 'Boxes make excellent weapons, but other heavy things can be lethal....', animated: false, delay: 0, key: -1 },
 
 
             //{ x: 96, y: 43, toWrite: 'If you have gotten this high, that is all for now.', animated: false, delay: 0 },
@@ -757,6 +759,7 @@ var tutorialLevel = {
             //{ x: 160, y: 40, toWrite: 'So at the end of this hall, go ahead. Take a dive.', animated: false, delay: 0 },
             //{ x: 176, y: 39, toWrite: 'In the future, there will be about two more zones to level one, then a level two however.', animated: false, delay: 0 },
 
+            { x: -3, y: 22, toWrite: 'Button has been pressed.', animated: false, delay: 0, key: 1 },
       ],
       goals: [
 

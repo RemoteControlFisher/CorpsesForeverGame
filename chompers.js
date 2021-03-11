@@ -17,6 +17,7 @@ class Chompers {
 
 		this.velocityY = 0;
 		this.updateBB(1);
+		this.oldBB = this.BB
 		this.spritesheet = ASSET_MANAGER.getAsset("./sprites/wolfsheet1.png");
 
 		this.killable = true;
@@ -166,7 +167,7 @@ class Chompers {
 			0, //Padding
 			true, //reverse
 			true, // looping,
-			null) //No idle animation because I am looping.   
+			null) //No idle animation because I am looping.
 			this.leashDistance = Math.random()*300
 
 	};
@@ -225,7 +226,7 @@ class Chompers {
 			}
 			else {
 
-				if (this.length <= 160) {
+				if (this.length <= 240) {
 					if (dcenter.x <= center.x) {
 						this.velocityX = MAX_WALK
 						this.facing = 'r'
@@ -244,7 +245,7 @@ class Chompers {
 
 			}
 		}
-		this.oldBB = this.BB;
+		
 	};
 
 	die(killer) {
@@ -272,7 +273,7 @@ class Chompers {
 				}
 				else if (entity.wall && !entity.platform && that.BB.left < entity.BB.right && that.facing == 'l') {
 					if (!that.angry) {
-						if (that.length < 160) {
+						if (that.length <= 240) {
 							that.angry = true
 						}
 						else {
@@ -280,15 +281,36 @@ class Chompers {
 						}
 						that.x = entity.BB.right
 						that.facing = 'r'
+						that.state = "walk"
 					}
 					else {
 						that.x = entity.BB.right
+						that.state = "stand"
 					}
 					that.updateBB(1)
 				}
 				else if (entity.wall && !entity.platform && that.BB.right > entity.BB.left && that.facing == 'r') {
 					if (!that.angry) {
-						if (that.length < 160) {
+						if (that.length <= 240) {
+							that.angry = true
+						}
+						else {
+							that.velocityX = -MIN_WALK
+						}
+						that.x = entity.BB.left - 64
+						that.facing = 'l'
+						that.state = "walk"
+					}
+					else {
+						that.x = entity.BB.left - 64
+						that.state = "stand"
+					}
+
+					that.updateBB(1)
+				}
+				else if (entity.saw && that.BB.right > entity.BB.left && that.velocityX > 0 && that.velocityY == 0) {
+					if (!that.angry) {
+						if (that.length <= 240) {
 							that.angry = true
 						}
 						else {
@@ -299,9 +321,31 @@ class Chompers {
 					}
 					else {
 						that.x = entity.BB.left - 64
+						that.state = "stand"
 					}
 
 					that.updateBB(1)
+				}
+				else if (entity.saw && that.BB.right < entity.BB.left && that.velocityX < 0 && that.velocityY == 0) {
+					if (!that.angry) {
+						if (that.length <= 240) {
+							that.angry = true
+						}
+						else {
+							that.velocityX = MIN_WALK
+						}
+						that.x = entity.BB.right
+						that.facing = 'r'
+						that.state = "walk"
+					}
+					else {
+						that.x = entity.BB.right
+						that.state = "stand"
+					}
+					that.updateBB(1)					
+				}
+				else if (entity.saw && that.velocityY != 0) {
+					that.die(entity)					
 				}
 				else if (entity.game.duck && entity.game.duck.state != "dead" && ((that.BB.left <= entity.game.duck.BB.right && that.BB.left >= entity.game.duck.BB.left) || (that.BB.right >= entity.game.duck.BB.left && that.BB.right <= entity.game.duck.BB.right)) && ((entity.game.duck.BB.bottom <= that.BB.bottom && entity.game.duck.BB.bottom >= that.BB.top) || (entity.game.duck.BB.top >= that.BB.top && entity.game.duck.BB.top <= that.BB.bottom)))
 				{

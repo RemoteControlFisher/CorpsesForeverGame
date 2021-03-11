@@ -58,6 +58,10 @@ class animator {
         return Math.floor(this.elapsedTime / this.frameDuration);
     }
 
+    calculateFrame(tick) {
+        return Math.floor((this.elapsedTime + tick) / this.frameDuration)
+    }
+
     isDone(){
         return this.elapsedTime >= this.totalTime;
     }

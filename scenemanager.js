@@ -83,33 +83,61 @@ class scenemanager {
                 this.game.addEntity(new textboxes(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, i))
             }
 
-        if (level.buttons && level.doors) {
+        if (level.traps)
+            for (let i = 0; i < level.traps.length; i++) {
+                let x = level.traps[i].x
+                let y = level.traps[i].y
+                let type = level.traps[i].type
+                let myTrap = new traps(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, type)
+                console.log(myTrap)
+                this.game.addEntity(myTrap)
+            }
+        if (level.buttons && level.doors || level.buttons && level.dtexts) {
 
             for (let i = 0; i < level.buttons.length; i++) {
                 let myDoors = [];
+                let myDTexts = [];
                 let x = level.buttons[i].x
                 let y = level.buttons[i].y
-                for (let j = 0; j < level.doors.length; j++) {
-                    if (level.buttons[i].key == level.doors[j].key) {
-                        let x = level.doors[j].x
-                        let y = level.doors[j].y
-                        let myDoor = new doors(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH)
-                        myDoors.push(myDoor)
-                        this.game.addEntity(myDoor)
+                if (level.doors) {
+                    for (let j = 0; j < level.doors.length; j++) {
+                        if (level.buttons[i].key == level.doors[j].key) {
+                            let x = level.doors[j].x
+                            let y = level.doors[j].y
+                            let myDoor = new doors(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH)
+                            myDoors.push(myDoor)
+                            this.game.addEntity(myDoor)
+                        }
                     }
                 }
-                this.game.addEntity(new buttons(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, myDoors))
+                if (level.dtexts) {
+                    for (let j = 0; j < level.dtexts.length; j++) {
+                        if (level.buttons[i].key == level.dtexts[j].key) {
+                            let x = level.dtexts[j].x
+                            let y = level.dtexts[j].y
+                            let text = level.dtexts[j].toWrite
+                            let anim = level.dtexts[j].animated
+                            let delay = level.dtexts[j].delay
+                            let myDText = new dtext(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, text, anim, delay, false)
+                            myDTexts.push(myDText)
+                            this.game.addEntity(myDText)
+                        }
+                    }
+                }
+                this.game.addEntity(new buttons(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, myDoors, myDTexts))
             }
         }
         if (level.dtexts) {
             for (let i = 0; i < level.dtexts.length; i++) {
-                let x = level.dtexts[i].x
-                let y = level.dtexts[i].y
-                let text = level.dtexts[i].toWrite
-                let anim = level.dtexts[i].animated
-                let delay = level.dtexts[i].delay
-                let myText = new dtext(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, text, anim, delay)
-                this.game.addEntity(myText)
+                if (level.dtexts[i].key == -1) {
+                    let x = level.dtexts[i].x
+                    let y = level.dtexts[i].y
+                    let text = level.dtexts[i].toWrite
+                    let anim = level.dtexts[i].animated
+                    let delay = level.dtexts[i].delay
+                    let myText = new dtext(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, text, anim, delay, true)
+                    this.game.addEntity(myText)
+                }
             }
         }
 
