@@ -539,6 +539,7 @@ var tutorialLevel = {
             { x: 68, y: 24 }],
       corpses: [
             { x: 6, y: 1, type: "duck" },
+            { x: 78, y: 25, type: "duck" },
             { x: 3.25, y: 5, type: "duck" },
             { x: 2.5, y: 5, type: "duck" },
             { x: 4.5, y: 5, type: "duck", facing: "l" },
@@ -609,7 +610,8 @@ var tutorialLevel = {
             // { x: 70, y: 25  },
             //  { x: 80, y: 25  },
             //  { x: 85, y: 25  },
-            { x: 88, y: 36 },
+            // { x: 88, y: 36 },
+            { x: 50, y: 20 },
             // { x: 110, y: 40 },
             // { x: 120, y: 40 },
             // { x: 10, y: 15 },
@@ -685,7 +687,7 @@ var tutorialLevel = {
 
             { x: 184, y: 34, nLevel: "two"},
             //{ x: -4, y: 9, nLevel: "two"}
-            //{ x: 11, y: 1, nLevel: "two"}//, loc: {x:15,y: 2}},
+            { x: 11, y: 1, loc: {x:70,y: 22}},
 
       ]
 

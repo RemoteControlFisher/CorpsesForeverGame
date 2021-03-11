@@ -17,6 +17,7 @@ class Chompers {
 
 		this.velocityY = 0;
 		this.updateBB(1);
+		this.oldBB = this.BB
 		this.spritesheet = ASSET_MANAGER.getAsset("./sprites/wolfsheet1.png");
 
 		this.killable = true;
@@ -166,7 +167,7 @@ class Chompers {
 			0, //Padding
 			true, //reverse
 			true, // looping,
-			null) //No idle animation because I am looping.   
+			null) //No idle animation because I am looping.
 			this.leashDistance = Math.random()*300
 
 	};

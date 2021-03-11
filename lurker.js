@@ -354,9 +354,8 @@ class Lurkers {
 			
 			
 
-			this.oldBB = this.BB			
-			this.collide()	
-			this.elapsedTimes[this.state][this.facing] += tick
+			this.oldBB = this.BB	
+			this.collide()			
 			this.updateBB(3);
 		}
 
@@ -365,7 +364,8 @@ class Lurkers {
 	
 	updateBB(scale) {
 		if (this.state != "dead") {
-			let index = Math.floor(this.elapsedTimes[this.state][this.facing] / this.animators[this.state][this.facing].frameDuration)
+			//let index = Math.floor(this.elapsedTimes[this.state][this.facing] / this.animators[this.state][this.facing].frameDuration)
+			let index = Math.floor(this.animators[this.state][this.facing].elapsedTime / this.animators[this.state][this.facing].frameDuration)
 			if (this.animators[this.state][this.facing].loop == true) {
 				index = Math.floor(index % this.frames[this.state])
 			} else {
@@ -403,27 +403,27 @@ class Lurkers {
 	collide() {
 		this.updateBB(3)
 		var that = this;
-		let index = Math.floor(this.elapsedTimes[that.state][that.facing] / this.animators[this.state][this.facing].frameDuration)
-		if (this.animators[this.state][this.facing].loop == true) {
-			index = index % this.frames[this.state]
+		let index = Math.floor(that.animators[that.state][that.facing].elapsedTime / that.animators[that.state][that.facing].frameDuration)
+		if (that.animators[that.state][that.facing].loop == true) {
+			index = index % that.frames[that.state]
 		} else {
-			if (index >= this.frames[this.state]) {
-				index = this.frames[this.state] - 1
+			if (index >= that.frames[that.state]) {
+				index = that.frames[that.state] - 1
 			}
 		}
 		this.game.entities.forEach(function (entity) {
 			//If platform and entity collided
 			if (entity.BB && that.BB.isCollide(entity.BB)) {
+				
 				//If slime bottom hit floor/wall
 				if (entity.platform && that.oldBB.bottom <= entity.BB.top && that.velocityY > 0) {
 					if (that.state == "freefall") {
 						that.velocityY = 0
 						that.state = "landing"
 					} else if (that.state == "landing") {
-						if (that.velocityY > 50) {
+						if (that.velocityY > 30) {
 							that.velocityY = -80
 							that.state = "jump"
-							that.elapsedTimes[that.state][that.facing] = 0
 							that.animators[that.state][that.facing].elapsedTime = 0
 						}
 					} else if (that.state == "attack") {
@@ -516,7 +516,7 @@ class Lurkers {
 				// 		that.velocityX = MAX_WALK
 				// 	}
 				// }
-				else if (entity.wall && that.BB.left < entity.BB.right && that.oldBB.left >= entity.BB.right && that.velocityX < 0) {
+				else if (entity.wall && that.BB.left < entity.BB.right && that.BB.right > entity.BB.right && that.velocityX < 0) {
 					if (that.state != "attack") {
 						that.velocityX = that.min_walk
 						that.facing = 'r'
@@ -525,10 +525,10 @@ class Lurkers {
 						that.velocityX = 0
 						that.x = entity.BB.right - that.pointsX[that.state][that.facing][index] * 3
 					}
-					that.elapsedTimes[that.state][that.facing] = that.elapsedTimes[that.state]['l']
+					that.animators[that.state][that.facing].elapsedTime = that.animators[that.state]['l'].elapsedTime
 					that.updateBB(3)
 				}
-				else if (entity.wall && that.BB.right > entity.BB.left && that.oldBB.right <= entity.BB.left && that.velocityX > 0) {
+				else if (entity.wall && that.BB.right > entity.BB.left && that.BB.left < entity.BB.left && that.velocityX > 0) {
 					if (that.state != "attack") {
 						that.velocityX = -that.min_walk
 						that.facing = 'l'
@@ -537,7 +537,7 @@ class Lurkers {
 						that.velocityX = 0
 						that.x = entity.BB.left - 96 + that.pointsX[that.state][that.facing][index] * 3				
 					}
-					that.elapsedTimes[that.state][that.facing] = that.elapsedTimes[that.state]['r']
+					that.animators[that.state][that.facing].elapsedTime = that.animators[that.state]['r'].elapsedTime
 					that.updateBB(3)
 				}
 				//If hits any trap
@@ -571,8 +571,8 @@ class Lurkers {
 	}
 
 	draw(ctx) {
-		if (this.state != "dead") {
-			let index = Math.floor(this.elapsedTimes[this.state][this.facing] / this.animators[this.state][this.facing].frameDuration)
+		if (this.state != "dead") {		
+			let index = Math.floor(this.animators[this.state][this.facing].elapsedTime / this.animators[this.state][this.facing].frameDuration)
 			if (this.state != "attack") {
 				this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 3);
 			}
