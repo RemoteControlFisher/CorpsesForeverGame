@@ -9,7 +9,7 @@ class scenemanager {
         this.currentWorld = "null";
         this.duck = new duck(this.game, "stand", 0, 0);
         console.log(duck)
-        this.loadlevel(tutorialLevel, 0, 0, true);
+        this.loadlevel(levelTwo, 0, 0, true);
     };
     
     //should delete entity once level is finished 
