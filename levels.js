@@ -145,15 +145,16 @@ var levelTwo = {
 
 
             // Celest inspired
-            //{ startX: 74, startY: 4, lengthX: 1, lengthY: 7, type: "wr" },   //wall #1
-            //{ startX: 70, startY: -4, lengthX: 1, lengthY: 11, type: "wr" }, //wall #2
-            //{ startX: 67, startY: 7, lengthX: 4, lengthY: 1, type: "f" },    //platform #1
-            //{ startX: 65, startY: 3, lengthX: 1, lengthY: 8, type: "wr" },    //platform #3
-            //{ startX: 64, startY: 3, lengthX: 2, lengthY: 1, type: "f" },    //platform #2
-            //{ startX: 61, startY: -4, lengthX: 1, lengthY: 11, type: "wr" }, //wall #3
-            //{ startX: 60, startY: 7, lengthX: 3, lengthY: 1, type: "f" }, //platform #4
+            { startX: 74, startY: 4, lengthX: 1, lengthY: 7, type: "wr" },   //wall #1
+            { startX: 70, startY: -4, lengthX: 1, lengthY: 11, type: "wr" }, //wall #2
+            { startX: 67, startY: 7, lengthX: 4, lengthY: 1, type: "f" },    //platform #1
+            { startX: 65, startY: 3, lengthX: 1, lengthY: 8, type: "wr" },    //platform #3
+            { startX: 64, startY: 3, lengthX: 2, lengthY: 1, type: "wr" },    //Secret WALLJUMP sauce.
+            { startX: 64, startY: 3, lengthX: 2, lengthY: 1, type: "f" },    //platform #2
+            { startX: 61, startY: -4, lengthX: 1, lengthY: 11, type: "wr" }, //wall #3
+            { startX: 60, startY: 7, lengthX: 3, lengthY: 1, type: "f" }, //platform #4
             
-            //{ startX: 39, startY: -5, lengthX: 5, lengthY: 1, type: "p" },
+            { startX: 39, startY: -5, lengthX: 5, lengthY: 1, type: "p" },
 
             //Authoritarian Rat platform 
             //(the solution is very simple, and you can time it by sticking to a wall & just wall slide)
@@ -229,6 +230,8 @@ var levelTwo = {
             { x: 47.5, y: -33, length: 13},
             { x: 61, y: -38, length: 15.1},
             { x: 79, y: -33, length: 2.1},
+            { x: 71, y: -4, length: 7.1},
+            { x: 62, y: -4, length: 7.1},
 
       ],
       traps: [
@@ -367,7 +370,7 @@ var levelTwo = {
             { x: 105.5, y: -12},
             //            { startX: 79, startY: 10, lengthX: 28, lengthY: 1, type: "f" },
 
-            { x: 82, y:9},
+            { x: 82, y:10},
             { x:60 , y: 10}
 
       ],
