@@ -56,15 +56,6 @@ class scenemanager {
                 }
             }
         }
-        if (level.traps)
-            for (let i = 0; i < level.traps.length; i++) {
-                let x = level.traps[i].x
-                let y = level.traps[i].y
-                let type = level.traps[i].type
-                let myTrap = new traps(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, type)
-                console.log(myTrap)
-                this.game.addEntity(myTrap)
-            }
         if (level.walls)
             for (let i = 0; i < level.walls.length; i++) {
                 let type = level.walls[i].type
@@ -185,6 +176,24 @@ class scenemanager {
                 let myGoal = new goal(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, nextLevel, this, loc)
                 console.log(myGoal)
                 this.game.addEntity(myGoal)
+            }
+        if (level.traps)
+            for (let i = 0; i < level.traps.length; i++) {
+                let x = level.traps[i].x
+                let y = level.traps[i].y
+                let type = level.traps[i].type
+                let myTrap = new traps(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, type)
+                console.log(myTrap)
+                this.game.addEntity(myTrap)
+            }
+        if (level.spikes)
+            for (let i = 0; i < level.spikes.length; i++) {
+                let x = level.spikes[i].x
+                let y = level.spikes[i].y
+                let length = level.spikes[i].length
+                let myTrap = new long_spike(this.game, startx + x * PARAMS.BLOCKWIDTH, starty - y * PARAMS.BLOCKWIDTH, length)
+                console.log(myTrap)
+                this.game.addEntity(myTrap)
             }
         //if there is a title in level and title should be on
         if (level.title && isTitle) {

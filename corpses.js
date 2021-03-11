@@ -147,23 +147,23 @@ class corpses {
 			this.x += this.velocityX * tick
 
 			this.updateBB()
-			this.collide()
+			this.collide(length)
 
 			this.oldBB = this.BB;
 		} //else {
-			//Don't collide, be invisible when we are not carried!
-			//this.BB.active = false
+		//Don't collide, be invisible when we are not carried!
+		//this.BB.active = false
 		//}
 
 	};
 
 	updateBB() {
-		this.BB = new boundingBox(this.x, this.y + 4 , this.animations[this.type][this.facing].width * this.scale, (this.animations[this.type][this.facing].height) * this.scale - 4)
+		this.BB = new boundingBox(this.x, this.y + 4, this.animations[this.type][this.facing].width * this.scale, (this.animations[this.type][this.facing].height) * this.scale - 4)
 	}
 
 	//Note to self: The duck sideways collision fixes I need to do.
 
-	collide() {
+	collide(length) {
 		const that = this
 		this.game.entities.forEach(function (entity) {
 
@@ -187,13 +187,15 @@ class corpses {
 
 				if (entity != that && entity.platform && (that.oldBB.bottom <= entity.BB.top
 					|| (entity.oldBB && that.oldBB.bottom <= that.oldBB.top)//EXTREMELY SPECIAL CASE: IF I WAS ABOVE THEM BEFORE THEY MOVED.
-				) && that.velocityY > 0) {
+				)) {
 					that.velocityY = 0
 					that.velocityX = 0
 					that.y = entity.BB.top - that.animations[that.type][that.facing].height * that.scale
 					if (entity.bounce) {
 						that.velocityY = -400
-						//ASSET_MANAGER.playAsset("./sound/Sound effect/Bounce Sound Effect.mp3")
+						let audibility = (320 - length) / 320
+						if (audibility > 0)
+							ASSET_MANAGER.playAsset("./sound/Sound effect/Bounce Sound Effect.mp3", audibility)
 					}
 					that.state = "idle"
 					that.updateBB()
@@ -222,7 +224,9 @@ class corpses {
 				} else if (entity.trap && that.velocityY > 0) { // If we fall onto a trap, follow the traps collision rules.
 					//Set our velocity by traps qualities.
 					that.trapBehavior(entity)
-					ASSET_MANAGER.playAsset("./sound/Sound effect/Circular Saw Sound Effect.mp3")
+					let audibility = (1200 - length) / 1200
+					if (audibility > 0)
+						ASSET_MANAGER.playAsset("./sound/Sound effect/Circular Saw Sound Effect.mp3", audibility)
 				}
 				else if (entity.button && entity.BB.top <= that.BB.bottom) {
 					//that.buttonPress = true
@@ -251,11 +255,15 @@ class corpses {
 			case "r":
 				this.velocityY = -720
 				this.velocityX = 550
+				if (this.BB.center().x < trap.BB.center().x)
+					this.x= trap.BB.center().x
 				this.state = "thrown"
 				break;
 			case "l":
 				this.velocityY = -720
 				this.velocityX = -550
+				if (this.BB.center().x > trap.BB.center().x)
+				this.x= trap.BB.center().x
 				this.state = "thrown"
 				break;
 			default://No-facing entities should use this behavior.

@@ -66,7 +66,7 @@ var levelTwo = {
             //end #1 platform
             { startX: 134, startY: -23, lengthX: 4, lengthY: 1, type: "floor" },
             //end #2 platform
-            { startX: 139, startY: -19, lengthX: 11, lengthY: 1, type: "floor" },
+            { startX: 139, startY: -19, lengthX: 5, lengthY: 1, type: "floor" },
             //#2 bottom platform
             //{ startX: 136, startY: -43, lengthX: 17, lengthY: 1, type: "floor" },
             //wall platform
@@ -145,15 +145,15 @@ var levelTwo = {
 
 
             // Celest inspired
-            { startX: 74, startY: 4, lengthX: 1, lengthY: 7, type: "wr" },   //wall #1
-            { startX: 70, startY: -4, lengthX: 1, lengthY: 11, type: "wr" }, //wall #2
-            { startX: 67, startY: 7, lengthX: 4, lengthY: 1, type: "f" },    //platform #1
-            { startX: 65, startY: 3, lengthX: 1, lengthY: 8, type: "wr" },    //platform #3
-            { startX: 64, startY: 3, lengthX: 2, lengthY: 1, type: "f" },    //platform #2
-            { startX: 61, startY: -4, lengthX: 1, lengthY: 11, type: "wr" }, //wall #3
-            { startX: 60, startY: 7, lengthX: 3, lengthY: 1, type: "f" }, //platform #4
+            //{ startX: 74, startY: 4, lengthX: 1, lengthY: 7, type: "wr" },   //wall #1
+            //{ startX: 70, startY: -4, lengthX: 1, lengthY: 11, type: "wr" }, //wall #2
+            //{ startX: 67, startY: 7, lengthX: 4, lengthY: 1, type: "f" },    //platform #1
+            //{ startX: 65, startY: 3, lengthX: 1, lengthY: 8, type: "wr" },    //platform #3
+            //{ startX: 64, startY: 3, lengthX: 2, lengthY: 1, type: "f" },    //platform #2
+            //{ startX: 61, startY: -4, lengthX: 1, lengthY: 11, type: "wr" }, //wall #3
+            //{ startX: 60, startY: 7, lengthX: 3, lengthY: 1, type: "f" }, //platform #4
             
-            { startX: 39, startY: -5, lengthX: 5, lengthY: 1, type: "p" },
+            //{ startX: 39, startY: -5, lengthX: 5, lengthY: 1, type: "p" },
 
             //Authoritarian Rat platform 
             //(the solution is very simple, and you can time it by sticking to a wall & just wall slide)
@@ -223,109 +223,117 @@ var levelTwo = {
             //{ x: 45, y: -2},
            // { x: 41, y: -2},
       ],
+      spikes:[
+            { x: 15, y: -16, length: 18},
+            { x: 108, y: -14, length: 16},
+            { x: 47.5, y: -33, length: 13},
+            { x: 61, y: -38, length: 15.1},
+            { x: 79, y: -33, length: 2.1},
+
+      ],
       traps: [
             
-            { x: 15, y: -16 },
-            { x: 16, y: -16 },
-            { x: 17, y: -16 },
-            { x: 18, y: -16 },
-            { x: 19, y: -16 },
-            { x: 20, y: -16 },
-            { x: 21, y: -16 },
-            { x: 22, y: -16 },
-            { x: 23, y: -16 },
-            { x: 24, y: -16 },
-            { x: 25, y: -16 },
-            { x: 26, y: -16 },
-            { x: 27, y: -16 },
-            { x: 28, y: -16 },
-            { x: 29, y: -16 },
-            { x: 30, y: -16 },
-            { x: 31, y: -16 },
-            { x: 32, y: -16 },
-            { x: 33, y: -16 },
+            //{ x: 15, y: -16 },
+            //{ x: 16, y: -16 },
+            //{ x: 17, y: -16 },
+            //{ x: 18, y: -16 },
+            //{ x: 19, y: -16 },
+            //{ x: 20, y: -16 },
+            //{ x: 21, y: -16 },
+            //{ x: 22, y: -16 },
+            //{ x: 23, y: -16 },
+            //{ x: 24, y: -16 },
+            //{ x: 25, y: -16 },
+            //{ x: 26, y: -16 },
+            //{ x: 27, y: -16 },
+            ///{ x: 28, y: -16 },
+            //{ x: 29, y: -16 },
+            //{ x: 30, y: -16 },
+            //{ x: 31, y: -16 },
+            //{ x: 32, y: -16 },
+            //{ x: 33, y: -16 },
             //{ x: 34, y: -16 },
             //{ x: 35, y: -16 },
             //{ x: 36, y: -16 },
             //{ x: 37, y: -16 },
             
             //HALL OF SPIKES SPIKES
-            { x: 108, y: -14 },
-            { x: 109, y: -14 },
-            { x: 110, y: -14 },
-            { x: 111, y: -14 },
-            { x: 112, y: -14 },
-            { x: 113, y: -14 },
-            { x: 114, y: -14 },
-            { x: 115, y: -14 },
-            { x: 116, y: -14 },
-            { x: 117, y: -14 },
-            { x: 118, y: -14 },
-            { x: 119, y: -14 },
-            { x: 120, y: -14 },
-            { x: 121, y: -14 },
-            { x: 122, y: -14 },
-            { x: 123, y: -14 },
+            //{ x: 108, y: -14 },
+            //{ x: 109, y: -14 },
+            //{ x: 110, y: -14 },
+            //{ x: 111, y: -14 },
+            //{ x: 112, y: -14 },
+            //{ x: 113, y: -14 },
+            //{ x: 114, y: -14 },
+            //{ x: 115, y: -14 },
+            //{ x: 116, y: -14 },
+            //{ x: 117, y: -14 },
+            //{ x: 118, y: -14 },
+            //{ x: 119, y: -14 },
+            //{ x: 120, y: -14 },
+            //{ x: 121, y: -14 },
+            //{ x: 122, y: -14 },
+            //{ x: 123, y: -14 },
 
 
 
             //spike for spike pit
-            {x: 48, y: -33, type: "spike"},
-            {x: 49, y: -33, type: "spike"},
-            {x: 50, y: -33, type: "spike"},
-            {x: 51, y: -33, type: "spike"},
-            {x: 52, y: -33, type: "spike"},
-            {x: 53, y: -33, type: "spike"},
-            {x: 54, y: -33, type: "spike"},
-            {x: 55, y: -33, type: "spike"},
-            {x: 56, y: -33, type: "spike"},
-            {x: 57, y: -33, type: "spike"},
-            {x: 58, y: -33, type: "spike"},
-            {x: 59, y: -33, type: "spike"},
-            {x: 59.6, y: -33, type: "spike"},
+            //{x: 48, y: -33, type: "spike"},
+            //{x: 49, y: -33, type: "spike"},
+            //{x: 50, y: -33, type: "spike"},
+            //{x: 51, y: -33, type: "spike"},
+            //{x: 52, y: -33, type: "spike"},
+            //{x: 53, y: -33, type: "spike"},
+            //{x: 54, y: -33, type: "spike"},
+            //{x: 55, y: -33, type: "spike"},
+            //{x: 56, y: -33, type: "spike"},
+            //{x: 57, y: -33, type: "spike"},
+            //{x: 58, y: -33, type: "spike"},
+            //{x: 59, y: -33, type: "spike"},
+            //{x: 59.6, y: -33, type: "spike"},
             
-            {x: 61, y: -38, type: "spike"},
-            {x: 62, y: -38, type: "spike"},
-            {x: 63, y: -38, type: "spike"},
-            {x: 64, y: -38, type: "spike"},
-            {x: 65, y: -38, type: "spike"},
-            {x: 66, y: -38, type: "spike"},
-            {x: 67, y: -38, type: "spike"},
-            {x: 68, y: -38, type: "spike"},
-            {x: 69, y: -38, type: "spike"},
-            {x: 70, y: -38, type: "spike"},
-            {x: 71, y: -38, type: "spike"},
-            {x: 72, y: -38, type: "spike"},
-            {x: 73, y: -38, type: "spike"},
-            {x: 74, y: -38, type: "spike"},
-            {x: 75, y: -38, type: "spike"},
-            {x: 76, y: -38, type: "spike"},
-            {x: 76.6, y: -38, type: "spike"},
+            // {x: 61, y: -38, type: "spike"},
+            // {x: 62, y: -38, type: "spike"},
+            // {x: 63, y: -38, type: "spike"},
+            // {x: 64, y: -38, type: "spike"},
+            // {x: 65, y: -38, type: "spike"},
+            // {x: 66, y: -38, type: "spike"},
+            // {x: 67, y: -38, type: "spike"},
+            // {x: 68, y: -38, type: "spike"},
+            // {x: 69, y: -38, type: "spike"},
+            // {x: 70, y: -38, type: "spike"},
+            // {x: 71, y: -38, type: "spike"},
+            // {x: 72, y: -38, type: "spike"},
+            // {x: 73, y: -38, type: "spike"},
+            // {x: 74, y: -38, type: "spike"},
+            // {x: 75, y: -38, type: "spike"},
+            // {x: 76, y: -38, type: "spike"},
+            // {x: 76.6, y: -38, type: "spike"},
 
             //{x: 231, y: 17, type: "spike"},
-            {x: 79, y: -33, type: "spike"},
-            {x: 80, y: -33, type: "spike"},
-            {x: 81, y: -33, type: "spike"},
-            {x: 81.6, y: -33, type: "spike"},
+            //{x: 79, y: -33, type: "spike"},
+            //{x: 80, y: -33, type: "spike"},
+            //{x: 81, y: -33, type: "spike"},
+            //{x: 81.6, y: -33, type: "spike"},
 
             //Celeste spike
-            {x: 71, y: -4, type: "spike"},
-            {x: 72, y: -4, type: "spike"},
-            {x: 73, y: -4, type: "spike"},
-            {x: 74, y: -4, type: "spike"},
-            {x: 75, y: -4, type: "spike"},
-            {x: 76, y: -4, type: "spike"},
-            {x: 77, y: -4, type: "spike"},
-            {x: 78, y: -4, type: "spike"},
+            //{x: 71, y: -4, type: "spike"},
+            //{x: 72, y: -4, type: "spike"},
+            //{x: 73, y: -4, type: "spike"},
+            //{x: 74, y: -4, type: "spike"},
+            //{x: 75, y: -4, type: "spike"},
+            //{x: 76, y: -4, type: "spike"},
+            //{x: 77, y: -4, type: "spike"},
+            //{x: 78, y: -4, type: "spike"},
 
-            {x: 69, y: -4, type: "spike"},
-            {x: 68, y: -4, type: "spike"},
-            {x: 67, y: -4, type: "spike"},
-            {x: 66, y: -4, type: "spike"},
-            {x: 65, y: -4, type: "spike"},
-            {x: 64, y: -4, type: "spike"},
-            {x: 63, y: -4, type: "spike"},
-            {x: 62, y: -4, type: "spike"},
+            //{x: 69, y: -4, type: "spike"},
+            //{x: 68, y: -4, type: "spike"},
+            //{x: 67, y: -4, type: "spike"},
+            //{x: 66, y: -4, type: "spike"},
+            //{x: 65, y: -4, type: "spike"},
+            //{x: 64, y: -4, type: "spike"},
+            //{x: 63, y: -4, type: "spike"},
+            //{x: 62, y: -4, type: "spike"},
 
             
             //keiso saw
@@ -753,8 +761,8 @@ var tutorialLevel = {
       goals: [
 
             { x: 184, y: 34, nLevel: "two"},
-            //{ x: -4, y: 9, nLevel: "two"},
-            //{ x: 11, y: 1, nLevel: "two", loc: {x:15,y: 2}},
+            //{ x:  11, y: 1, nLevel: "two"},
+            //{ x: 11, y: 1, nLevel: "two", loc: {x:50,y: 2}},
             //{ x:-4, y :9, nLevel: "two", loc: {x:60 ,y: 8}},
       ],
       //title: {x: 0, y: 0, title:true}

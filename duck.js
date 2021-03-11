@@ -888,7 +888,7 @@ class duck {
           }
 
           //If we are landing on something, stop. 
-          if (entity.platform && that.oldBB.bottom <= entity.BB.top && that.velocityY > 0) {
+          if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
 
             if(!(that.state == "dead") && entity.spike){
               that.die(entity)
@@ -1062,7 +1062,7 @@ class duck {
   jumpSquatLogic(tick) {
     this.squatTime += tick
     if (this.squatTime > 0.08) {
-      ASSET_MANAGER.playAsset("./sound/Duck sound/jump.wav")
+      ASSET_MANAGER.playAsset("./sound/Duck sound/jump.wav", 0.75)
       if (this.game.up) this.velocityY = -625
       else this.velocityY = -500
       this.state = "jump"
@@ -1092,7 +1092,7 @@ class duck {
         this.velocityX -= SLIDE_DECEL * Math.sign(this.velocityX) * tick
       }
       if (this.game.up && !this.game.jumpDisconnect) {
-        ASSET_MANAGER.playAsset("./sound/Duck sound/jump.wav")
+        ASSET_MANAGER.playAsset("./sound/Duck sound/jump.wav", 0.75)
         this.game.jumpDisconnect = true
         this.state = "jump"
         this.velocityY = -375
@@ -1200,7 +1200,7 @@ class duck {
 
       if (this.game.up && !this.game.jumpDisconnect) {
         //This is where the wall jump would happen.
-        ASSET_MANAGER.playAsset("./sound/Duck sound/jump.wav", 0.5)
+        ASSET_MANAGER.playAsset("./sound/Duck sound/jump.wav", 0.35)
         if (this.facing == "l") {
           this.velocityY = -550
           this.velocityX = 300
