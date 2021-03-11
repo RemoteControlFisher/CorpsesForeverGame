@@ -87,13 +87,15 @@ class boxes {
 
 				if (entity != that && entity.platform && (that.oldBB.bottom <= entity.BB.top
 					|| (entity.oldBB && that.oldBB.bottom <= that.oldBB.top)//EXTREMELY SPECIAL CASE: IF I WAS ABOVE THEM BEFORE THEY MOVED.
-				) && that.velocityY > 0) {
+				) ) {
 					that.velocityY = 0
 					that.velocityX = 0
 					that.y = entity.BB.top - 32
 					if (entity.bounce) {
 						that.velocityY = -400
-						//ASSET_MANAGER.playAsset("./sound/Sound effect/Bounce Sound Effect.mp3")
+						let audibility = (320-length)/320
+						if (audibility > 0)
+							ASSET_MANAGER.playAsset("./sound/Sound effect/Bounce Sound Effect.mp3", audibility)
 					}
 					that.state = "idle"
 					that.updateBB()

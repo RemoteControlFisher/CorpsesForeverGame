@@ -216,8 +216,9 @@ class Hoppers {
 					that.y = entity.BB.top - 54
 					//Stand if we are landing.
 					if (that.state == "freefall") {
-						if (length < 900)
-							ASSET_MANAGER.playAsset("./sound/Slime sound/Slime Sounds (Minecraft) - Jump.mp3")
+						let audibility = (900-length)/900
+						if (audibility>0)
+							ASSET_MANAGER.playAsset("./sound/Slime sound/Slime Sounds (Minecraft) - Jump.mp3", audibility*1.2)
 						that.state = "stand"
 						that.waitTimer()
 					}

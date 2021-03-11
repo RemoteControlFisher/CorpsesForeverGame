@@ -49,6 +49,7 @@ class goal {
     update() {
         if (this.scene.duck.BB.isCollide(this.BB) && !this.disconnect) {
             if (this.level) {
+                ASSET_MANAGER.playAsset("./sound/Duck sound/happyQuack01.wav")
                 this.scene.loadlevel(this.level)
                 this.disconnect = true
             }

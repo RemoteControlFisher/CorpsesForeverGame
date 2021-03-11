@@ -66,7 +66,7 @@ var levelTwo = {
             //end #1 platform
             { startX: 134, startY: -23, lengthX: 4, lengthY: 1, type: "floor" },
             //end #2 platform
-            { startX: 140, startY: -19, lengthX: 4, lengthY: 1, type: "floor" },
+            { startX: 139, startY: -19, lengthX: 5, lengthY: 1, type: "floor" },
             //#2 bottom platform
             //{ startX: 136, startY: -43, lengthX: 17, lengthY: 1, type: "floor" },
             //wall platform
@@ -75,8 +75,6 @@ var levelTwo = {
              { startX: 94, startY: -36, lengthX: 1, lengthY: 1, type: "floor" },
             // helper platform
             { startX: 95, startY: -36, lengthX: 1, lengthY: 1, type: "tleft" },
-            //wall block platform
-            //{ startX: 145, startY: -40, lengthX: 1, lengthY: 1, type: "wright" },
             //slide platform
             //{ startX: 136, startY: -39, lengthX: 10, lengthY: 1, type: "floor" },
             { startX: 143, startY: -18, lengthX: 1, lengthY: 10, type: "wright" },
@@ -91,7 +89,7 @@ var levelTwo = {
 
             { startX: 133, startY: -11, lengthX: 1, lengthY: 3, type: "wleft" },
             { startX: 88, startY: -14, lengthX: 1, lengthY: 19, type: "wleft" },
-            { startX: 106, startY: -10, lengthX: 1, lengthY: 20, type: "wright" },
+            { startX: 106, startY: -10, lengthX: 1, lengthY: 21, type: "wright" },
 
             //The "Tower"
             { startX: 89, startY: -11, lengthX: 11, lengthY: 1, type: "p" },
@@ -110,7 +108,7 @@ var levelTwo = {
             { startX: 100, startY: 0, lengthX: 6, lengthY: 1, type: "f" },
 
             { startX: 79, startY: 5, lengthX: 21, lengthY: 1, type: "f" },
-            { startX: 74, startY: 10, lengthX: 33, lengthY: 1, type: "f" },
+            { startX: 60, startY: 11, lengthX: 47, lengthY: 1, type: "f" },   //top floor
             { startX: 79, startY: -5, lengthX: 1, lengthY: 10, type: "wl" },
             { startX: 44, startY: -5, lengthX: 35, lengthY: 1, type: "f" },
             { startX: 44, startY: -8, lengthX: 1, lengthY: 3, type: "wl" },
@@ -146,6 +144,49 @@ var levelTwo = {
             { startX: 89, startY: -25, lengthX: 3, lengthY: 1, type: "f" },
 
 
+            // Celest inspired
+            //{ startX: 74, startY: 4, lengthX: 1, lengthY: 7, type: "wr" },   //wall #1
+            //{ startX: 70, startY: -4, lengthX: 1, lengthY: 11, type: "wr" }, //wall #2
+            //{ startX: 67, startY: 7, lengthX: 4, lengthY: 1, type: "f" },    //platform #1
+            //{ startX: 65, startY: 3, lengthX: 1, lengthY: 8, type: "wr" },    //platform #3
+            //{ startX: 64, startY: 3, lengthX: 2, lengthY: 1, type: "f" },    //platform #2
+            //{ startX: 61, startY: -4, lengthX: 1, lengthY: 11, type: "wr" }, //wall #3
+            //{ startX: 60, startY: 7, lengthX: 3, lengthY: 1, type: "f" }, //platform #4
+            
+            //{ startX: 39, startY: -5, lengthX: 5, lengthY: 1, type: "p" },
+
+            //Authoritarian Rat platform 
+            //(the solution is very simple, and you can time it by sticking to a wall & just wall slide)
+
+            //side wall block 1
+            //{ startX: 140, startY: -15, lengthX: 1, lengthY: 21, type: "wright" },
+            //side wall block 2
+            //{ startX: 150, startY: -18, lengthX: 1, lengthY: 24, type: "wleft" },
+            //1st platform
+            //{ startX: 141, startY: -15, lengthX: 9, lengthY: 1, type: "thinPlatform" },
+            //2nd platform
+            //{ startX: 141, startY: -12, lengthX: 9, lengthY: 1, type: "thinPlatform" },
+            //3rd platform
+            //{ startX: 141, startY: -9, lengthX: 9, lengthY: 1, type: "thinPlatform" },
+            //4th platform
+            //{ startX: 141, startY: -6, lengthX: 9, lengthY: 1, type: "thinPlatform" },
+            //5th platform
+            //{ startX: 141, startY: -3, lengthX: 9, lengthY: 1, type: "thinPlatform" },
+            //6th platform
+            //{ startX: 141, startY: 0, lengthX: 9, lengthY: 1, type: "thinPlatform" },
+            //7th platform
+            //{ startX: 141, startY: 3, lengthX: 9, lengthY: 1, type: "thinPlatform" },
+            //bounce platform
+            //{ startX: 141, startY: 3, lengthX: 9, lengthY: 1, type: "thinPlatform" },
+            //freedom platform
+            //{ startX: 141, startY: 6, lengthX: 9, lengthY: 1, type: "thinPlatform" },
+
+            //next level? 
+
+            //platform right
+            //{ startX: 130, startY: 6, lengthX: 11, lengthY: 1, type: "floor" },
+            //platform left
+            //{ startX: 150, startY: 6, lengthX: 10, lengthY: 1, type: "floor" },
 
       ],
       doors:[
@@ -163,6 +204,9 @@ var levelTwo = {
       ],
       hoppers: [
             { x: 3, y: -11 },
+            { x: 46, y: -2},
+            { x: 49, y: -2},
+            { x: 41, y: -2},
             //{ x: 63,y: -35}   //dies?
       ],
       chompers: [
@@ -176,91 +220,121 @@ var levelTwo = {
             { x: 115, y: -32 },
             { x: 110, y: -32 },
             { x: 120, y: -32 },
+            //{ x: 45, y: -2},
+           // { x: 41, y: -2},
+      ],
+      spikes:[
+            { x: 15, y: -16, length: 18},
+            { x: 108, y: -14, length: 16},
+            { x: 47.5, y: -33, length: 13},
+            { x: 61, y: -38, length: 15.1},
+            { x: 79, y: -33, length: 2.1},
+
       ],
       traps: [
             
-            { x: 15, y: -16 },
-            { x: 16, y: -16 },
-            { x: 17, y: -16 },
-            { x: 18, y: -16 },
-            { x: 19, y: -16 },
-            { x: 20, y: -16 },
-            { x: 21, y: -16 },
-            { x: 22, y: -16 },
-            { x: 23, y: -16 },
-            { x: 24, y: -16 },
-            { x: 25, y: -16 },
-            { x: 26, y: -16 },
-            { x: 27, y: -16 },
-            { x: 28, y: -16 },
-            { x: 29, y: -16 },
-            { x: 30, y: -16 },
-            { x: 31, y: -16 },
-            { x: 32, y: -16 },
-            { x: 33, y: -16 },
+            //{ x: 15, y: -16 },
+            //{ x: 16, y: -16 },
+            //{ x: 17, y: -16 },
+            //{ x: 18, y: -16 },
+            //{ x: 19, y: -16 },
+            //{ x: 20, y: -16 },
+            //{ x: 21, y: -16 },
+            //{ x: 22, y: -16 },
+            //{ x: 23, y: -16 },
+            //{ x: 24, y: -16 },
+            //{ x: 25, y: -16 },
+            //{ x: 26, y: -16 },
+            //{ x: 27, y: -16 },
+            ///{ x: 28, y: -16 },
+            //{ x: 29, y: -16 },
+            //{ x: 30, y: -16 },
+            //{ x: 31, y: -16 },
+            //{ x: 32, y: -16 },
+            //{ x: 33, y: -16 },
             //{ x: 34, y: -16 },
             //{ x: 35, y: -16 },
             //{ x: 36, y: -16 },
             //{ x: 37, y: -16 },
             
             //HALL OF SPIKES SPIKES
-            { x: 108, y: -14 },
-            { x: 109, y: -14 },
-            { x: 110, y: -14 },
-            { x: 111, y: -14 },
-            { x: 112, y: -14 },
-            { x: 113, y: -14 },
-            { x: 114, y: -14 },
-            { x: 115, y: -14 },
-            { x: 116, y: -14 },
-            { x: 117, y: -14 },
-            { x: 118, y: -14 },
-            { x: 119, y: -14 },
-            { x: 120, y: -14 },
-            { x: 121, y: -14 },
-            { x: 122, y: -14 },
-            { x: 123, y: -14 },
+            //{ x: 108, y: -14 },
+            //{ x: 109, y: -14 },
+            //{ x: 110, y: -14 },
+            //{ x: 111, y: -14 },
+            //{ x: 112, y: -14 },
+            //{ x: 113, y: -14 },
+            //{ x: 114, y: -14 },
+            //{ x: 115, y: -14 },
+            //{ x: 116, y: -14 },
+            //{ x: 117, y: -14 },
+            //{ x: 118, y: -14 },
+            //{ x: 119, y: -14 },
+            //{ x: 120, y: -14 },
+            //{ x: 121, y: -14 },
+            //{ x: 122, y: -14 },
+            //{ x: 123, y: -14 },
 
 
 
             //spike for spike pit
-            {x: 48, y: -33, type: "spike"},
-            {x: 49, y: -33, type: "spike"},
-            {x: 50, y: -33, type: "spike"},
-            {x: 51, y: -33, type: "spike"},
-            {x: 52, y: -33, type: "spike"},
-            {x: 53, y: -33, type: "spike"},
-            {x: 54, y: -33, type: "spike"},
-            {x: 55, y: -33, type: "spike"},
-            {x: 56, y: -33, type: "spike"},
-            {x: 57, y: -33, type: "spike"},
-            {x: 58, y: -33, type: "spike"},
-            {x: 59, y: -33, type: "spike"},
-            {x: 59.6, y: -33, type: "spike"},
+            //{x: 48, y: -33, type: "spike"},
+            //{x: 49, y: -33, type: "spike"},
+            //{x: 50, y: -33, type: "spike"},
+            //{x: 51, y: -33, type: "spike"},
+            //{x: 52, y: -33, type: "spike"},
+            //{x: 53, y: -33, type: "spike"},
+            //{x: 54, y: -33, type: "spike"},
+            //{x: 55, y: -33, type: "spike"},
+            //{x: 56, y: -33, type: "spike"},
+            //{x: 57, y: -33, type: "spike"},
+            //{x: 58, y: -33, type: "spike"},
+            //{x: 59, y: -33, type: "spike"},
+            //{x: 59.6, y: -33, type: "spike"},
             
-            {x: 61, y: -38, type: "spike"},
-            {x: 62, y: -38, type: "spike"},
-            {x: 63, y: -38, type: "spike"},
-            {x: 64, y: -38, type: "spike"},
-            {x: 65, y: -38, type: "spike"},
-            {x: 66, y: -38, type: "spike"},
-            {x: 67, y: -38, type: "spike"},
-            {x: 68, y: -38, type: "spike"},
-            {x: 69, y: -38, type: "spike"},
-            {x: 70, y: -38, type: "spike"},
-            {x: 71, y: -38, type: "spike"},
-            {x: 72, y: -38, type: "spike"},
-            {x: 73, y: -38, type: "spike"},
-            {x: 74, y: -38, type: "spike"},
-            {x: 75, y: -38, type: "spike"},
-            {x: 76, y: -38, type: "spike"},
-            {x: 76.6, y: -38, type: "spike"},
+            // {x: 61, y: -38, type: "spike"},
+            // {x: 62, y: -38, type: "spike"},
+            // {x: 63, y: -38, type: "spike"},
+            // {x: 64, y: -38, type: "spike"},
+            // {x: 65, y: -38, type: "spike"},
+            // {x: 66, y: -38, type: "spike"},
+            // {x: 67, y: -38, type: "spike"},
+            // {x: 68, y: -38, type: "spike"},
+            // {x: 69, y: -38, type: "spike"},
+            // {x: 70, y: -38, type: "spike"},
+            // {x: 71, y: -38, type: "spike"},
+            // {x: 72, y: -38, type: "spike"},
+            // {x: 73, y: -38, type: "spike"},
+            // {x: 74, y: -38, type: "spike"},
+            // {x: 75, y: -38, type: "spike"},
+            // {x: 76, y: -38, type: "spike"},
+            // {x: 76.6, y: -38, type: "spike"},
 
             //{x: 231, y: 17, type: "spike"},
-            {x: 79, y: -33, type: "spike"},
-            {x: 80, y: -33, type: "spike"},
-            {x: 81, y: -33, type: "spike"},
-            {x: 81.6, y: -33, type: "spike"},
+            //{x: 79, y: -33, type: "spike"},
+            //{x: 80, y: -33, type: "spike"},
+            //{x: 81, y: -33, type: "spike"},
+            //{x: 81.6, y: -33, type: "spike"},
+
+            //Celeste spike
+            //{x: 71, y: -4, type: "spike"},
+            //{x: 72, y: -4, type: "spike"},
+            //{x: 73, y: -4, type: "spike"},
+            //{x: 74, y: -4, type: "spike"},
+            //{x: 75, y: -4, type: "spike"},
+            //{x: 76, y: -4, type: "spike"},
+            //{x: 77, y: -4, type: "spike"},
+            //{x: 78, y: -4, type: "spike"},
+
+            //{x: 69, y: -4, type: "spike"},
+            //{x: 68, y: -4, type: "spike"},
+            //{x: 67, y: -4, type: "spike"},
+            //{x: 66, y: -4, type: "spike"},
+            //{x: 65, y: -4, type: "spike"},
+            //{x: 64, y: -4, type: "spike"},
+            //{x: 63, y: -4, type: "spike"},
+            //{x: 62, y: -4, type: "spike"},
+
             
             //keiso saw
             //{ x: 97, y: -31, type: "saw" }, 
@@ -294,6 +368,7 @@ var levelTwo = {
             //            { startX: 79, startY: 10, lengthX: 28, lengthY: 1, type: "f" },
 
             { x: 82, y:9},
+            { x:60 , y: 10}
 
       ],
       backs: [
@@ -304,7 +379,12 @@ var levelTwo = {
             { x: 76, y: -33, type: "lurker", facing: "l" },
             { x: 136, y: -21, type: "lurker", facing: "l" },
             { x: 94, y: -35, type: "lurker", facing: "l" },
-            { x: 118, y: -37 },
+            //{ x: 148, y: -18, type: "lurker", facing: "l" },
+            //{ x: 144, y: -18, type: "hopper", facing: "l" },
+            { x: 141, y: -18, type: "lurker", facing: "l" },
+            {x: 71, y: -2, type: "hopper", facing: "l" },
+            { x: 65, y: 0, type: "hopper", facing: "l" },
+            //{ x: 118, y: -37 },
             { x: 41, y: -20 },
             { x: 41, y: -25, type: "chomper" },
             { x: 41, y: -4 },
@@ -328,6 +408,7 @@ var levelTwo = {
 };
 
 var creditsLevel = {
+      music: "./sound/BMG/World of Horror - Home (Extended).mp3",
       walls: [
             { startX: -3, startY: 0, lengthX: 8, lengthY: 1, type: "thinPlatform" },
 
@@ -381,8 +462,6 @@ var creditsLevel = {
 }
 
 var tutorialLevel = {
-
-      title: [{x: 0, y: 0, title:true}],
 
       music: "./sound/BMG/World of Horror - Mode Select.mp3",
       //music: "./sound/BMG/World of Horror Soundtrack Mansion Combat.mp3",
@@ -575,7 +654,7 @@ var tutorialLevel = {
       traps: [
             { x: -3.3, y: 16, type: "saw" },
             { x: 29, y: 27, type: "lsaw" },
-            //{ x: 54, y: 33.5, type: "lsaw" },
+            { x: 54, y: 33.5, type: "lsaw" },
             //Next to.            { startX: 58, startY: 24, lengthX: 1, lengthY: 6, type: "wright" },
             { x: 59, y: 29, type: "saw" },
             { x: 59, y: 27, type: "saw" },
@@ -592,9 +671,9 @@ var tutorialLevel = {
       doors: [
             //{ x: 33, y: 32 },
             //{ x: 33, y: 31 },
-            //{ x: 33, y: 30, key: 1 },
-            //{ x: 33, y: 29, key: 1 },
-            //{ x: 33, y: 28, key: 1 }
+            { x: 33, y: 30, key: 1 },
+            { x: 33, y: 29, key: 1 },
+            { x: 33, y: 28, key: 1 }
       ],
       chompers: [
             //{ x: 20, y: 15 }
@@ -610,10 +689,9 @@ var tutorialLevel = {
             // { x: 70, y: 25  },
             //  { x: 80, y: 25  },
             //  { x: 85, y: 25  },
-            // { x: 88, y: 36 },
-            { x: 50, y: 20 },
-            // { x: 110, y: 40 },
-            // { x: 120, y: 40 },
+            { x: 100, y: 35 },
+            { x: 110, y: 35 },
+            { x: 120, y: 35 },
             // { x: 10, y: 15 },
       ],
       hoppers: [
@@ -686,10 +764,11 @@ var tutorialLevel = {
       goals: [
 
             { x: 184, y: 34, nLevel: "two"},
-            //{ x: -4, y: 9, nLevel: "two"}
-            { x: 11, y: 1, loc: {x:70,y: 22}},
-
-      ]
+            //{ x:  11, y: 1, nLevel: "two"},
+            //{ x: 11, y: 1, nLevel: "two", loc: {x:50,y: 2}},
+            //{ x:-4, y :9, nLevel: "two", loc: {x:60 ,y: 8}},
+      ],
+      //title: {x: 0, y: 0, title:true}
 
 };
 
