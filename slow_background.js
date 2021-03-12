@@ -21,15 +21,11 @@ class slow_background {
 	};
 
 	draw(ctx) {
-<<<<<<< HEAD
 		//this.mimic.drawFrame(this.game.clockTick, ctx, x - this.game.camera.x + 4, y - this.game.camera.y, 1.5);
 		//console.log(this.x)
 		//console.log(this.game.camera.x)
 		//console.log(this.speed)
 		//console.log((this.x - this.game.camera.x/this.speed)/32 + " " + (this.y - this.game.camera.y/this.speed)/32)
-=======
-		//console.log("slowback x: " + this.game.x);
->>>>>>> e4790a4fa6e9ea2fb0c5410d10d448570a6d2252
 		this.animations.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x/this.speed, this.y - this.game.camera.y/this.speed, this.scale)
 	};
 }

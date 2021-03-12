@@ -29,15 +29,12 @@ ASSET_MANAGER.queueDownload("./sprites/slimesprite/Hopper jump r.png")
 ASSET_MANAGER.queueDownload("./sprites/floorsandwalls.png")
 ASSET_MANAGER.queueDownload("./sprites/Button.png")
 ASSET_MANAGER.queueDownload("./sprites/TempTextbox.png")
-<<<<<<< HEAD
 ASSET_MANAGER.queueDownload("./sprites/slimesprite/Hopper jump.png")
 ASSET_MANAGER.queueDownload("./sprites/slimesprite/Hopper jump r.png")
 ASSET_MANAGER.queueDownload("./sprites/xp_lol.png")
 ASSET_MANAGER.queueDownload("./sprites/canyon_lol.png")
 
 
-=======
->>>>>>> e4790a4fa6e9ea2fb0c5410d10d448570a6d2252
 
 //Backgrounds
 ASSET_MANAGER.queueDownload("./sprites/Background/8-bit-art-city.jpg")

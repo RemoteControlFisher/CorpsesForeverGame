@@ -425,14 +425,14 @@ var levelTwo = {
             //     let scale = level.slowback[i].scale
             //     let width = level.slowback[i].width
             //     let height = level.slowback[i].height
-            { x: -15, y: -5, sprite: "./sprites/canyon_lol.png", speed: 3.5, scale: 15, width: 402, height: 84 }
+            { x: -15, y: -7, sprite: "./sprites/canyon_lol.png", speed: 3.5, scale: 15, width: 402, height: 84 }
       ]
 
 };
 
 var creditsLevel = {
       music: "./sound/BMG/World of Horror - Home (Extended).mp3",
-      slowback: [{x: -950, y: -600, sprite:"./sprites/Background/8-bit Ċ̸̢͉̝̖̘͕̦̰̫̩͎͘ţ̶̡̪̲̣̩̱̱̓͌͊͛̊͠ḩ̸̛̖͕̥͇̗͓̞̺̰͐͌̎̄̏͋̋͆̍͌͌̏͜ͅu̸̡̩̮̮̱̤̍̀͝ļ̴̪̺̘̭͓̒̎̔̆̂̾̽̐͌̋̑̕ư̵̙̒͐͑́̇̃͘̚͝ͅ.png", speed: 1, scale: 1.1, width: 1920, height: 1080}],
+      slowback: [{x: -12, y: -5, sprite:"./sprites/Background/8-bit Ċ̸̢͉̝̖̘͕̦̰̫̩͎͘ţ̶̡̪̲̣̩̱̱̓͌͊͛̊͠ḩ̸̛̖͕̥͇̗͓̞̺̰͐͌̎̄̏͋̋͆̍͌͌̏͜ͅu̸̡̩̮̮̱̤̍̀͝ļ̴̪̺̘̭͓̒̎̔̆̂̾̽̐͌̋̑̕ư̵̙̒͐͑́̇̃͘̚͝ͅ.png", speed: 3, scale: 1.3, width: 1920, height: 1080}],
       walls: [
             { startX: -3, startY: 0, lengthX: 8, lengthY: 1, type: "thinPlatform" },
 
@@ -482,7 +482,7 @@ var creditsLevel = {
       scripts: function () {
             tutorialLevel.goals[0].nLevel = "end"
       },
-      slowback: [
+      //slowback: [
             // let x = level.slowback[i].x
             //     let y = level.slowback[i].y
             //     let sprite = level.slowback[i].sprite
@@ -490,8 +490,8 @@ var creditsLevel = {
             //     let scale = level.slowback[i].scale
             //     let width = level.slowback[i].width
             //     let height = level.slowback[i].height
-            { x: -8, y: -15, sprite: "./sprites/duck.png", speed: 1.5, scale: 3, width: 387, height: 781 }
-      ]
+      //      { x: -8, y: -15, sprite: "./sprites/duck.png", speed: 1.5, scale: 3, width: 387, height: 781 }
+      //]
 }
 
 var tutorialLevel = {
@@ -499,7 +499,7 @@ var tutorialLevel = {
       music: "./sound/BMG/World of Horror - Mode Select.mp3",
       //music: "./sound/BMG/World of Horror Soundtrack Mansion Combat.mp3",
 
-      slowback: [{x: -1000, y: -3000, sprite:"./sprites/Background/8-bit-art-city.jpg", speed: 1, scale: 3.9, width: 1920, height: 1080}],
+      //slowback: [{x: -1000, y: -3000, sprite:"./sprites/Background/8-bit-art-city.jpg", speed: 1, scale: 3.9, width: 1920, height: 1080}],
       backs: [
             { startX: -5, startY: 1, lengthX: 20, lengthY: 30, type: "bwall" },
             { startX: 14, startY: 11, lengthX: 20, lengthY: 20, type: "bwall" },
