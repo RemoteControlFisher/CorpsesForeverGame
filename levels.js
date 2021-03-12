@@ -149,7 +149,7 @@ var levelTwo = {
             { startX: 70, startY: -4, lengthX: 1, lengthY: 11, type: "wr" }, //wall #2
             { startX: 67, startY: 7, lengthX: 4, lengthY: 1, type: "f" },    //platform #1
             { startX: 65, startY: 3, lengthX: 1, lengthY: 8, type: "wr" },    //platform #3
-            { startX: 64, startY: 3, lengthX: 2, lengthY: 1, type: "wr" },    //Secret WALLJUMP sauce.
+            { startX: 64, startY: 2.5, lengthX: 1, lengthY: 1, type: "wl" },    //Secret WALLJUMP sauce.
             { startX: 64, startY: 3, lengthX: 2, lengthY: 1, type: "f" },    //platform #2
             { startX: 61, startY: -4, lengthX: 1, lengthY: 11, type: "wr" }, //wall #3
             { startX: 60, startY: 7, lengthX: 3, lengthY: 1, type: "f" }, //platform #4
@@ -770,7 +770,7 @@ var tutorialLevel = {
             //{ x: 11, y: 1, nLevel: "two", loc: {x:50,y: 2}},
             //{ x:-4, y :9, nLevel: "two", loc: {x:60 ,y: 8}},
       ],
-      //title: {x: 0, y: 0, title:true}
+      title: {x: 0, y: 0, title:true}
 
 };
 
