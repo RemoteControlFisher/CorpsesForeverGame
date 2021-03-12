@@ -723,13 +723,13 @@ var tutorialLevel = {
 
       ],
       dtexts: [
-            { x: 16, y: 7, toWrite: 'Uhg my head.', animated: true, delay: 3, key: -1 },
-            { x: 16, y: 6, toWrite: 'Everyones.... dead.', animated: true, delay: 7, key: -1 },
-            { x: 16, y: 5, toWrite: 'The corpses.... Are everywhere.', animated: true, delay: 9, key: -1 },
-            { x: 16, y: 4, toWrite: 'This.... Is beautiful, I need more corpses.', animated: true, delay: 13, key: -1 },
-            { x: 16, y: 3, toWrite: 'Lets go make them.', animated: true, delay: 16, key: -1 },
-            { x: 16, y: 2, toWrite: 'Press K to pickup, drop, or throw corpses.', animated: true, delay: 18, key: -1 },
-            { x: 16, y: 1, toWrite: 'Use the corpses to escape, corpses ARE platforms.', animated: true, delay: 18, key: -1 },
+            { x: 16, y: 7, toWrite: 'Uhg my head.', animated: true, delay: 2, key: -1 },
+            { x: 16, y: 6, toWrite: 'Everyones.... dead.', animated: true, delay: 5, key: -1 },
+            { x: 16, y: 5, toWrite: 'The corpses.... Are everywhere.', animated: true, delay: 7, key: -1 },
+            { x: 16, y: 4, toWrite: 'This.... Is beautiful, I need more corpses.', animated: true, delay: 9, key: -1 },
+            { x: 16, y: 3, toWrite: 'Lets go make them.', animated: true, delay: 11, key: -1 },
+            { x: 16, y: 2, toWrite: 'Press K to pickup, drop, or throw corpses.', animated: true, delay: 13, key: -1 },
+            { x: 16, y: 1, toWrite: 'Use the corpses to escape, corpses ARE platforms.', animated: true, delay: 13, key: -1 },
 
 
             { x: -16, y: 3, toWrite: 'Press space to jump.', animated: false, delay: 0, key: -1 },

@@ -49,13 +49,19 @@
 </head>
 
 <body>
-    <canvas id="gameWorld" width="1800" height="744" style="background: cyan; border: 1px solid black" tabindex="0"
+    <canvas id="gameWorld" width="1800" height="700" style="background: cyan; border: 1px solid black" tabindex="0"
         autofocus></canvas>
     <div>
         <br />
         <input type="checkbox" id="mute"> Mute <input type="range" id="volume" min="0" max="1" value="0.1" ,
             step="0.05"> Volume
     </div>
+    <ul id="controlls">
+        <li><b>CONTROLS:       K</b> to pick up, throw, or drop boxes <b>(K+S)</b>. <b>(K+S+W)</b> gives you a precise up throw.</li>
+        <li><b>WASD</b> to move, <b>D</b> to drop through thin platforms (like boxes, sticks,) <b>W or space</b> to jump. <b>(S+(W or D))</b> to slide.</li>
+        <li>Tapping jump gives a short hop, jumping while sliding gives extra short boost hop. Jump while against a wall to wall jump.</li>
+        <li><b>Shift</b> while walking lets you sprint, shift while standing stops you from dropping through platforms when you crouch.</li>
+    </ul>
     <!--
     <div class="row">
         <div class="column">
