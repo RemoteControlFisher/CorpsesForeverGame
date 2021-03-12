@@ -21,6 +21,10 @@ ASSET_MANAGER.queueDownload("./sprites/Button.png")
 ASSET_MANAGER.queueDownload("./sprites/TempTextbox.png")
 ASSET_MANAGER.queueDownload("./sprites/slimesprite/Hopper jump.png")
 ASSET_MANAGER.queueDownload("./sprites/slimesprite/Hopper jump r.png")
+ASSET_MANAGER.queueDownload("./sprites/xp_lol.png")
+ASSET_MANAGER.queueDownload("./sprites/canyon_lol.png")
+
+
 
 // Sound file (music)
 ASSET_MANAGER.queueDownload("./sound/BMG/World of Horror - Mode Select.mp3")

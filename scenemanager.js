@@ -46,12 +46,12 @@ class scenemanager {
                 let x = level.slowback[i].x
                 let y = level.slowback[i].y
                 let sprite = level.slowback[i].sprite
-                let sheet = level.slowback[i].speed
+                let speed = level.slowback[i].speed
                 let scale = level.slowback[i].scale
                 let width = level.slowback[i].width
                 let height = level.slowback[i].height
-
-                this.game.addEntity(new slow_background(x,y, sprite , sheet, scale, width, height))
+                //game, x, y, sprite, speed, scale, width, height
+                this.game.addEntity(new slow_background(this.game, x  * PARAMS.BLOCKWIDTH,y * PARAMS.BLOCKWIDTH, sprite , speed, scale, width, height))
             }
         }
         if (level.backs) {

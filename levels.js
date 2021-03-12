@@ -406,7 +406,16 @@ var levelTwo = {
             //            { startX: 14, startY: 7, lengthX: 4, lengthY: 1, type: "p" },
 
             { x: 14.5, y: 10, nLevel: "end" },
-      ],
+      ],slowback:[
+            // let x = level.slowback[i].x
+            //     let y = level.slowback[i].y
+            //     let sprite = level.slowback[i].sprite
+            //     let sheet = level.slowback[i].speed
+            //     let scale = level.slowback[i].scale
+            //     let width = level.slowback[i].width
+            //     let height = level.slowback[i].height
+            {x:-15, y:-10, sprite: "./sprites/canyon_lol.png", speed: 3, scale:15, width: 402, height: 84}
+      ]
 
 };
 
@@ -460,7 +469,17 @@ var creditsLevel = {
       ],
       scripts: function(){
             tutorialLevel.goals[0].nLevel = "end"
-      }
+      },
+      slowback:[
+            // let x = level.slowback[i].x
+            //     let y = level.slowback[i].y
+            //     let sprite = level.slowback[i].sprite
+            //     let sheet = level.slowback[i].speed
+            //     let scale = level.slowback[i].scale
+            //     let width = level.slowback[i].width
+            //     let height = level.slowback[i].height
+            {x:-10, y:-15, sprite: "./sprites/duck.png", speed: 3, scale:5, width: 387, height: 781}
+      ]
 }
 
 var tutorialLevel = {
@@ -647,7 +666,7 @@ var tutorialLevel = {
             { x: -3, y: 15, type: "lurker", facing: "l" },
             { x: 26, y: 18, type: "lurker", facing: "r" },
             { x: 26, y: 19, type: "lurker", facing: "l" },
-            { x: 26, y: 20, type: "lurker", facing: "l" },
+            { x: 26, y: 17, type: "lurker", facing: "l" },
 
             //{ startX: 49, startY: 23, lengthX: 1, lengthY: 1, type: "tleft" },
             { x: 44, y: 24, type: "lurker", facing: "l" },
@@ -766,11 +785,21 @@ var tutorialLevel = {
       goals: [
 
             { x: 184, y: 34, nLevel: "two"},
-            //{ x:  11, y: 1, nLevel: "end"},
+            { x:  11, y: 1, nLevel: "end"},
             //{ x: 11, y: 1, nLevel: "two", loc: {x:50,y: 2}},
             //{ x:-4, y :9, nLevel: "two", loc: {x:60 ,y: 8}},
       ],
       //title: {x: 0, y: 0, title:true}
+      slowback:[
+            // let x = level.slowback[i].x
+            //     let y = level.slowback[i].y
+            //     let sprite = level.slowback[i].sprite
+            //     let sheet = level.slowback[i].speed
+            //     let scale = level.slowback[i].scale
+            //     let width = level.slowback[i].width
+            //     let height = level.slowback[i].height
+            {x:-15, y:-15, sprite: "./sprites/xp_lol.png", speed: 3, scale:15, width: 402, height: 84}
+      ]
 
 };
 

@@ -147,7 +147,7 @@ class corpses {
 			this.x += this.velocityX * tick
 
 			this.updateBB()
-			this.collide(length)
+			this.collide(length, tick)
 
 			this.oldBB = this.BB;
 		} //else {
@@ -163,7 +163,7 @@ class corpses {
 
 	//Note to self: The duck sideways collision fixes I need to do.
 
-	collide(length) {
+	collide(length, tick) {
 		const that = this
 		this.game.entities.forEach(function (entity) {
 
@@ -205,23 +205,28 @@ class corpses {
 					that.state = "idle"
 
 					that.updateBB()
-				} else if (entity.wall && that.velocityX < 0 && that.BB.left < entity.BB.right) {
+				} else if (entity.wall) {
+					console.log(that.velocityX*tick < entity.BB.width/2 )
+					if (that.velocityX*tick < entity.BB.width/2  && that.BB.center().x > entity.BB.center().x  //If we are moving slowly enough each frame, use center comparisons.
+					    || that.velocityX*tick > entity.BB.width/2 && that.velocityX < 0 && that.BB.left < entity.BB.right  //Else use velocity.
+						|| that.velocityX == 0 && that.BB.center().x > entity.BB.center().x) { //If we aren't moving use center comparison.
+						that.velocityX = MIN_WALK
+						that.x = entity.BB.right
+						that.state = "idle"
 
-					that.velocityX = MIN_WALK
-					that.x = entity.BB.right
-					that.state = "idle"
+						that.updateBB()
+					} else 
+					if (that.velocityX*tick < entity.BB.width/2  && that.BB.center().x < entity.BB.center().x 
+					|| that.velocityX*tick > entity.BB.width/2 && entity.wall && that.velocityX > 0 && that.BB.right > entity.BB.left  
+					|| that.velocityX == 0 && that.BB.center().x < entity.BB.center().x) {
+						that.velocityX = -MIN_WALK
+						that.x = entity.BB.left - that.BB.width
+						that.state = "idle"
 
-					that.updateBB()
-
+						that.updateBB()
+					}
 				}
-				else if (entity.wall && that.velocityX > 0 && that.BB.right > entity.BB.left) {
-
-					that.velocityX = -MIN_WALK
-					that.x = entity.BB.left - that.BB.width
-					that.state = "idle"
-
-					that.updateBB()
-				} else if (entity.trap && that.velocityY > 0) { // If we fall onto a trap, follow the traps collision rules.
+				else if (entity.trap && that.velocityY > 0) { // If we fall onto a trap, follow the traps collision rules.
 					//Set our velocity by traps qualities.
 					that.trapBehavior(entity)
 					let audibility = (1200 - length) / 1200
@@ -256,14 +261,14 @@ class corpses {
 				this.velocityY = -720
 				this.velocityX = 550
 				if (this.BB.center().x < trap.BB.center().x)
-					this.x= trap.BB.center().x
+					this.x = trap.BB.center().x
 				this.state = "thrown"
 				break;
 			case "l":
 				this.velocityY = -720
 				this.velocityX = -550
 				if (this.BB.center().x > trap.BB.center().x)
-				this.x= trap.BB.center().x
+					this.x = trap.BB.center().x
 				this.state = "thrown"
 				break;
 			default://No-facing entities should use this behavior.
@@ -290,7 +295,7 @@ class corpses {
 	};
 
 	//Used by the duck if it is carrying something.
-	duckDraw(ctx, x, y) {
-		this.animations[this.type][this.facing].drawFrame(this.game.clockTick, ctx, x - this.game.camera.x, y - this.game.camera.y, this.scale * 0.9);
+	duckDraw(ctx, x, y, facing) {
+		this.animations[this.type][facing].drawFrame(this.game.clockTick, ctx, x - this.game.camera.x, y - this.game.camera.y, this.scale * 0.9);
 	}
 };

@@ -663,8 +663,7 @@ class duck {
     if (killer.facing) {
       if (killer.facing == "r") {
         corpseVX = 550
-      } else if (killer.facing == "l")
-      {
+      } else if (killer.facing == "l") {
         corpseVX = -550
       }
     }
@@ -708,7 +707,7 @@ class duck {
     //Throwing code.
     if (this.game.keyK && this.carried && !this.game.kDisconnect) {
       this.game.kDisconnect = true;
-      if (this.game.up && this.state!= "jump") { // IF the user wants to throw up while jumping, wait till the freefall.
+      if (this.game.up && this.state != "jump") { // IF the user wants to throw up while jumping, wait till the freefall.
         this.upThrow()
       } else
         if (this.game.down) {
@@ -787,7 +786,22 @@ class duck {
       this.carried.velocityX = - 550 + this.velocityX
     //Flip our velocity.
 
-    this.carried.x = this.x
+    this.carried.x = this.x - this.carried.BB.width / 2 + this.BB.width / 2
+    if (this.facingMatched)
+      this.carried.facing = this.facing
+        else {
+          switch (this.facing) {
+            case "r":
+              this.carried.facing = "l"
+              break;
+            case "l":
+              this.carried.facing = "r"
+              break;
+            default:
+              this.carried.facing = this.facing
+              break;
+          }
+        }
     this.carried.y = this.y
     this.carried.updateBB()
     this.carried = null
@@ -802,7 +816,22 @@ class duck {
       this.carried.velocityX = - 240 + this.velocityX
     //Flip our velocity.
 
-    this.carried.x = this.x
+    this.carried.x = this.x - this.carried.BB.width / 2 + this.BB.width / 2
+    if (this.facingMatched)
+      this.carried.facing = this.facing
+        else {
+          switch (this.facing) {
+            case "r":
+              this.carried.facing = "l"
+              break;
+            case "l":
+              this.carried.facing = "r"
+              break;
+            default:
+              this.carried.facing = this.facing
+              break;
+          }
+        }
     this.carried.y = this.y
     this.carried.updateBB()
     this.carried = null
@@ -816,7 +845,22 @@ class duck {
     if (this.facing == "l")
       this.carried.velocityX *= -1//Flip our velocity.
 
-    this.carried.x = this.x
+    this.carried.x = this.x - this.carried.BB.width / 2 + this.BB.width / 2
+    if (this.facingMatched)
+      this.carried.facing = this.facing
+        else {
+          switch (this.facing) {
+            case "r":
+              this.carried.facing = "l"
+              break;
+            case "l":
+              this.carried.facing = "r"
+              break;
+            default:
+              this.carried.facing = this.facing
+              break;
+          }
+        }
     this.carried.y = this.y
     this.carried.updateBB()
     this.carried = null
@@ -854,6 +898,7 @@ class duck {
           if (!(that.state == "dead") && that.game.keyK && !that.carried && !that.game.kDisconnect && entity.carriable) {
             that.game.kDisconnect = true;
             that.carried = entity
+            that.facingMatched = entity.facing == that.facing
             entity.state = "carried"
             entity.BB.active = false
             entity.oldBB.active = false
@@ -890,7 +935,7 @@ class duck {
           //If we are landing on something, stop. 
           if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
 
-            if(!(that.state == "dead") && entity.spike){
+            if (!(that.state == "dead") && entity.spike) {
               that.die(entity)
             }
             //If the entity is droppable and dow is held, let the player fall through it if they are not sliding.
@@ -904,8 +949,8 @@ class duck {
                 that.velocityY = -400
                 ASSET_MANAGER.playAsset("./sound/Sound effect/Bounce Sound Effect.mp3")
                 if (that.game.up) {
-      
-                that.velocityY = -750
+
+                  that.velocityY = -750
                 }
                 that.state = "jump"
               }
@@ -922,31 +967,41 @@ class duck {
               if (that.trystand && entity.cieling && that.BB.top < entity.BB.bottom && that.cBB.top > entity.BB.bottom) { //CHECK IF WE ARE COLLIDING DUE TO TRYING TO STAND.
                 console.log("I tried standing with a roof over my head. " + that.trystand)
                 that.state = "slide"
-                that.velocityX = that.trystand[0] 
-                if(Math.abs(that.velocityX) > MAX_WALK * 0.25)
+                that.velocityX = that.trystand[0]
+                if (Math.abs(that.velocityX) > MAX_WALK * 0.25)
                   that.velocityX -= SLIDE_DECEL * Math.sign(that.trystand[0]) * tick
-                that.x = that.velocityX*tick + that.trystand[1]
+                that.x = that.velocityX * tick + that.trystand[1]
                 console.log(that.velocityX)
                 that.updateBB(2)
               } else
-                if (entity.wall && that.velocityX > 0 && that.BB.right > entity.BB.left) {
-                  if ((that.state == "jump" || that.state == "hover" || that.state == "freefall" || that.state == "wallcling")
-                    && that.armstate != "hold"
-                    && !entity.platform && that.game.right) {
-                    if (that.state != "freefall")
-                      that.velocityY *= 0.6
-                    that.state = "wallcling"
-                    that.facing = "r"
+                if (entity.wall) {
+                  //console.log(that.BB.center().x - entity.BB.center().x)
+                  //console.log(that.velocityX * tick < entity.BB.width / 2 && that.BB.center().x < entity.BB.center().x)
+                  //console.log(that.velocityX < 0 && that.BB.left < entity.BB.right )
+                  //console.log(that.velocityX == 0 && that.BB.center().x < entity.BB.center().x )
+
+                  if (that.velocityX * tick < entity.BB.width / 2 && that.BB.center().x < entity.BB.center().x  //If we are moving slowly enough each frame, use center comparisons.
+                    || that.velocityX*tick > entity.BB.width/2 && entity.wall && that.velocityX > 0 && that.BB.right > entity.BB.left  //Else use velocity.
+                    || that.velocityX == 0 && that.BB.center().x < entity.BB.center().x) { //If we aren't moving use center comparison.
+                    if ((that.state == "jump" || that.state == "hover" || that.state == "freefall" || that.state == "wallcling")
+                      && that.armstate != "hold"
+                      && !entity.platform && that.game.right) {
+                      if (that.state != "freefall")
+                        that.velocityY *= 0.6
+                      that.state = "wallcling"
+                      that.facing = "r"
+                    }
+                    if (that.trystand) {
+                      that.trystand[0] = -that.trystand[0]
+                      that.facing = "l"
+                    }
+                    that.velocityX = 0
+                    that.x = entity.BB.left - 32
+                    that.updateBB(2)
                   }
-                  if(that.trystand){
-                    that.trystand[0] = -that.trystand[0]
-                    that.facing = "l"
-                  }
-                  that.velocityX = 0
-                  that.x = entity.BB.left - 32
-                  that.updateBB(2)
-                } else
-                  if (entity.wall && that.velocityX < 0 && that.BB.left < entity.BB.right) {
+                  else if (that.velocityX * tick < entity.BB.width / 2 && that.BB.center().x > entity.BB.center().x
+                    || that.velocityX*tick > entity.BB.width/2 && that.velocityX < 0 && that.BB.left < entity.BB.right
+                    || that.velocityX == 0 && that.BB.center().x > entity.BB.center().x) {
                     if ((that.state == "jump" || that.state == "hover" || that.state == "freefall" || that.state == "wallcling")
                       && that.armstate != "hold"
                       && !entity.platform && that.game.left) {
@@ -955,7 +1010,7 @@ class duck {
                       that.state = "wallcling"
                       that.facing = "l"
                     }
-                    if(that.trystand){
+                    if (that.trystand) {
                       that.trystand[0] = -that.trystand[0]
                       that.facing = "r"
                     }
@@ -963,6 +1018,7 @@ class duck {
                     that.x = entity.BB.right
                     that.updateBB(2)
                   }
+                }
         }
         else if (entity.BB && !that.BB.isCollide(entity.BB)) {
           if (entity.button) {
@@ -992,11 +1048,11 @@ class duck {
           }
 
           if (!(that.state == "dead") && (entity.saw)) {
-             that.die(entity)
+            that.die(entity)
           }
 
           if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
-            if(!(that.state == "dead") && entity.spike){
+            if (!(that.state == "dead") && entity.spike) {
               that.die(entity)
             }
             that.velocityY = 0
@@ -1034,9 +1090,9 @@ class duck {
       if (this.game.left && !this.game.right) {
         this.velocityX -= ACC_AIR * tick
       } else
-      if (this.game.right && !this.game.left) {
+        if (this.game.right && !this.game.left) {
           this.velocityX += ACC_AIR * tick
-      }
+        }
     }
     //Falling physics
     //Horizontal walking movement.
@@ -1110,11 +1166,11 @@ class duck {
       if (this.velocityX > -MIN_WALK)
         this.velocityX = -MIN_WALK;
       if (this.game.sprint) {
-        if (this.velocityX > - MIN_WALK * 1.5){
+        if (this.velocityX > - MIN_WALK * 1.5) {
           this.velocityX = -MIN_WALK * 1.5
-        } else 
-        this.velocityX -= ACC_RUN * tick
-        
+        } else
+          this.velocityX -= ACC_RUN * tick
+
       } else {
         this.velocityX -= ACC_WALK * tick
       }
@@ -1123,10 +1179,10 @@ class duck {
         if (this.velocityX < MIN_WALK)
           this.velocityX = +MIN_WALK;
         if (this.game.sprint) {
-          if (this.velocityX < MIN_WALK * 1.5){
+          if (this.velocityX < MIN_WALK * 1.5) {
             this.velocityX = MIN_WALK * 1.5
-          } else 
-          this.velocityX += ACC_RUN * tick
+          } else
+            this.velocityX += ACC_RUN * tick
         } else {
           this.velocityX += ACC_WALK * tick
         }
@@ -1160,7 +1216,7 @@ class duck {
         if (this.game.down)
           this.state = "crouch"
         else
-          this.state = "stand" 
+          this.state = "stand"
       } else {
         this.state = "walk"
         if (this.velocityX < -MAX_WALK || this.velocityX > MAX_WALK)
@@ -1240,11 +1296,27 @@ class duck {
       let center = this.BB.center()
 
       if (this.state == "slide") offset = 7
+      //console.log(this.state)
       //this.armAnimators["holding"]["r"].drawFrame(this.game.clockTick, ctx, this.x, this.y, 2)
       this.animators[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - offset - this.game.camera.x, this.y - this.game.camera.y, 2)
 
       if (this.carried) {
-        this.carried.duckDraw(ctx, this.x, this.y + 16)
+        if (this.facingMatched)
+          this.carried.duckDraw(ctx, this.x - this.carried.BB.width / 2 + this.BB.width / 2, this.y + 16, this.facing)
+        else {
+          switch (this.facing) {
+            case "r":
+              this.carried.duckDraw(ctx, this.x - this.carried.BB.width / 2 + this.BB.width / 2, this.y + 16, "l")
+              break;
+            case "l":
+              this.carried.duckDraw(ctx, this.x - this.carried.BB.width / 2 + this.BB.width / 2, this.y + 16, "r")
+              break;
+            default:
+              this.carried.duckDraw(ctx, this.x - this.carried.BB.width / 2 + this.BB.width / 2, this.y + 16, this.facing)
+              break;
+          }
+
+        }
       }
 
       if (this.armAnimators[this.state] && this.armAnimators[this.state][this.facing] && this.armAnimators[this.state][this.facing][this.armstate])
