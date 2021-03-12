@@ -949,7 +949,7 @@ class duck {
                 that.velocityY = -400
                 ASSET_MANAGER.playAsset("./sound/Sound effect/Bounce Sound Effect.mp3")
                 if (that.game.up) {
-
+                  that.game.jumpDisconnect = true
                   that.velocityY = -750
                 }
                 that.state = "jump"

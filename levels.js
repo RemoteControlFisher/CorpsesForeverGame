@@ -35,7 +35,7 @@ var levelTwo = {
             { startX: 0, startY: -14, lengthX: 5, lengthY: 1, type: "floor" },
             //{ startX: 0, startY: -14, lengthX: 1, lengthY: 1, type: "tright" },
             //{ startX: 4, startY: -14, lengthX: 1, lengthY: 1, type: "tleft" },
-             
+
             //Spike pit
             { startX: 38, startY: -29, lengthX: 7, lengthY: 1, type: "floor" },    // x: 191, y: 20  difference x = 153 y: -48
             { startX: 44, startY: -30, lengthX: 1, lengthY: 1, type: "tleft" },
@@ -71,8 +71,8 @@ var levelTwo = {
             //{ startX: 136, startY: -43, lengthX: 17, lengthY: 1, type: "floor" },
             //wall platform
             { startX: 143, startY: -38, lengthX: 1, lengthY: 19, type: "wleft" },
-             // helper platform
-             { startX: 94, startY: -36, lengthX: 1, lengthY: 1, type: "floor" },
+            // helper platform
+            { startX: 94, startY: -36, lengthX: 1, lengthY: 1, type: "floor" },
             // helper platform
             { startX: 95, startY: -36, lengthX: 1, lengthY: 1, type: "tleft" },
             //slide platform
@@ -153,7 +153,7 @@ var levelTwo = {
             { startX: 64, startY: 3, lengthX: 2, lengthY: 1, type: "f" },    //platform #2
             { startX: 61, startY: -4, lengthX: 1, lengthY: 11, type: "wr" }, //wall #3
             { startX: 60, startY: 7, lengthX: 3, lengthY: 1, type: "f" }, //platform #4
-            
+
             { startX: 39, startY: -5, lengthX: 5, lengthY: 1, type: "p" },
 
             //Authoritarian Rat platform 
@@ -190,7 +190,7 @@ var levelTwo = {
             //{ startX: 150, startY: 6, lengthX: 10, lengthY: 1, type: "floor" },
 
       ],
-      doors:[
+      doors: [
             { x: 18, y: -7, key: 1 },
             { x: 18, y: -6, key: 1 },
             { x: 18, y: -8, key: 1 }
@@ -205,16 +205,16 @@ var levelTwo = {
       ],
       hoppers: [
             { x: 3, y: -11 },
-            { x: 46, y: -2},
-            { x: 49, y: -2},
-            { x: 41, y: -2},
+            { x: 46, y: -2 },
+            { x: 49, y: -2 },
+            { x: 41, y: -2 },
             //{ x: 63,y: -35}   //dies?
       ],
       chompers: [
-           // { startX: 96, startY: -3, lengthX: 6, lengthY: 1, type: "p" },
+            // { startX: 96, startY: -3, lengthX: 6, lengthY: 1, type: "p" },
 
-           { x: 96, y: -4},
-           { x: 96, y: -1, facing: "r"}
+            { x: 96, y: -4 },
+            { x: 96, y: -1, facing: "r" }
       ],
       lurkers: [
             //{ x: 93, y: -32},
@@ -222,20 +222,20 @@ var levelTwo = {
             { x: 110, y: -32 },
             { x: 120, y: -32 },
             //{ x: 45, y: -2},
-           // { x: 41, y: -2},
+            // { x: 41, y: -2},
       ],
-      spikes:[
-            { x: 15, y: -16, length: 18},
-            { x: 108, y: -14, length: 16},
-            { x: 47.5, y: -33, length: 13},
-            { x: 61, y: -38, length: 15.1},
-            { x: 79, y: -33, length: 2.1},
-            { x: 71, y: -4, length: 7.1},
-            { x: 62, y: -4, length: 7.1},
+      spikes: [
+            { x: 15, y: -16, length: 18 },
+            { x: 108, y: -14, length: 16 },
+            { x: 47.5, y: -33, length: 13 },
+            { x: 61, y: -38, length: 15.1 },
+            { x: 79, y: -33, length: 2.1 },
+            { x: 71, y: -4, length: 7.1 },
+            { x: 62, y: -4, length: 7.1 },
 
       ],
       traps: [
-            
+
             //{ x: 15, y: -16 },
             //{ x: 16, y: -16 },
             //{ x: 17, y: -16 },
@@ -259,7 +259,7 @@ var levelTwo = {
             //{ x: 35, y: -16 },
             //{ x: 36, y: -16 },
             //{ x: 37, y: -16 },
-            
+
             //HALL OF SPIKES SPIKES
             //{ x: 108, y: -14 },
             //{ x: 109, y: -14 },
@@ -294,7 +294,7 @@ var levelTwo = {
             //{x: 58, y: -33, type: "spike"},
             //{x: 59, y: -33, type: "spike"},
             //{x: 59.6, y: -33, type: "spike"},
-            
+
             // {x: 61, y: -38, type: "spike"},
             // {x: 62, y: -38, type: "spike"},
             // {x: 63, y: -38, type: "spike"},
@@ -338,18 +338,18 @@ var levelTwo = {
             //{x: 63, y: -4, type: "spike"},
             //{x: 62, y: -4, type: "spike"},
 
-            
+
             //keiso saw
             //{ x: 97, y: -31, type: "saw" }, 
-            { x: 107,y: -29,type: "saw"}, 
-            {x: 117,y: -26,type: "lsaw"}, 
+            { x: 107, y: -29, type: "saw" },
+            { x: 117, y: -26, type: "lsaw" },
             //{ x: 131,y: -24,type: "saw"}, 
-            {x: 128, y: -24, type: "lsaw"},
+            { x: 128, y: -24, type: "lsaw" },
 
-            {x: 104,y: -9,type: "lsaw"}, 
-            {x: 29,y: -4,type: "lsaw"}, 
-            {x: 21,y: -2,type: "saw"}, 
-            {x: 29,y: 0,type: "lsaw"}, 
+            { x: 104, y: -9, type: "lsaw" },
+            { x: 29, y: -4, type: "lsaw" },
+            { x: 21, y: -2, type: "saw" },
+            { x: 29, y: 0, type: "lsaw" },
 
 
             //{x: 91,y: 26,type: "saw"}, 
@@ -360,23 +360,34 @@ var levelTwo = {
             //{x: 71,y: 27,type: "saw"}, 
             //{x: 44,y: 27,type: "saw"}, 
             //{x: 53,y: 27,type: "saw"}, 
-            
+
       ],
       spawns: [
             { x: 0, y: 5 },
-            { x: 13, y:-13},
-            { x: 39, y: -24},
-            { x: 89.6, y: -26},
-            { x: 105.5, y: -12},
+            { x: 13, y: -13 },
+            { x: 39, y: -24 },
+            { x: 89.6, y: -26 },
+            { x: 105.5, y: -12 },
             //            { startX: 79, startY: 10, lengthX: 28, lengthY: 1, type: "f" },
 
-            { x: 82, y:10},
-            { x:60 , y: 10}
+            { x: 82, y: 10 },
+            { x: 60, y: 10 }
 
       ],
       backs: [
-            { startX: -6, startY: -16, lengthX: 150, lengthY: 28, type: "darkBwall" },
-            { startX: 38, startY: -40, lengthX: 106, lengthY: 24, type: "darkBwall" },
+            { startX: -6, startY: -16, lengthX: 38, lengthY: 22, type: "darkBwall" },
+            { startX: 32, startY: -16, lengthX: 75, lengthY: 16, type: "darkBwall" },
+            { startX: 38, startY: -28, lengthX: 106, lengthY: 12, type: "darkBwall" },
+            { startX: 45, startY: -33, lengthX: 47, lengthY: 5, type: "darkBwall" },
+            { startX: 61, startY: -38, lengthX: 17, lengthY: 5, type: "darkBwall" },
+            { startX: 92, startY: -30, lengthX: 2, lengthY: 2, type: "darkBwall" },
+            { startX: 94, startY: -38, lengthX: 49, lengthY: 12, type: "darkBwall" },
+            { startX: 107, startY: -16, lengthX: 36, lengthY: 5, type: "darkBwall" },
+            { startX: 133, startY: -11, lengthX: 10, lengthY: 3, type: "darkBwall" },
+            { startX: 61, startY: -2, lengthX: 45, lengthY: 13, type: "darkBwall" },
+            { startX: 13, startY: 6, lengthX: 6, lengthY: 5, type: "darkBwall" },
+
+
       ],
       corpses: [
             { x: 76, y: -33, type: "lurker", facing: "l" },
@@ -385,7 +396,7 @@ var levelTwo = {
             //{ x: 148, y: -18, type: "lurker", facing: "l" },
             //{ x: 144, y: -18, type: "hopper", facing: "l" },
             { x: 141, y: -18, type: "lurker", facing: "l" },
-            {x: 71, y: -2, type: "hopper", facing: "l" },
+            { x: 71, y: -2, type: "hopper", facing: "l" },
             { x: 65, y: 0, type: "hopper", facing: "l" },
             //{ x: 118, y: -37 },
             { x: 41, y: -20 },
@@ -406,7 +417,7 @@ var levelTwo = {
             //            { startX: 14, startY: 7, lengthX: 4, lengthY: 1, type: "p" },
 
             { x: 14.5, y: 10, nLevel: "end" },
-      ],slowback:[
+      ], slowback: [
             // let x = level.slowback[i].x
             //     let y = level.slowback[i].y
             //     let sprite = level.slowback[i].sprite
@@ -414,7 +425,7 @@ var levelTwo = {
             //     let scale = level.slowback[i].scale
             //     let width = level.slowback[i].width
             //     let height = level.slowback[i].height
-            {x:-15, y:-10, sprite: "./sprites/canyon_lol.png", speed: 3, scale:15, width: 402, height: 84}
+            { x: -15, y: -5, sprite: "./sprites/canyon_lol.png", speed: 3.5, scale: 15, width: 402, height: 84 }
       ]
 
 };
@@ -443,7 +454,7 @@ var creditsLevel = {
             { startX: 3, startY: -3, lengthX: 3, lengthY: 1, type: "thinPlatform" },
             { startX: -4, startY: -3, lengthX: 3, lengthY: 1, type: "thinPlatform" },
 
-      
+
       ],
       spawns: [
             { x: 0, y: 4 },
@@ -464,13 +475,13 @@ var creditsLevel = {
             { x: -3.5, y: -3.5, toWrite: 'One.', animated: false, delay: 0 },
       ],
       goals: [
-            { x: 3, y: -2, nLevel: "two", loc:{x:0, y:3} },
-            { x: -4, y: -2, nLevel: "tutorial", loc:{x:0, y:3} },
+            { x: 3, y: -2, nLevel: "two", loc: { x: 0, y: 3 } },
+            { x: -4, y: -2, nLevel: "tutorial", loc: { x: 0, y: 3 } },
       ],
-      scripts: function(){
+      scripts: function () {
             tutorialLevel.goals[0].nLevel = "end"
       },
-      slowback:[
+      slowback: [
             // let x = level.slowback[i].x
             //     let y = level.slowback[i].y
             //     let sprite = level.slowback[i].sprite
@@ -478,7 +489,7 @@ var creditsLevel = {
             //     let scale = level.slowback[i].scale
             //     let width = level.slowback[i].width
             //     let height = level.slowback[i].height
-            {x:-10, y:-15, sprite: "./sprites/duck.png", speed: 3, scale:5, width: 387, height: 781}
+            { x: -8, y: -15, sprite: "./sprites/duck.png", speed: 1.5, scale: 3, width: 387, height: 781 }
       ]
 }
 
@@ -521,7 +532,7 @@ var tutorialLevel = {
             { startX: 29, startY: 14, lengthX: 1, lengthY: 6, type: "wright" },
 
             //Spawn 2 platform
-           // { startX: 20, startY: 20, lengthX: 1, lengthY: 1, type: "tright" },
+            // { startX: 20, startY: 20, lengthX: 1, lengthY: 1, type: "tright" },
             //{ startX: 29, startY: 20, lengthX: 1, lengthY: 1, type: "tleft" },
             { startX: 20, startY: 20, lengthX: 10, lengthY: 1, type: "floor" },
 
@@ -623,7 +634,7 @@ var tutorialLevel = {
             { startX: 100, startY: 34, lengthX: 1, lengthY: 1, type: "tleft" },
             { startX: 99, startY: 33, lengthX: 89, lengthY: 1, type: "floor" },
             //{ startX: 190, startY: 33, lengthX: 1, lengthY: 1, type: "tleft" },
-           // { startX: 189, startY: 34, lengthX: 1, lengthY: 1, type: "tright" },
+            // { startX: 189, startY: 34, lengthX: 1, lengthY: 1, type: "tright" },
             //{ startX: 190, startY: 34, lengthX: 1, lengthY: 1, type: "tleft" },
             { startX: 96, startY: 36, lengthX: 1, lengthY: 2, type: "wright" },
             { startX: 187, startY: 34, lengthX: 1, lengthY: 4, type: "wright" },
@@ -686,8 +697,8 @@ var tutorialLevel = {
             //{   x: -10,    y: 13,     type: "bigSaw" }//,
             //{
             //{x: -10, y: 7, type: "spike"},
-            
-            
+
+
       ],
       doors: [
             //{ x: 33, y: 32 },
@@ -722,7 +733,7 @@ var tutorialLevel = {
             { x: 84, y: 25 },
 
             //on spike section
-            {x:220 ,y: 5},   
+            { x: 220, y: 5 },
 
       ],
       buttons: [{ x: -3, y: 24.55, key: 1 }],
@@ -784,13 +795,13 @@ var tutorialLevel = {
       ],
       goals: [
 
-            { x: 184, y: 34, nLevel: "two"},
-            { x:  11, y: 1, nLevel: "end"},
+            { x: 184, y: 34, nLevel: "two" },
+            { x: 11, y: 1, nLevel: "end" },
             //{ x: 11, y: 1, nLevel: "two", loc: {x:50,y: 2}},
             //{ x:-4, y :9, nLevel: "two", loc: {x:60 ,y: 8}},
       ],
       //title: {x: 0, y: 0, title:true}
-      slowback:[
+      slowback: [
             // let x = level.slowback[i].x
             //     let y = level.slowback[i].y
             //     let sprite = level.slowback[i].sprite
@@ -798,7 +809,7 @@ var tutorialLevel = {
             //     let scale = level.slowback[i].scale
             //     let width = level.slowback[i].width
             //     let height = level.slowback[i].height
-            {x:-15, y:-15, sprite: "./sprites/xp_lol.png", speed: 3, scale:15, width: 402, height: 84}
+            { x: -15, y: -15, sprite: "./sprites/xp_lol.png", speed: 3, scale: 15, width: 402, height: 84 }
       ]
 
 };
