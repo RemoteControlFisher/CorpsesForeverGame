@@ -12,6 +12,6 @@ class slow_background {
 	};
 
 	draw(ctx) {
-		this.animations[this.type].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x/this.speed, this.y - this.game.camera.y/this.speed, scale)
+		this.animations.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x/this.speed, this.y - this.game.camera.y/this.speed, scale)
 	};
 }
