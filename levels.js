@@ -412,6 +412,7 @@ var levelTwo = {
 
 var creditsLevel = {
       music: "./sound/BMG/World of Horror - Home (Extended).mp3",
+      slowback: [{x: -950, y: -600, sprite:"./sprites/Background/8-bit Ċ̸̢͉̝̖̘͕̦̰̫̩͎͘ţ̶̡̪̲̣̩̱̱̓͌͊͛̊͠ḩ̸̛̖͕̥͇̗͓̞̺̰͐͌̎̄̏͋̋͆̍͌͌̏͜ͅu̸̡̩̮̮̱̤̍̀͝ļ̴̪̺̘̭͓̒̎̔̆̂̾̽̐͌̋̑̕ư̵̙̒͐͑́̇̃͘̚͝ͅ.png", speed: 1, scale: 1.1, width: 1920, height: 1080}],
       walls: [
             { startX: -3, startY: 0, lengthX: 8, lengthY: 1, type: "thinPlatform" },
 
@@ -461,12 +462,14 @@ var creditsLevel = {
       scripts: function(){
             tutorialLevel.goals[0].nLevel = "end"
       }
-}
+};
 
 var tutorialLevel = {
 
       music: "./sound/BMG/World of Horror - Mode Select.mp3",
       //music: "./sound/BMG/World of Horror Soundtrack Mansion Combat.mp3",
+
+      slowback: [{x: -1000, y: -3000, sprite:"./sprites/Background/8-bit-art-city.jpg", speed: 1, scale: 3.9, width: 1920, height: 1080}],
       backs: [
             { startX: -5, startY: 1, lengthX: 20, lengthY: 30, type: "bwall" },
             { startX: 14, startY: 11, lengthX: 20, lengthY: 20, type: "bwall" },
@@ -766,7 +769,7 @@ var tutorialLevel = {
       goals: [
 
             { x: 184, y: 34, nLevel: "two"},
-            //{ x:  11, y: 1, nLevel: "end"},
+            { x:  11, y: 1, nLevel: "end"},
             //{ x: 11, y: 1, nLevel: "two", loc: {x:50,y: 2}},
             //{ x:-4, y :9, nLevel: "two", loc: {x:60 ,y: 8}},
       ],
@@ -774,8 +777,21 @@ var tutorialLevel = {
 
 };
 
+/** 
+var titleScreen ={
+      music: "./sound/BMG/World of Horror - Home (Extended).mp3",
+      dtexts =[
+            { x: 0, y: 0, toWrite: 'Start Game!', animated: false, delay: 0, key: -1 },
+            { x: 0, y: 0, toWrite: 'Options', animated: false, delay: 0, key: -1 },
+            { x: 0, y: 0, toWrite: 'Help', animated: false, delay: 0, key: -1 },
+            { x: 0, y: 0, toWrite: 'Quit Game', animated: false, delay: 0, key: -1 },
+      ],
+};
+*/
+
 let allLevels = {
       two: levelTwo,
       tutorial: tutorialLevel,
-      end: creditsLevel
+      end: creditsLevel,
+      //title : titleScreen,
 };

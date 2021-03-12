@@ -4,13 +4,12 @@ class scenemanager {
         this.game.camera = this;
         this.x = 0;
         this.y = 0;
-        this.isTitle = true; //should title be on?
+        this.isTitle = true; //is title on?
         this.score = 0 //not yet implemented
-        this.currentWorld = "null";
         this.duck = new duck(this.game, "stand", 0, 0);
         console.log(duck);
-        //this.loadlevel(tutorialLevel, 0, 0, true);
         this.loadlevel(tutorialLevel, 0, 0, this.isTitle);
+        //this.loadlevel(titleScreen, 0, 0, this.isTitle);
         //console.log(this.isTitle);
     };
 
@@ -24,7 +23,6 @@ class scenemanager {
     loadlevel(level, startx = 0, starty = 0, isTitle) {
         //console.log(isTitle);
         this.isTitle = isTitle
-        this.currentWorld = "tutorial";
         this.game.entities = [];
         this.x = 0;
 
@@ -43,6 +41,7 @@ class scenemanager {
         if (level.slowback) {
             //x, y, sprite, speed, scale
             for (let i = 0; i < level.slowback.length; i++){
+                //console.log(level.slowback[i].sprite);
                 let x = level.slowback[i].x
                 let y = level.slowback[i].y
                 let sprite = level.slowback[i].sprite
@@ -51,7 +50,7 @@ class scenemanager {
                 let width = level.slowback[i].width
                 let height = level.slowback[i].height
 
-                this.game.addEntity(new slow_background(x,y, sprite , sheet, scale, width, height))
+                this.game.addEntity(new slow_background(this.game, x, y, sprite, sheet, scale, width, height))
             }
         }
         if (level.backs) {
@@ -238,6 +237,7 @@ class scenemanager {
                 this.game.addEntity(myTrap)
             }
         //if there is a title in level and title should be on
+        /** 
         if (level.title && isTitle) {
             //console.log(level.title);
             //console.log(level.title.x);
@@ -250,6 +250,7 @@ class scenemanager {
             console.log(mytitle)
             this.game.addEntity(mytitle)
         }
+        */
         if (level.scripts) {
             level.scripts()
         }
@@ -259,12 +260,14 @@ class scenemanager {
             //ASSET_MANAGER.pauseBGM();
             ASSET_MANAGER.setBGM(level.music);
         }
-
-        this.duck.x = startx;
-        this.duck.y = starty - 3 * PARAMS.BLOCKWIDTH;
-        this.game.addEntity(this.duck);
-        let myText = new text(this.game, PARAMS.BLOCKWIDTH, PARAMS.BLOCKWIDTH)
-        this.game.addEntity(myText);
+        
+        //if(!isTitle){
+           this.duck.x = startx;
+           this.duck.y = starty - 3 * PARAMS.BLOCKWIDTH;
+           this.game.addEntity(this.duck);
+           let myText = new text(this.game, PARAMS.BLOCKWIDTH, PARAMS.BLOCKWIDTH)
+           this.game.addEntity(myText);
+        //}
     };
 
     //check if mute box is checked

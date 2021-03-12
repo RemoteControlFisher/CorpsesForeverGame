@@ -1,6 +1,7 @@
 class slow_background {
 	constructor(game, x, y, sprite, speed, scale, width, height) {
 		Object.assign(this, { game, x, y, sprite , speed, scale});
+		//console.log("slowback x: " + this.game.x);
 		this.spritesheet = ASSET_MANAGER.getAsset(sprite);
 		this.animations = new animator(this.spritesheet, // Spritesheet
 		  0, //X
@@ -20,6 +21,7 @@ class slow_background {
 	};
 
 	draw(ctx) {
-		this.animations.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x/this.speed, this.y - this.game.camera.y/this.speed, scale)
+		//console.log("slowback x: " + this.game.x);
+		this.animations.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x/this.speed, this.y - this.game.camera.y/this.speed, this.scale)
 	};
 }

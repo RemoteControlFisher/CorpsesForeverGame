@@ -2,13 +2,19 @@ var gameEngine = new GameEngine();
 
 var ASSET_MANAGER = new AssetManager();
 
-// Game spritesheet
+// Game spritesheet------------------------------------------------------------------------
+
+//Ducks (main protag)
 ASSET_MANAGER.queueDownload("./sprites/duck.png")
 ASSET_MANAGER.queueDownload("./sprites/duck (Reverse).png")
+
+//Traps 
 ASSET_MANAGER.queueDownload("./sprites/blade_1_3.png")
 ASSET_MANAGER.queueDownload("./sprites/blade_1_4.png")
 ASSET_MANAGER.queueDownload("./sprites/blade_2_fix.png")
 ASSET_MANAGER.queueDownload("./sprites/new_Spike_Strip.png")
+
+//Enemies
 ASSET_MANAGER.queueDownload("./sprites/slimesprite/Slime_Walk.png")
 ASSET_MANAGER.queueDownload("./sprites/slimesprite/Slime_Walk (Reverse).png")
 ASSET_MANAGER.queueDownload("./sprites/slimesprite/Slime_Hurt.png")
@@ -16,19 +22,25 @@ ASSET_MANAGER.queueDownload("./sprites/slimesprite/Slime_Hurt (Reverse).png")
 ASSET_MANAGER.queueDownload("./sprites/slimesprite/Slime_Attack.png")
 ASSET_MANAGER.queueDownload("./sprites/slimesprite/Slime_Attack (Reverse).png")
 ASSET_MANAGER.queueDownload("./sprites/wolfsheet1.png")
-ASSET_MANAGER.queueDownload("./sprites/floorsandwalls.png")
-ASSET_MANAGER.queueDownload("./sprites/Button.png")
-ASSET_MANAGER.queueDownload("./sprites/TempTextbox.png")
 ASSET_MANAGER.queueDownload("./sprites/slimesprite/Hopper jump.png")
 ASSET_MANAGER.queueDownload("./sprites/slimesprite/Hopper jump r.png")
 
-// Sound file (music)
+//Game objects 
+ASSET_MANAGER.queueDownload("./sprites/floorsandwalls.png")
+ASSET_MANAGER.queueDownload("./sprites/Button.png")
+ASSET_MANAGER.queueDownload("./sprites/TempTextbox.png")
+
+//Backgrounds
+ASSET_MANAGER.queueDownload("./sprites/Background/8-bit-art-city.jpg")
+ASSET_MANAGER.queueDownload("./sprites/Background/8-bit Ċ̸̢͉̝̖̘͕̦̰̫̩͎͘ţ̶̡̪̲̣̩̱̱̓͌͊͛̊͠ḩ̸̛̖͕̥͇̗͓̞̺̰͐͌̎̄̏͋̋͆̍͌͌̏͜ͅu̸̡̩̮̮̱̤̍̀͝ļ̴̪̺̘̭͓̒̎̔̆̂̾̽̐͌̋̑̕ư̵̙̒͐͑́̇̃͘̚͝ͅ.png")
+
+// Sound file (music)-----------------------------------------------------------------
 ASSET_MANAGER.queueDownload("./sound/BMG/World of Horror - Mode Select.mp3")
 ASSET_MANAGER.queueDownload("./sound/BMG/World of Horror Soundtrack Mansion Combat.mp3")
 ASSET_MANAGER.queueDownload("./sound/BMG/World of Horror - Home (Extended).mp3")
 
 
-// Sound effects
+// Sound effects----------------------------------------------------------------------
 
 //Le Duck
 ASSET_MANAGER.queueDownload("./sound/Duck sound/mixkit-boxer-getting-hit-2055.wav")
