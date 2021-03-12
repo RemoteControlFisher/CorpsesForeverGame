@@ -40,6 +40,17 @@ class scenemanager {
         }
         */
 
+        if (level.slowback) {
+            //x, y, sprite, speed, scale
+            for (let i = 0; i < level.slowback.length; i++){
+                let x = level.slowback[i].x
+                let y = level.slowback[i].y
+                let sprite = level.slowback[i].sprite
+                let sheet = level.slowback[i].speed
+                let scale = level.slowback[i].scale
+                this.game.addEntity(new slow_background(x,y, sprite , sheet, scale))
+            }
+        }
         if (level.backs) {
             console.log(level.backs)
             for (let i = 0; i < level.backs.length; i++) {
