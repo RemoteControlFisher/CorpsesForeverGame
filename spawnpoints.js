@@ -16,7 +16,7 @@ class spawnpoints {
 
 	draw(ctx) {
 		if (this.active)
-			this.animations.prisoner.drawFrame(this.game.clockTick, ctx, this.x + 4 - this.game.camera.x, this.y + 50 - this.game.camera.y, 2) //Draw a captured duck on active spawns.
+			this.animations.prisoner.drawFrame(this.game.clockTick, ctx, this.x + 4 - this.game.camera.x, this.y + 50 - this.game.camera.y, 2, true) //Draw a captured duck on active spawns.
 		this.animations.cage.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 2)
 		/*//Spawner hitbox drawing.
 			ctx.strokeStyle = 'Red';
