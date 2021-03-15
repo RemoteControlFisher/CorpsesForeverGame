@@ -1051,12 +1051,12 @@ class duck {
           }
 
           if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
-            if (!(that.state == "dead") && entity.spike) {
-              that.die(entity)
-            }
             that.velocityY = 0
             that.y = entity.BB.top - 50
             that.updateBB(2)
+            if (!(that.state == "dead") && entity.spike) {
+              that.die(entity)
+            }
           }
           else
             if (entity.wall && that.velocityX > 0 && that.cBB.right > entity.BB.left) {
