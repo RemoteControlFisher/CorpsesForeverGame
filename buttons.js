@@ -98,8 +98,8 @@ class buttons
     draw(ctx) {
 
         this.button[this.state].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, .75)
-        ctx.strokeStyle = 'Red';
-        ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
+        //ctx.strokeStyle = 'Red';
+        //ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
     };
 
     // corpseHelper() {
