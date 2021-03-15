@@ -934,10 +934,6 @@ class duck {
 
           //If we are landing on something, stop. 
           if (entity.platform && that.oldBB.bottom <= entity.BB.top) {
-
-            if (!(that.state == "dead") && entity.spike) {
-              that.die(entity)
-            }
             //If the entity is droppable and dow is held, let the player fall through it if they are not sliding.
             //Control blocks this behavior, to let the player drop corpses on platforms.
             if (!(entity.droppable && that.game.down && !that.game.sprint)) {
@@ -957,6 +953,9 @@ class duck {
               that.updateBB(2)
             } else {
               that.state = "freefall"
+            }
+            if (!(that.state == "dead") && entity.spike) {
+              that.die(entity)
             }
           } else
             if (entity.cieling && that.oldBB.top >= entity.BB.bottom) {
