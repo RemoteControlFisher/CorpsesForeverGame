@@ -64,6 +64,7 @@ class GameEngine {
                 case "KeyW":
                 case "Space":
                     that.up = true;
+                    e.preventDefault()
                     break;
                 case "ArrowDown":
                 case "KeyS":
